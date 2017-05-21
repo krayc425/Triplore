@@ -48,10 +48,12 @@
 		244E2B281ED197B700893377 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 244E2B271ED197B700893377 /* libstdc++.tbd */; };
 		244E2B2A1ED197BD00893377 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 244E2B291ED197BD00893377 /* libc++.tbd */; };
 		244E2B2C1ED197C100893377 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 244E2B2B1ED197C100893377 /* libiconv.tbd */; };
-		244E2B2E1ED1985800893377 /* libav.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 244E2B2D1ED1985800893377 /* libav.a */; };
+		24B223241ED1AEFC00B31A90 /* libav.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B223231ED1AEFC00B31A90 /* libav.a */; };
+		E24B35C5202DB7784725C645 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BBB13EA2F959967DCA3110 /* libPods-Triplore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		133A2D98DF44F620430ABA4A /* Pods-Triplore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triplore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Triplore/Pods-Triplore.debug.xcconfig"; sourceTree = "<group>"; };
 		244E2ABA1ED1961D00893377 /* Triplore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triplore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		244E2ABE1ED1961D00893377 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		244E2AC01ED1961D00893377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,20 +64,6 @@
 		244E2AC91ED1961D00893377 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		244E2ACC1ED1961D00893377 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		244E2ACE1ED1961D00893377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		244E2AD71ED1964800893377 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
-		244E2AD81ED1964800893377 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
-		244E2AD91ED1964800893377 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
-		244E2ADA1ED1964800893377 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
-		244E2ADB1ED1964800893377 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
-		244E2ADC1ED1964800893377 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
-		244E2ADD1ED1964800893377 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
-		244E2ADE1ED1964800893377 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
-		244E2ADF1ED1964800893377 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
-		244E2AE01ED1964800893377 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
-		244E2AE11ED1964800893377 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
-		244E2AE21ED1964800893377 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
-		244E2AE31ED1964800893377 /* QYPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYPlayerController.h; sourceTree = "<group>"; };
-		244E2AE41ED1964800893377 /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
 		244E2AE71ED1970D00893377 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		244E2AE91ED1971900893377 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		244E2AEB1ED1971D00893377 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -112,6 +100,22 @@
 		244E2B291ED197BD00893377 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		244E2B2B1ED197C100893377 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		244E2B2D1ED1985800893377 /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libav.a; path = IOSPlayerLib/libav.a; sourceTree = "<group>"; };
+		24B223161ED1AEFC00B31A90 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		24B223171ED1AEFC00B31A90 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		24B223181ED1AEFC00B31A90 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		24B223191ED1AEFC00B31A90 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		24B2231A1ED1AEFC00B31A90 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		24B2231B1ED1AEFC00B31A90 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		24B2231C1ED1AEFC00B31A90 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		24B2231D1ED1AEFC00B31A90 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		24B2231E1ED1AEFC00B31A90 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		24B2231F1ED1AEFC00B31A90 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		24B223201ED1AEFC00B31A90 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		24B223211ED1AEFC00B31A90 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		24B223221ED1AEFC00B31A90 /* QYPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYPlayerController.h; sourceTree = "<group>"; };
+		24B223231ED1AEFC00B31A90 /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
+		82BBB13EA2F959967DCA3110 /* libPods-Triplore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Triplore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7370142DB79BB7225B7E686 /* Pods-Triplore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triplore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Triplore/Pods-Triplore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +123,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				244E2B2E1ED1985800893377 /* libav.a in Frameworks */,
 				244E2B2C1ED197C100893377 /* libiconv.tbd in Frameworks */,
 				244E2B2A1ED197BD00893377 /* libc++.tbd in Frameworks */,
 				244E2B281ED197B700893377 /* libstdc++.tbd in Frameworks */,
 				244E2B261ED197B200893377 /* libz.1.tbd in Frameworks */,
 				244E2B241ED197AA00893377 /* libsqlite3.tbd in Frameworks */,
+				24B223241ED1AEFC00B31A90 /* libav.a in Frameworks */,
 				244E2B221ED197A600893377 /* libxml2.tbd in Frameworks */,
 				244E2B201ED197A000893377 /* CoreMedia.framework in Frameworks */,
 				244E2B1E1ED1979C00893377 /* CFNetwork.framework in Frameworks */,
@@ -155,6 +159,7 @@
 				244E2AEC1ED1971D00893377 /* CoreLocation.framework in Frameworks */,
 				244E2AEA1ED1971900893377 /* CoreMotion.framework in Frameworks */,
 				244E2AE81ED1970D00893377 /* CoreTelephony.framework in Frameworks */,
+				E24B35C5202DB7784725C645 /* libPods-Triplore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,10 +169,11 @@
 		244E2AB11ED1961C00893377 = {
 			isa = PBXGroup;
 			children = (
-				244E2AD41ED1964800893377 /* IOSPlayerLib */,
+				24B223131ED1AEFC00B31A90 /* IOSPlayerLib */,
 				244E2ABC1ED1961D00893377 /* Triplore */,
 				244E2ABB1ED1961D00893377 /* Products */,
 				244E2AE61ED1970D00893377 /* Frameworks */,
+				BD4BA6F2E19C99A6F97D6CD9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,44 +207,6 @@
 				244E2ABE1ED1961D00893377 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		244E2AD41ED1964800893377 /* IOSPlayerLib */ = {
-			isa = PBXGroup;
-			children = (
-				244E2AD51ED1964800893377 /* include */,
-				244E2AE41ED1964800893377 /* libav.a */,
-			);
-			name = IOSPlayerLib;
-			path = ../../../../../Desktop/IOSPlayerLib;
-			sourceTree = "<group>";
-		};
-		244E2AD51ED1964800893377 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				244E2AD61ED1964800893377 /* asihttp include */,
-				244E2AE31ED1964800893377 /* QYPlayerController.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		244E2AD61ED1964800893377 /* asihttp include */ = {
-			isa = PBXGroup;
-			children = (
-				244E2AD71ED1964800893377 /* ASIAuthenticationDialog.h */,
-				244E2AD81ED1964800893377 /* ASICacheDelegate.h */,
-				244E2AD91ED1964800893377 /* ASIDataCompressor.h */,
-				244E2ADA1ED1964800893377 /* ASIDataDecompressor.h */,
-				244E2ADB1ED1964800893377 /* ASIDownloadCache.h */,
-				244E2ADC1ED1964800893377 /* ASIFormDataRequest.h */,
-				244E2ADD1ED1964800893377 /* ASIHTTPRequest.h */,
-				244E2ADE1ED1964800893377 /* ASIHTTPRequestConfig.h */,
-				244E2ADF1ED1964800893377 /* ASIHTTPRequestDelegate.h */,
-				244E2AE01ED1964800893377 /* ASIInputStream.h */,
-				244E2AE11ED1964800893377 /* ASINetworkQueue.h */,
-				244E2AE21ED1964800893377 /* ASIProgressDelegate.h */,
-			);
-			path = "asihttp include";
 			sourceTree = "<group>";
 		};
 		244E2AE61ED1970D00893377 /* Frameworks */ = {
@@ -280,8 +248,55 @@
 				244E2AEB1ED1971D00893377 /* CoreLocation.framework */,
 				244E2AE91ED1971900893377 /* CoreMotion.framework */,
 				244E2AE71ED1970D00893377 /* CoreTelephony.framework */,
+				82BBB13EA2F959967DCA3110 /* libPods-Triplore.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24B223131ED1AEFC00B31A90 /* IOSPlayerLib */ = {
+			isa = PBXGroup;
+			children = (
+				24B223141ED1AEFC00B31A90 /* include */,
+				24B223231ED1AEFC00B31A90 /* libav.a */,
+			);
+			path = IOSPlayerLib;
+			sourceTree = "<group>";
+		};
+		24B223141ED1AEFC00B31A90 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				24B223151ED1AEFC00B31A90 /* asihttp include */,
+				24B223221ED1AEFC00B31A90 /* QYPlayerController.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		24B223151ED1AEFC00B31A90 /* asihttp include */ = {
+			isa = PBXGroup;
+			children = (
+				24B223161ED1AEFC00B31A90 /* ASIAuthenticationDialog.h */,
+				24B223171ED1AEFC00B31A90 /* ASICacheDelegate.h */,
+				24B223181ED1AEFC00B31A90 /* ASIDataCompressor.h */,
+				24B223191ED1AEFC00B31A90 /* ASIDataDecompressor.h */,
+				24B2231A1ED1AEFC00B31A90 /* ASIDownloadCache.h */,
+				24B2231B1ED1AEFC00B31A90 /* ASIFormDataRequest.h */,
+				24B2231C1ED1AEFC00B31A90 /* ASIHTTPRequest.h */,
+				24B2231D1ED1AEFC00B31A90 /* ASIHTTPRequestConfig.h */,
+				24B2231E1ED1AEFC00B31A90 /* ASIHTTPRequestDelegate.h */,
+				24B2231F1ED1AEFC00B31A90 /* ASIInputStream.h */,
+				24B223201ED1AEFC00B31A90 /* ASINetworkQueue.h */,
+				24B223211ED1AEFC00B31A90 /* ASIProgressDelegate.h */,
+			);
+			path = "asihttp include";
+			sourceTree = "<group>";
+		};
+		BD4BA6F2E19C99A6F97D6CD9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				133A2D98DF44F620430ABA4A /* Pods-Triplore.debug.xcconfig */,
+				D7370142DB79BB7225B7E686 /* Pods-Triplore.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,9 +306,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 244E2AD11ED1961D00893377 /* Build configuration list for PBXNativeTarget "Triplore" */;
 			buildPhases = (
+				7539499A31D0B0D42EC57EFF /* [CP] Check Pods Manifest.lock */,
 				244E2AB61ED1961D00893377 /* Sources */,
 				244E2AB71ED1961D00893377 /* Frameworks */,
 				244E2AB81ED1961D00893377 /* Resources */,
+				70D26CE1F4D0B7962BD91717 /* [CP] Embed Pods Frameworks */,
+				7186B43A9143B55BC26E173F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,6 +368,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70D26CE1F4D0B7962BD91717 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Triplore/Pods-Triplore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7186B43A9143B55BC26E173F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Triplore/Pods-Triplore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7539499A31D0B0D42EC57EFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		244E2AB61ED1961D00893377 /* Sources */ = {
@@ -476,6 +542,7 @@
 		};
 		244E2AD21ED1961D00893377 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 133A2D98DF44F620430ABA4A /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
@@ -495,6 +562,7 @@
 		};
 		244E2AD31ED1961D00893377 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7370142DB79BB7225B7E686 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
@@ -531,6 +599,7 @@
 				244E2AD31ED1961D00893377 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
