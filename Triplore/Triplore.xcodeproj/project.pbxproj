@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241BB2A61ED332B90064B921 /* TPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BB2A51ED332B90064B921 /* TPNavigationViewController.m */; };
+		241BB2A91ED333840064B921 /* TPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BB2A81ED333840064B921 /* TPTabBarViewController.m */; };
 		244E2ABF1ED1961D00893377 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 244E2ABE1ED1961D00893377 /* main.m */; };
 		244E2AC21ED1961D00893377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 244E2AC11ED1961D00893377 /* AppDelegate.m */; };
 		244E2AC51ED1961D00893377 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244E2AC41ED1961D00893377 /* ViewController.m */; };
@@ -62,6 +64,10 @@
 
 /* Begin PBXFileReference section */
 		133A2D98DF44F620430ABA4A /* Pods-Triplore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triplore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Triplore/Pods-Triplore.debug.xcconfig"; sourceTree = "<group>"; };
+		241BB2A41ED332B90064B921 /* TPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNavigationViewController.h; sourceTree = "<group>"; };
+		241BB2A51ED332B90064B921 /* TPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNavigationViewController.m; sourceTree = "<group>"; };
+		241BB2A71ED333840064B921 /* TPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTabBarViewController.h; sourceTree = "<group>"; };
+		241BB2A81ED333840064B921 /* TPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTabBarViewController.m; sourceTree = "<group>"; };
 		244E2ABA1ED1961D00893377 /* Triplore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triplore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		244E2ABE1ED1961D00893377 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		244E2AC01ED1961D00893377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -184,6 +190,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241BB2AA1ED334430064B921 /* Basic UI */ = {
+			isa = PBXGroup;
+			children = (
+				241BB2A41ED332B90064B921 /* TPNavigationViewController.h */,
+				241BB2A51ED332B90064B921 /* TPNavigationViewController.m */,
+				241BB2A71ED333840064B921 /* TPTabBarViewController.h */,
+				241BB2A81ED333840064B921 /* TPTabBarViewController.m */,
+			);
+			name = "Basic UI";
+			sourceTree = "<group>";
+		};
 		244E2AB11ED1961C00893377 = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				248337191ED1C43700195DE1 /* IOSPlayerLib */,
+				241BB2AA1ED334430064B921 /* Basic UI */,
 				244E2AC01ED1961D00893377 /* AppDelegate.h */,
 				244E2AC11ED1961D00893377 /* AppDelegate.m */,
 				244E2AC31ED1961D00893377 /* ViewController.h */,
@@ -466,8 +484,10 @@
 			files = (
 				248336E41ED1B9A500195DE1 /* PlayViewController.m in Sources */,
 				244E2AC51ED1961D00893377 /* ViewController.m in Sources */,
+				241BB2A61ED332B90064B921 /* TPNavigationViewController.m in Sources */,
 				248336E51ED1B9A500195DE1 /* ActivityIndicatorView.m in Sources */,
 				244E2AC21ED1961D00893377 /* AppDelegate.m in Sources */,
+				241BB2A91ED333840064B921 /* TPTabBarViewController.m in Sources */,
 				244E2ABF1ED1961D00893377 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
