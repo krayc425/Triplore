@@ -373,7 +373,6 @@
             break;
     }
     
-    //    NSLog()
     [self addChildViewController:self.playViewController];
     [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:self.playViewController.view];

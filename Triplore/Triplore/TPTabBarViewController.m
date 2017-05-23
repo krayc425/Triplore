@@ -8,6 +8,7 @@
 
 #import "TPTabBarViewController.h"
 #import "ViewController.h"
+#import "Utilities.h"
 
 @interface TPTabBarViewController ()
 
@@ -16,15 +17,34 @@
 @implementation TPTabBarViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.navigationItem.title = @"Triplore";
+    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    
+    self.tabBar.tintColor = [Utilities getColor];
     
     ViewController *vc = [[ViewController alloc] init];
-    vc.title = @"精选";
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
+    vc.tabBarItem = item1;
+    
+    UIViewController *testVC2 = [[UIViewController alloc] init];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"地点" image:[UIImage imageNamed:@"TAB_SITE"] selectedImage:[UIImage imageNamed:@"TAB_SITE"]];
+    testVC2.tabBarItem = item2;
+    
+    UIViewController *testVC3 = [[UIViewController alloc] init];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"书签" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
+    testVC3.tabBarItem = item3;
+    
+    UIViewController *testVC4 = [[UIViewController alloc] init];
+    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"TAB_PERSON"] selectedImage:[UIImage imageNamed:@"TAB_PERSON"]];
+    testVC4.tabBarItem = item4;
     
     [self addChildViewController:vc];
-    
-    [super viewDidLoad];
+    [self addChildViewController:testVC2];
+    [self addChildViewController:testVC3];
+    [self addChildViewController:testVC4];
 }
 
 - (void)didReceiveMemoryWarning {

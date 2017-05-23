@@ -7,6 +7,7 @@
 //
 
 #import "TPNavigationViewController.h"
+#import "Utilities.h"
 
 @interface TPNavigationViewController ()
 
