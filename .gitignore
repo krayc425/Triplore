@@ -62,4 +62,5 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+*.sketch
 Triplore/IOSPlayerLib/libav.a
