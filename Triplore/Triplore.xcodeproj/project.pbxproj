@@ -195,6 +195,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AC3095A6612B03A93E00DD25B53E49D /* asihttp include */ = {
+			isa = PBXGroup;
+			children = (
+				05691BAB873FDAFD0D28D4BF871AD506 /* ASIAuthenticationDialog.h */,
+				C0B025B5E3CB855B1FA537B7F6DE61A6 /* ASICacheDelegate.h */,
+				E05D2C6C4439F41454108B3ACDCBC4DD /* ASIDataCompressor.h */,
+				9ECD146A3EF61AC5AF0940E5EB7D7A94 /* ASIDataDecompressor.h */,
+				7A1395373683AEE3BB3E93E529BF4BCF /* ASIDownloadCache.h */,
+				0BD2D6EC6EDA3CC7BF406CB22BC11537 /* ASIFormDataRequest.h */,
+				52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */,
+				6C3AAB1116E17FBA32913AE768B02417 /* ASIHTTPRequestConfig.h */,
+				AA09709768A120A9932D5579C22ACF3A /* ASIHTTPRequestDelegate.h */,
+				10F27E0B6E83B9FCE3AFCD10ABAAD941 /* ASIInputStream.h */,
+				C5839AAD405152CD1EE44E0E373AD4F9 /* ASINetworkQueue.h */,
+				E7782443AC3F257BC0763B04B9C1434F /* ASIProgressDelegate.h */,
+			);
+			path = "asihttp include";
+			sourceTree = "<group>";
+		};
+		1B651AE61FD3EE1F10AF65F7CB239A88 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */,
+				A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +243,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A3CAFE0EE9851645DEE78AA87AA10027 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,41 +258,6 @@
 			);
 			name = Products;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		D85993CC06B4E6FF333C070C3D479379 /* Triplore */ = {
-			isa = PBXGroup;
-			children = (
-				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
-				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
-				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
-				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
-				D8741E802C9E1E6FAC4AD165570AB009 /* image */,
-				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
-				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
-				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
-				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
-				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
-				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
-				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
-				5386DC2C4070CAFF5F50DC1BD7A2E1CE /* Main.storyboard */,
-				AB0C160597D973A20F1C62F9368DA037 /* PlayViewController.h */,
-				88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */,
-				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
-				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
-				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
-				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
-				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
-			);
-			path = Triplore;
-			sourceTree = "<group>";
-		};
-		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
@@ -303,6 +304,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D85993CC06B4E6FF333C070C3D479379 /* Triplore */ = {
+			isa = PBXGroup;
+			children = (
+				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
+				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
+				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
+				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
+				D8741E802C9E1E6FAC4AD165570AB009 /* image */,
+				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
+				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
+				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
+				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
+				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
+				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
+				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
+				5386DC2C4070CAFF5F50DC1BD7A2E1CE /* Main.storyboard */,
+				AB0C160597D973A20F1C62F9368DA037 /* PlayViewController.h */,
+				88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */,
+				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
+				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
+				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
+				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
+				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
+			);
+			path = Triplore;
+			sourceTree = "<group>";
+		};
 		D8741E802C9E1E6FAC4AD165570AB009 /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,15 +344,6 @@
 			path = image;
 			sourceTree = "<group>";
 		};
-		EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */ = {
-			isa = PBXGroup;
-			children = (
-				DC0EF484496DBC1375668BF29A4230CF /* include */,
-				42A73A86EFD2AA39B5EB8842385216CB /* libav.a */,
-			);
-			path = IOSPlayerLib;
-			sourceTree = SOURCE_ROOT;
-		};
 		DC0EF484496DBC1375668BF29A4230CF /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,33 +353,14 @@
 			path = include;
 			sourceTree = "<group>";
 		};
-		1AC3095A6612B03A93E00DD25B53E49D /* asihttp include */ = {
+		EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */ = {
 			isa = PBXGroup;
 			children = (
-				05691BAB873FDAFD0D28D4BF871AD506 /* ASIAuthenticationDialog.h */,
-				C0B025B5E3CB855B1FA537B7F6DE61A6 /* ASICacheDelegate.h */,
-				E05D2C6C4439F41454108B3ACDCBC4DD /* ASIDataCompressor.h */,
-				9ECD146A3EF61AC5AF0940E5EB7D7A94 /* ASIDataDecompressor.h */,
-				7A1395373683AEE3BB3E93E529BF4BCF /* ASIDownloadCache.h */,
-				0BD2D6EC6EDA3CC7BF406CB22BC11537 /* ASIFormDataRequest.h */,
-				52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */,
-				6C3AAB1116E17FBA32913AE768B02417 /* ASIHTTPRequestConfig.h */,
-				AA09709768A120A9932D5579C22ACF3A /* ASIHTTPRequestDelegate.h */,
-				10F27E0B6E83B9FCE3AFCD10ABAAD941 /* ASIInputStream.h */,
-				C5839AAD405152CD1EE44E0E373AD4F9 /* ASINetworkQueue.h */,
-				E7782443AC3F257BC0763B04B9C1434F /* ASIProgressDelegate.h */,
+				DC0EF484496DBC1375668BF29A4230CF /* include */,
+				42A73A86EFD2AA39B5EB8842385216CB /* libav.a */,
 			);
-			path = "asihttp include";
-			sourceTree = "<group>";
-		};
-		1B651AE61FD3EE1F10AF65F7CB239A88 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */,
-				A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
+			path = IOSPlayerLib;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -440,21 +440,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Triplore/Pods-Triplore-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0682B225233B12B52C143C1988A0CF45 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,7 +467,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Triplore/Pods-Triplore-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -506,14 +506,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5386DC2C4070CAFF5F50DC1BD7A2E1CE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA2C383F22705891521C09D83294C589 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -522,9 +514,40 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		5386DC2C4070CAFF5F50DC1BD7A2E1CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA2C383F22705891521C09D83294C589 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		11ED779EDEC09B8F764B20B692D9ABFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = Triplore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IOSPlayerLib/**",
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/IOSPlayerLib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Release;
+		};
 		15C6A85DEF2076F5E015DF1FE9C864F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -574,6 +597,29 @@
 			};
 			name = Debug;
 		};
+		42A9AD9C67316A2614D272789CFD2EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = Triplore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IOSPlayerLib/**",
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/IOSPlayerLib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
 		ADF464CB1C9A7EB916E785EB665FACDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,71 +663,23 @@
 			};
 			name = Release;
 		};
-		42A9AD9C67316A2614D272789CFD2EA9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
-				INFOPLIST_FILE = Triplore/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/IOSPlayerLib/**",
-					"$(PROJECT_DIR)/**",
-					"/Users/Kray/Documents/Programming/iOS/Triplore/**",
-					"$(PROJECT_DIR)/IOSPlayerLib",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv7;
-			};
-			name = Debug;
-		};
-		11ED779EDEC09B8F764B20B692D9ABFD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
-				INFOPLIST_FILE = Triplore/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/IOSPlayerLib/**",
-					"$(PROJECT_DIR)/**",
-					"/Users/Kray/Documents/Programming/iOS/Triplore/**",
-					"$(PROJECT_DIR)/IOSPlayerLib",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F4B1C02F3773916B8516507BE589499 /* Build configuration list for PBXProject "Triplore" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				15C6A85DEF2076F5E015DF1FE9C864F0 /* Debug */,
-				ADF464CB1C9A7EB916E785EB665FACDB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4585509B16CC56DD2133378EEABAFB5D /* Build configuration list for PBXNativeTarget "Triplore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42A9AD9C67316A2614D272789CFD2EA9 /* Debug */,
 				11ED779EDEC09B8F764B20B692D9ABFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F4B1C02F3773916B8516507BE589499 /* Build configuration list for PBXProject "Triplore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15C6A85DEF2076F5E015DF1FE9C864F0 /* Debug */,
+				ADF464CB1C9A7EB916E785EB665FACDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
