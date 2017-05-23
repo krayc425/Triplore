@@ -13,4 +13,6 @@
 
 + (UIColor *)getColor;
 
++ (UIColor *)getBackgroundColor;
+
 @end
