@@ -8,9 +8,9 @@
 
 #import "AppDelegate.h"
 #import "QYPlayerController.h"
-#import "TPNavigationViewController.h"
 #import "TPTabBarViewController.h"
 #import "ViewController.h"
+#import "Utilities.h"
 
 @interface AppDelegate ()
 
@@ -26,11 +26,9 @@
     [[QYPlayerController sharedInstance] initPlayer];
     
     TPTabBarViewController *tabVC = [[TPTabBarViewController alloc] init];
-    TPNavigationViewController *naviVC = [[TPNavigationViewController alloc] initWithRootViewController:tabVC];
-    
     UIWindow *windows = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = windows;
-    self.window.rootViewController = naviVC;
+    self.window.rootViewController = tabVC;
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -19,9 +19,11 @@
 		2402CE181ED44F690098770A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE171ED44F690098770A /* Main.storyboard */; };
 		2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE191ED450790098770A /* TPSiteTableViewCell.xib */; };
 		2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */; };
+		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
+		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
+		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
 		29366AD0D8B6E2D2BCAA8CEDAB5C6748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */; };
-		2CC17169B83336248832E2F908CCA588 /* TPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0B049A4B3DF995E846B12BAB91365 /* TPNavigationViewController.m */; };
 		2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */; };
 		3960E70236D8DD7545648C5FB61C9F38 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35FB4D9712717CB1E63340C839A437 /* libPods-Triplore.a */; };
 		3FC13E15FA442089E035B4ADD36E640C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38C032C4535534575B291AE5BF263DE /* Foundation.framework */; };
@@ -76,7 +78,6 @@
 		10F27E0B6E83B9FCE3AFCD10ABAAD941 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
 		1888FDD983AF552929BAB17BB00FB287 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18B6C9E62BFC95374D89FEB5DBB6234B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		2402CE041ED4466B0098770A /* libPYSearch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPYSearch.a; path = "Pods/../build/Release-iphoneos/PYSearch/libPYSearch.a"; sourceTree = "<group>"; };
 		2402CE061ED448020098770A /* libPYSearch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPYSearch.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/PYSearch/libPYSearch.a"; sourceTree = "<group>"; };
 		2402CE081ED448080098770A /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewController.h; sourceTree = "<group>"; };
@@ -86,9 +87,12 @@
 		2402CE171ED44F690098770A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2402CE191ED450790098770A /* TPSiteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteTableViewCell.xib; sourceTree = "<group>"; };
 		2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
-		24D0B049A4B3DF995E846B12BAB91365 /* TPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNavigationViewController.m; sourceTree = "<group>"; };
+		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
+		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
+		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
+		24B810881ED700C900CD7DC4 /* TPMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewController.h; sourceTree = "<group>"; };
+		24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewController.m; sourceTree = "<group>"; };
 		25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tab.xcassets; sourceTree = "<group>"; };
-		29E656D95534FE15EB91EBED60821053 /* TPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNavigationViewController.h; sourceTree = "<group>"; };
 		396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		42A73A86EFD2AA39B5EB8842385216CB /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
 		42F84E8865C574D03576002EE831A179 /* TPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTabBarViewController.m; sourceTree = "<group>"; };
@@ -240,11 +244,21 @@
 			name = Site;
 			sourceTree = "<group>";
 		};
+		24B8108B1ED7039100CD7DC4 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				24B810881ED700C900CD7DC4 /* TPMeTableViewController.h */,
+				24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */,
+				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
+				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
+				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
+			);
+			name = Me;
+			sourceTree = "<group>";
+		};
 		32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */ = {
 			isa = PBXGroup;
 			children = (
-				29E656D95534FE15EB91EBED60821053 /* TPNavigationViewController.h */,
-				24D0B049A4B3DF995E846B12BAB91365 /* TPNavigationViewController.m */,
 				FA806955211DA83A261A9E3B7BFD6408 /* TPTabBarViewController.h */,
 				42F84E8865C574D03576002EE831A179 /* TPTabBarViewController.m */,
 			);
@@ -283,7 +297,6 @@
 			children = (
 				2402CE081ED448080098770A /* libAFNetworking.a */,
 				2402CE061ED448020098770A /* libPYSearch.a */,
-				2402CE041ED4466B0098770A /* libPYSearch.a */,
 				00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */,
 				FD90A432DA9EBB0D11B5BD6D5AAF2833 /* AVKit.framework */,
 				CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */,
@@ -332,12 +345,13 @@
 				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
 				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
 				2402CE161ED44DD60098770A /* Site */,
-				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
-				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
+				24B8108B1ED7039100CD7DC4 /* Me */,
 				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
 				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
 				AB0C160597D973A20F1C62F9368DA037 /* PlayViewController.h */,
 				88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */,
+				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
+				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
 				2402CE171ED44F690098770A /* Main.storyboard */,
@@ -435,6 +449,7 @@
 				E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
+				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
 				2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */,
 				6B975E58F50BF40D71D495A576232E6A /* Tab.xcassets in Resources */,
@@ -497,11 +512,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
+				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				D90A7F78F66919467BF2405B69DCB1D5 /* PlayViewController.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
-				2CC17169B83336248832E2F908CCA588 /* TPNavigationViewController.m in Sources */,
+				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
