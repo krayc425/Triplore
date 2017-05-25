@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "Utilities.h"
 #import "TPSiteTableViewController.h"
+#import "TPNoteCollectionViewController.h"
 #import "TPMeTableViewController.h"
 
 @interface TPTabBarViewController ()
@@ -22,20 +23,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //TabBar
     self.tabBarController.tabBar.delegate = self;
     self.tabBar.tintColor = [Utilities getColor];
     
-    //颜色
+    //NavigationBar
     UINavigationBar *bar = [UINavigationBar appearance];
     [bar setBarTintColor:[Utilities getColor]];
     [bar setTintColor:[Utilities getColor]];
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [bar setTitleTextAttributes:@{
+                                  NSForegroundColorAttributeName : [UIColor whiteColor],
+                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
+                                  }];
     [bar setTranslucent:NO];
     UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     bar.backIndicatorImage = image;
     bar.backIndicatorTransitionMaskImage = image;
-
+    
     //精选
     ViewController *vc = [[ViewController alloc] init];
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
@@ -48,11 +53,12 @@
     tpSiteTableViewController.tabBarItem = item2;
     UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:tpSiteTableViewController];
     
-    //书签？
-    UIViewController *testVC3 = [[UIViewController alloc] init];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"书签" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
-    testVC3.tabBarItem = item3;
-    UINavigationController *naviVC3 = [[UINavigationController alloc] initWithRootViewController:testVC3];
+    //笔记
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    TPNoteCollectionViewController *noteVC = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"笔记" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
+    noteVC.tabBarItem = item3;
+    UINavigationController *naviVC3 = [[UINavigationController alloc] initWithRootViewController:noteVC];
     
     //我
     TPMeTableViewController *meVC = [[TPMeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -79,6 +85,12 @@
 - (void)viewDidAppear:(BOOL)animated{
     //显式调用子 vc 的 viewdidappear
     [self.selectedViewController viewDidAppear:animated];
+}
+
+#pragma mark - BarButton Pressed
+
+- (void)backBarButtonPressed:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITabBarController Delegate

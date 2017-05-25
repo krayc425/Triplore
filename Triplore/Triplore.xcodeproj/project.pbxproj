@@ -22,6 +22,9 @@
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
+		24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */; };
+		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
+		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
 		29366AD0D8B6E2D2BCAA8CEDAB5C6748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */; };
 		2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */; };
@@ -92,6 +95,11 @@
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
 		24B810881ED700C900CD7DC4 /* TPMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewController.h; sourceTree = "<group>"; };
 		24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewController.m; sourceTree = "<group>"; };
+		24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCollectionViewController.h; sourceTree = "<group>"; };
+		24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewController.m; sourceTree = "<group>"; };
+		24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCollectionViewCell.h; sourceTree = "<group>"; };
+		24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewCell.m; sourceTree = "<group>"; };
+		24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tab.xcassets; sourceTree = "<group>"; };
 		396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		42A73A86EFD2AA39B5EB8842385216CB /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
@@ -256,6 +264,18 @@
 			name = Me;
 			sourceTree = "<group>";
 		};
+		24B810941ED7139B00CD7DC4 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
+				24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */,
+				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
+				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
+				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
+			);
+			name = Note;
+			sourceTree = "<group>";
+		};
 		32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +365,7 @@
 				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
 				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
 				2402CE161ED44DD60098770A /* Site */,
+				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
 				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
 				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
@@ -452,6 +473,7 @@
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
 				2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */,
+				24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */,
 				6B975E58F50BF40D71D495A576232E6A /* Tab.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
+				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
@@ -519,6 +542,7 @@
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
+				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
