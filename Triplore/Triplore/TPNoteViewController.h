@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TPNoteViewController : UIViewController
+@interface TPNoteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonnull, nonatomic) NSString *noteTitle;
 
-@property (nonnull, nonatomic) UIScrollView *scrollView;
+@property (nonnull, nonatomic) UITableView *tableView;
 @property (nonnull, nonatomic) NSArray<UIView *> *noteViews;
 
 @end

@@ -9,12 +9,11 @@
 #import "TPNoteViewController.h"
 #import "Utilities.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TPNoteViewTableViewCell.h"
 
 #define STACK_SPACING 20
 
-@interface TPNoteViewController (){
-    UIStackView *stackView;
-}
+@interface TPNoteViewController ()
 
 @end
 
@@ -26,21 +25,21 @@
     // Do any additional setup after loading the view.
     
     //滚动视图
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
-                                                                     0,
-                                                                     CGRectGetWidth(self.view.bounds),
-                                                                     CGRectGetHeight(self.view.bounds))];
-    self.scrollView.contentSize = self.view.bounds.size;
-    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                                   0,
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   CGRectGetHeight(self.view.bounds) - 30)
+                                                  style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     //标题
-    UILabel *noteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,
-                                                                        20,
+    UILabel *noteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
                                                                         self.view.frame.size.width - 40,
                                                                         24)];
     noteTitleLabel.text = self.noteTitle;
     noteTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
     noteTitleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-    [self.scrollView addSubview:noteTitleLabel];
 
     //子视图
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
@@ -53,30 +52,12 @@
     [label4 setText:@"Test 4"];
     UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
     UIImageView *imgView1 = [[UIImageView alloc] initWithImage:image];
-    self.noteViews = @[label1, label2, label3, imgView1, label4];
+    self.noteViews = @[noteTitleLabel, label1, label2, label3, imgView1, label4];
     
-    //加入 StackView
-    CGFloat height = 0.0;
-    for(UIView *view in self.noteViews){
-        height += (view.frame.size.height + STACK_SPACING);
-    }
-    stackView = [[UIStackView alloc] initWithFrame:CGRectMake(20,
-                                                              20 + 44,
-                                                              CGRectGetWidth(self.view.bounds) - 40,
-                                                              height - STACK_SPACING)];
-    stackView.spacing = STACK_SPACING;
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.alignment = UIStackViewAlignmentFill;
-    stackView.distribution = UIStackViewDistributionFillProportionally;
-    stackView.backgroundColor = [UIColor blueColor];
-    
-    for(UIView *view in self.noteViews){
-        [view setBackgroundColor:[UIColor clearColor]];
-        [stackView addArrangedSubview:view];
-    }
-    [self.scrollView addSubview:stackView];
-    
-    [self.view addSubview: self.scrollView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = [UIView new];
+    [self.tableView reloadData];
+    [self.view addSubview:self.tableView];
     
     //保存按钮
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
@@ -95,11 +76,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 #pragma mark - Save to album
 
 - (void)saveNoteAction{
-    UIGraphicsBeginImageContextWithOptions(stackView.bounds.size, NO, [[UIScreen mainScreen] scale]);
-    [stackView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [[UIScreen mainScreen] scale]);
+    [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
@@ -134,6 +123,35 @@
         [alertC addAction:okAction];
         [self presentViewController:alertC animated:YES completion:nil];
     }
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.noteViews.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"TPNoteViewTableViewCell";
+    UINib *nib = [UINib nibWithNibName:@"TPNoteViewTableViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    TPNoteViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    [cell setNoteView:self.noteViews[indexPath.row]];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.noteViews[indexPath.row].frame.size.height + 20;
 }
 
 /*

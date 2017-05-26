@@ -14,6 +14,8 @@
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 280.0
 
+#define CONTROLLER_BAR_WIDTH 30
+
 @interface PlayViewController ()<QYPlayerControllerDelegate>
 @property(nonatomic,strong) ActivityIndicatorView *activityWheel;
 @end
@@ -26,14 +28,14 @@
 
     CGRect playFrame = CGRectMake(0,
                                   0,
-                                  self.view.frame.size.width,
-                                  self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
+                                  self.view.frame.size.width - CONTROLLER_BAR_WIDTH,
+                                  self.view.frame.size.height);
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
     [self.view addSubview:[QYPlayerController sharedInstance].view];
     
     UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(10, 22, 30, 30)];
+    [backButton setFrame:CGRectMake(10, 10, 30, 30)];
     UIImage *backImg = [UIImage imageNamed:@"playerBack"];
     [backButton setImage:backImg forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
@@ -44,31 +46,31 @@
     self.activityWheel = wheel;
     self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
     
-    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
-                                                                           playFrame.size.height,
-                                                                           self.view.frame.size.width - 78,
-                                                                           64)];
-    titleText.placeholder = @"填写标题";
-    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
-    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-    [self.view addSubview:titleText];
+//    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
+//                                                                           playFrame.size.height,
+//                                                                           self.view.frame.size.width - 78,
+//                                                                           64)];
+//    titleText.placeholder = @"填写标题";
+//    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+//    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
+//    [self.view addSubview:titleText];
+//    
+//    UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
+//                                                                            playFrame.size.height + 20,
+//                                                                            24,
+//                                                                            24)];
+//    [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
+//    [self.view addSubview:screenshotButton];
+//    
+//    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+//                                                                      playFrame.size.height + 20,
+//                                                                      24,
+//                                                                      24)];
+//    [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
+//    [self.view addSubview:saveButton];
     
-    UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
-                                                                            playFrame.size.height + 20,
-                                                                            24,
-                                                                            24)];
-    [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
-    [self.view addSubview:screenshotButton];
-    
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      playFrame.size.height + 20,
-                                                                      24,
-                                                                      24)];
-    [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
-    [self.view addSubview:saveButton];
-    
-//    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
-//    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,8 +93,8 @@
     if(playView==nil){
         UIButton *play= [UIButton buttonWithType:UIButtonTypeCustom];
         [play setBackgroundColor:[UIColor blackColor]];
-        [play setFrame:CGRectMake(self.view.frame.size.width - 40,
-                                  self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight - 40,
+        [play setFrame:CGRectMake(10,
+                                  CGRectGetHeight(self.view.bounds) - 40,
                                   30,
                                   30)];
         [play setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
@@ -116,10 +118,10 @@
     if(pauseView==nil){
         UIButton *pause= [UIButton buttonWithType:UIButtonTypeCustom];
         [pause setBackgroundColor:[UIColor blackColor]];
-        [pause setFrame:CGRectMake(self.view.frame.size.width - 40,
-                                   self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight - 40,
-                                   30,
-                                   30)];
+        [pause setFrame:CGRectMake(10,
+                                  CGRectGetHeight(self.view.bounds) - 40,
+                                  30,
+                                  30)];
         [pause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
         pause.layer.masksToBounds=YES;
         pause.layer.cornerRadius=15;
