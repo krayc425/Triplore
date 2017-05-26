@@ -373,17 +373,21 @@
             break;
     }
     
-    [self addChildViewController:self.playViewController];
-    [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [self.view addSubview:self.playViewController.view];
-    __weak typeof(self)weakSelf = self;
-    [UIView animateWithDuration:0.3 animations:^{
-        [weakSelf.playViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
-    } completion:^(BOOL finished) {
+    [self.navigationController presentViewController:self.playViewController animated:YES completion:^{
         
     }];
     
+//    [self addChildViewController:self.playViewController];
+//    [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    [self.view addSubview:self.playViewController.view];
+//    __weak typeof(self)weakSelf = self;
+//    [UIView animateWithDuration:0.3 animations:^{
+//        [weakSelf.playViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
 }
+
 #pragma network request
 
 -(void)requestUrl

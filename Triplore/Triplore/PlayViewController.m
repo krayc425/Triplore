@@ -9,9 +9,10 @@
 #import "PlayViewController.h"
 #import "QYPlayerController.h"
 #import "ActivityIndicatorView.h"
+#import "Utilities.h"
 
-#define KIPhone_AVPlayerRect_mwidth 320
-#define KIPhone_AVPlayerRect_mheight 180
+#define KIPhone_AVPlayerRect_mwidth 320.0
+#define KIPhone_AVPlayerRect_mheight 280.0
 
 @interface PlayViewController ()<QYPlayerControllerDelegate>
 @property(nonatomic,strong) ActivityIndicatorView *activityWheel;
@@ -21,44 +22,79 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self createBasePlayerController];
-    [self createBackView];
-    [self createCopyRight];
+    self.view.backgroundColor = [Utilities getBackgroundColor];
+
+    CGRect playFrame = CGRectMake(0,
+                                  0,
+                                  self.view.frame.size.width,
+                                  self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
+    [QYPlayerController sharedInstance].delegate = self;
+    [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
+    [self.view addSubview:[QYPlayerController sharedInstance].view];
+    
+    UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setFrame:CGRectMake(10, 22, 30, 30)];
+    UIImage *backImg = [UIImage imageNamed:@"playerBack"];
+    [backButton setImage:backImg forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    
+    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame: CGRectMake(0, 0, 15, 15)];
+    wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    self.activityWheel = wheel;
+    self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
+    
+    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
+                                                                           playFrame.size.height,
+                                                                           self.view.frame.size.width - 78,
+                                                                           64)];
+    titleText.placeholder = @"填写标题";
+    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
+    [self.view addSubview:titleText];
+    
+    UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
+                                                                            playFrame.size.height + 20,
+                                                                            24,
+                                                                            24)];
+    [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
+    [self.view addSubview:screenshotButton];
+    
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                      playFrame.size.height + 20,
+                                                                      24,
+                                                                      24)];
+    [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
+    [self.view addSubview:saveButton];
+    
+//    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+//    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)createBackView
-{
-    UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(10, 30, 30, 30)];
-    [backButton setImage:[UIImage imageNamed:@"playerBack"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
+    NSString* aid = [self.playDetail valueForKey:@"a_id"];
+    NSString* tvid = [self.playDetail valueForKey:@"tv_id"];
+    NSString* isvip = [self.playDetail valueForKey:@"is_vip"];
+    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
 }
-- (void)createCopyRight
-{
-    UILabel *copyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    [copyLabel setText:@" Copyright © 2017 爱奇艺 All Rights Reserved"];
-    [copyLabel setTextColor:[UIColor lightGrayColor]];
-    copyLabel.center = self.view.center;
-    copyLabel.font = [UIFont systemFontOfSize:14];
-    copyLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:copyLabel];
-}
-- (void)showPlayView
-{
+
+- (void)showPlayView{
     UIView *playView = [self.view viewWithTag:100];
     UIView *pauseView = [self.view viewWithTag:200];
-    if(playView==nil)
-    {
+    if(playView==nil){
         UIButton *play= [UIButton buttonWithType:UIButtonTypeCustom];
         [play setBackgroundColor:[UIColor blackColor]];
-        [play setFrame:CGRectMake(self.view.frame.size.width-40, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight-20, 30, 30)];
+        [play setFrame:CGRectMake(self.view.frame.size.width - 40,
+                                  self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight - 40,
+                                  30,
+                                  30)];
         [play setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
         play.layer.masksToBounds=YES;
         play.layer.cornerRadius=15;
@@ -68,22 +104,22 @@
         [self.view addSubview:play];
         play.hidden = NO;
         pauseView.hidden = YES;
-    }
-    else
-    {
+    }else{
         playView.hidden = NO;
         pauseView.hidden = YES;
     }
 }
-- (void)showPauseView
-{
+
+- (void)showPauseView{
     UIView *playView = [self.view viewWithTag:100];
     UIView *pauseView = [self.view viewWithTag:200];
-    if(pauseView==nil)
-    {
+    if(pauseView==nil){
         UIButton *pause= [UIButton buttonWithType:UIButtonTypeCustom];
         [pause setBackgroundColor:[UIColor blackColor]];
-        [pause setFrame:CGRectMake(self.view.frame.size.width-40, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight-20, 30, 30)];
+        [pause setFrame:CGRectMake(self.view.frame.size.width - 40,
+                                   self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight - 40,
+                                   30,
+                                   30)];
         [pause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
         pause.layer.masksToBounds=YES;
         pause.layer.cornerRadius=15;
@@ -93,77 +129,47 @@
         [self.view addSubview:pause];
         pause.hidden = NO;
         playView.hidden = YES;
-    }
-    else
-    {
+    }else{
         pauseView.hidden = NO;
         playView.hidden = YES;
     }
 }
-- (void)enablePlayPauseView
-{
+
+- (void)enablePlayPauseView{
     UIView *playView = [self.view viewWithTag:100];
     UIView *pauseView = [self.view viewWithTag:200];
-    if(playView!=nil)
-    {
+    if(playView!=nil){
         playView.userInteractionEnabled = YES;
     }
-    if(pauseView!=nil)
-    {
+    if(pauseView!=nil){
         playView.userInteractionEnabled = YES;
     }
 }
-- (void)unablePlayPauseView
-{
+
+- (void)unablePlayPauseView{
     UIView *playView = [self.view viewWithTag:100];
     UIView *pauseView = [self.view viewWithTag:200];
-    if(playView!=nil)
-    {
+    if(playView!=nil){
         playView.userInteractionEnabled = NO;
     }
-    if(pauseView!=nil)
-    {
+    if(pauseView!=nil){
         playView.userInteractionEnabled = NO;
     }
 }
-- (void)backClick
-{
+
+- (void)backClick{
     [[QYPlayerController sharedInstance] stopPlayer];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
-}
-- (void)createBasePlayerController
-{
-    CGRect playFrame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
-    [QYPlayerController sharedInstance].delegate = self;
-    [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
-    [self.view addSubview:[QYPlayerController sharedInstance].view];
-    
-    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame: CGRectMake(0, 0, 15, 15)];
-    wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    self.activityWheel = wheel;
-    self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
-    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    NSString* aid = [self.playDetail valueForKey:@"a_id"];
-    NSString* tvid = [self.playDetail valueForKey:@"tv_id"];
-    NSString* isvip = [self.playDetail valueForKey:@"is_vip"];
-    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
-}
-
--(void)playClick
-{
+- (void)playClick{
     [[QYPlayerController sharedInstance] play];
     [self showPauseView];
 }
 
--(void)pauseClick
-{
+- (void)pauseClick{
     if ([QYPlayerController sharedInstance].isPlaying==YES) {
         [[QYPlayerController sharedInstance] pause];
         [self showPlayView];
@@ -174,8 +180,7 @@
 /*
  * 播放出错
  */
--(void)onPlayerError:(NSDictionary *)error_no
-{
+- (void)onPlayerError:(NSDictionary *)error_no{
     [self.activityWheel stopAnimating];
     [self.activityWheel removeFromSuperview];
 }
@@ -183,8 +188,7 @@
 /*
  * 显示加载loading
  */
--(void)startLoading:(QYPlayerController *)player
-{
+- (void)startLoading:(QYPlayerController *)player{
     if (self.activityWheel.superview==nil) {
         [self.view addSubview:self.activityWheel];
         [self.activityWheel startAnimating];
@@ -195,8 +199,7 @@
 /*
  * 关闭加载loading
  */
--(void)stopLoading:(QYPlayerController *)player
-{
+- (void)stopLoading:(QYPlayerController *)player{
     [self.activityWheel stopAnimating];
     [self.activityWheel removeFromSuperview];
     [self enablePlayPauseView];
@@ -205,8 +208,7 @@
  **功能: 开始播放广告
  *
  */
-- (void)onAdStartPlay:(QYPlayerController *)player
-{
+- (void)onAdStartPlay:(QYPlayerController *)player{
     [self showPauseView];
 }
 
@@ -214,35 +216,38 @@
  **功能: 开始播放正片
  *
  */
-- (void)onContentStartPlay:(QYPlayerController *)player
-{
+- (void)onContentStartPlay:(QYPlayerController *)player{
     [self showPauseView];
 }
 
 /*
  * 播放时长发生变化
  */
--(void)playbackTimeChanged:(QYPlayerController *)player
-{
+-(void)playbackTimeChanged:(QYPlayerController *)player{
 
 }
 
 /*
  * 播放完成
  */
--(void)playbackFinshed:(QYPlayerController *)player
-{
+-(void)playbackFinshed:(QYPlayerController *)player{
 
 }
 
 /*
  * 网络变化
  */
-- (void)playerNetworkChanged:(QYPlayerController *)player
-{
+- (void)playerNetworkChanged:(QYPlayerController *)player{
 
 }
 
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+//支持横竖屏显示
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
+}
 
 @end

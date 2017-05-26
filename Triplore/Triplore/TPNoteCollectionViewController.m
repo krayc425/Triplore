@@ -8,6 +8,7 @@
 
 #import "TPNoteCollectionViewController.h"
 #import "TPNoteCollectionViewCell.h"
+#import "TPNoteViewController.h"
 #import "Utilities.h"
 
 @interface TPNoteCollectionViewController ()
@@ -57,7 +58,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return 24;
 }
 
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,8 +74,14 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 #pragma mark <UICollectionViewDelegate>
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    TPNoteViewController *testVC = [[TPNoteViewController alloc] init];
+    [testVC setNoteTitle:@"测试标题"];
+    [self.navigationController pushViewController:testVC animated:YES];
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(175, 175);
+    return CGSizeMake((CGRectGetWidth(self.view.frame) - 30) / 2, (CGRectGetWidth(self.view.frame) - 30) / 2);
 }
 
 //每一个分组的上左下右间距
@@ -83,11 +90,11 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 5;
+    return 10;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 5;
+    return 10;
 }
 
 /*

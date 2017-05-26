@@ -19,6 +19,7 @@
 		2402CE181ED44F690098770A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE171ED44F690098770A /* Main.storyboard */; };
 		2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE191ED450790098770A /* TPSiteTableViewCell.xib */; };
 		2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */; };
+		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -28,7 +29,6 @@
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
 		29366AD0D8B6E2D2BCAA8CEDAB5C6748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */; };
 		2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */; };
-		3960E70236D8DD7545648C5FB61C9F38 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35FB4D9712717CB1E63340C839A437 /* libPods-Triplore.a */; };
 		3FC13E15FA442089E035B4ADD36E640C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38C032C4535534575B291AE5BF263DE /* Foundation.framework */; };
 		404134107BDD0EFC845D443E98E6E4BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8767A3F5A7A86D5F22F365387999B575 /* ImageIO.framework */; };
 		44D3C4B23FB21A00969EB5851B6A835C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */; };
@@ -90,6 +90,8 @@
 		2402CE171ED44F690098770A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2402CE191ED450790098770A /* TPSiteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteTableViewCell.xib; sourceTree = "<group>"; };
 		2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		241210EC1ED7EF400066B99C /* TPNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewController.h; sourceTree = "<group>"; };
+		241210ED1ED7EF400066B99C /* TPNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteViewController.m; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -148,7 +150,6 @@
 		D88489CFF8784FF458E19F707E1A4C09 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		DC5D329302F11FE9DEBEDAF06C83D18E /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DD3EA4DCC6C0474B9765ABFFD5C507F6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		DE35FB4D9712717CB1E63340C839A437 /* libPods-Triplore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Triplore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7FB993BCAC6D9D07EEECE0BF761B59 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		E05D2C6C4439F41454108B3ACDCBC4DD /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
 		E0E3D69236D420A532C6764260E20218 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -198,7 +199,6 @@
 				DDF9FD8D34D538E7BC11229DE779023D /* SystemConfiguration.framework in Frameworks */,
 				7D1E105C8A8027BA0B10D3F281C72059 /* UIKit.framework in Frameworks */,
 				5F6651DD58331620A680E214C4156348 /* VideoToolbox.framework in Frameworks */,
-				3960E70236D8DD7545648C5FB61C9F38 /* libPods-Triplore.a in Frameworks */,
 				9A14F437BBBAE03A6B023E59A397CD60 /* libav.a in Frameworks */,
 				A4F35D55475719295D29D091C297CBFF /* libc++.tbd in Frameworks */,
 				CF772AFCAF0457ACAD6655A1117AED8A /* libiconv.tbd in Frameworks */,
@@ -272,6 +272,8 @@
 				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
 				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
 				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
+				241210EC1ED7EF400066B99C /* TPNoteViewController.h */,
+				241210ED1ED7EF400066B99C /* TPNoteViewController.m */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -346,7 +348,6 @@
 				E0E3D69236D420A532C6764260E20218 /* SystemConfiguration.framework */,
 				1888FDD983AF552929BAB17BB00FB287 /* UIKit.framework */,
 				C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */,
-				DE35FB4D9712717CB1E63340C839A437 /* libPods-Triplore.a */,
 				A2F46BCEA2D6ABAD893057A8B8B679A0 /* libav.a */,
 				DD3EA4DCC6C0474B9765ABFFD5C507F6 /* libc++.tbd */,
 				7ACD8D54271EFF475ADE7C23BE0B66A5 /* libiconv.tbd */,
@@ -363,7 +364,6 @@
 			children = (
 				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
 				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
-				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
 				2402CE161ED44DD60098770A /* Site */,
 				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
@@ -381,6 +381,7 @@
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
 				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
 				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
+				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
 				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
 				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
 			);
@@ -533,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
 				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
