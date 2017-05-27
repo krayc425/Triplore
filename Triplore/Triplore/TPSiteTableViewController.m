@@ -12,6 +12,8 @@
 
 @interface TPSiteTableViewController ()
 
+@property (nonatomic, strong) NSArray* testCountries;
+
 @end
 
 @implementation TPSiteTableViewController
@@ -20,11 +22,15 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.separatorColor = [UIColor clearColor];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,12 +53,23 @@
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     TPSiteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    [cell setSites:self.testCountries];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200.0;
+    NSInteger row = self.testCountries.count%3 == 0 ? self.testCountries.count/3 : self.testCountries.count/3 + 1;
+    return (CGRectGetWidth(self.view.frame) - 40)/2 * row + 10 * (row-1) + 42;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10.0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+   
+    return 0.1;
 }
 
 /*

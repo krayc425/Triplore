@@ -19,4 +19,7 @@
     return [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1.0];
 }
 
++ (UIColor *)getGradientColorDark {
+    return [UIColor colorWithRed:62/255. green:62/255. blue:62/255. alpha:0.5];
+}
 @end

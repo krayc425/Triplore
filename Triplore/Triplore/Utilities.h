@@ -15,4 +15,6 @@
 
 + (UIColor *)getBackgroundColor;
 
++ (UIColor *)getGradientColorDark;
+
 @end

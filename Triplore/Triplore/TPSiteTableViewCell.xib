@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,11 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwl-Mb-G63" id="m6m-kM-gKq">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TxV-0T-RUA">
-                        <rect key="frame" x="9" y="13" width="34" height="12"/>
+                        <rect key="frame" x="10" y="13" width="34" height="12"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Site_Cell_Title_Rect" translatesAutoresizingMaskIntoConstraints="NO" id="Np1-6R-2Hz">
                                 <rect key="frame" x="0.0" y="0.0" width="5" height="12"/>
@@ -41,7 +41,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3AB-Wp-75K">
-                        <rect key="frame" x="326" y="12" width="40" height="14"/>
+                        <rect key="frame" x="325" y="12" width="40" height="14"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAP-LB-1K8">
                                 <rect key="frame" x="0.0" y="0.0" width="28" height="14"/>
@@ -65,11 +65,24 @@
                             <constraint firstAttribute="width" constant="40" id="yUh-kS-ApN"/>
                         </constraints>
                     </stackView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1CU-RJ-z6J">
+                        <rect key="frame" x="10" y="35" width="355" height="154"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8p8-wv-jPZ">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="3AB-Wp-75K" secondAttribute="trailing" constant="9" id="Kal-88-P5z"/>
+                    <constraint firstItem="1CU-RJ-z6J" firstAttribute="leading" secondItem="m6m-kM-gKq" secondAttribute="leading" constant="10" id="0Ds-tD-SCp"/>
+                    <constraint firstItem="1CU-RJ-z6J" firstAttribute="bottom" secondItem="m6m-kM-gKq" secondAttribute="bottom" constant="-10" id="JPG-0t-Pdq"/>
+                    <constraint firstAttribute="trailing" secondItem="3AB-Wp-75K" secondAttribute="trailing" constant="10" id="Kal-88-P5z"/>
                     <constraint firstItem="TxV-0T-RUA" firstAttribute="top" secondItem="m6m-kM-gKq" secondAttribute="top" constant="13" id="Qqj-eu-O0Q"/>
-                    <constraint firstItem="TxV-0T-RUA" firstAttribute="leading" secondItem="m6m-kM-gKq" secondAttribute="leading" constant="9" id="mpj-Dl-9gw"/>
+                    <constraint firstItem="1CU-RJ-z6J" firstAttribute="top" secondItem="JZq-rC-2tr" secondAttribute="bottom" constant="10" id="hh4-XH-5j2"/>
+                    <constraint firstItem="TxV-0T-RUA" firstAttribute="leading" secondItem="m6m-kM-gKq" secondAttribute="leading" constant="10" id="mpj-Dl-9gw"/>
+                    <constraint firstItem="1CU-RJ-z6J" firstAttribute="trailing" secondItem="m6m-kM-gKq" secondAttribute="trailing" constant="-10" id="sJ4-St-FZH"/>
                     <constraint firstItem="3AB-Wp-75K" firstAttribute="centerY" secondItem="TxV-0T-RUA" secondAttribute="centerY" id="wan-zi-UbP"/>
                 </constraints>
             </tableViewCellContentView>
@@ -77,6 +90,7 @@
                 <outlet property="allButton" destination="zAP-LB-1K8" id="3ru-g9-Ogr"/>
                 <outlet property="allButton2" destination="f4b-k3-D6c" id="S0o-o2-NSt"/>
                 <outlet property="categoryLabel" destination="JZq-rC-2tr" id="u5I-pT-LiG"/>
+                <outlet property="collectionView" destination="1CU-RJ-z6J" id="6YV-ed-sgn"/>
             </connections>
             <point key="canvasLocation" x="-162" y="164"/>
         </tableViewCell>

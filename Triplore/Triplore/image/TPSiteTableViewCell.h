@@ -13,5 +13,8 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton2;
+@property (nonnull, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonnull, nonatomic) NSArray *sites;
 
 @end

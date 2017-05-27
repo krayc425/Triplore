@@ -35,6 +35,9 @@
 		404134107BDD0EFC845D443E98E6E4BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8767A3F5A7A86D5F22F365387999B575 /* ImageIO.framework */; };
 		44D3C4B23FB21A00969EB5851B6A835C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */; };
 		4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */; };
+		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
+		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
+		4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E41ED960DF00DA73AA /* Site.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
 		5F6651DD58331620A680E214C4156348 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */; };
 		6B975E58F50BF40D71D495A576232E6A /* Tab.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */; };
@@ -111,6 +114,11 @@
 		396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		42A73A86EFD2AA39B5EB8842385216CB /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
 		42F84E8865C574D03576002EE831A179 /* TPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTabBarViewController.m; sourceTree = "<group>"; };
+		4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteCollectionViewCell.h; sourceTree = "<group>"; };
+		4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteCollectionViewCell.m; sourceTree = "<group>"; };
+		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
+		4DA4F9E31ED960DF00DA73AA /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
+		4DA4F9E41ED960DF00DA73AA /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
 		52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
 		6168E06073E16C88CE77FF95A7BCE0CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -248,11 +256,16 @@
 		2402CE161ED44DD60098770A /* Site */ = {
 			isa = PBXGroup;
 			children = (
+				4DA4F9E31ED960DF00DA73AA /* Site.h */,
+				4DA4F9E41ED960DF00DA73AA /* Site.m */,
 				2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */,
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
 				2402CE111ED44CD40098770A /* TPSiteTableViewCell.h */,
 				2402CE121ED44CD40098770A /* TPSiteTableViewCell.m */,
 				2402CE191ED450790098770A /* TPSiteTableViewCell.xib */,
+				4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */,
+				4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */,
+				4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */,
 			);
 			name = Site;
 			sourceTree = "<group>";
@@ -477,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */,
+				4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
@@ -548,6 +562,7 @@
 				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
+				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				D90A7F78F66919467BF2405B69DCB1D5 /* PlayViewController.m in Sources */,
@@ -555,6 +570,7 @@
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
+				4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TPSiteCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CGQ-Dk-0SP">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3x-wv-jT4">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                        <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="TPSiteCollectionViewCell" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h99-20-m9e">
+                        <rect key="frame" x="10" y="123" width="36" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="h99-20-m9e" secondAttribute="bottom" constant="10" id="4Xi-Hl-VdB"/>
+                <constraint firstItem="S3x-wv-jT4" firstAttribute="leading" secondItem="CGQ-Dk-0SP" secondAttribute="leading" id="4a8-qN-aTx"/>
+                <constraint firstAttribute="bottom" secondItem="CGQ-Dk-0SP" secondAttribute="bottom" id="5ac-Xu-BDA"/>
+                <constraint firstAttribute="trailing" secondItem="CGQ-Dk-0SP" secondAttribute="trailing" id="7my-QC-pQf"/>
+                <constraint firstItem="S3x-wv-jT4" firstAttribute="bottom" secondItem="CGQ-Dk-0SP" secondAttribute="bottom" id="AgT-NS-drs"/>
+                <constraint firstItem="S3x-wv-jT4" firstAttribute="trailing" secondItem="CGQ-Dk-0SP" secondAttribute="trailing" id="B4A-Cq-jMQ"/>
+                <constraint firstItem="CGQ-Dk-0SP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HGz-vX-iQp"/>
+                <constraint firstItem="S3x-wv-jT4" firstAttribute="top" secondItem="CGQ-Dk-0SP" secondAttribute="top" id="Mjz-kK-8Yh"/>
+                <constraint firstItem="CGQ-Dk-0SP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hl2-GR-tot"/>
+                <constraint firstItem="h99-20-m9e" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="pan-gd-Ww2"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="CGQ-Dk-0SP" id="RTS-dc-W5y"/>
+                <outlet property="overlayView" destination="S3x-wv-jT4" id="oQn-1K-19g"/>
+                <outlet property="titleLabel" destination="h99-20-m9e" id="hvv-M6-cD7"/>
+            </connections>
+            <point key="canvasLocation" x="-226" y="-102"/>
+        </collectionViewCell>
+    </objects>
+</document>
