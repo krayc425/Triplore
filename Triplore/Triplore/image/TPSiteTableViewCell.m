@@ -44,6 +44,19 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     // Configure the view for the selected state
 }
 
+- (void)setIsAll:(BOOL)isAll {
+    _isAll = isAll;
+    self.allButtons.hidden = !isAll;
+}
+
+-(void)setMode:(TPSiteMode)mode {
+    _mode = mode;
+    if (mode == TPSiteCountry) {
+        self.categoryLabel.text = @"国家";
+    } else if (mode == TPSiteCity) {
+        self.categoryLabel.text = @"城市";
+    }
+}
 
 #pragma mark - <UICollectionViewDataSource>
 
@@ -67,14 +80,24 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    TPNoteViewController *testVC = [[TPNoteViewController alloc] init];
-//    [testVC setNoteTitle:@"测试标题"];
-//    [self.navigationController pushViewController:testVC animated:YES];
+
+    if([self.delegate respondsToSelector:@selector(didSelectSite:withMode:)]) {
+        NSLog(@"select %@", self.sites[indexPath.item]);
+        [self.delegate didSelectSite:self.sites[indexPath.item] withMode:self.mode];
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
 }
 
+
+
+- (IBAction)allDidTap:(id)sender {
+    NSLog(@"all");
+    if([self.delegate respondsToSelector:@selector(didTapAllWithMode:)]) {
+        [self.delegate didTapAllWithMode:self.mode];
+    }
+}
 
 @end

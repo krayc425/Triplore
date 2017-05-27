@@ -10,10 +10,12 @@
 #import "TPSiteTableViewCell.h"
 #import "Utilities.h"
 #import "PYSearchViewController.h"
+#import "TPSiteSearchViewController.h"
 
-@interface TPSiteTableViewController ()
+@interface TPSiteTableViewController () <TPSiteTableViewCellDelegate>
 
 @property (nonatomic, strong) NSArray* testCountries;
+@property (nonatomic, strong) NSArray* testCities;
 
 @end
 
@@ -28,19 +30,13 @@
     self.navigationItem.title = @"地点";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
-    
+
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorColor = [UIColor clearColor];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
-    
+    self.testCities = @[@"东京", @"京都", @"大阪"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +47,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,13 +59,27 @@
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     TPSiteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    [cell setSites:self.testCountries];
+    cell.delegate = self;
+    
+    if (indexPath.section == 0) {
+        cell.mode = TPSiteCountry;
+        [cell setSites:self.testCountries];
+    } else if (indexPath.section == 1) {
+        cell.mode = TPSiteCity;
+        [cell setSites:self.testCities];
+    }
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger row = self.testCountries.count%3 == 0 ? self.testCountries.count/3 : self.testCountries.count/3 + 1;
+    
+    NSInteger row = 0;
+    if (indexPath.section == 0) {
+        row = self.testCountries.count%3 == 0 ? self.testCountries.count/3 : self.testCountries.count/3 + 1;
+    }else if (indexPath.section == 1) {
+        row = self.testCities.count%3 == 0 ? self.testCities.count/3 : self.testCities.count/3 + 1;
+    }
     return (CGRectGetWidth(self.view.frame) - 40)/2 * row + 10 * (row-1) + 42;
 }
 
@@ -82,17 +92,47 @@
     return 0.1;
 }
 
+#pragma mark - TPSiteTableViewCellDelegate
+
+- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
+    if (mode == TPSiteCountry) {
+        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        countryViewController.mode = TPSiteSearchCountry;
+        countryViewController.cities = self.testCities;
+        countryViewController.navigationItem.title = site;
+        [self.navigationController pushViewController:countryViewController animated:YES];
+    }
+}
+
+- (void)didTapAllWithMode:(TPSiteMode)mode {
+    if (mode == TPSiteCountry) {
+        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        countryViewController.mode = TPSiteSearchCountry;
+        countryViewController.cities = self.testCountries;
+        [self.navigationController pushViewController:countryViewController animated:YES];
+    } else if (mode == TPSiteSearchCity) {
+        TPSiteSearchViewController *cityViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        cityViewController.mode = TPSiteSearchCity;
+        cityViewController.cities = self.testCities;
+        [self.navigationController pushViewController:cityViewController animated:YES];
+    }
+}
+
+#pragma mark - Action
 
 - (void)clickSearchButton:(id)sender {
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    // 2. Create searchViewController
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"Search programming language" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // Call this Block when completion search automatically
-        // Such as: Push to a view controller
-        [searchViewController.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
+//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+
+    PYSearchViewController *searchViewController =
+    [PYSearchViewController searchViewControllerWithHotSearches:self.testCountries
+                                           searchBarPlaceholder:@"搜索目的地"
+                                                 didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+                                                     TPSiteSearchViewController *resultViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                                     resultViewController.mode = TPSiteSearchAll;
+                                                     [searchViewController.navigationController pushViewController:resultViewController animated:YES];
         
     }];
-    // 3. present the searchViewController
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     navController.navigationBar.barTintColor = [Utilities getColor];
     navController.navigationBar.backgroundColor = [Utilities getColor];
@@ -102,18 +142,8 @@
     searchViewController.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
     searchViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    [self presentViewController:navController  animated:YES completion:nil];
+    [self presentViewController:navController animated:YES completion:nil];
 
-    
-//    CourseSearchTableViewController *controller = [[CourseSearchTableViewController alloc] init];
-//    //    controller.courseList = _courseList;
-//    
-//    UINavigationController *navgationController = [[UINavigationController alloc] initWithRootViewController:controller];
-//    
-//    controller.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
-//    controller.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:navgationController animated:YES completion:nil];
-    
 }
 
 
