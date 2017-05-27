@@ -28,18 +28,19 @@
     self.tabBar.tintColor = [Utilities getColor];
     
     //NavigationBar
-    UINavigationBar *bar = [UINavigationBar appearance];
-    [bar setBarTintColor:[Utilities getColor]];
-    [bar setTintColor:[Utilities getColor]];
-    [bar setTitleTextAttributes:@{
-                                  NSForegroundColorAttributeName : [UIColor whiteColor],
-                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
-                                  }];
-    [bar setTranslucent:NO];
-    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    bar.backIndicatorImage = image;
-    bar.backIndicatorTransitionMaskImage = image;
+//    UINavigationBar *bar = [UINavigationBar appearance];
+//    [bar setBarTintColor:[Utilities getColor]];
+//    [bar setTintColor:[Utilities getColor]];
+//    [bar setTitleTextAttributes:@{
+//                                  NSForegroundColorAttributeName : [UIColor whiteColor],
+//                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
+//                                  }];
+//    [bar setTranslucent:NO];
+//    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
+//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    bar.backIndicatorImage = image;
+//    bar.backIndicatorTransitionMaskImage = image;
+
     
     //精选
     ViewController *vc = [[ViewController alloc] init];

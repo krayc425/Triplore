@@ -9,6 +9,7 @@
 #import "TPSiteTableViewController.h"
 #import "TPSiteTableViewCell.h"
 #import "Utilities.h"
+#import "PYSearchViewController.h"
 
 @interface TPSiteTableViewController ()
 
@@ -20,9 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
+    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.title = @"地点";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
+    
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorColor = [UIColor clearColor];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -71,6 +81,41 @@
    
     return 0.1;
 }
+
+
+- (void)clickSearchButton:(id)sender {
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    // 2. Create searchViewController
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"Search programming language" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // Call this Block when completion search automatically
+        // Such as: Push to a view controller
+        [searchViewController.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
+        
+    }];
+    // 3. present the searchViewController
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    navController.navigationBar.barTintColor = [Utilities getColor];
+    navController.navigationBar.backgroundColor = [Utilities getColor];
+    navController.navigationBar.barStyle = UIBarStyleBlack;
+    navController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    searchViewController.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
+    searchViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    [self presentViewController:navController  animated:YES completion:nil];
+
+    
+//    CourseSearchTableViewController *controller = [[CourseSearchTableViewController alloc] init];
+//    //    controller.courseList = _courseList;
+//    
+//    UINavigationController *navgationController = [[UINavigationController alloc] initWithRootViewController:controller];
+//    
+//    controller.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
+//    controller.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:navgationController animated:YES completion:nil];
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.

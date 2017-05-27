@@ -38,6 +38,7 @@
 		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
 		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
 		4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E41ED960DF00DA73AA /* Site.m */; };
+		4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
 		5F6651DD58331620A680E214C4156348 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */; };
 		6B975E58F50BF40D71D495A576232E6A /* Tab.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */; };
@@ -121,6 +122,8 @@
 		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
 		4DA4F9E31ED960DF00DA73AA /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
 		4DA4F9E41ED960DF00DA73AA /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
+		4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteSearchViewController.h; sourceTree = "<group>"; };
+		4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteSearchViewController.m; sourceTree = "<group>"; };
 		52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
 		6168E06073E16C88CE77FF95A7BCE0CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				4DA4F9E41ED960DF00DA73AA /* Site.m */,
 				2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */,
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
+				4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */,
+				4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */,
 				2402CE111ED44CD40098770A /* TPSiteTableViewCell.h */,
 				2402CE121ED44CD40098770A /* TPSiteTableViewCell.m */,
 				2402CE191ED450790098770A /* TPSiteTableViewCell.xib */,
@@ -465,7 +470,7 @@
 				TargetAttributes = {
 					797C8388D8C8BBE00F20B818DD62D32B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = VEBQ28K9EA;
+						DevelopmentTeam = 49PM32K82W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -576,6 +581,7 @@
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
+				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
 			);
@@ -600,7 +606,7 @@
 			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				DEVELOPMENT_TEAM = 49PM32K82W;
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -674,7 +680,7 @@
 			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				DEVELOPMENT_TEAM = 49PM32K82W;
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -25,6 +25,12 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
+    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.title = @"笔记";
+    
     // Register cell classes
     UINib *nib = [UINib nibWithNibName:@"TPNoteCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
@@ -32,7 +38,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 //    [self.collectionView registerClass:[TPNoteCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"笔记";
+
     self.collectionView.backgroundColor = [Utilities getBackgroundColor];
 }
 
