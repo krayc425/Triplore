@@ -3,5 +3,6 @@ target 'Triplore' do
 
   pod 'AFNetworking'
   pod 'PYSearch'
+  pod 'FMDB'
 
 end

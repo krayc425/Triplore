@@ -12,6 +12,7 @@
 #import "TPNoteViewTableViewCell.h"
 
 #define STACK_SPACING 20
+#define TOOLBAR_HEIGHT 60
 
 @interface TPNoteViewController ()
 
@@ -28,10 +29,13 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    0,
                                                                    CGRectGetWidth(self.view.bounds),
-                                                                   CGRectGetHeight(self.view.bounds) - 30)
+                                                                   CGRectGetHeight(self.view.bounds) - 64 - TOOLBAR_HEIGHT)
                                                   style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = [UIView new];
+    
     //标题
     UILabel *noteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                         0,
@@ -51,13 +55,13 @@
     UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
     [label4 setText:@"Test 4"];
     UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
-    UIImageView *imgView1 = [[UIImageView alloc] initWithImage:image];
+    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
+    [imgView1 setImage:image];
+    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
     self.noteViews = @[noteTitleLabel, label1, label2, label3, imgView1, label4];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableFooterView = [UIView new];
-    [self.tableView reloadData];
     [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
     
     //保存按钮
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
@@ -69,6 +73,25 @@
     [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
+    
+    //底下按钮
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
+    UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
+    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
+    UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
+                                                                            CGRectGetHeight(self.tableView.bounds),
+                                                                            CGRectGetWidth(self.view.bounds),
+                                                                            TOOLBAR_HEIGHT)];
+    [buttonStack addArrangedSubview:deleteButton];
+    [buttonStack addArrangedSubview:videoButton];
+    [buttonStack addArrangedSubview:editButton];
+    buttonStack.axis = UILayoutConstraintAxisHorizontal;
+    buttonStack.alignment = UIStackViewAlignmentFill;
+    buttonStack.distribution = UIStackViewDistributionFillEqually;
+    [self.view addSubview:buttonStack];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +110,7 @@
 #pragma mark - Save to album
 
 - (void)saveNoteAction{
-    UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(self.tableView.frame.size, NO, [[UIScreen mainScreen] scale]);
     [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
