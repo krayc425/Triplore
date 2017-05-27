@@ -22,10 +22,11 @@
 }
 
 - (void)setNoteView:(UIView *)noteView{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(20,
-                                                           10,
-                                                           CGRectGetWidth(noteView.frame) - 20,
-                                                           CGRectGetHeight(noteView.frame) - 20)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(20,
+                                                            10,
+                                                            CGRectGetWidth(self.frame) - 40,
+                                                            CGRectGetHeight(noteView.frame) - 20)];
+    [view setContentMode:UIViewContentModeScaleAspectFit];
     [view addSubview:noteView];
     [self addSubview:view];
 }
