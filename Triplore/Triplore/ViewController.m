@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "PlayViewController.h"
+#import "TPPlayViewController.h"
 #import "ActivityIndicatorView.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -15,7 +15,7 @@
 @property(nonatomic,strong)NSMutableArray* dataSourceArrayFirst;
 @property(nonatomic,strong)NSMutableArray* dataSourceArraySecond;
 @property(nonatomic,strong)NSMutableArray* dataSourceArrayThird;
-@property(nonatomic,strong)PlayViewController *playViewController;
+@property(nonatomic,strong)TPPlayViewController *TPPlayViewController;
 @property(nonatomic,strong) ActivityIndicatorView *activityWheel;
 @end
 
@@ -335,37 +335,37 @@
     }
     UIImageView *eventImageView = (UIImageView *)gestureRecognizer.view;
     
-    if (self.playViewController!=nil) {
-        self.playViewController = nil;
+    if (self.TPPlayViewController!=nil) {
+        self.TPPlayViewController = nil;
     }
-    self.playViewController = [[PlayViewController alloc] init];
+    self.TPPlayViewController = [[TPPlayViewController alloc] init];
     switch (eventImageView.tag) {
         case 100:
-            self.playViewController.playDetail = [self.dataSourceArrayFirst objectAtIndex:0];
+            self.TPPlayViewController.playDetail = [self.dataSourceArrayFirst objectAtIndex:0];
             break;
         case 200:
-            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:0];
+            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:0];
             break;
         case 210:
-            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:1];
+            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:1];
             break;
         case 220:
-            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:2];
+            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:2];
             break;
         case 230:
-            self.playViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:3];
+            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:3];
             break;
         case 300:
-            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:0];
+            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:0];
             break;
         case 310:
-            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:1];
+            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:1];
             break;
         case 320:
-            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:2];
+            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:2];
             break;
         case 330:
-            self.playViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:3];
+            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:3];
             break;
             
             
@@ -373,16 +373,17 @@
             break;
     }
     
-    [self.navigationController presentViewController:self.playViewController animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:self.TPPlayViewController animated:YES];
+//    [self.navigationController presentViewController:self.TPPlayViewController animated:YES completion:^{
+//        
+//    }];
     
-//    [self addChildViewController:self.playViewController];
-//    [self.playViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    [self.view addSubview:self.playViewController.view];
+//    [self addChildViewController:self.TPPlayViewController];
+//    [self.TPPlayViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    [self.view addSubview:self.TPPlayViewController.view];
 //    __weak typeof(self)weakSelf = self;
 //    [UIView animateWithDuration:0.3 animations:^{
-//        [weakSelf.playViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
+//        [weakSelf.TPPlayViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
 //    } completion:^(BOOL finished) {
 //        
 //    }];

@@ -22,6 +22,10 @@
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
 		241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */; };
 		241210F61ED84CD70066B99C /* TPNoteViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */; };
+		241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */; };
+		24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */; };
+		24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */; };
+		24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -67,7 +71,6 @@
 		D19C293247541A5651047000 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */; };
 		D2E935BC39241EFBCB51C7520B92299C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32F2D51E7F37689AC5ADF207FAE092F /* CFNetwork.framework */; };
 		D6B2B29A364FA0B9C8F8303D34EC29FA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B08D2688BCADB02F86BD69F98CF5449 /* GLKit.framework */; };
-		D90A7F78F66919467BF2405B69DCB1D5 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */; };
 		DDF9FD8D34D538E7BC11229DE779023D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E3D69236D420A532C6764260E20218 /* SystemConfiguration.framework */; };
 		E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */; };
 		E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */; };
@@ -102,6 +105,13 @@
 		241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewTableViewCell.h; sourceTree = "<group>"; };
 		241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteViewTableViewCell.m; sourceTree = "<group>"; };
 		241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteViewTableViewCell.xib; sourceTree = "<group>"; };
+		241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCreator.h; sourceTree = "<group>"; };
+		241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCreator.m; sourceTree = "<group>"; };
+		24487C491EDDB3020009E8E5 /* TPPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayViewController.h; sourceTree = "<group>"; };
+		24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayViewController.m; sourceTree = "<group>"; };
+		24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAddTextViewController.h; sourceTree = "<group>"; };
+		24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddTextViewController.m; sourceTree = "<group>"; };
+		24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAddTextViewController.xib; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -138,7 +148,6 @@
 		7A1395373683AEE3BB3E93E529BF4BCF /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
 		7ACD8D54271EFF475ADE7C23BE0B66A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		8767A3F5A7A86D5F22F365387999B575 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		8B08D2688BCADB02F86BD69F98CF5449 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		8D44462E957D18A14DE1549D3A23F867 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		91098ED3CE79C2A3C1D9352ABA0D3B3B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -150,7 +159,6 @@
 		A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triplore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Triplore/Pods-Triplore.release.xcconfig"; sourceTree = "<group>"; };
 		A8AA0D6706E3EDD798E28AD450CFDF4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AA09709768A120A9932D5579C22ACF3A /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
-		AB0C160597D973A20F1C62F9368DA037 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B16D141D9D0CE7FE6C79EABAE12D181B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
@@ -303,6 +311,8 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
+				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
+				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -399,8 +409,11 @@
 				24B8108B1ED7039100CD7DC4 /* Me */,
 				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
 				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
-				AB0C160597D973A20F1C62F9368DA037 /* PlayViewController.h */,
-				88E4927D51C283F7F81ED7C5251C5008 /* PlayViewController.m */,
+				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
+				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
+				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
+				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
+				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
 				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
@@ -502,6 +515,7 @@
 				4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
+				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
 				2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */,
@@ -568,13 +582,14 @@
 			files = (
 				241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */,
 				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
+				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
 				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
+				241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
-				D90A7F78F66919467BF2405B69DCB1D5 /* PlayViewController.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
@@ -582,6 +597,7 @@
 				4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
+				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
 			);

@@ -22,4 +22,5 @@
 + (UIColor *)getGradientColorDark {
     return [UIColor colorWithRed:62/255. green:62/255. blue:62/255. alpha:0.5];
 }
+
 @end

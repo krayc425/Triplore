@@ -46,19 +46,19 @@
     noteTitleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
 
     //子视图
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-    [label1 setText:@"Test 1"];
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-    [label2 setText:@"Test 2"];
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-    [label3 setText:@"Test 3"];
-    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-    [label4 setText:@"Test 4"];
-    UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
-    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
-    [imgView1 setImage:image];
-    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
-    self.noteViews = @[noteTitleLabel, label1, label2, label3, imgView1, label4];
+//    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+//    [label1 setText:@"Test 1"];
+//    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+//    [label2 setText:@"Test 2"];
+//    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+//    [label3 setText:@"Test 3"];
+//    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
+//    [label4 setText:@"Test 4"];
+//    UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
+//    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
+//    [imgView1 setImage:image];
+//    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
+//    self.noteViews = @[noteTitleLabel, label1, label2, label3, imgView1, label4];
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];

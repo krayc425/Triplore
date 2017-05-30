@@ -1,38 +1,52 @@
 //
-//  PlayViewController.m
-//  PlayDemo
+//  TPPlayViewController.m
+//  Triplore
 //
-//  Copyright (c) 2017-present, IQIYI, Inc. All rights reserved.
+//  Created by 宋 奎熹 on 2017/5/30.
+//  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-
-#import "PlayViewController.h"
+#import "TPPlayViewController.h"
 #import "QYPlayerController.h"
 #import "ActivityIndicatorView.h"
 #import "Utilities.h"
+#import "TPNoteCreator.h"
+#import "TPNoteViewController.h"
+#import "TPAddTextViewController.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 280.0
 
 #define CONTROLLER_BAR_WIDTH 30
 
-@interface PlayViewController ()<QYPlayerControllerDelegate>
-@property(nonatomic,strong) ActivityIndicatorView *activityWheel;
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate>{
+    CGRect playFrame;
+}
+
+@property (nonatomic,strong) ActivityIndicatorView *activityWheel;
+
 @end
 
-@implementation PlayViewController
+@implementation TPPlayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [Utilities getBackgroundColor];
-
-    CGRect playFrame = CGRectMake(0,
+    
+    //    CGRect playFrame = CGRectMake(0,
+    //                                  0,
+    //                                  self.view.frame.size.width - CONTROLLER_BAR_WIDTH,
+    //                                  self.view.frame.size.height);
+    
+    playFrame = CGRectMake(0,
                                   0,
-                                  self.view.frame.size.width - CONTROLLER_BAR_WIDTH,
-                                  self.view.frame.size.height);
+                                  self.view.frame.size.width,
+                                  320);
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
-    [self.view addSubview:[QYPlayerController sharedInstance].view];
+    UIView *playerView = [QYPlayerController sharedInstance].view;
+    [playerView setTag:100];
+    [self.view addSubview:playerView];
     
     UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(10, 10, 30, 30)];
@@ -46,31 +60,42 @@
     self.activityWheel = wheel;
     self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
     
-//    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
-//                                                                           playFrame.size.height,
-//                                                                           self.view.frame.size.width - 78,
-//                                                                           64)];
-//    titleText.placeholder = @"填写标题";
-//    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
-//    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-//    [self.view addSubview:titleText];
-//    
-//    UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
-//                                                                            playFrame.size.height + 20,
-//                                                                            24,
-//                                                                            24)];
-//    [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
-//    [self.view addSubview:screenshotButton];
-//    
-//    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-//                                                                      playFrame.size.height + 20,
-//                                                                      24,
-//                                                                      24)];
-//    [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
-//    [self.view addSubview:saveButton];
+    //    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
+    //                                                                           playFrame.size.height,
+    //                                                                           self.view.frame.size.width - 78,
+    //                                                                           64)];
+    //    titleText.placeholder = @"填写标题";
+    //    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+    //    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
+    //    [self.view addSubview:titleText];
+    //
     
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 112,
+                                                                      playFrame.size.height + 20,
+                                                                      24,
+                                                                      24)];
+    [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(editNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editButton];
+    
+    UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
+                                                                            playFrame.size.height + 20,
+                                                                            24,
+                                                                            24)];
+    [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
+    [screenshotButton addTarget:self action:@selector(screenShotAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:screenshotButton];
+    
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                      playFrame.size.height + 20,
+                                                                      24,
+                                                                      24)];
+    [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:saveButton];
+    
+    //    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+    //    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,9 +144,9 @@
         UIButton *pause= [UIButton buttonWithType:UIButtonTypeCustom];
         [pause setBackgroundColor:[UIColor blackColor]];
         [pause setFrame:CGRectMake(10,
-                                  CGRectGetHeight(self.view.bounds) - 40,
-                                  30,
-                                  30)];
+                                   CGRectGetHeight(self.view.bounds) - 40,
+                                   30,
+                                   30)];
         [pause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
         pause.layer.masksToBounds=YES;
         pause.layer.cornerRadius=15;
@@ -226,21 +251,21 @@
  * 播放时长发生变化
  */
 -(void)playbackTimeChanged:(QYPlayerController *)player{
-
+    
 }
 
 /*
  * 播放完成
  */
 -(void)playbackFinshed:(QYPlayerController *)player{
-
+    
 }
 
 /*
  * 网络变化
  */
 - (void)playerNetworkChanged:(QYPlayerController *)player{
-
+    
 }
 
 - (BOOL)shouldAutorotate{
@@ -252,4 +277,50 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+#pragma mark - Button Action
+
+- (void)editNoteAction{
+    TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
+    textVC.addNoteViewDelegate = self;
+    [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;//关键语句，必须有
+    [self presentViewController:textVC animated:YES completion:nil];
+}
+
+- (void)addNoteView:(UIView *_Nonnull)view{
+    [[TPNoteCreator shareInstance] addNoteView:view];
+    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
+}
+
+- (void)screenShotAction{
+    UIGraphicsBeginImageContextWithOptions(playFrame.size, NO, [[UIScreen mainScreen] scale]);
+    [[self.view viewWithTag:100].layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
+    [imgView1 setImage:image];
+    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
+    [self addNoteView:imgView1];
+    
+//    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)saveNoteAction{
+    NSLog(@"保存");
+    
+    NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
+    if(noteArr.count <= 0){
+        NSLog(@"没有 View");
+        return;
+    }
+    
+    TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
+    [noteVC setNoteTitle:@"视频笔记测试"];
+    [noteVC setNoteViews:[[TPNoteCreator shareInstance] getNoteViews]];
+//    [self presentViewController:noteVC animated:YES completion:nil];
+    [self.navigationController pushViewController:noteVC animated:YES];
+}
+
 @end
+    

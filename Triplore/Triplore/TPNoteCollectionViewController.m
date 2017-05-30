@@ -91,7 +91,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 //每一个分组的上左下右间距
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(10, 10, 0, 10);
 }
 
