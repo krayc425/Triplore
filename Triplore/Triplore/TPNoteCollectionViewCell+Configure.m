@@ -19,6 +19,7 @@
     
     [self.titleLabel setText:note.title];
     
+    [self.contentLabel setText:@""];
     for(UIView *view in note.views){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *labelView = (UILabel *)view;

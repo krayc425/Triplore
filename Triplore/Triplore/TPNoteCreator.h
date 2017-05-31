@@ -27,4 +27,6 @@
 
 - (NSArray *_Nonnull)getNoteViews;
 
+- (void)clearNoteView;
+
 @end

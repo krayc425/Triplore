@@ -16,11 +16,12 @@
 #import <objc/runtime.h>
 #import "QYAVPlayerController.h"
 #import "PlayerController.h"
+#import "UIImage+Extend.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-#define NAVIGATION_BAR_HEIGHT 44
+#define NAVIGATION_BAR_HEIGHT 64
 #define CONTROLLER_BAR_WIDTH 30
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate>{
@@ -48,7 +49,7 @@
     self.hidesBottomBarWhenPushed = YES;
     self.tabBarController.tabBar.hidden = YES;
     
-    playFrame = CGRectMake(0, 20 + NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
+    playFrame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
     playerView = [QYPlayerController sharedInstance].view;
@@ -119,6 +120,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
+    
+    [[TPNoteCreator shareInstance] clearNoteView];
 }
 
 - (void)showPlayView{
@@ -303,13 +306,12 @@
 
 - (void)screenShotAction{
     UIView *snapshot = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
-//    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    CGSize outputSize = CGSizeMake(CGRectGetWidth(playFrame), CGRectGetHeight(playFrame));
-    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 2);
-    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 64.0, playFrame.size.width, playFrame.size.height) afterScreenUpdates:YES];   //貌似iOS8要用这个方法
+    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 1);
+    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) afterScreenUpdates:YES];   //貌似iOS8要用这个方法
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
+    image = [image getSubImage:CGRectMake(0, 64.0, playFrame.size.width, playFrame.size.height)];
+    image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
     [self addNoteView:[[UIImageView alloc] initWithImage:image]];
 }
 

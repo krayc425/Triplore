@@ -41,7 +41,7 @@
     [self.okButton setUserInteractionEnabled:NO];
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
-    [self.okButton setTitle:@"完 成" forState:UIControlStateNormal];
+    [self.okButton setTitle:@"添 加" forState:UIControlStateNormal];
     [self.okButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
 }
 

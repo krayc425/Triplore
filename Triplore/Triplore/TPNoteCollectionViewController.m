@@ -26,9 +26,9 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.collectionView.backgroundColor = [Utilities getBackgroundColor];
     
     self.navigationController.navigationBar.barTintColor = [Utilities getColor];
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
@@ -36,41 +36,22 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"笔记";
     
-    // Register cell classes
     UINib *nib = [UINib nibWithNibName:@"TPNoteCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
-    
-//    [self.collectionView registerClass:[TPNoteCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
-
-    self.collectionView.backgroundColor = [Utilities getBackgroundColor];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadNotes];
-    [self.collectionView reloadData];
 }
 
 - (void)loadNotes{
     noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
     [self.collectionView reloadData];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -85,7 +66,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    //Configure the cell
     [cell configureWithNote:noteArr[indexPath.row]];
     
     return cell;
@@ -117,6 +97,19 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
+}
+
+#pragma mark - DZNEmptyTableViewDelegate
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    NSString *text = @"没有笔记";
+    
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 /*
