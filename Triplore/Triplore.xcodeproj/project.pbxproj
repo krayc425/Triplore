@@ -28,6 +28,9 @@
 		24487C551EDE4A620009E8E5 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C541EDE4A620009E8E5 /* DBManager.m */; };
 		24487C5D1EDE54E10009E8E5 /* TPNoteSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */; };
 		24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */; };
+		24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C671EDE93940009E8E5 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C771EDE95F40009E8E5 /* libFMDB.a */; };
+		24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C9C1EDE9D120009E8E5 /* TriploreTests.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -73,6 +76,7 @@
 		D19C293247541A5651047000 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */; };
 		D2E935BC39241EFBCB51C7520B92299C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32F2D51E7F37689AC5ADF207FAE092F /* CFNetwork.framework */; };
 		D6B2B29A364FA0B9C8F8303D34EC29FA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B08D2688BCADB02F86BD69F98CF5449 /* GLKit.framework */; };
+		D71ABC99709A56601C5FC2F5 /* libPods-TriploreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 019209B9EFCD5F97509D90FE /* libPods-TriploreTests.a */; };
 		DDF9FD8D34D538E7BC11229DE779023D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E3D69236D420A532C6764260E20218 /* SystemConfiguration.framework */; };
 		E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */; };
 		E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */; };
@@ -81,9 +85,20 @@
 		F8575A5AAEDE1387B2452B98440FF107 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91098ED3CE79C2A3C1D9352ABA0D3B3B /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		24487C9F1EDE9D120009E8E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB995781A4187BA5B4A8636D16339E49 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 797C8388D8C8BBE00F20B818DD62D32B;
+			remoteInfo = Triplore;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		009FE6B6AA5E449DBFF2DCBDB11EBA55 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		019209B9EFCD5F97509D90FE /* libPods-TriploreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TriploreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F842711EECE53C7C80558C40CF944A /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		023F9890AB340E360BA4BE533407EEFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		05691BAB873FDAFD0D28D4BF871AD506 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -119,6 +134,13 @@
 		24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteSaver.m; sourceTree = "<group>"; };
 		24487C5E1EDE551D0009E8E5 /* TPSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewCell.h; sourceTree = "<group>"; };
 		24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteTableViewCell.m; sourceTree = "<group>"; };
+		24487C621EDE63E30009E8E5 /* QYAVPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYAVPlayerController.h; sourceTree = "<group>"; };
+		24487C631EDE66720009E8E5 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
+		24487C671EDE93940009E8E5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		24487C771EDE95F40009E8E5 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
+		24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriploreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24487C9C1EDE9D120009E8E5 /* TriploreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriploreTests.m; sourceTree = "<group>"; };
+		24487C9E1EDE9D120009E8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -151,6 +173,7 @@
 		6B2C4C05ED78DA6FC8E9A0CF802A5D3C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6C3AAB1116E17FBA32913AE768B02417 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
 		71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		75BB30CCBAF8CB6D85E127CF /* Pods-TriploreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriploreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78C24628C0C6412E9A13CBB71E045CD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A1395373683AEE3BB3E93E529BF4BCF /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
 		7ACD8D54271EFF475ADE7C23BE0B66A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -173,6 +196,7 @@
 		C0B025B5E3CB855B1FA537B7F6DE61A6 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		C38C032C4535534575B291AE5BF263DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C5839AAD405152CD1EE44E0E373AD4F9 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		C72C2F25A67FC3D23C593B4C /* Pods-TriploreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriploreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorView.m; sourceTree = "<group>"; };
@@ -197,10 +221,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24487C971EDE9D120009E8E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D71ABC99709A56601C5FC2F5 /* libPods-TriploreTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		91A8B879D4F17E345FAA956ED5DF748A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */,
+				24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */,
 				2402CE091ED448080098770A /* libAFNetworking.a in Frameworks */,
 				2402CE071ED448020098770A /* libPYSearch.a in Frameworks */,
 				44D3C4B23FB21A00969EB5851B6A835C /* AVFoundation.framework in Frameworks */,
@@ -270,6 +304,8 @@
 			children = (
 				9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */,
 				A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */,
+				75BB30CCBAF8CB6D85E127CF /* Pods-TriploreTests.debug.xcconfig */,
+				C72C2F25A67FC3D23C593B4C /* Pods-TriploreTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -325,6 +361,16 @@
 			name = DataBase;
 			sourceTree = "<group>";
 		};
+		24487C9B1EDE9D120009E8E5 /* TriploreTests */ = {
+			isa = PBXGroup;
+			children = (
+				24487C9C1EDE9D120009E8E5 /* TriploreTests.m */,
+				24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */,
+				24487C9E1EDE9D120009E8E5 /* Info.plist */,
+			);
+			path = TriploreTests;
+			sourceTree = "<group>";
+		};
 		24B8108B1ED7039100CD7DC4 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +417,7 @@
 				AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */,
 				1B651AE61FD3EE1F10AF65F7CB239A88 /* Pods */,
 				D85993CC06B4E6FF333C070C3D479379 /* Triplore */,
+				24487C9B1EDE9D120009E8E5 /* TriploreTests */,
 				24487C521EDDC76F0009E8E5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -388,6 +435,8 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24487C771EDE95F40009E8E5 /* libFMDB.a */,
+				24487C671EDE93940009E8E5 /* XCTest.framework */,
 				2402CE081ED448080098770A /* libAFNetworking.a */,
 				2402CE061ED448020098770A /* libPYSearch.a */,
 				00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */,
@@ -427,6 +476,7 @@
 				AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */,
 				8D44462E957D18A14DE1549D3A23F867 /* libz.1.tbd */,
 				3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */,
+				019209B9EFCD5F97509D90FE /* libPods-TriploreTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -464,6 +514,8 @@
 			children = (
 				1AC3095A6612B03A93E00DD25B53E49D /* asihttp include */,
 				A3D401709B69183C4810D30100EAA80C /* QYPlayerController.h */,
+				24487C631EDE66720009E8E5 /* PlayerController.h */,
+				24487C621EDE63E30009E8E5 /* QYAVPlayerController.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -480,6 +532,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		24487C991EDE9D120009E8E5 /* TriploreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24487CA11EDE9D120009E8E5 /* Build configuration list for PBXNativeTarget "TriploreTests" */;
+			buildPhases = (
+				BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */,
+				24487C961EDE9D120009E8E5 /* Sources */,
+				24487C971EDE9D120009E8E5 /* Frameworks */,
+				24487C981EDE9D120009E8E5 /* Resources */,
+				049E1C858B274455A8EC7851 /* [CP] Embed Pods Frameworks */,
+				392FC37858A025858D638255 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24487CA01EDE9D120009E8E5 /* PBXTargetDependency */,
+			);
+			name = TriploreTests;
+			productName = TriploreTests;
+			productReference = 24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		797C8388D8C8BBE00F20B818DD62D32B /* Triplore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4585509B16CC56DD2133378EEABAFB5D /* Build configuration list for PBXNativeTarget "Triplore" */;
@@ -509,6 +582,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "宋 奎熹";
 				TargetAttributes = {
+					24487C991EDE9D120009E8E5 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 797C8388D8C8BBE00F20B818DD62D32B;
+					};
 					797C8388D8C8BBE00F20B818DD62D32B = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = VEBQ28K9EA;
@@ -535,11 +614,19 @@
 			projectRoot = "";
 			targets = (
 				797C8388D8C8BBE00F20B818DD62D32B /* Triplore */,
+				24487C991EDE9D120009E8E5 /* TriploreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		24487C981EDE9D120009E8E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCAAFC85ABF2366E7B85CFF757435BA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,6 +648,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		049E1C858B274455A8EC7851 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0682B225233B12B52C143C1988A0CF45 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -576,7 +678,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Triplore/Pods-Triplore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		392FC37858A025858D638255 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B6AFDA253032AC2FD1F4732B878AB128 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -609,6 +741,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24487C961EDE9D120009E8E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D18D315E39BEEBBBF4882D56818AB14C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,6 +780,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		24487CA01EDE9D120009E8E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 797C8388D8C8BBE00F20B818DD62D32B /* Triplore */;
+			targetProxy = 24487C9F1EDE9D120009E8E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -660,6 +808,7 @@
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -730,6 +879,35 @@
 			};
 			name = Debug;
 		};
+		24487CA21EDE9D120009E8E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75BB30CCBAF8CB6D85E127CF /* Pods-TriploreTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = TriploreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.TriploreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Triplore.app/Triplore";
+			};
+			name = Debug;
+		};
+		24487CA31EDE9D120009E8E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C72C2F25A67FC3D23C593B4C /* Pods-TriploreTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = TriploreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.TriploreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Triplore.app/Triplore";
+			};
+			name = Release;
+		};
 		42A9AD9C67316A2614D272789CFD2EA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
@@ -738,6 +916,7 @@
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -805,6 +984,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24487CA11EDE9D120009E8E5 /* Build configuration list for PBXNativeTarget "TriploreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24487CA21EDE9D120009E8E5 /* Debug */,
+				24487CA31EDE9D120009E8E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4585509B16CC56DD2133378EEABAFB5D /* Build configuration list for PBXNativeTarget "Triplore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

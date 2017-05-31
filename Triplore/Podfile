@@ -1,8 +1,15 @@
 platform :ios, '9.0'
+
 target 'Triplore' do
 
   pod 'AFNetworking'
   pod 'PYSearch'
+  pod 'FMDB'
+
+end
+
+target 'TriploreTests' do
+
   pod 'FMDB'
 
 end

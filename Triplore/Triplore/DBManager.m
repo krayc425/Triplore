@@ -50,26 +50,20 @@ static DBManager * _instance = nil;
         //创表
         
         //先看有没有这张表
-        if(![self.db tableExists:@"t_task"]){
+        if(![self.db tableExists:@"t_video"]){
             BOOL result = [self.db executeUpdate:
                       @"CREATE TABLE IF NOT EXISTS t_video (videoid integer PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL)"];
             if (result){
                 NSLog(@"创建表 video 成功");
             }
-            
-            result = [self.db executeUpdate:
+        }
+        
+        if(![self.db tableExists:@"t_note"]){
+            BOOL result = [self.db executeUpdate:
                            @"CREATE TABLE IF NOT EXISTS t_note (noteid integer PRIMARY KEY AUTOINCREMENT, videoid integer NOT NULL, views blob NOT NULL, createTime date NOT NULL, title varchar,  CONSTRAINT fk_t_note_videoid_t_video_videoid FOREIGN KEY(videoid) REFERENCES t_video(videoid))"];
             if (result){
                 NSLog(@"创建表 note 成功");
             }
-            
-        }else{
-            //更新数据库表
-            
-//            if (![self.db columnExists:@"image" inTableWithName:@"t_task"]){
-//                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ blob", @"t_task", @"image"]];
-//                NSLog(@"增加图片字段成功");
-//            }
             
         }
         

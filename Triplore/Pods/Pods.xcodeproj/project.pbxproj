@@ -13,10 +13,11 @@
 		2012864C735C3DD88ECE425F6C981F6B /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4232858E81C3690A2E12D92870052C08 /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		246FF3042BDF52563231B638358EF54F /* PYSearchSuggestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BE5A1F2FB0A8004E85050F31F7C079 /* PYSearchSuggestionViewController.m */; };
 		2579663181BFA8F7DA4B5D7CF8537FC0 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A1729CDFD7AEF89C97ADB9D5BB5BEEB5 /* UIActivityIndicatorView+AFNetworking.m */; };
-		2826126AECF025DD7EF641163576625F /* Pods-Triplore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5711AE00337C8F6DFF2DEC6E4E1AC6DF /* Pods-Triplore-dummy.m */; };
+		2826126AECF025DD7EF641163576625F /* Pods-Triplore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 104A49E0542019351F91D30FCBE19614 /* Pods-Triplore-dummy.m */; };
 		2EBAA518CB8B2DAF89A63637091D4615 /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 466D926E997E20D177580083E1DD0A6D /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31ED9BD97AF9E62874AF3CDF2F8090CF /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CF20D4DFEBF87CAE4BB232C8F9CA2D /* AFNetworkActivityIndicatorManager.m */; };
 		398A5C11EFB816892FD5E18AD24F03D4 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A528AE9F90B6F4B53771EB0C47A14A4 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D448BDAFA9C72BB87F188696F49D299 /* Pods-TriploreTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B622E69C7B1EBFB383062E4ABC8F76 /* Pods-TriploreTests-dummy.m */; };
 		3FECFDE87253334FA356C4898AA1478D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		46401F3C7FF0B0CFE2E9B14914780835 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 420AFAEFDA3C35E1FBD3730755670856 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48219AA274F1B636C3281687418AA6D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
@@ -26,6 +27,7 @@
 		5719F06B809080CDEF7E6BC75DEA1A3C /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 31B299923934A852988D766843069EA4 /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5945033488F9995134DBB7014DE2412F /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB7BECC8948A13E01BAC3A0B958FA9 /* AFURLRequestSerialization.m */; };
 		5C0696B2AD1DC23F6473F5A19FAB6296 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D63C0E6860C428511783FB3289513CE /* AFImageDownloader.m */; };
+		60D82498E180CFD4FBEB9B2AC5C8713D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		60ED2857C686C0F826B8B97FCF01425F /* UIView+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D74045D0DCED10E3D84070333AF9C4A1 /* UIView+PYSearchExtension.m */; };
 		6199817CB29DADBC9AB1D4C44E52F5BA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CC69F27AA7590A31BF7CCC27F93868 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		66635EAAE52FF5571DBCDC626FB8CA86 /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0437F9E6BC94BEF4D1BC5C490B93E3A9 /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,17 +102,27 @@
 			remoteGlobalIDString = 8642CC820CE8C5B88C113D7F47AF4BC3;
 			remoteInfo = FMDB;
 		};
+		EE3F3250C98707484230C9FC059E8743 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8642CC820CE8C5B88C113D7F47AF4BC3;
+			remoteInfo = FMDB;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020C59072C3BCD1BFBA0FF77DAB6A59D /* Pods-TriploreTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TriploreTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0437F9E6BC94BEF4D1BC5C490B93E3A9 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
 		06F0C4C637F515ED28AA4FA1044E3BFE /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		076DAF7C0458D204DBA07047E3DFBCE5 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		07B652E3FE620B6D04AD8CE7F21E933B /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
 		07EA08367A3B3F79493B87135FD5C5FC /* NSBundle+PYSearchExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+PYSearchExtension.h"; path = "PYSearch/NSBundle+PYSearchExtension.h"; sourceTree = "<group>"; };
+		0824840AD4A13012F7FC027A7DE02FF9 /* Pods-TriploreTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TriploreTests-frameworks.sh"; sourceTree = "<group>"; };
 		09BD931608A3C9C58AFD740A1FF967AE /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
 		0D94ED3CFAC9B33C3F5D2A732B31AC9E /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFAutoPurgingImageCache.m; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.m"; sourceTree = "<group>"; };
-		1230CC9145FA25D3C55EE21BA4703C61 /* Pods-Triplore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Triplore.release.xcconfig"; sourceTree = "<group>"; };
+		104A49E0542019351F91D30FCBE19614 /* Pods-Triplore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Triplore-dummy.m"; sourceTree = "<group>"; };
+		11F2E5A27EF8406E3E407589E018ED34 /* Pods-Triplore-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Triplore-resources.sh"; sourceTree = "<group>"; };
 		12A9374C39A6EFA90AD3F2E64799ECC5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		15CA7F730958C096BC9020E2B4AAFCB0 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		18219F8FC06A0676B6829AF1B7BCF9F5 /* PYSearchSuggestionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PYSearchSuggestionViewController.h; path = PYSearch/PYSearchSuggestionViewController.h; sourceTree = "<group>"; };
@@ -120,11 +132,10 @@
 		2C7A3CF2BCF7EBC67C3831EE6CF02B51 /* UIColor+PYSearchExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+PYSearchExtension.m"; path = "PYSearch/UIColor+PYSearchExtension.m"; sourceTree = "<group>"; };
 		2CF4D1B81A54875815E94429C99F39E3 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		30C55A214ABAB07BFC39B65B98257C5D /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
+		316E65D77BD30FACD56F6B0683117B81 /* libPYSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPYSearch.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B299923934A852988D766843069EA4 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
-		3425B9AB0CFF14045AE7E5EE43038261 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFMDB.a; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		36C9C9961BB60A8A76B8D38F9B273AC7 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CFA9EC53FE1F975AAB9EBCA9552C52 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkActivityIndicatorManager.h; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h"; sourceTree = "<group>"; };
-		3C9A791D7BD8B79285117705EA32928A /* Pods-Triplore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Triplore.debug.xcconfig"; sourceTree = "<group>"; };
+		3A3ACB803C63BA04161AFA2E5F2AE768 /* Pods-Triplore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Triplore.debug.xcconfig"; sourceTree = "<group>"; };
 		420AFAEFDA3C35E1FBD3730755670856 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		4232858E81C3690A2E12D92870052C08 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		433674B451AD2F1EDF18AF3FC5A7FD0F /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -134,11 +145,8 @@
 		48895B3C5CFFD1271F3FDFBD33217A88 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		48BE5A1F2FB0A8004E85050F31F7C079 /* PYSearchSuggestionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PYSearchSuggestionViewController.m; path = PYSearch/PYSearchSuggestionViewController.m; sourceTree = "<group>"; };
 		4BEA1A8573FD2B44784B8958A247AA8E /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
-		4C86F952AA9B1F905AE5114426256052 /* Pods-Triplore-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Triplore-acknowledgements.plist"; sourceTree = "<group>"; };
-		4EEAA1CC08B81BD79BA6218D289EF4BD /* Pods-Triplore-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Triplore-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5711AE00337C8F6DFF2DEC6E4E1AC6DF /* Pods-Triplore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Triplore-dummy.m"; sourceTree = "<group>"; };
+		66102542EB43597EC120C643DB5C18C6 /* Pods-TriploreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TriploreTests.release.xcconfig"; sourceTree = "<group>"; };
 		67860BF2D6CB7C32013B219804DB0797 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
-		688EAAEB2C92C74D5A17522E86EC3FF5 /* libPYSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPYSearch.a; path = libPYSearch.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		694BD5787EE460287E6B9D6F1D49DD89 /* PYSearchConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PYSearchConst.h; path = PYSearch/PYSearchConst.h; sourceTree = "<group>"; };
 		74F6E34A67246043FD0D794E114BA3AA /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		7AE3BABF39C343FB59830B470F0170A1 /* PYSearch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PYSearch.h; path = PYSearch/PYSearch.h; sourceTree = "<group>"; };
@@ -146,36 +154,43 @@
 		7F51BC42675A426808425773D943573C /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
 		7FD3C8606EDD651CA2ACBFB80FD78EB3 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+AFNetworking.m"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		804002CA9FA421952A4EB84A4BB2198B /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		89C3B71DFC45C441C9AF3A73DC82C589 /* libPods-Triplore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Triplore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAFFED4E96DAD387B4C3E77DC52DD4E /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		8D75DAEA81EBF1F4CAD88DD83A4FAAB4 /* UIView+PYSearchExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+PYSearchExtension.h"; path = "PYSearch/UIView+PYSearchExtension.h"; sourceTree = "<group>"; };
 		8E07CCBD6BA623F94B3F4BABCC4D7B10 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		8E61B2CAB83F42F5805C04CA9ACFF0F1 /* Pods-TriploreTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TriploreTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		91B050E28FD39A0A62B2CF05EB548BCD /* Pods-Triplore-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Triplore-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9259071C0EACA2107419206975F8C25F /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9446330BDB07B6B9628F69F56F5B8DC7 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		95A57E8024B034CDF37EDA05A6FCD67B /* PYSearch-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PYSearch-prefix.pch"; sourceTree = "<group>"; };
 		9719CF37E75D76D2ABE4ECEEA8F8886F /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		97D3187E44465F4592E22AD5C9175414 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		9A528AE9F90B6F4B53771EB0C47A14A4 /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		9E524E96336CDC2AB71279D8A2E2488C /* Pods-TriploreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TriploreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2833CEC1C2EDA0467035AF25D9D93C /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
+		A08A2B37774F8D98D47B93BD8C0DEF39 /* libPods-TriploreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TriploreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1729CDFD7AEF89C97ADB9D5BB5BEEB5 /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
 		A3B296A91417619804F60228B03CBA4C /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		A635A9ADABED2F903B10AD4BDA029689 /* PYSearch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PYSearch.xcconfig; sourceTree = "<group>"; };
 		A64716173FC0305057230E14CDCC7A77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		A744774AA9C53B811AA1D2ECD1F2A2D0 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		ACBFF5BB32D5095686350EDAF060DAE5 /* PYSearch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PYSearch-dummy.m"; sourceTree = "<group>"; };
+		B3FA9D754DB779FC1E29C6F5ABE79989 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9FDBCCB266ACFED93E55656FD8A014C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		BCA2AB3C1E5637333CFD78C1F0186B37 /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		C2B962BF68B49F1C9F631DDE00D5549E /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		C32F0F4245255028E1C03403C35F0238 /* Pods-Triplore-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Triplore-acknowledgements.plist"; sourceTree = "<group>"; };
 		C3B2396770B0EE4D96EE22365A565B4B /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
 		C74A9771E7FDBD3B7747B14CE39CA679 /* PYSearchConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PYSearchConst.m; path = PYSearch/PYSearchConst.m; sourceTree = "<group>"; };
-		C8CDD35EF5E2B92E5496B86939BA2390 /* Pods-Triplore-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Triplore-resources.sh"; sourceTree = "<group>"; };
-		CB3BBDDCD1C75E0D9D7AAE5746B37CC9 /* Pods-Triplore-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Triplore-frameworks.sh"; sourceTree = "<group>"; };
+		CC4CDA981935572D2C378E13907284F9 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2D8D32785E66F3CDF2653396650C4D /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		CFDB7BECC8948A13E01BAC3A0B958FA9 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		D263ECF52DF290B106E77CE7E76CF015 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		D6CC69F27AA7590A31BF7CCC27F93868 /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
 		D74045D0DCED10E3D84070333AF9C4A1 /* UIView+PYSearchExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+PYSearchExtension.m"; path = "PYSearch/UIView+PYSearchExtension.m"; sourceTree = "<group>"; };
 		D891793E70BD2E4CC339E1C4F15EEAA8 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
+		DB6406D6EB92FE0124FAAB52E860EE87 /* Pods-TriploreTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TriploreTests-resources.sh"; sourceTree = "<group>"; };
 		E0D24D8C1B92A5908DD8DA7CE1497F52 /* UIColor+PYSearchExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+PYSearchExtension.h"; path = "PYSearch/UIColor+PYSearchExtension.h"; sourceTree = "<group>"; };
 		E3850105D3D2A4DDA39CA067574DB850 /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
 		E4AFFC40B1418476A04135D3A298DB82 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
@@ -183,9 +198,11 @@
 		E6CF20D4DFEBF87CAE4BB232C8F9CA2D /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		E7A8DE0A2BBF1430DC34FF6B09E9969D /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		E9B56D7F01BCE00E2E4F0142F916F0E0 /* PYSearchViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PYSearchViewController.m; path = PYSearch/PYSearchViewController.m; sourceTree = "<group>"; };
+		EA8A428913FFCB0C4CD59C49237F67A7 /* Pods-Triplore-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Triplore-frameworks.sh"; sourceTree = "<group>"; };
 		EB49AABE85F18DE265EE8A1BB3DFC537 /* PYSearch.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = PYSearch.bundle; path = PYSearch/PYSearch.bundle; sourceTree = "<group>"; };
 		EC8A7C0B6179467051ED95E59DB2AF9F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		ECAB68D0B4B065FFB2EE1EF14182E64B /* libPods-Triplore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Triplore.a"; path = "libPods-Triplore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F241CE7937B54EBB925F9964EC7E1E77 /* Pods-Triplore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Triplore.release.xcconfig"; sourceTree = "<group>"; };
+		F2B622E69C7B1EBFB383062E4ABC8F76 /* Pods-TriploreTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TriploreTests-dummy.m"; sourceTree = "<group>"; };
 		F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -203,6 +220,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				48219AA274F1B636C3281687418AA6D3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BBE29B2C891918761385EA7461436C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D82498E180CFD4FBEB9B2AC5C8713D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,16 +281,7 @@
 				8DC77FC369F69247DE842643CFA66521 /* Resources */,
 				78BDF0BF365975C9B5F71A5F7252ED4C /* Support Files */,
 			);
-			name = PYSearch;
 			path = PYSearch;
-			sourceTree = "<group>";
-		};
-		3A060AC8245B0842F27A421275B6327F /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9FC2C67F759F7E443285E3A55FA9DBC7 /* Pods-Triplore */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		40FD97BC3CDF2991EDD64A7C2956B514 /* NSURLSession */ = {
@@ -305,9 +321,24 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				20B56609144CE204DFA8221F742B2D76 /* Frameworks */,
 				9102FA654F5086901233A94B67AEB33D /* Pods */,
-				E8D524AFA914124A886FA0C6508C1DC4 /* Products */,
-				3A060AC8245B0842F27A421275B6327F /* Targets Support Files */,
+				FF559616048B81D10CB5BC80D2F513A2 /* Products */,
+				93D1E977B121AC5B2A4D75FA813BC7AB /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		88E626D446C0BFDD0C9058BFE61F0B83 /* Pods-TriploreTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E61B2CAB83F42F5805C04CA9ACFF0F1 /* Pods-TriploreTests-acknowledgements.markdown */,
+				020C59072C3BCD1BFBA0FF77DAB6A59D /* Pods-TriploreTests-acknowledgements.plist */,
+				F2B622E69C7B1EBFB383062E4ABC8F76 /* Pods-TriploreTests-dummy.m */,
+				0824840AD4A13012F7FC027A7DE02FF9 /* Pods-TriploreTests-frameworks.sh */,
+				DB6406D6EB92FE0124FAAB52E860EE87 /* Pods-TriploreTests-resources.sh */,
+				9E524E96336CDC2AB71279D8A2E2488C /* Pods-TriploreTests.debug.xcconfig */,
+				66102542EB43597EC120C643DB5C18C6 /* Pods-TriploreTests.release.xcconfig */,
+			);
+			name = "Pods-TriploreTests";
+			path = "Target Support Files/Pods-TriploreTests";
 			sourceTree = "<group>";
 		};
 		8DC77FC369F69247DE842643CFA66521 /* Resources */ = {
@@ -328,6 +359,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		93D1E977B121AC5B2A4D75FA813BC7AB /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7548ED4FD110B8CD3FB3E04F2AE01 /* Pods-Triplore */,
+				88E626D446C0BFDD0C9058BFE61F0B83 /* Pods-TriploreTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		9BCCE2A95BC9F47C906258A03FEA430C /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,23 +379,7 @@
 				B9FA636BB096A5BBAE00EF106CBFF509 /* Support Files */,
 				B135FCE54E0B780757E89FF08A6B87FA /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		9FC2C67F759F7E443285E3A55FA9DBC7 /* Pods-Triplore */ = {
-			isa = PBXGroup;
-			children = (
-				4EEAA1CC08B81BD79BA6218D289EF4BD /* Pods-Triplore-acknowledgements.markdown */,
-				4C86F952AA9B1F905AE5114426256052 /* Pods-Triplore-acknowledgements.plist */,
-				5711AE00337C8F6DFF2DEC6E4E1AC6DF /* Pods-Triplore-dummy.m */,
-				CB3BBDDCD1C75E0D9D7AAE5746B37CC9 /* Pods-Triplore-frameworks.sh */,
-				C8CDD35EF5E2B92E5496B86939BA2390 /* Pods-Triplore-resources.sh */,
-				3C9A791D7BD8B79285117705EA32928A /* Pods-Triplore.debug.xcconfig */,
-				1230CC9145FA25D3C55EE21BA4703C61 /* Pods-Triplore.release.xcconfig */,
-			);
-			name = "Pods-Triplore";
-			path = "Target Support Files/Pods-Triplore";
 			sourceTree = "<group>";
 		};
 		B135FCE54E0B780757E89FF08A6B87FA /* UIKit */ = {
@@ -426,6 +450,21 @@
 			name = standard;
 			sourceTree = "<group>";
 		};
+		D3C7548ED4FD110B8CD3FB3E04F2AE01 /* Pods-Triplore */ = {
+			isa = PBXGroup;
+			children = (
+				91B050E28FD39A0A62B2CF05EB548BCD /* Pods-Triplore-acknowledgements.markdown */,
+				C32F0F4245255028E1C03403C35F0238 /* Pods-Triplore-acknowledgements.plist */,
+				104A49E0542019351F91D30FCBE19614 /* Pods-Triplore-dummy.m */,
+				EA8A428913FFCB0C4CD59C49237F67A7 /* Pods-Triplore-frameworks.sh */,
+				11F2E5A27EF8406E3E407589E018ED34 /* Pods-Triplore-resources.sh */,
+				3A3ACB803C63BA04161AFA2E5F2AE768 /* Pods-Triplore.debug.xcconfig */,
+				F241CE7937B54EBB925F9964EC7E1E77 /* Pods-Triplore.release.xcconfig */,
+			);
+			name = "Pods-Triplore";
+			path = "Target Support Files/Pods-Triplore";
+			sourceTree = "<group>";
+		};
 		E84D6914917AAE5E588F338F996D26BB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,17 +474,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/FMDB";
-			sourceTree = "<group>";
-		};
-		E8D524AFA914124A886FA0C6508C1DC4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36C9C9961BB60A8A76B8D38F9B273AC7 /* libAFNetworking.a */,
-				3425B9AB0CFF14045AE7E5EE43038261 /* libFMDB.a */,
-				ECAB68D0B4B065FFB2EE1EF14182E64B /* libPods-Triplore.a */,
-				688EAAEB2C92C74D5A17522E86EC3FF5 /* libPYSearch.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		EC7C50538FBA00E3784FF1CD11849F04 /* Reachability */ = {
@@ -463,7 +491,6 @@
 				D3C42E1C0AC6C1E6A5170463391CC353 /* standard */,
 				E84D6914917AAE5E588F338F996D26BB /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -476,6 +503,18 @@
 				A744774AA9C53B811AA1D2ECD1F2A2D0 /* AFURLResponseSerialization.m */,
 			);
 			name = Serialization;
+			sourceTree = "<group>";
+		};
+		FF559616048B81D10CB5BC80D2F513A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC4CDA981935572D2C378E13907284F9 /* libAFNetworking.a */,
+				B3FA9D754DB779FC1E29C6F5ABE79989 /* libFMDB.a */,
+				89C3B71DFC45C441C9AF3A73DC82C589 /* libPods-Triplore.a */,
+				A08A2B37774F8D98D47B93BD8C0DEF39 /* libPods-TriploreTests.a */,
+				316E65D77BD30FACD56F6B0683117B81 /* libPYSearch.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,7 +591,24 @@
 			);
 			name = "Pods-Triplore";
 			productName = "Pods-Triplore";
-			productReference = ECAB68D0B4B065FFB2EE1EF14182E64B /* libPods-Triplore.a */;
+			productReference = 89C3B71DFC45C441C9AF3A73DC82C589 /* libPods-Triplore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2BBD5B2B31A0A958FB268C7B8B666FC5 /* Pods-TriploreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7ACDABFBB604D5A92AE476A47EDA8F1 /* Build configuration list for PBXNativeTarget "Pods-TriploreTests" */;
+			buildPhases = (
+				79AFC1E4A91B16A2848D547149DF0637 /* Sources */,
+				65BBE29B2C891918761385EA7461436C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83CF32173913F5D056FFC0AC9B537682 /* PBXTargetDependency */,
+			);
+			name = "Pods-TriploreTests";
+			productName = "Pods-TriploreTests";
+			productReference = A08A2B37774F8D98D47B93BD8C0DEF39 /* libPods-TriploreTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4118743C3E2465EDA26C0423E50AB9CC /* PYSearch */ = {
@@ -569,7 +625,7 @@
 			);
 			name = PYSearch;
 			productName = PYSearch;
-			productReference = 688EAAEB2C92C74D5A17522E86EC3FF5 /* libPYSearch.a */;
+			productReference = 316E65D77BD30FACD56F6B0683117B81 /* libPYSearch.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8642CC820CE8C5B88C113D7F47AF4BC3 /* FMDB */ = {
@@ -586,7 +642,7 @@
 			);
 			name = FMDB;
 			productName = FMDB;
-			productReference = 3425B9AB0CFF14045AE7E5EE43038261 /* libFMDB.a */;
+			productReference = B3FA9D754DB779FC1E29C6F5ABE79989 /* libFMDB.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9E033EDB5EC0819481B0546434FA577B /* AFNetworking */ = {
@@ -603,7 +659,7 @@
 			);
 			name = AFNetworking;
 			productName = AFNetworking;
-			productReference = 36C9C9961BB60A8A76B8D38F9B273AC7 /* libAFNetworking.a */;
+			productReference = CC4CDA981935572D2C378E13907284F9 /* libAFNetworking.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -623,13 +679,14 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E8D524AFA914124A886FA0C6508C1DC4 /* Products */;
+			productRefGroup = FF559616048B81D10CB5BC80D2F513A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				9E033EDB5EC0819481B0546434FA577B /* AFNetworking */,
 				8642CC820CE8C5B88C113D7F47AF4BC3 /* FMDB */,
 				0EB797F5397CC482E41188F632C1E7C7 /* Pods-Triplore */,
+				2BBD5B2B31A0A958FB268C7B8B666FC5 /* Pods-TriploreTests */,
 				4118743C3E2465EDA26C0423E50AB9CC /* PYSearch */,
 			);
 		};
@@ -664,6 +721,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2826126AECF025DD7EF641163576625F /* Pods-Triplore-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79AFC1E4A91B16A2848D547149DF0637 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D448BDAFA9C72BB87F188696F49D299 /* Pods-TriploreTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +768,12 @@
 			target = 9E033EDB5EC0819481B0546434FA577B /* AFNetworking */;
 			targetProxy = A0692CD1CE0F00994728CA71FCBFE38E /* PBXContainerItemProxy */;
 		};
+		83CF32173913F5D056FFC0AC9B537682 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB;
+			target = 8642CC820CE8C5B88C113D7F47AF4BC3 /* FMDB */;
+			targetProxy = EE3F3250C98707484230C9FC059E8743 /* PBXContainerItemProxy */;
+		};
 		CDFEE50833F912572BF2171FCD267848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FMDB;
@@ -731,6 +802,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/PYSearch/PYSearch-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -766,7 +838,7 @@
 		};
 		4259466AB5A1F7A3626A9A83CD86CF45 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C9A791D7BD8B79285117705EA32928A /* Pods-Triplore.debug.xcconfig */;
+			baseConfigurationReference = 3A3ACB803C63BA04161AFA2E5F2AE768 /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -777,6 +849,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -904,6 +977,53 @@
 			};
 			name = Release;
 		};
+		79503EF3644E7ABA07EBD614190CCCE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66102542EB43597EC120C643DB5C18C6 /* Pods-TriploreTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		91389E24FA719DE0A3DA1EA1F2AE6E66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E524E96336CDC2AB71279D8A2E2488C /* Pods-TriploreTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
 		BDD0139D6EB93FA375F887ABD62DAB2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -961,6 +1081,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -973,7 +1094,7 @@
 		};
 		FFF88FC41C263569BDD006F8034C9C52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1230CC9145FA25D3C55EE21BA4703C61 /* Pods-Triplore.release.xcconfig */;
+			baseConfigurationReference = F241CE7937B54EBB925F9964EC7E1E77 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1038,6 +1159,15 @@
 			buildConfigurations = (
 				04349B911EAB6570169284914A7A4C03 /* Debug */,
 				5A460E5B476F2D9D965D079AFCFC3BEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7ACDABFBB604D5A92AE476A47EDA8F1 /* Build configuration list for PBXNativeTarget "Pods-TriploreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91389E24FA719DE0A3DA1EA1F2AE6E66 /* Debug */,
+				79503EF3644E7ABA07EBD614190CCCE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

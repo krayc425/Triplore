@@ -20,22 +20,22 @@
 /*
  * 显示加载loading
  */
--(void)startLoading:(QYPlayerController *)player;
+- (void)startLoading:(QYPlayerController *)player;
 
 /*
  * 关闭加载loading
  */
--(void)stopLoading:(QYPlayerController *)player;
+- (void)stopLoading:(QYPlayerController *)player;
 
 /*
  * 播放时长发生变化
  */
--(void)playbackTimeChanged:(QYPlayerController *)player;
+- (void)playbackTimeChanged:(QYPlayerController *)player;
 
 /*
  * 播放完成
  */
--(void)playbackFinshed:(QYPlayerController *)player;
+- (void)playbackFinshed:(QYPlayerController *)player;
 
 /*
  * 网络变化
@@ -45,7 +45,7 @@
 /*
  * 播放出错
  */
--(void)onPlayerError:(NSDictionary *)error_no;
+- (void)onPlayerError:(NSDictionary *)error_no;
 
 /*
  * 开始播放广告
@@ -136,6 +136,8 @@
  * 功能: 设置静音
  *
  */
--(void)setMute:(BOOL)mute;
+- (void)setMute:(BOOL)mute;
+
+- (BOOL)isJailBreakJudge;
 
 @end

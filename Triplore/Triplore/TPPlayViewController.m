@@ -13,15 +13,20 @@
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
+#import <objc/runtime.h>
+#import "QYAVPlayerController.h"
+#import "PlayerController.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 280.0
 
 #define CONTROLLER_BAR_WIDTH 30
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate>{
     CGRect playFrame;
     UIView *playerView;
+    QYAVPlayerController *qyplayer;
+    PlayerController *pc;
 }
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
@@ -56,6 +61,7 @@
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
     playerView = [QYPlayerController sharedInstance].view;
     [self.view addSubview:playerView];
+    
     
     UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(10, 10, 30, 30)];
@@ -229,6 +235,11 @@
  * 显示加载loading
  */
 - (void)startLoading:(QYPlayerController *)player{
+    qyplayer = (QYAVPlayerController *)[[QYPlayerController sharedInstance] valueForKey:@"_qyPlayer"];
+    NSLog(@"%f", [qyplayer totalDuration]);
+    pc = [qyplayer valueForKey:@"pumaPlayerCtrl"];
+//    pc.delegate = self;
+    
     if (self.activityWheel.superview==nil) {
         [self.view addSubview:self.activityWheel];
         [self.activityWheel startAnimating];
@@ -306,16 +317,44 @@
 }
 
 - (void)screenShotAction{
-    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    UIImageView *view = (UIImageView *)[self.view snapshotViewAfterScreenUpdates:YES];
+//    UIImage *tmpImg = view.image;
+//    tmpImg = [TPPlayViewController imageFromImage:tmpImg inRect:playFrame];
+    [view setBounds:playFrame];
+    [view setClipsToBounds:YES];
+    [self addNoteView:view];
     
-    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, image.size.height)];
-//    [imgView1 setBounds:CGRectMake(0, 0, CGRectGetWidth(imgView1.frame) - 40, image.size.height)];
-    [imgView1 setImage:image];
-    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
-    [self addNoteView:imgView1];
+//    [pc pause];
+//    [qyplayer snapShot];
+//    [pc startImageCutWithVideoPath:nil imageSaveDir:nil videoCutResultJson:nil];
+//    [pc.delegate OnSnapShot:nil width:100 height:100 format:1];
+//    [pc snapShot];
+//    [pc showWatermark];
+//    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
+//    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, image.size.height)];
+////    [imgView1 setBounds:CGRectMake(0, 0, CGRectGetWidth(imgView1.frame) - 40, image.size.height)];
+//    [imgView1 setImage:image];
+//    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
+//    [self addNoteView:imgView1];
+}
+
++ (UIImage *)imageFromImage:(UIImage *)image inRect:(CGRect)rect{
+    
+    //将UIImage转换成CGImageRef
+    CGImageRef sourceImageRef = [image CGImage];
+    
+    //按照给定的矩形区域进行剪裁
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
+    
+    //将CGImageRef转换成UIImage
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    //返回剪裁后的图片
+    return newImage;
 }
 
 - (void)saveNoteAction{
@@ -333,6 +372,18 @@
 //    [self presentViewController:noteVC animated:YES completion:nil];
     [self.navigationController pushViewController:noteVC animated:YES];
 }
+
+//- (void)onIsPlayingStateChanged:(BOOL)arg1{
+//    NSLog(@"C : %d", arg1);
+//}
+//
+//- (void)onStart{
+//    NSLog(@"start");
+//}
+//
+//- (void)OnSnapShot:(void *)arg1 width:(unsigned int)arg2 height:(unsigned int)arg3 format:(unsigned int)arg4{
+//    NSLog(@"%@ %u %u %u",arg1, arg2, arg3, arg4);
+//}
 
 @end
     
