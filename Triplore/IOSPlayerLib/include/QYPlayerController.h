@@ -125,7 +125,7 @@
  * 功能: 是否播放
  *
  */
--(BOOL)isPlaying;
+- (BOOL)isPlaying;
 
 /*
  *  是否加载

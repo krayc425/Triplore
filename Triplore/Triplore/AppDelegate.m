@@ -11,6 +11,7 @@
 #import "TPTabBarViewController.h"
 #import "ViewController.h"
 #import "Utilities.h"
+#import "DBManager.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,9 @@
     
     //必须调用
     [[QYPlayerController sharedInstance] initPlayer];
+    
+    //数据库
+    [[DBManager shareInstance] establishDB];
     
     TPTabBarViewController *tabVC = [[TPTabBarViewController alloc] init];
     UIWindow *windows = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

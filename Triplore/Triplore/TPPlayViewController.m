@@ -21,6 +21,7 @@
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate>{
     CGRect playFrame;
+    UIView *playerView;
 }
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
@@ -33,19 +34,27 @@
     [super viewDidLoad];
     self.view.backgroundColor = [Utilities getBackgroundColor];
     
+    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
+    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.title = @"视频";
+    
+    self.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = YES;
+    
     //    CGRect playFrame = CGRectMake(0,
     //                                  0,
     //                                  self.view.frame.size.width - CONTROLLER_BAR_WIDTH,
     //                                  self.view.frame.size.height);
     
     playFrame = CGRectMake(0,
-                                  0,
-                                  self.view.frame.size.width,
-                                  320);
+                           64,
+                           self.view.frame.size.width,
+                           320);
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
-    UIView *playerView = [QYPlayerController sharedInstance].view;
-    [playerView setTag:100];
+    playerView = [QYPlayerController sharedInstance].view;
     [self.view addSubview:playerView];
     
     UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,6 +119,10 @@
     NSString* tvid = [self.playDetail valueForKey:@"tv_id"];
     NSString* isvip = [self.playDetail valueForKey:@"is_vip"];
     [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)showPlayView{
@@ -293,17 +306,16 @@
 }
 
 - (void)screenShotAction{
-    UIGraphicsBeginImageContextWithOptions(playFrame.size, NO, [[UIScreen mainScreen] scale]);
-    [[self.view viewWithTag:100].layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
+    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, image.size.height)];
+//    [imgView1 setBounds:CGRectMake(0, 0, CGRectGetWidth(imgView1.frame) - 40, image.size.height)];
     [imgView1 setImage:image];
     [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
     [self addNoteView:imgView1];
-    
-//    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 - (void)saveNoteAction{
@@ -316,7 +328,7 @@
     }
     
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
-    [noteVC setNoteTitle:@"视频笔记测试"];
+    [noteVC setVideoDict:self.playDetail];
     [noteVC setNoteViews:[[TPNoteCreator shareInstance] getNoteViews]];
 //    [self presentViewController:noteVC animated:YES completion:nil];
     [self.navigationController pushViewController:noteVC animated:YES];

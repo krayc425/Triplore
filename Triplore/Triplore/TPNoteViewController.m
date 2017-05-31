@@ -16,6 +16,8 @@
 
 @interface TPNoteViewController ()
 
+@property (nonnull, nonatomic) UITableView *tableView;
+
 @end
 
 @implementation TPNoteViewController
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [Utilities getBackgroundColor];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"Video Dict %@", self.videoDict.description);
     //滚动视图
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    0,
@@ -48,12 +50,16 @@
     //子视图
 //    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
 //    [label1 setText:@"Test 1"];
+//    [label1 sizeToFit];
 //    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
 //    [label2 setText:@"Test 2"];
+//    [label2 sizeToFit];
 //    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
 //    [label3 setText:@"Test 3"];
+//    [label3 sizeToFit];
 //    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
 //    [label4 setText:@"Test 4"];
+//    [label4 sizeToFit];
 //    UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
 //    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
 //    [imgView1 setImage:image];
@@ -115,6 +121,10 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+    
+    
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{

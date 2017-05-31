@@ -9,7 +9,7 @@
 #import "TPAddTextViewController.h"
 #import "Utilities.h"
 
-@interface TPAddTextViewController ()
+@interface TPAddTextViewController () <UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *okButton;
 @property (strong, nonatomic) UIButton *backButton;
@@ -33,10 +33,12 @@
     [self.noteText setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
     [self.noteText setContentMode:UIViewContentModeTopLeft];
     [self.noteText setTextAlignment:NSTextAlignmentLeft];
+    self.noteText.delegate = self;
     
     //完成按钮
     [self.okButton.layer setCornerRadius:CGRectGetHeight(self.okButton.frame) / 2];
-    [self.okButton setBackgroundColor:[Utilities getColor]];
+    [self.okButton setBackgroundColor:[UIColor lightGrayColor]];
+    [self.okButton setUserInteractionEnabled:NO];
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
     [self.okButton setTitle:@"完 成" forState:UIControlStateNormal];
@@ -54,7 +56,7 @@
 
 - (void)doneAction{
     NSLog(@"Done");
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 10)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 20)];
     [label setText:self.noteText.text];
     [label setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
     [label setNumberOfLines:100];
@@ -63,6 +65,18 @@
     [self.addNoteViewDelegate addNoteView:label];
 
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UITextView Delegate
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if([textView.text isEqualToString:@""]){
+        [self.okButton setBackgroundColor:[UIColor lightGrayColor]];
+        [self.okButton setUserInteractionEnabled:NO];
+    }else{
+        [self.okButton setBackgroundColor:[Utilities getColor]];
+        [self.okButton setUserInteractionEnabled:YES];
+    }
 }
 
 /*

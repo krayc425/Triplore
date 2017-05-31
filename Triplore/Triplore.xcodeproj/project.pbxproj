@@ -15,7 +15,6 @@
 		2402CE071ED448020098770A /* libPYSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402CE061ED448020098770A /* libPYSearch.a */; };
 		2402CE091ED448080098770A /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402CE081ED448080098770A /* libAFNetworking.a */; };
 		2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */; };
-		2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2402CE121ED44CD40098770A /* TPSiteTableViewCell.m */; };
 		2402CE181ED44F690098770A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE171ED44F690098770A /* Main.storyboard */; };
 		2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE191ED450790098770A /* TPSiteTableViewCell.xib */; };
 		2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */; };
@@ -26,6 +25,9 @@
 		24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */; };
 		24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */; };
 		24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */; };
+		24487C551EDE4A620009E8E5 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C541EDE4A620009E8E5 /* DBManager.m */; };
+		24487C5D1EDE54E10009E8E5 /* TPNoteSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */; };
+		24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -95,8 +97,6 @@
 		2402CE081ED448080098770A /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewController.h; sourceTree = "<group>"; };
 		2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteTableViewController.m; sourceTree = "<group>"; };
-		2402CE111ED44CD40098770A /* TPSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSiteTableViewCell.h; path = image/TPSiteTableViewCell.h; sourceTree = "<group>"; };
-		2402CE121ED44CD40098770A /* TPSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPSiteTableViewCell.m; path = image/TPSiteTableViewCell.m; sourceTree = "<group>"; };
 		2402CE171ED44F690098770A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2402CE191ED450790098770A /* TPSiteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteTableViewCell.xib; sourceTree = "<group>"; };
 		2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
@@ -112,6 +112,13 @@
 		24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAddTextViewController.h; sourceTree = "<group>"; };
 		24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddTextViewController.m; sourceTree = "<group>"; };
 		24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAddTextViewController.xib; sourceTree = "<group>"; };
+		24487C531EDE4A620009E8E5 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		24487C541EDE4A620009E8E5 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		24487C561EDE4AE10009E8E5 /* Triplore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Triplore.entitlements; sourceTree = "<group>"; };
+		24487C5B1EDE54E10009E8E5 /* TPNoteSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteSaver.h; sourceTree = "<group>"; };
+		24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteSaver.m; sourceTree = "<group>"; };
+		24487C5E1EDE551D0009E8E5 /* TPSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewCell.h; sourceTree = "<group>"; };
+		24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteTableViewCell.m; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -276,14 +283,46 @@
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
 				4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */,
 				4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */,
-				2402CE111ED44CD40098770A /* TPSiteTableViewCell.h */,
-				2402CE121ED44CD40098770A /* TPSiteTableViewCell.m */,
+				24487C5E1EDE551D0009E8E5 /* TPSiteTableViewCell.h */,
+				24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */,
 				2402CE191ED450790098770A /* TPSiteTableViewCell.xib */,
 				4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */,
 				4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */,
 				4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */,
 			);
 			name = Site;
+			sourceTree = "<group>";
+		};
+		24487C511EDDC7090009E8E5 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
+				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
+				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
+				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
+				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		24487C521EDDC76F0009E8E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				081FCF3BA75D0BDDDC42F865555704C7 /* Triplore.app */,
+			);
+			name = Products;
+			path = Triplore;
+			sourceTree = "<group>";
+		};
+		24487C571EDE53490009E8E5 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				24487C531EDE4A620009E8E5 /* DBManager.h */,
+				24487C541EDE4A620009E8E5 /* DBManager.m */,
+				24487C5B1EDE54E10009E8E5 /* TPNoteSaver.h */,
+				24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */,
+			);
+			name = DataBase;
 			sourceTree = "<group>";
 		};
 		24B8108B1ED7039100CD7DC4 /* Me */ = {
@@ -332,25 +371,18 @@
 				AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */,
 				1B651AE61FD3EE1F10AF65F7CB239A88 /* Pods */,
 				D85993CC06B4E6FF333C070C3D479379 /* Triplore */,
+				24487C521EDDC76F0009E8E5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
 				2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */,
 				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A3CAFE0EE9851645DEE78AA87AA10027 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				081FCF3BA75D0BDDDC42F865555704C7 /* Triplore.app */,
-			);
-			name = Products;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
@@ -407,13 +439,12 @@
 				2402CE161ED44DD60098770A /* Site */,
 				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
+				24487C511EDDC7090009E8E5 /* Player */,
+				24487C571EDE53490009E8E5 /* DataBase */,
+				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
+				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
 				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
 				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
-				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
-				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
-				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
-				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
-				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
 				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
@@ -424,9 +455,6 @@
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
 				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
 				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
-				A3CAFE0EE9851645DEE78AA87AA10027 /* Products */,
-				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
-				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
 			);
 			path = Triplore;
 			sourceTree = "<group>";
@@ -483,8 +511,13 @@
 				TargetAttributes = {
 					797C8388D8C8BBE00F20B818DD62D32B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 49PM32K82W;
+						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -497,7 +530,7 @@
 				Base,
 			);
 			mainGroup = 57558A6A7D92773D598A8FDBFC9A6B8F;
-			productRefGroup = A3CAFE0EE9851645DEE78AA87AA10027 /* Products */;
+			productRefGroup = 57558A6A7D92773D598A8FDBFC9A6B8F;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -580,15 +613,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24487C551EDE4A620009E8E5 /* DBManager.m in Sources */,
 				241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */,
 				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
-				2402CE141ED44CD40098770A /* TPSiteTableViewCell.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
+				24487C5D1EDE54E10009E8E5 /* TPNoteSaver.m in Sources */,
 				241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
+				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
@@ -622,7 +657,9 @@
 			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -636,8 +673,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
@@ -696,7 +735,9 @@
 			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -710,8 +751,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;

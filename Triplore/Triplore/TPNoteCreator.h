@@ -25,6 +25,6 @@
 
 - (NSInteger)countNoteView;
 
-- (NSArray *)getNoteViews;
+- (NSArray *_Nonnull)getNoteViews;
 
 @end

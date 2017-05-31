@@ -10,6 +10,6 @@
 
 @interface TPPlayViewController : UIViewController
 
-@property(nonatomic,strong) NSDictionary *playDetail;
+@property (nonatomic,strong) NSDictionary *playDetail;
 
 @end

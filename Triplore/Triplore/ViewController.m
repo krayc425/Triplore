@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "TPPlayViewController.h"
 #import "ActivityIndicatorView.h"
+#import "Utilities.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView* tableView;
@@ -29,6 +30,23 @@
     self.dataSourceArraySecond = [[NSMutableArray alloc] initWithCapacity:3];
     self.dataSourceArrayThird = [[NSMutableArray alloc] initWithCapacity:3];
     
+    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
+    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UINavigationBar *bar = [UINavigationBar appearance];
+    [bar setBarTintColor:[Utilities getColor]];
+    [bar setTintColor:[Utilities getColor]];
+    [bar setTitleTextAttributes:@{
+                                  NSForegroundColorAttributeName : [UIColor whiteColor],
+                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
+                                  }];
+    [bar setTranslucent:NO];
+    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    bar.backIndicatorImage = image;
+    bar.backIndicatorTransitionMaskImage = image;
     
     [self createTableView];
     [self requestUrl];

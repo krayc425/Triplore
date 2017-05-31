@@ -11,8 +11,8 @@
 @interface TPNoteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonnull, nonatomic) NSString *noteTitle;
+@property (nonnull, nonatomic) NSDictionary *videoDict;
 
-@property (nonnull, nonatomic) UITableView *tableView;
 @property (nonnull, nonatomic) NSArray<UIView *> *noteViews;
 
 @end

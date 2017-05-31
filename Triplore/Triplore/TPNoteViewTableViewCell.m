@@ -27,8 +27,16 @@
                                                             CGRectGetWidth(self.frame) - 40,
                                                             CGRectGetHeight(noteView.frame) - 20)];
     [view setContentMode:UIViewContentModeScaleAspectFit];
+//    [view setBounds:CGRectMake(20,
+//                              10,
+//                              CGRectGetWidth(self.frame) - 40,
+//                               CGRectGetHeight(noteView.frame) - 20)];
     [view addSubview:noteView];
+    view.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
+    |UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:view];
+    self.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
+    |UIViewAutoresizingFlexibleRightMargin;
 }
 
 @end
