@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.barTintColor = [Utilities getColor];
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;

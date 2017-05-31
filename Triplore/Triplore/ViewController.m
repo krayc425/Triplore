@@ -34,6 +34,7 @@
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.title = @"精选";
     
     UINavigationBar *bar = [UINavigationBar appearance];
     [bar setBarTintColor:[Utilities getColor]];
@@ -79,7 +80,7 @@
 {
     if (self.tableView==nil)
     {
-        UITableView* contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20)];
+        UITableView* contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20 - 40)];
         contentTableView.backgroundColor = [UIColor whiteColor];
         contentTableView.pagingEnabled = NO;
         contentTableView.autoresizesSubviews = YES;
@@ -91,7 +92,7 @@
         contentTableView.delegate = self;
         contentTableView.allowsSelection = NO;
         contentTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.tableView  = contentTableView;
+        self.tableView = contentTableView;
         [self.view addSubview:self.tableView];
     }
 }
@@ -392,19 +393,6 @@
     }
     
     [self.navigationController pushViewController:self.TPPlayViewController animated:YES];
-//    [self.navigationController presentViewController:self.TPPlayViewController animated:YES completion:^{
-//        
-//    }];
-    
-//    [self addChildViewController:self.TPPlayViewController];
-//    [self.TPPlayViewController.view setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    [self.view addSubview:self.TPPlayViewController.view];
-//    __weak typeof(self)weakSelf = self;
-//    [UIView animateWithDuration:0.3 animations:^{
-//        [weakSelf.TPPlayViewController.view setFrame:CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
 }
 
 #pragma network request

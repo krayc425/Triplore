@@ -19,13 +19,21 @@
     
     [self.titleLabel setText:note.title];
     
+    BOOL hasTitle = YES;
+    BOOL hasImage = YES;
     [self.contentLabel setText:@""];
     for(UIView *view in note.views){
-        if([view isKindOfClass:[UILabel class]]){
+        if(hasTitle && [view isKindOfClass:[UILabel class]]){
             UILabel *labelView = (UILabel *)view;
             [self.contentLabel setText:labelView.text];
+            hasTitle = NO;
         }
-//        if([view isKindOfClass:[])
+        if(hasImage && [view isKindOfClass:[UIImageView class]]){
+            UIImageView *imgView = (UIImageView *)view;
+            [self.backgroundImgView setImage:imgView.image];
+            [self.backgroundImgView setContentMode:UIViewContentModeScaleAspectFit];
+            hasImage = NO;
+        }
     }
     
 }

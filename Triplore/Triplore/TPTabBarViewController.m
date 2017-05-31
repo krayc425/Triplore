@@ -71,6 +71,11 @@
     [self addChildViewController:naviVC2];
     [self addChildViewController:naviVC3];
     [self addChildViewController:naviVC4];
+    
+    for(UINavigationController *naviVC in self.childViewControllers) {
+        naviVC.navigationBar.translucent = NO;
+        naviVC.navigationBar.opaque = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

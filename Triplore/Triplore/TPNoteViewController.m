@@ -92,6 +92,7 @@
     
     if(self.note != NULL && self.note.noteid > 0){
         self.noteTitle = self.note.title;
+        self.title = self.noteTitle;
         self.noteViews = self.note.views;
     }
     
@@ -151,9 +152,11 @@
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存成功"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"返回"
                                                            style:UIAlertActionStyleCancel
-                                                         handler:nil];
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             [self.navigationController popToRootViewControllerAnimated:YES];
+                                                         }];
         [alertC addAction:cancelAction];
         UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
                                                               style:UIAlertActionStyleDefault

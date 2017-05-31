@@ -21,8 +21,8 @@
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-#define NAVIGATION_BAR_HEIGHT 64
-#define CONTROLLER_BAR_WIDTH 30
+#define NAVIGATION_BAR_HEIGHT 0.0
+#define CONTROLLER_BAR_WIDTH 30.0
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate>{
     CGRect playFrame;
@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [Utilities getBackgroundColor];
-    
+
     self.navigationController.navigationBar.barTintColor = [Utilities getColor];
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -49,18 +49,24 @@
     self.hidesBottomBarWhenPushed = YES;
     self.tabBarController.tabBar.hidden = YES;
     
-    playFrame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
+    playFrame = CGRectMake(0,
+                           0,
+                           self.view.frame.size.width,
+                           self.view.frame.size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     [QYPlayerController sharedInstance].delegate = self;
-    [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
+    [[QYPlayerController sharedInstance] setPlayerFrame:CGRectMake(0,
+                                                                   0,
+                                                                   self.view.frame.size.width,
+                                                                   self.view.frame.size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight + 64)];
     playerView = [QYPlayerController sharedInstance].view;
     [self.view addSubview:playerView];
     
-    UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(10, 30, 30, 30)];
-    UIImage *backImg = [UIImage imageNamed:@"playerBack"];
-    [backButton setImage:backImg forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
+//    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [backButton setFrame:CGRectMake(10, 10, 30, 30)];
+//    UIImage *backImg = [UIImage imageNamed:@"playerBack"];
+//    [backButton setImage:backImg forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:backButton];
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame: CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -120,7 +126,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
-    
+}
+
+- (void)dealloc{
     [[TPNoteCreator shareInstance] clearNoteView];
 }
 
@@ -131,7 +139,7 @@
         UIButton *play= [UIButton buttonWithType:UIButtonTypeCustom];
         [play setBackgroundColor:[UIColor blackColor]];
         [play setFrame:CGRectMake(10,
-                                  CGRectGetHeight(self.view.bounds) - 40,
+                                  CGRectGetHeight(playFrame) - 40,
                                   30,
                                   30)];
         [play setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
@@ -156,7 +164,7 @@
         UIButton *pause= [UIButton buttonWithType:UIButtonTypeCustom];
         [pause setBackgroundColor:[UIColor blackColor]];
         [pause setFrame:CGRectMake(10,
-                                   CGRectGetHeight(self.view.bounds) - 40,
+                                   CGRectGetHeight(playFrame) - 40,
                                    30,
                                    30)];
         [pause setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
@@ -196,12 +204,12 @@
     }
 }
 
-- (void)backClick{
-    [[QYPlayerController sharedInstance] stopPlayer];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
+//- (void)backClick{
+//    [[QYPlayerController sharedInstance] stopPlayer];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+//}
 
 - (void)playClick{
     [[QYPlayerController sharedInstance] play];
@@ -216,6 +224,7 @@
 }
 
 #pragma QYBasePlayerControllerDelegate
+
 /*
  * 播放出错
  */
@@ -305,12 +314,16 @@
 }
 
 - (void)screenShotAction{
-    UIView *snapshot = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
-    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 1);
-    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) afterScreenUpdates:YES];   //貌似iOS8要用这个方法
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
+    [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:NO];
+//    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+//    UIView *snapshot = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
+//    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+//    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 1);
+//    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) afterScreenUpdates:NO];   //貌似iOS8要用这个方法
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    image = [image getSubImage:CGRectMake(0, 64.0, playFrame.size.width, playFrame.size.height)];
+    image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width, playFrame.size.height)];
     image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
     [self addNoteView:[[UIImageView alloc] initWithImage:image]];
 }

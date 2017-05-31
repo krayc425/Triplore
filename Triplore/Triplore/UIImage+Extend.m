@@ -159,7 +159,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
     CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
     
-    UIGraphicsBeginImageContextWithOptions(smallBounds.size, NO, 2);
+    UIGraphicsBeginImageContextWithOptions(smallBounds.size, YES, 2);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextDrawImage(context, smallBounds, subImageRef);
     UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
@@ -195,7 +195,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     
     // 创建一个bitmap的context
     // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContextWithOptions(size, NO, 2);
+    UIGraphicsBeginImageContextWithOptions(size, YES, 2);
     
     // 绘制改变大小的图片
     [self drawInRect:CGRectMake(xPos, yPos, width, height)];
