@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TPNoteViewTableViewCell.h"
+#import "TPNote.h"
+#import "TPNoteManager.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
@@ -26,7 +28,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [Utilities getBackgroundColor];
     // Do any additional setup after loading the view.
-    NSLog(@"Video Dict %@", self.videoDict.description);
     //滚动视图
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    0,
@@ -39,32 +40,12 @@
     self.tableView.tableFooterView = [UIView new];
     
     //标题
-    UILabel *noteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                        0,
-                                                                        self.view.frame.size.width - 40,
-                                                                        24)];
-    noteTitleLabel.text = self.noteTitle;
-    noteTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
-    noteTitleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-
-    //子视图
-//    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-//    [label1 setText:@"Test 1"];
-//    [label1 sizeToFit];
-//    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-//    [label2 setText:@"Test 2"];
-//    [label2 sizeToFit];
-//    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-//    [label3 setText:@"Test 3"];
-//    [label3 sizeToFit];
-//    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20)];
-//    [label4 setText:@"Test 4"];
-//    [label4 sizeToFit];
-//    UIImage *image = [UIImage imageNamed:@"TEST_PNG"];
-//    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), image.size.height)];
-//    [imgView1 setImage:image];
-//    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
-//    self.noteViews = @[noteTitleLabel, label1, label2, label3, imgView1, label4];
+//    UILabel *noteTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+//                                                                        0,
+//                                                                        self.view.frame.size.width - 40,
+//                                                                        24)];
+//    noteTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
+//    noteTitleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
@@ -83,6 +64,7 @@
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -107,10 +89,43 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
+    
+    if(self.note != NULL && self.note.noteid > 0){
+        self.noteTitle = self.note.title;
+        self.noteViews = self.note.views;
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+}
+
+#pragma mark - Button Actions
+
+- (void)deleteAction{
+    if ([TPNoteManager deleteNoteWithID:self.note.noteid]) {
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"删除成功"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"好的"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction * _Nonnull action) {
+                                                                [self.navigationController popViewControllerAnimated:YES];
+                                                            }];
+        [alertC addAction:albumAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"删除失败"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Save to album
@@ -122,9 +137,13 @@
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     
+    TPNote *note = [TPNote new];
+    [note setVideoid:(NSInteger)self.videoDict[@"id"]];
+    [note setTitle:self.noteTitle];
+    [note setViews:self.noteViews];
+    [note setCreateTime:[NSDate date]];
     
-    
-    
+    [TPNoteManager insertNote:note];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{

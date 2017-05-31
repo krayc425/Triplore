@@ -26,11 +26,13 @@
 		24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */; };
 		24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */; };
 		24487C551EDE4A620009E8E5 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C541EDE4A620009E8E5 /* DBManager.m */; };
-		24487C5D1EDE54E10009E8E5 /* TPNoteSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */; };
 		24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */; };
 		24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C671EDE93940009E8E5 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C771EDE95F40009E8E5 /* libFMDB.a */; };
 		24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C9C1EDE9D120009E8E5 /* TriploreTests.m */; };
+		24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */; };
+		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
+		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -130,8 +132,6 @@
 		24487C531EDE4A620009E8E5 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		24487C541EDE4A620009E8E5 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		24487C561EDE4AE10009E8E5 /* Triplore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Triplore.entitlements; sourceTree = "<group>"; };
-		24487C5B1EDE54E10009E8E5 /* TPNoteSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteSaver.h; sourceTree = "<group>"; };
-		24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteSaver.m; sourceTree = "<group>"; };
 		24487C5E1EDE551D0009E8E5 /* TPSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewCell.h; sourceTree = "<group>"; };
 		24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteTableViewCell.m; sourceTree = "<group>"; };
 		24487C621EDE63E30009E8E5 /* QYAVPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYAVPlayerController.h; sourceTree = "<group>"; };
@@ -141,6 +141,12 @@
 		24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriploreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24487C9C1EDE9D120009E8E5 /* TriploreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriploreTests.m; sourceTree = "<group>"; };
 		24487C9E1EDE9D120009E8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24487CA41EDE9FC90009E8E5 /* TPNoteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteManager.h; sourceTree = "<group>"; };
+		24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteManager.m; sourceTree = "<group>"; };
+		24487CA71EDEB9780009E8E5 /* TPNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNote.h; sourceTree = "<group>"; };
+		24487CA81EDEB9780009E8E5 /* TPNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNote.m; sourceTree = "<group>"; };
+		24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNoteCollectionViewCell+Configure.h"; sourceTree = "<group>"; };
+		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -355,8 +361,6 @@
 			children = (
 				24487C531EDE4A620009E8E5 /* DBManager.h */,
 				24487C541EDE4A620009E8E5 /* DBManager.m */,
-				24487C5B1EDE54E10009E8E5 /* TPNoteSaver.h */,
-				24487C5C1EDE54E10009E8E5 /* TPNoteSaver.m */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -369,6 +373,17 @@
 				24487C9E1EDE9D120009E8E5 /* Info.plist */,
 			);
 			path = TriploreTests;
+			sourceTree = "<group>";
+		};
+		24487CAA1EDEB9E30009E8E5 /* NoteData */ = {
+			isa = PBXGroup;
+			children = (
+				24487CA71EDEB9780009E8E5 /* TPNote.h */,
+				24487CA81EDEB9780009E8E5 /* TPNote.m */,
+				24487CA41EDE9FC90009E8E5 /* TPNoteManager.h */,
+				24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */,
+			);
+			name = NoteData;
 			sourceTree = "<group>";
 		};
 		24B8108B1ED7039100CD7DC4 /* Me */ = {
@@ -391,6 +406,8 @@
 				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
 				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
 				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
+				24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */,
+				24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */,
 				241210EC1ED7EF400066B99C /* TPNoteViewController.h */,
 				241210ED1ED7EF400066B99C /* TPNoteViewController.m */,
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
@@ -398,6 +415,7 @@
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
 				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
 				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
+				24487CAA1EDEB9E30009E8E5 /* NoteData */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -416,6 +434,7 @@
 			children = (
 				AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */,
 				1B651AE61FD3EE1F10AF65F7CB239A88 /* Pods */,
+				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
 				D85993CC06B4E6FF333C070C3D479379 /* Triplore */,
 				24487C9B1EDE9D120009E8E5 /* TriploreTests */,
 				24487C521EDDC76F0009E8E5 /* Products */,
@@ -425,9 +444,12 @@
 		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2402CE171ED44F690098770A /* Main.storyboard */,
+				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
 				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
 				2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */,
 				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
+				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -485,7 +507,6 @@
 			isa = PBXGroup;
 			children = (
 				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
-				EB7AB3C93A433EE91FE624A861161B8C /* IOSPlayerLib */,
 				2402CE161ED44DD60098770A /* Site */,
 				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
@@ -499,9 +520,6 @@
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
-				2402CE171ED44F690098770A /* Main.storyboard */,
-				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
-				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
 				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
 				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
@@ -759,10 +777,10 @@
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
-				24487C5D1EDE54E10009E8E5 /* TPNoteSaver.m in Sources */,
 				241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
+				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
@@ -773,6 +791,8 @@
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
+				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
+				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
 			);

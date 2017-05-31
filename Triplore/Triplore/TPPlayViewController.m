@@ -18,15 +18,15 @@
 #import "PlayerController.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
-#define KIPhone_AVPlayerRect_mheight 280.0
+#define KIPhone_AVPlayerRect_mheight 180.0
 
+#define NAVIGATION_BAR_HEIGHT 44
 #define CONTROLLER_BAR_WIDTH 30
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate>{
     CGRect playFrame;
     UIView *playerView;
-    QYAVPlayerController *qyplayer;
-    PlayerController *pc;
+    UITextField *titleText;
 }
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
@@ -48,23 +48,14 @@
     self.hidesBottomBarWhenPushed = YES;
     self.tabBarController.tabBar.hidden = YES;
     
-    //    CGRect playFrame = CGRectMake(0,
-    //                                  0,
-    //                                  self.view.frame.size.width - CONTROLLER_BAR_WIDTH,
-    //                                  self.view.frame.size.height);
-    
-    playFrame = CGRectMake(0,
-                           64,
-                           self.view.frame.size.width,
-                           320);
+    playFrame = CGRectMake(0, 20 + NAVIGATION_BAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.width/KIPhone_AVPlayerRect_mwidth*KIPhone_AVPlayerRect_mheight);
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:playFrame];
     playerView = [QYPlayerController sharedInstance].view;
     [self.view addSubview:playerView];
     
-    
     UIButton *backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(10, 10, 30, 30)];
+    [backButton setFrame:CGRectMake(10, 30, 30, 30)];
     UIImage *backImg = [UIImage imageNamed:@"playerBack"];
     [backButton setImage:backImg forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
@@ -75,18 +66,17 @@
     self.activityWheel = wheel;
     self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
     
-    //    UITextField *titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
-    //                                                                           playFrame.size.height,
-    //                                                                           self.view.frame.size.width - 78,
-    //                                                                           64)];
-    //    titleText.placeholder = @"填写标题";
-    //    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
-    //    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-    //    [self.view addSubview:titleText];
-    //
+    titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
+                                                              playFrame.size.height + NAVIGATION_BAR_HEIGHT,
+                                                              self.view.frame.size.width - 78,
+                                                              64)];
+    titleText.placeholder = @"填写笔记标题";
+    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+    titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
+    [self.view addSubview:titleText];
     
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 112,
-                                                                      playFrame.size.height + 20,
+                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
                                                                       24,
                                                                       24)];
     [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
@@ -94,7 +84,7 @@
     [self.view addSubview:editButton];
     
     UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
-                                                                            playFrame.size.height + 20,
+                                                                            playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
                                                                             24,
                                                                             24)];
     [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
@@ -102,7 +92,7 @@
     [self.view addSubview:screenshotButton];
     
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      playFrame.size.height + 20,
+                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
                                                                       24,
                                                                       24)];
     [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
@@ -235,11 +225,6 @@
  * 显示加载loading
  */
 - (void)startLoading:(QYPlayerController *)player{
-    qyplayer = (QYAVPlayerController *)[[QYPlayerController sharedInstance] valueForKey:@"_qyPlayer"];
-    NSLog(@"%f", [qyplayer totalDuration]);
-    pc = [qyplayer valueForKey:@"pumaPlayerCtrl"];
-//    pc.delegate = self;
-    
     if (self.activityWheel.superview==nil) {
         [self.view addSubview:self.activityWheel];
         [self.activityWheel startAnimating];
@@ -317,44 +302,15 @@
 }
 
 - (void)screenShotAction{
-    UIImageView *view = (UIImageView *)[self.view snapshotViewAfterScreenUpdates:YES];
-//    UIImage *tmpImg = view.image;
-//    tmpImg = [TPPlayViewController imageFromImage:tmpImg inRect:playFrame];
-    [view setBounds:playFrame];
-    [view setClipsToBounds:YES];
-    [self addNoteView:view];
+    UIView *snapshot = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
+//    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    CGSize outputSize = CGSizeMake(CGRectGetWidth(playFrame), CGRectGetHeight(playFrame));
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 2);
+    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 64.0, playFrame.size.width, playFrame.size.height) afterScreenUpdates:YES];   //貌似iOS8要用这个方法
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-//    [pc pause];
-//    [qyplayer snapShot];
-//    [pc startImageCutWithVideoPath:nil imageSaveDir:nil videoCutResultJson:nil];
-//    [pc.delegate OnSnapShot:nil width:100 height:100 format:1];
-//    [pc snapShot];
-//    [pc showWatermark];
-//    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
-//    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, image.size.height)];
-////    [imgView1 setBounds:CGRectMake(0, 0, CGRectGetWidth(imgView1.frame) - 40, image.size.height)];
-//    [imgView1 setImage:image];
-//    [imgView1 setContentMode:UIViewContentModeScaleAspectFit];
-//    [self addNoteView:imgView1];
-}
-
-+ (UIImage *)imageFromImage:(UIImage *)image inRect:(CGRect)rect{
-    
-    //将UIImage转换成CGImageRef
-    CGImageRef sourceImageRef = [image CGImage];
-    
-    //按照给定的矩形区域进行剪裁
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
-    
-    //将CGImageRef转换成UIImage
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    
-    //返回剪裁后的图片
-    return newImage;
+    [self addNoteView:[[UIImageView alloc] initWithImage:image]];
 }
 
 - (void)saveNoteAction{
@@ -367,23 +323,11 @@
     }
     
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
+    [noteVC setNoteTitle:titleText.text];
     [noteVC setVideoDict:self.playDetail];
     [noteVC setNoteViews:[[TPNoteCreator shareInstance] getNoteViews]];
-//    [self presentViewController:noteVC animated:YES completion:nil];
     [self.navigationController pushViewController:noteVC animated:YES];
 }
-
-//- (void)onIsPlayingStateChanged:(BOOL)arg1{
-//    NSLog(@"C : %d", arg1);
-//}
-//
-//- (void)onStart{
-//    NSLog(@"start");
-//}
-//
-//- (void)OnSnapShot:(void *)arg1 width:(unsigned int)arg2 height:(unsigned int)arg3 format:(unsigned int)arg4{
-//    NSLog(@"%@ %u %u %u",arg1, arg2, arg3, arg4);
-//}
 
 @end
     

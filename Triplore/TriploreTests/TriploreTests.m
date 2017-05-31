@@ -97,6 +97,15 @@
     }
 }
 
+- (void)testCountNote{
+    int count = 0;
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_note;"];
+    while([resultSet next]){
+        count++;
+    }
+    NSLog(@"Count : %d", count);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

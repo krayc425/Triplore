@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPNote;
+
 @interface TPNoteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonnull, nonatomic) TPNote *note;
 @property (nonnull, nonatomic) NSString *noteTitle;
 @property (nonnull, nonatomic) NSDictionary *videoDict;
-
 @property (nonnull, nonatomic) NSArray<UIView *> *noteViews;
 
 @end

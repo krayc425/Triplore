@@ -8,14 +8,19 @@
 
 #import "TPNoteCollectionViewController.h"
 #import "TPNoteCollectionViewCell.h"
+#import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteViewController.h"
 #import "Utilities.h"
+#import "TPNote.h"
+#import "TPNoteManager.h"
 
 @interface TPNoteCollectionViewController ()
 
 @end
 
-@implementation TPNoteCollectionViewController
+@implementation TPNoteCollectionViewController{
+    NSArray *noteArr;
+}
 
 static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
@@ -47,6 +52,16 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadNotes];
+    [self.collectionView reloadData];
+}
+
+- (void)loadNotes{
+    noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
+    [self.collectionView reloadData];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -64,16 +79,14 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 24;
+    return noteArr.count;
 }
 
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
-    [cell.dateLabel setText:@"25\nMay"];
-    [cell.titleLabel setText:@"一个笔记的标题"];
-    [cell.contentLabel setText:@"笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容笔记的内容"];
+    //Configure the cell
+    [cell configureWithNote:noteArr[indexPath.row]];
     
     return cell;
 }
@@ -82,7 +95,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TPNoteViewController *testVC = [[TPNoteViewController alloc] init];
-    [testVC setNoteTitle:@"测试标题"];
+    
+    TPNote *note = (TPNote *)noteArr[indexPath.row];
+    [testVC setNote:note];
+    
     [self.navigationController pushViewController:testVC animated:YES];
 }
 
