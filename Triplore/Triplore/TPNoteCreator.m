@@ -51,6 +51,16 @@ static TPNoteCreator *_instance = nil;
 }
 
 /**
+ 交换两个 View 位置
+
+ @param fromIndex 第一个位置
+ @param toIndex 第二个位置
+ */
+- (void)moveNoteViewFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex{
+    [noteViewArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+}
+
+/**
  删除一个 View
 
  @param view  子 View
