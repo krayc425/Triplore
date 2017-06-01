@@ -80,7 +80,10 @@
 {
     if (self.tableView==nil)
     {
-        UITableView* contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20 - 40)];
+        UITableView* contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                                                      0,
+                                                                                      self.view.frame.size.width,
+                                                                                      self.view.frame.size.height - 20 - 40 - 44)];
         contentTableView.backgroundColor = [UIColor whiteColor];
         contentTableView.pagingEnabled = NO;
         contentTableView.autoresizesSubviews = YES;

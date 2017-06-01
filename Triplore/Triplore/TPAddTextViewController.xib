@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-tz-B1z">
-                    <rect key="frame" x="127.5" y="567" width="120" height="40"/>
+                    <rect key="frame" x="127.5" y="327" width="120" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="x4p-tz-B1z" secondAttribute="height" multiplier="3:1" id="JYm-gy-Ucz"/>
                         <constraint firstAttribute="width" constant="120" id="rVi-Sb-JLE"/>
@@ -30,7 +30,7 @@
                     <state key="normal" title="完成"/>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dda-jy-qQ9">
-                    <rect key="frame" x="30" y="60" width="315" height="477"/>
+                    <rect key="frame" x="30" y="60" width="315" height="237"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -41,7 +41,7 @@
                 <constraint firstItem="dda-jy-qQ9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="DkG-8X-fYb"/>
                 <constraint firstItem="x4p-tz-B1z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NDY-I1-Igk"/>
                 <constraint firstItem="dda-jy-qQ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="X0c-h7-SZ3"/>
-                <constraint firstAttribute="bottom" secondItem="x4p-tz-B1z" secondAttribute="bottom" constant="60" id="ZRc-Ps-suJ"/>
+                <constraint firstAttribute="bottom" secondItem="x4p-tz-B1z" secondAttribute="bottom" constant="300" id="ZRc-Ps-suJ"/>
                 <constraint firstItem="x4p-tz-B1z" firstAttribute="top" secondItem="dda-jy-qQ9" secondAttribute="bottom" constant="30" id="hj5-Dt-AYY"/>
                 <constraint firstAttribute="trailing" secondItem="dda-jy-qQ9" secondAttribute="trailing" constant="30" id="sCL-8h-Vez"/>
             </constraints>

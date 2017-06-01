@@ -17,7 +17,11 @@
     NSString *dateString = [dateFormatter stringFromDate:note.createTime];
     [self.dateLabel setText:dateString];
     
-    [self.titleLabel setText:note.title];
+    if([note.title isEqualToString:@""] || note.title == NULL){
+        [self.titleLabel setText:@"暂无标题"];
+    }else{
+        [self.titleLabel setText:note.title];
+    }
     
     BOOL hasTitle = YES;
     BOOL hasImage = YES;

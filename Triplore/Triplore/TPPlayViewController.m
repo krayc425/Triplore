@@ -17,6 +17,8 @@
 #import "QYAVPlayerController.h"
 #import "PlayerController.h"
 #import "UIImage+Extend.h"
+#import "TPNoteCreator.h"
+#import "TPNoteViewTableViewCell.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
@@ -24,12 +26,15 @@
 #define NAVIGATION_BAR_HEIGHT 0.0
 #define CONTROLLER_BAR_WIDTH 30.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
     CGRect playFrame;
     UIView *playerView;
     UITextField *titleText;
+    
+    NSMutableArray *noteViews;
 }
 
+@property (nonnull, nonatomic) UITableView *tableView;
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
 
 @end
@@ -38,6 +43,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    noteViews = [[NSMutableArray alloc] init];
+    
     self.view.backgroundColor = [Utilities getBackgroundColor];
 
     self.navigationController.navigationBar.barTintColor = [Utilities getColor];
@@ -78,7 +86,8 @@
                                                               self.view.frame.size.width - 78,
                                                               64)];
     titleText.placeholder = @"填写笔记标题";
-    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+    titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
+    titleText.delegate = self;
     titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     [self.view addSubview:titleText];
     
@@ -108,11 +117,26 @@
     
     //    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     //    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                                   CGRectGetHeight(playFrame) + 64,
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   CGRectGetHeight(self.view.bounds) - CGRectGetHeight(playFrame) - 64 - 64)
+                                                  style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = [UIView new];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    [self reloadNoteViews];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -126,16 +150,23 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
+    
+    [[QYPlayerController sharedInstance] pause];
 }
 
 - (void)dealloc{
     [[TPNoteCreator shareInstance] clearNoteView];
 }
 
+- (void)reloadNoteViews{
+    [noteViews removeAllObjects];
+    [noteViews addObjectsFromArray:[[TPNoteCreator shareInstance] getNoteViews]];
+}
+
 - (void)showPlayView{
     UIView *playView = [self.view viewWithTag:100];
     UIView *pauseView = [self.view viewWithTag:200];
-    if(playView==nil){
+    if(playView == nil){
         UIButton *play= [UIButton buttonWithType:UIButtonTypeCustom];
         [play setBackgroundColor:[UIColor blackColor]];
         [play setFrame:CGRectMake(10,
@@ -292,8 +323,8 @@
 - (BOOL)shouldAutorotate{
     return YES;
 }
-//支持横竖屏显示
 
+//支持横竖屏显示
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskAll;
 }
@@ -304,24 +335,24 @@
     TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
     textVC.addNoteViewDelegate = self;
     [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;//关键语句，必须有
-    [self presentViewController:textVC animated:YES completion:nil];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
+    [self presentViewController:textVC animated:YES completion:^(void){
+        [self pauseClick];
+    }];
 }
 
 - (void)addNoteView:(UIView *_Nonnull)view{
     [[TPNoteCreator shareInstance] addNoteView:view];
     NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
+    [self reloadNoteViews];
+    [self.tableView reloadData];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)screenShotAction{
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
     [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:NO];
-//    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-//    UIView *snapshot = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
-//    CGSize outputSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-//    UIGraphicsBeginImageContextWithOptions(outputSize, NO, 1);
-//    [snapshot drawViewHierarchyInRect:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) afterScreenUpdates:NO];   //貌似iOS8要用这个方法
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width, playFrame.size.height)];
     image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
@@ -342,6 +373,57 @@
     [noteVC setVideoDict:self.playDetail];
     [noteVC setNoteViews:[[TPNoteCreator shareInstance] getNoteViews]];
     [self.navigationController pushViewController:noteVC animated:YES];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return noteViews.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"TPNoteViewTableViewCell";
+    TPNoteViewTableViewCell *cell = (TPNoteViewTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    [cell setNoteView:noteViews[indexPath.row]];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIView *view = noteViews[indexPath.row];
+    return view.frame.size.height + 20;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[TPNoteCreator shareInstance] removeNoteView:noteViews[indexPath.row]];
+    [self reloadNoteViews];
+    [tableView reloadData];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+#pragma mark - UITextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

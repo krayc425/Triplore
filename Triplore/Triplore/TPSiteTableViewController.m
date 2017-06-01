@@ -32,7 +32,6 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
 
-    
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorColor = [UIColor clearColor];
     

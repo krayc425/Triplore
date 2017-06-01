@@ -10,7 +10,7 @@
 
 @class TPNote;
 
-@interface TPNoteViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TPNoteViewController : UIViewController 
 
 @property (nonnull, nonatomic) TPNote *note;
 @property (nonnull, nonatomic) NSString *noteTitle;

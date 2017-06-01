@@ -19,9 +19,9 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uRO-Ip-NIy">
-                        <rect key="frame" x="-20" y="0.0" width="215" height="98.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="175" height="98.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="uRO-Ip-NIy" secondAttribute="height" multiplier="35:16" id="h4g-MP-wFS"/>
+                            <constraint firstAttribute="width" secondItem="uRO-Ip-NIy" secondAttribute="height" multiplier="32:18" id="h4g-MP-wFS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="ChG-bA-zFz">
@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eya-yM-GCJ">
-                        <rect key="frame" x="10" y="108.5" width="33.5" height="22.5"/>
+                        <rect key="frame" x="10" y="108.5" width="155" height="22.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="dWf-GN-rq7"/>
                         </constraints>
@@ -54,12 +54,13 @@
             <constraints>
                 <constraint firstItem="e2B-fo-Kjq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="55M-kh-iuH"/>
                 <constraint firstItem="Eya-yM-GCJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Lai-k1-Umm"/>
-                <constraint firstAttribute="trailing" secondItem="uRO-Ip-NIy" secondAttribute="trailing" constant="-20" id="Leu-Ba-FcA"/>
+                <constraint firstAttribute="trailing" secondItem="uRO-Ip-NIy" secondAttribute="trailing" id="Leu-Ba-FcA"/>
                 <constraint firstItem="e2B-fo-Kjq" firstAttribute="top" secondItem="Eya-yM-GCJ" secondAttribute="bottom" constant="10" id="NBK-VJ-szw"/>
+                <constraint firstAttribute="trailing" secondItem="Eya-yM-GCJ" secondAttribute="trailing" constant="10" id="OdP-Lf-jcb"/>
                 <constraint firstAttribute="bottom" secondItem="e2B-fo-Kjq" secondAttribute="bottom" constant="10" id="SNe-Z9-Mg8"/>
                 <constraint firstItem="uRO-Ip-NIy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SeX-LV-vEW"/>
                 <constraint firstItem="ChG-bA-zFz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XIs-Lb-8MP"/>
-                <constraint firstItem="uRO-Ip-NIy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="-20" id="hQZ-Gt-PJN"/>
+                <constraint firstItem="uRO-Ip-NIy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hQZ-Gt-PJN"/>
                 <constraint firstItem="Eya-yM-GCJ" firstAttribute="top" secondItem="uRO-Ip-NIy" secondAttribute="bottom" constant="10" id="oj3-Rz-6kl"/>
                 <constraint firstItem="ChG-bA-zFz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="v6S-bc-2wo"/>
                 <constraint firstAttribute="trailing" secondItem="e2B-fo-Kjq" secondAttribute="trailing" constant="10" id="vLE-Ln-t64"/>

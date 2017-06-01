@@ -23,6 +23,8 @@
 
 - (void)addNoteView:(UIView *_Nonnull)view;
 
+- (void)removeNoteView:(UIView *_Nonnull)view;
+
 - (NSInteger)countNoteView;
 
 - (NSArray *_Nonnull)getNoteViews;

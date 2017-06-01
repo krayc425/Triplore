@@ -51,6 +51,15 @@ static TPNoteCreator *_instance = nil;
 }
 
 /**
+ 删除一个 View
+
+ @param view  子 View
+ */
+- (void)removeNoteView:(UIView *_Nonnull)view{
+    [noteViewArray removeObject:view];
+}
+
+/**
  清空 View 数组
  */
 - (void)clearNoteView{

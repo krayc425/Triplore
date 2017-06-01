@@ -21,6 +21,8 @@
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
 		241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */; };
 		241210F61ED84CD70066B99C /* TPNoteViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */; };
+		241BC46D1EDFAE2E0056AFCA /* TPVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */; };
+		241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BC46F1EDFAE370056AFCA /* TPVideo.m */; };
 		241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */; };
 		24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */; };
 		24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */; };
@@ -123,6 +125,10 @@
 		241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewTableViewCell.h; sourceTree = "<group>"; };
 		241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteViewTableViewCell.m; sourceTree = "<group>"; };
 		241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteViewTableViewCell.xib; sourceTree = "<group>"; };
+		241BC46B1EDFAE2E0056AFCA /* TPVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoManager.h; sourceTree = "<group>"; };
+		241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoManager.m; sourceTree = "<group>"; };
+		241BC46E1EDFAE370056AFCA /* TPVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideo.h; sourceTree = "<group>"; };
+		241BC46F1EDFAE370056AFCA /* TPVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideo.m; sourceTree = "<group>"; };
 		241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCreator.h; sourceTree = "<group>"; };
 		241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCreator.m; sourceTree = "<group>"; };
 		24487C491EDDB3020009E8E5 /* TPPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayViewController.h; sourceTree = "<group>"; };
@@ -338,6 +344,17 @@
 			name = Site;
 			sourceTree = "<group>";
 		};
+		241BC4711EDFAE3A0056AFCA /* VideoData */ = {
+			isa = PBXGroup;
+			children = (
+				241BC46E1EDFAE370056AFCA /* TPVideo.h */,
+				241BC46F1EDFAE370056AFCA /* TPVideo.m */,
+				241BC46B1EDFAE2E0056AFCA /* TPVideoManager.h */,
+				241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */,
+			);
+			name = VideoData;
+			sourceTree = "<group>";
+		};
 		24487C511EDDC7090009E8E5 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +398,8 @@
 		24487CAA1EDEB9E30009E8E5 /* NoteData */ = {
 			isa = PBXGroup;
 			children = (
+				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
+				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 				24487CA71EDEB9780009E8E5 /* TPNote.h */,
 				24487CA81EDEB9780009E8E5 /* TPNote.m */,
 				24487CA41EDE9FC90009E8E5 /* TPNoteManager.h */,
@@ -427,9 +446,8 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
-				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
-				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 				24487CAA1EDEB9E30009E8E5 /* NoteData */,
+				241BC4711EDFAE3A0056AFCA /* VideoData */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -785,6 +803,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24487C551EDE4A620009E8E5 /* DBManager.m in Sources */,
+				241BC46D1EDFAE2E0056AFCA /* TPVideoManager.m in Sources */,
 				241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */,
 				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
@@ -805,6 +824,7 @@
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
+				241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */,
 				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
 				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,

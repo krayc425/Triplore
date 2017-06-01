@@ -50,12 +50,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.noteText becomeFirstResponder];
+}
+
 - (void)backAction{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)doneAction{
-    NSLog(@"Done");
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 20)];
     [label setText:self.noteText.text];
     [label setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
@@ -78,15 +81,5 @@
         [self.okButton setUserInteractionEnabled:YES];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
