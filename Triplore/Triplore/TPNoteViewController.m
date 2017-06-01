@@ -14,17 +14,20 @@
 #import "TPVideo.h"
 #import "TPNoteManager.h"
 #import "TPVideoManager.h"
+#import "TPAddTextViewController.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
 
-@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate>
 
 @property (nonnull, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation TPNoteViewController
+@implementation TPNoteViewController{
+    NSIndexPath *selectedIndexPath;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,6 +65,7 @@
     [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(editAction) forControlEvents:UIControlEventTouchUpInside];
     UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
                                                                             CGRectGetHeight(self.tableView.bounds),
                                                                             CGRectGetWidth(self.view.bounds),
@@ -73,7 +77,8 @@
     buttonStack.alignment = UIStackViewAlignmentFill;
     buttonStack.distribution = UIStackViewDistributionFillEqually;
     
-    if(self.note != NULL){
+    //非添加，查看模式
+    if(self.note != NULL && self.note.noteid > 0){
         [self.view addSubview:buttonStack];
     }
 }
@@ -88,7 +93,7 @@
     if(self.note != NULL && self.note.noteid > 0){
         self.noteTitle = self.note.title;
         self.title = self.noteTitle;
-        self.noteViews = self.note.views;
+        self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
     }
     
     [self.tableView reloadData];
@@ -98,7 +103,12 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
-#pragma mark - Button Actions
+#pragma mark - Button Action
+
+- (void)editAction{
+    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+    [self.tableView reloadData];
+}
 
 - (void)videoAction{
     TPVideo *video = [TPVideoManager fetchVideoWithID:self.note.videoid];
@@ -150,6 +160,22 @@
     }
 }
 
+- (void)editNoteActionWithString:(NSString *)string{
+    TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
+    textVC.addNoteViewDelegate = self;
+    [textVC setNoteString:string];
+    [textVC setAddMode:TPUpdateNote];
+    [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
+    [self presentViewController:textVC animated:YES completion:nil];
+}
+
+- (void)updateNoteView:(UIView *_Nonnull)view{
+    [self.noteViews replaceObjectAtIndex:selectedIndexPath.row withObject:view];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
 #pragma mark - Save to album
 
 - (void)saveNoteAction{
@@ -173,6 +199,7 @@
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    nil);
     
+    //新增
     if(self.note == NULL){
         TPNote *note = [TPNote new];
         [note setVideoid:(NSInteger)self.videoDict[@"id"]];
@@ -185,6 +212,10 @@
         [video setVideoid:(NSInteger)self.videoDict[@"id"]];
         [video setDict:self.videoDict];
         [TPVideoManager insertVideo:video];
+    }else{
+        [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
+        
+        [TPNoteManager updateNote:self.note];
     }
 }
 
@@ -244,10 +275,41 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(self.tableView.editing){
+        selectedIndexPath = indexPath;
+        if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
+            UILabel *label = (UILabel *)self.noteViews[indexPath.row];
+            [self editNoteActionWithString:label.text];
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.noteViews[indexPath.row].frame.size.height + 20;
+}
+
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleInsert | UITableViewCellEditingStyleDelete;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    [self.noteViews exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
 }
 
 @end

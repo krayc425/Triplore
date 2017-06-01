@@ -19,6 +19,11 @@
     return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_note (videoid, views, createTime, title) VALUES (?, ?, ?, ?)", @(note.videoid), arrayData, note.createTime, note.title];
 }
 
++ (BOOL)updateNote:(TPNote *_Nonnull)note{
+    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:note.views];
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET title = ?, views = ? WHERE noteid = ?;", note.title, arrayData, @(note.noteid)];
+}
+
 + (BOOL)deleteNoteWithID:(NSInteger)noteid{
     return [[[DBManager shareInstance] getDB] executeUpdate:@"DELETE FROM t_note WHERE noteid = ?", @(noteid)];
 }

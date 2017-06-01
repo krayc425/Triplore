@@ -41,13 +41,21 @@
     [self.okButton setUserInteractionEnabled:NO];
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
-    [self.okButton setTitle:@"添 加" forState:UIControlStateNormal];
+    
+    
+    if(self.addMode == TPAddNote){
+        [self.okButton setTitle:@"添 加" forState:UIControlStateNormal];
+    }else if(self.addMode == TPUpdateNote){
+        [self.okButton setTitle:@"保 存" forState:UIControlStateNormal];
+    }
+    
     [self.okButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.noteText setText:self.noteString];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -65,7 +73,11 @@
     [label setNumberOfLines:100];
     [label sizeToFit];
     
-    [self.addNoteViewDelegate addNoteView:label];
+    if(self.addMode == TPAddNote){
+        [self.addNoteViewDelegate addNoteView:label];
+    }else if(self.addMode == TPUpdateNote){
+        [self.addNoteViewDelegate updateNoteView:label];
+    }
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }

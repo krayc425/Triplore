@@ -15,6 +15,6 @@
 @property (nonnull, nonatomic) TPNote *note;
 @property (nonnull, nonatomic) NSString *noteTitle;
 @property (nonnull, nonatomic) NSDictionary *videoDict;
-@property (nonnull, nonatomic) NSArray<UIView *> *noteViews;
+@property (nonnull, nonatomic) NSMutableArray<UIView *> *noteViews;
 
 @end

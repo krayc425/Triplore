@@ -36,18 +36,14 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.title = @"精选";
     
-    UINavigationBar *bar = [UINavigationBar appearance];
-    [bar setBarTintColor:[Utilities getColor]];
-    [bar setTintColor:[Utilities getColor]];
-    [bar setTitleTextAttributes:@{
-                                  NSForegroundColorAttributeName : [UIColor whiteColor],
-                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
-                                  }];
-    [bar setTranslucent:NO];
-    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    bar.backIndicatorImage = image;
-    bar.backIndicatorTransitionMaskImage = image;
+//    UINavigationBar *bar = [UINavigationBar appearance];
+//    [bar setBarTintColor:[Utilities getColor]];
+//    [bar setTintColor:[Utilities getColor]];
+//    [bar setTitleTextAttributes:@{
+//                                  NSForegroundColorAttributeName : [UIColor whiteColor],
+//                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
+//                                  }];
+//    [bar setTranslucent:NO];
     
     [self createTableView];
     [self requestUrl];
@@ -76,10 +72,9 @@
     }
     self.activityWheel = nil;
 }
--(void)createTableView
-{
-    if (self.tableView==nil)
-    {
+
+-(void)createTableView{
+    if (self.tableView==nil){
         UITableView* contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                                       0,
                                                                                       self.view.frame.size.width,
@@ -100,8 +95,7 @@
     }
 }
 #pragma mark  UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return 180;
     }
@@ -115,18 +109,15 @@
         return 0;
     }
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *identifier = [NSString stringWithFormat:@"CellIdentifier%i",indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];;
     

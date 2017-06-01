@@ -32,6 +32,7 @@
     UITextField *titleText;
     
     NSMutableArray *noteViews;
+    NSIndexPath *selectedIndexPath;
 }
 
 @property (nonnull, nonatomic) UITableView *tableView;
@@ -334,6 +335,20 @@
 - (void)editNoteAction{
     TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
     textVC.addNoteViewDelegate = self;
+    [textVC setNoteString:@""];
+    [textVC setAddMode:TPAddNote];
+    [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
+    [self presentViewController:textVC animated:YES completion:^(void){
+        [self pauseClick];
+    }];
+}
+
+- (void)editNoteActionWithString:(NSString *)string{
+    TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
+    textVC.addNoteViewDelegate = self;
+    [textVC setNoteString:string];
+    [textVC setAddMode:TPUpdateNote];
     [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
     [self presentViewController:textVC animated:YES completion:^(void){
@@ -350,7 +365,18 @@
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
+- (void)updateNoteView:(UIView *_Nonnull)view{
+    [[TPNoteCreator shareInstance] updateNoteView:view atIndex:selectedIndexPath.row];
+    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
+    [self reloadNoteViews];
+    [self.tableView reloadData];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
 - (void)screenShotAction{
+    NSLog(@"截图");
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
     [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:NO];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -371,7 +397,7 @@
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
     [noteVC setNoteTitle:titleText.text];
     [noteVC setVideoDict:self.playDetail];
-    [noteVC setNoteViews:[[TPNoteCreator shareInstance] getNoteViews]];
+    [noteVC setNoteViews:[NSMutableArray arrayWithArray:[[TPNoteCreator shareInstance] getNoteViews]]];
     [self.navigationController pushViewController:noteVC animated:YES];
 }
 
@@ -398,6 +424,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    selectedIndexPath = indexPath;
+    if([noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
+        UILabel *label = (UILabel *)noteViews[indexPath.row];
+        [self editNoteActionWithString:label.text];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

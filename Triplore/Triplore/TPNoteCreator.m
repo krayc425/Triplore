@@ -66,6 +66,10 @@ static TPNoteCreator *_instance = nil;
     [noteViewArray removeAllObjects];
 }
 
+- (void)updateNoteView:(UIView *_Nonnull)view atIndex:(NSInteger)index{
+    [noteViewArray replaceObjectAtIndex:index withObject:view];
+}
+
 /**
  @return View 数组子 View 数量
  */

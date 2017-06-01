@@ -21,6 +21,14 @@
 + (BOOL)insertNote:(TPNote *_Nonnull)note;
 
 /**
+ 更新一个笔记
+
+ @param note 笔记模型
+ @return 是否更新成功
+ */
++ (BOOL)updateNote:(TPNote *_Nonnull)note;
+
+/**
  删除一个笔记
 
  @param noteid 笔记 id

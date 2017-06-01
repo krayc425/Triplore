@@ -35,16 +35,17 @@
 //                                  NSForegroundColorAttributeName : [UIColor whiteColor],
 //                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
 //                                  }];
-//    [bar setTranslucent:NO];
-//    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    bar.backIndicatorImage = image;
-//    bar.backIndicatorTransitionMaskImage = image;
-
+    //    [bar setTranslucent:NO];
+    
+    UINavigationBar *bar = [UINavigationBar appearance];
+    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    bar.backIndicatorImage = image;
+    bar.backIndicatorTransitionMaskImage = image;
     
     //精选
-    ViewController *vc = [[ViewController alloc] init];
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
+    ViewController *vc = [[ViewController alloc] init];
     vc.tabBarItem = item1;
     UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:vc];
     
