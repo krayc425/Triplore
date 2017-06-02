@@ -27,6 +27,10 @@
     
     [super layoutSubviews];
     
+    for (CALayer *layer in self.overlayView.layer.sublayers) {
+        [layer removeFromSuperlayer];
+    }
+    
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.bounds;
     UIColor *darkColor = [Utilities getGradientColorDark];

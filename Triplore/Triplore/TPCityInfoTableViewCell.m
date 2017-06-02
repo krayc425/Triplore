@@ -12,7 +12,7 @@
 
 @interface TPCityInfoTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UIView *overlayView;
 @property (weak, nonatomic) IBOutlet CategoryButton *foodButton;
 @property (weak, nonatomic) IBOutlet CategoryButton *shoppingButton;
@@ -28,7 +28,9 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.backgroundImage.image = [UIImage imageNamed:@"TEST_PNG"];
+    
+    self.bgImageView.image = [UIImage imageNamed:@"TEST_PNG"];
+    self.overlayView.backgroundColor = nil;
     
     // buttons
     self.foodButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -38,25 +40,30 @@
     self.placeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.placeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+//        NSLog(@"%f", self.bgImageView.frame.size.height);
 }
 
 - (void)layoutSubviews {
     
     [super layoutSubviews];
+    
     //
-//    for (CALayer *layer in self.overlayView.layer.sublayers) {
-//        [layer removeFromSuperlayer];
-//    }
-//    
-//    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-//    gradientLayer.frame = self.overlayView.bounds;
-//    UIColor *darkColor = [Utilities getGradientColorDark];
-//    
-//    gradientLayer.colors = @[(id)darkColor.CGColor, (id)[UIColor clearColor].CGColor];
-//    gradientLayer.startPoint = CGPointMake(0.0, 0.5);
-//    gradientLayer.endPoint = CGPointMake(1.0, 0.5);
-//    
-//    [self.overlayView.layer insertSublayer:gradientLayer atIndex:0];
+    for (CALayer *layer in self.overlayView.layer.sublayers) {
+        [layer removeFromSuperlayer];
+    }
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetWidth(self.bounds)/7
+                                     *3);
+    UIColor *darkColor = [Utilities getGradientColorDark];
+    
+    gradientLayer.colors = @[(id)darkColor.CGColor, (id)[UIColor clearColor].CGColor];
+    gradientLayer.startPoint = CGPointMake(0.0, 0.5);
+    gradientLayer.endPoint = CGPointMake(1.0, 0.5);
+    
+    [self.overlayView.layer insertSublayer:gradientLayer atIndex:0];
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
