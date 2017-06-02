@@ -388,6 +388,7 @@
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
     [noteVC setNoteTitle:titleText.text];
     [noteVC setVideoDict:self.playDetail];
+    [noteVC setNoteMode:TPNewNote];
     [noteVC setNoteViews:[NSMutableArray arrayWithArray:[[TPNoteCreator shareInstance] getNoteViews]]];
     [self.navigationController pushViewController:noteVC animated:YES];
 }

@@ -17,3 +17,6 @@ iQiyi Contest Project
 ```  
 
 * 可能需要在项目的 `TARGETS -> Triplore -> General -> Linked Frameworks And Libraries` 中手动添加 `libav.a`
+
+* 若出现 `Invalid bitcode signing`, 请到最左边 `Pods -> 每一个 Target -> Build Settings -> 搜索 Bitcode -> 将 Enable Bitcode 设为 NO`
+
