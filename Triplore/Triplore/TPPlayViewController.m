@@ -78,7 +78,7 @@
     
     titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
                                                               playFrame.size.height + NAVIGATION_BAR_HEIGHT,
-                                                              self.view.frame.size.width - 78,
+                                                              self.view.frame.size.width - 112 - 30,
                                                               64)];
     titleText.placeholder = @"填写笔记标题";
     titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
@@ -368,12 +368,16 @@
 - (void)screenShotAction{
     NSLog(@"截图");
     
+    [[self.view viewWithTag:200] setHidden:YES];
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
-    [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:NO];
+    [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width, playFrame.size.height)];
     image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
     [self addNoteView:[[UIImageView alloc] initWithImage:image]];
+    
+    [[self.view viewWithTag:200] setHidden:NO];
 }
 
 - (void)saveNoteAction{

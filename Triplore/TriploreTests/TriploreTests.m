@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "DBManager.h"
 #import "FMDatabase.h"
+#import "TPNetworkHelper.h"
 
 @interface TriploreTests : XCTestCase
 
@@ -104,6 +105,15 @@
         count++;
     }
     NSLog(@"Count : %d", count);
+}
+
+- (void)testNetwork{
+    [TPNetworkHelper fetchAllVideosWithBlock:^(NSDictionary *dict, NSError *error) {
+        NSLog(@"!!!%@!!!", dict.description);
+    }];
+    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSDictionary *dict, NSError *error) {
+        NSLog(@"!!!2%@2!!!", dict.description);
+    }];
 }
 
 - (void)testPerformanceExample {

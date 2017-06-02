@@ -7,7 +7,7 @@
 //
 
 #import "TPTabBarViewController.h"
-#import "ViewController.h"
+#import "TPSelectionViewController.h"
 #import "Utilities.h"
 #import "TPSiteTableViewController.h"
 #import "TPNoteCollectionViewController.h"
@@ -45,7 +45,7 @@
     
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
-    ViewController *vc = [[ViewController alloc] init];
+    TPSelectionViewController *vc = [[TPSelectionViewController alloc] init];
     vc.tabBarItem = item1;
     UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:vc];
     
@@ -77,6 +77,8 @@
         naviVC.navigationBar.translucent = NO;
         naviVC.navigationBar.opaque = YES;
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

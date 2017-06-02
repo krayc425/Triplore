@@ -11,6 +11,7 @@ end
 
 target 'TriploreTests' do
 
+  pod 'AFNetworking'
   pod 'FMDB'
 
 end

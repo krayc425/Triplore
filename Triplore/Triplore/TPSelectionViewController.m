@@ -6,12 +6,14 @@
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TPSelectionViewController.h"
 #import "TPPlayViewController.h"
 #import "ActivityIndicatorView.h"
 #import "Utilities.h"
+#import "TPNetworkHelper.h"
+#import "TPVideoModel.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TPSelectionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* dataSourceArrayFirst;
 @property(nonatomic,strong)NSMutableArray* dataSourceArraySecond;
@@ -20,7 +22,7 @@
 @property(nonatomic,strong) ActivityIndicatorView *activityWheel;
 @end
 
-@implementation ViewController
+@implementation TPSelectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +51,14 @@
     [self requestUrl];
     [self showLoadingView];
     
+    
+    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        //TODO
+    }];
+    
+    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        //TODO
+    }];
 }
 -(void)showLoadingView
 {

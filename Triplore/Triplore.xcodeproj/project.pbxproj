@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */; };
+		00A265D1E72E2ACBA479B13E8A172E43 /* TPSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A44F81AE111CC04878CD49C5E6E129 /* TPSelectionViewController.m */; };
 		123AAF139E695A16596DF325ADC8FD3E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06533F5DC144B57B7FBD294A02EE692D /* NotificationCenter.framework */; };
 		1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */; };
 		17FD8175CF5CA737FAF154E930287CBF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023F9890AB340E360BA4BE533407EEFF /* MobileCoreServices.framework */; };
@@ -42,6 +42,8 @@
 		24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */; };
 		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
+		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
+		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
 		29366AD0D8B6E2D2BCAA8CEDAB5C6748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */; };
 		2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */; };
@@ -173,6 +175,10 @@
 		24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCollectionViewCell.h; sourceTree = "<group>"; };
 		24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewCell.m; sourceTree = "<group>"; };
 		24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteCollectionViewCell.xib; sourceTree = "<group>"; };
+		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
+		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
+		24EFB7F51EE192BF00816675 /* TPVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoModel.h; sourceTree = "<group>"; };
+		24EFB7F61EE192BF00816675 /* TPVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoModel.m; sourceTree = "<group>"; };
 		25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tab.xcassets; sourceTree = "<group>"; };
 		3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Triplore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -205,7 +211,7 @@
 		6A3C4995EAEE3713E3267D32461EB217 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6B2C4C05ED78DA6FC8E9A0CF802A5D3C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6C3AAB1116E17FBA32913AE768B02417 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
-		71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		71A44F81AE111CC04878CD49C5E6E129 /* TPSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TPSelectionViewController.m; sourceTree = "<group>"; };
 		75BB30CCBAF8CB6D85E127CF /* Pods-TriploreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriploreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78C24628C0C6412E9A13CBB71E045CD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A1395373683AEE3BB3E93E529BF4BCF /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
@@ -248,7 +254,7 @@
 		F0885822293666BBB560B2D63319B392 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F319113FE7D117F54D65B585D89441FE /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F5E9831470293F6C7351E91AB5DA8A30 /* TPSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPSelectionViewController.h; sourceTree = "<group>"; };
 		FA806955211DA83A261A9E3B7BFD6408 /* TPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTabBarViewController.h; sourceTree = "<group>"; };
 		FD90A432DA9EBB0D11B5BD6D5AAF2833 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -378,22 +384,26 @@
 			children = (
 				241BC46E1EDFAE370056AFCA /* TPVideo.h */,
 				241BC46F1EDFAE370056AFCA /* TPVideo.m */,
+				24EFB7F51EE192BF00816675 /* TPVideoModel.h */,
+				24EFB7F61EE192BF00816675 /* TPVideoModel.m */,
 				241BC46B1EDFAE2E0056AFCA /* TPVideoManager.h */,
 				241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */,
 			);
 			name = VideoData;
 			sourceTree = "<group>";
 		};
-		24487C511EDDC7090009E8E5 /* Player */ = {
+		24487C511EDDC7090009E8E5 /* Selection */ = {
 			isa = PBXGroup;
 			children = (
+				F5E9831470293F6C7351E91AB5DA8A30 /* TPSelectionViewController.h */,
+				71A44F81AE111CC04878CD49C5E6E129 /* TPSelectionViewController.m */,
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
 				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
 				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
 				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
 			);
-			name = Player;
+			name = Selection;
 			sourceTree = "<group>";
 		};
 		24487C521EDDC76F0009E8E5 /* Products */ = {
@@ -427,10 +437,10 @@
 		24487CAA1EDEB9E30009E8E5 /* NoteData */ = {
 			isa = PBXGroup;
 			children = (
-				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
-				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 				24487CA71EDEB9780009E8E5 /* TPNote.h */,
 				24487CA81EDEB9780009E8E5 /* TPNote.m */,
+				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
+				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 				24487CA41EDE9FC90009E8E5 /* TPNoteManager.h */,
 				24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */,
 			);
@@ -463,6 +473,8 @@
 		24B810941ED7139B00CD7DC4 /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				241BC4711EDFAE3A0056AFCA /* VideoData */,
+				24487CAA1EDEB9E30009E8E5 /* NoteData */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
 				24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */,
 				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
@@ -475,10 +487,17 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
-				24487CAA1EDEB9E30009E8E5 /* NoteData */,
-				241BC4711EDFAE3A0056AFCA /* VideoData */,
 			);
 			name = Note;
+			sourceTree = "<group>";
+		};
+		24EFB7F41EE1928700816675 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */,
+				24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */ = {
@@ -567,17 +586,16 @@
 		D85993CC06B4E6FF333C070C3D479379 /* Triplore */ = {
 			isa = PBXGroup;
 			children = (
+				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
+				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
+				2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */,
 				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
 				2402CE161ED44DD60098770A /* Site */,
 				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
-				24487C511EDDC7090009E8E5 /* Player */,
+				24487C511EDDC7090009E8E5 /* Selection */,
 				24487C571EDE53490009E8E5 /* DataBase */,
-				F5E9831470293F6C7351E91AB5DA8A30 /* ViewController.h */,
-				71A44F81AE111CC04878CD49C5E6E129 /* ViewController.m */,
-				CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */,
-				63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */,
-				2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */,
+				24EFB7F41EE1928700816675 /* Network */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
@@ -668,7 +686,7 @@
 					};
 					797C8388D8C8BBE00F20B818DD62D32B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 49PM32K82W;
+						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -786,7 +804,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */ = {
@@ -801,7 +819,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
@@ -853,6 +871,7 @@
 				4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
+				24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
@@ -860,10 +879,11 @@
 				4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
+				24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */,
 				241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */,
 				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
 				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
-				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
+				00A265D1E72E2ACBA479B13E8A172E43 /* TPSelectionViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,7 +917,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = Triplore/Info.plist;
@@ -913,7 +933,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = sorumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1007,7 +1027,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = Triplore/Info.plist;
@@ -1023,7 +1043,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = sorumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
