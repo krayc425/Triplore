@@ -7,16 +7,18 @@
 //
 
 #import "TPSiteSearchViewController.h"
+#import "TPCityTableViewController.h"
 #import "Utilities.h"
 #import "TPSiteTableViewCell.h"
 
 
-
-@interface TPSiteSearchViewController ()
+@interface TPSiteSearchViewController () <TPSiteTableViewCellDelegate>
 
 @end
 
 @implementation TPSiteSearchViewController
+
+static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +26,9 @@
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorColor = [UIColor clearColor];
+    
+    UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
     self.countries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
     self.cities = @[@"东京", @"京都", @"大阪"];
@@ -51,10 +56,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"TPSiteTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+   
     TPSiteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     cell.isAll = NO;
     
     if (self.mode == TPSiteSearchAll || self.mode == TPSiteSearchCountry) {
@@ -97,6 +101,36 @@
     return 0.1;
 }
 
+#pragma mark - TPSiteTableViewCellDelegate
+
+- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
+    if (mode == TPSiteCountry) {
+        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        countryViewController.mode = TPSiteSearchCity;
+        countryViewController.cities = self.cities;
+        countryViewController.navigationItem.title = site;
+        [self.navigationController pushViewController:countryViewController animated:YES];
+    } else if (mode == TPSiteSearchCity) {
+        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        cityViewController.navigationItem.title = site;
+        [self.navigationController pushViewController:cityViewController animated:YES];
+    }
+}
+
+//- (void)didTapAllWithMode:(TPSiteMode)mode {
+//    if (mode == TPSiteCountry) {
+//        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//        countryViewController.mode = TPSiteSearchCountry;
+//        countryViewController.cities = self.testCountries;
+//        [self.navigationController pushViewController:countryViewController animated:YES];
+//    } else if (mode == TPSiteSearchCity) {
+//        TPSiteSearchViewController *cityViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//        cityViewController.mode = TPSiteSearchCity;
+//        cityViewController.cities = self.testCities;
+//        [self.navigationController pushViewController:cityViewController animated:YES];
+//    }
+//}
 
 
 /*

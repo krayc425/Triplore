@@ -124,11 +124,17 @@
     return NO;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     [self.searchBar becomeFirstResponder];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,6 +149,14 @@
             self.navigationController.navigationBar.barTintColor = PYSEARCH_COLOR(249, 249, 249);
         }
     }
+    
+    if ([self.delegate respondsToSelector:@selector(searchViewControllerWillAppear:)]) {
+        [self.delegate searchViewControllerWillAppear:self];
+        
+        return;
+    }
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -872,7 +886,7 @@
         return;
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)keyboardDidShow:(NSNotification *)noti

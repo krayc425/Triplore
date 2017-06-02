@@ -13,7 +13,7 @@
 #import "TPSiteSearchViewController.h"
 #import "TPCityTableViewController.h"
 
-@interface TPSiteTableViewController () <TPSiteTableViewCellDelegate>
+@interface TPSiteTableViewController () <TPSiteTableViewCellDelegate, PYSearchViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray* testCountries;
 @property (nonatomic, strong) NSArray* testCities;
@@ -139,21 +139,43 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
                                                  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
                                                      TPSiteSearchViewController *resultViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
                                                      resultViewController.mode = TPSiteSearchAll;
+                                                     resultViewController.navigationItem.title = searchText;
                                                      [searchViewController.navigationController pushViewController:resultViewController animated:YES];
-        
+                                                     
+                                                     
     }];
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    navController.navigationBar.barTintColor = [Utilities getColor];
-    navController.navigationBar.backgroundColor = [Utilities getColor];
-    navController.navigationBar.barStyle = UIBarStyleBlack;
-    navController.navigationBar.tintColor = [UIColor whiteColor];
     
-    searchViewController.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
-    searchViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    searchViewController.delegate = self;
     
-    [self presentViewController:navController animated:YES completion:nil];
+    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:searchViewController animated:NO];
+    
+}
 
+#pragma mark - PYSearchViewControllerDelegate
+
+- (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
+
+    searchViewController.navigationItem.hidesBackButton = YES;
+    
+}
+
+
+- (void)didClickCancel:(PYSearchViewController *)searchViewController {
+
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [searchViewController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 

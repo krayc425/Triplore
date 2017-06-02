@@ -9,9 +9,11 @@
 #import "TPCityTableViewController.h"
 #import "TPCityInfoTableViewCell.h"
 #import "TPCityVideoTableViewCell.h"
+#import "PYSearchViewController.h"
+#import "TPVideoTableViewController.h"
 #import "Utilities.h"
 
-@interface TPCityTableViewController ()
+@interface TPCityTableViewController () <PYSearchViewControllerDelegate>
 
 @end
 
@@ -54,10 +56,22 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPCityInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellIdentifier forIndexPath:indexPath];
-         
         return cell;
     } else {
         TPCityVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier forIndexPath:indexPath];
+        switch (indexPath.section) {
+            case 1:
+                cell.categoryLabel.text = @"美食";
+                break;
+            case 2:
+                cell.categoryLabel.text = @"购物";
+                break;
+            case 3:
+                cell.categoryLabel.text = @"景点";
+                break;
+            default:
+                break;
+        }
         return cell;
     }
 
@@ -87,8 +101,52 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 #pragma mark - Action
 
 - (void)clickSearchButton:(id)sender {
+    NSArray *hotSeaches = @[@"美食", @"购物", @"景点"];
+    
+    PYSearchViewController *searchViewController =
+    [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches
+                                           searchBarPlaceholder:@"搜索视频"
+                                                 didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+                                                     TPVideoTableViewController *resultViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//                                                     resultViewController.mode = TPSiteSearchAll;
+                                                    resultViewController.navigationItem.title = searchText;
+                                                     [searchViewController.navigationController pushViewController:resultViewController animated:YES];
+                                                     
+                                                 }];
+    
+    
+    searchViewController.delegate = self;
+    
+    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:searchViewController animated:NO];
+
 }
 
+
+#pragma mark - PYSearchViewControllerDelegate
+
+- (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
+    
+    searchViewController.navigationItem.hidesBackButton = YES;
+    
+}
+
+
+- (void)didClickCancel:(PYSearchViewController *)searchViewController {
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [searchViewController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 
 /*
