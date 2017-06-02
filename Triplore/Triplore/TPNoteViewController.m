@@ -53,17 +53,6 @@
     [self.tableView addGestureRecognizer:longPress];
     self.touchPoints = [[NSMutableArray alloc] init];
     
-    //保存按钮
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      20,
-                                                                      24,
-                                                                      24)];
-    saveButton.tintColor = [UIColor whiteColor];
-    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
-    
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
@@ -71,16 +60,17 @@
     UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
     [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
-    [editButton addTarget:self action:@selector(editAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
+    [exportButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
     UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
                                                                             CGRectGetHeight(self.tableView.bounds),
                                                                             CGRectGetWidth(self.view.bounds),
                                                                             TOOLBAR_HEIGHT)];
     [buttonStack addArrangedSubview:deleteButton];
     [buttonStack addArrangedSubview:videoButton];
-    [buttonStack addArrangedSubview:editButton];
+    [buttonStack addArrangedSubview:exportButton];
     buttonStack.axis = UILayoutConstraintAxisHorizontal;
     buttonStack.alignment = UIStackViewAlignmentFill;
     buttonStack.distribution = UIStackViewDistributionFillEqually;
@@ -112,11 +102,6 @@
 }
 
 #pragma mark - Button Action
-
-- (void)editAction{
-//    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
-//    [self.tableView reloadData];
-}
 
 - (void)videoAction{
     TPVideo *video = [TPVideoManager fetchVideoWithID:self.note.videoid];
@@ -348,11 +333,9 @@
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存成功"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"返回"
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [self.navigationController popToRootViewControllerAnimated:YES];
-                                                         }];
+                                                         handler:nil];
         [alertC addAction:cancelAction];
         UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
                                                               style:UIAlertActionStyleDefault
