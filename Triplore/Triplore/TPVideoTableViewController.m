@@ -8,6 +8,7 @@
 
 #import "TPVideoTableViewController.h"
 #import "TPVideoSingleTableViewCell.h"
+#import "TPVideoSeriesTableViewCell.h"
 #import "Utilities.h"
 
 @interface TPVideoTableViewController ()
@@ -17,6 +18,7 @@
 @implementation TPVideoTableViewController
 
 static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
+static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +29,10 @@ static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
     // cell
     UINib *nib1 = [UINib nibWithNibName:@"TPVideoSingleTableViewCell" bundle:nil];
     [self.tableView registerNib:nib1 forCellReuseIdentifier:singleCellIdentifier];
-    
+
+    UINib *nib2 = [UINib nibWithNibName:@"TPVideoSeriesTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,16 +52,25 @@ static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
+        
+        return cell;
+    } else {
+        TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    
-    return cell;
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = CGRectGetWidth(self.view.frame);
-    return (width / 2 - 10) / 16 * 9 + 20;
+    
+    if (indexPath.section == 0) {
+        return (width / 2 - 10) / 16 * 9 + 180;
+    } else {
+        return (width / 2 - 10) / 16 * 9 + 20;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

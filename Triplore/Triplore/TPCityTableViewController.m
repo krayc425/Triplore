@@ -13,7 +13,7 @@
 #import "TPVideoTableViewController.h"
 #import "Utilities.h"
 
-@interface TPCityTableViewController () <PYSearchViewControllerDelegate>
+@interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate>
 
 @end
 
@@ -59,15 +59,16 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
         return cell;
     } else {
         TPCityVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
         switch (indexPath.section) {
             case 1:
-                cell.categoryLabel.text = @"美食";
+                cell.mode = TPCategoryFood;
                 break;
             case 2:
-                cell.categoryLabel.text = @"购物";
+                cell.mode = TPCategoryShopping;
                 break;
             case 3:
-                cell.categoryLabel.text = @"景点";
+                cell.mode = TPCategoryPlace;
                 break;
             default:
                 break;
@@ -97,6 +98,20 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     return 0.1;
 }
+#pragma mark - TPCityVideoTableViewCellDelegate
+
+- (void)didTapAllWithMode:(TPCategoryMode)mode {
+    
+    NSArray *titles = @[@"美食", @"购物", @"景点"];
+    
+    TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    videoViewController.navigationItem.title = titles[mode];
+    
+    [self.navigationController pushViewController:videoViewController animated:YES];
+    
+}
+
 
 #pragma mark - Action
 

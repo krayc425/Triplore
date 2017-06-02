@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jii-c3-RxF">
-                        <rect key="frame" x="10" y="10" width="180.5" height="112.5"/>
+                        <rect key="frame" x="10" y="10" width="181" height="113"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-Fa-Feg">
-                        <rect key="frame" x="200.5" y="10" width="170.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-Fa-Feg">
+                        <rect key="frame" x="201" y="10" width="170" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -34,13 +34,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.06.02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfB-7W-1JI">
-                        <rect key="frame" x="201" y="108" width="62" height="14.5"/>
+                        <rect key="frame" x="201" y="108" width="62" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:42:52" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL8-XD-kQo">
-                        <rect key="frame" x="10" y="110.5" width="48" height="12"/>
+                        <rect key="frame" x="10" y="111" width="48" height="12"/>
                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="ef1-Ha-OGo"/>
@@ -71,6 +71,7 @@
                 <outlet property="coverImageView" destination="Jii-c3-RxF" id="6fn-V8-c5z"/>
                 <outlet property="dateLabel" destination="kfB-7W-1JI" id="IVw-md-k8g"/>
                 <outlet property="introductionLabel" destination="LPR-Je-qpk" id="w9r-Gk-EmX"/>
+                <outlet property="runtimeLabel" destination="mL8-XD-kQo" id="QOM-mD-Vsy"/>
                 <outlet property="titleLabel" destination="yFh-Fa-Feg" id="vgu-AC-tGj"/>
             </connections>
             <point key="canvasLocation" x="55.5" y="96.5"/>

@@ -59,6 +59,10 @@
 		4D4DF7A01EE17CED0012F476 /* TPVideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF79F1EE17CED0012F476 /* TPVideoTableViewController.m */; };
 		4D4DF7A41EE17D470012F476 /* TPVideoSingleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7A21EE17D470012F476 /* TPVideoSingleTableViewCell.m */; };
 		4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7A31EE17D470012F476 /* TPVideoSingleTableViewCell.xib */; };
+		4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7A71EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m */; };
+		4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7A81EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib */; };
+		4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */; };
+		4D4DF7AF1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */; };
 		4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */; };
 		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
 		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
@@ -199,6 +203,12 @@
 		4D4DF7A11EE17D470012F476 /* TPVideoSingleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoSingleTableViewCell.h; sourceTree = "<group>"; };
 		4D4DF7A21EE17D470012F476 /* TPVideoSingleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoSingleTableViewCell.m; sourceTree = "<group>"; };
 		4D4DF7A31EE17D470012F476 /* TPVideoSingleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoSingleTableViewCell.xib; sourceTree = "<group>"; };
+		4D4DF7A61EE19D1C0012F476 /* TPVideoSeriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoSeriesTableViewCell.h; sourceTree = "<group>"; };
+		4D4DF7A71EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoSeriesTableViewCell.m; sourceTree = "<group>"; };
+		4D4DF7A81EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoSeriesTableViewCell.xib; sourceTree = "<group>"; };
+		4D4DF7AB1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoEpisodeTableViewCell.h; sourceTree = "<group>"; };
+		4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoEpisodeTableViewCell.m; sourceTree = "<group>"; };
+		4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoEpisodeTableViewCell.xib; sourceTree = "<group>"; };
 		4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteCollectionViewCell.h; sourceTree = "<group>"; };
 		4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteCollectionViewCell.m; sourceTree = "<group>"; };
 		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -506,6 +516,12 @@
 				4D4DF7A11EE17D470012F476 /* TPVideoSingleTableViewCell.h */,
 				4D4DF7A21EE17D470012F476 /* TPVideoSingleTableViewCell.m */,
 				4D4DF7A31EE17D470012F476 /* TPVideoSingleTableViewCell.xib */,
+				4D4DF7A61EE19D1C0012F476 /* TPVideoSeriesTableViewCell.h */,
+				4D4DF7A71EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m */,
+				4D4DF7A81EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib */,
+				4D4DF7AB1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.h */,
+				4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */,
+				4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -730,6 +746,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D4DF7AF1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib in Resources */,
 				E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */,
 				4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */,
 				4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */,
@@ -738,6 +755,7 @@
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
+				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
@@ -886,6 +904,8 @@
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
 				241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */,
 				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
+				4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */,
+				4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */,
 				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* ViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,

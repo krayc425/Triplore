@@ -52,6 +52,9 @@
                                 <state key="normal" title=" 全部">
                                     <color key="titleColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="allDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="n9F-uF-oVi"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLi-Gc-41m">
                                 <rect key="frame" x="33" y="0.0" width="7" height="26"/>
@@ -62,11 +65,14 @@
                                 <state key="normal" title="">
                                     <color key="titleColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="allDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eYh-Jh-bU8"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="B1c-C5-5bS">
-                        <rect key="frame" x="10" y="32" width="300" height="90.5"/>
+                        <rect key="frame" x="10" y="32" width="300" height="91"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lqZ-L8-a5b">
                             <size key="itemSize" width="50" height="50"/>
