@@ -10,13 +10,15 @@
 #import "Utilities.h"
 #import "TPSiteCollectionViewCell.h"
 
-static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 
 @interface TPSiteTableViewCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
 @implementation TPSiteTableViewCell
+
+static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -1,5 +1,5 @@
 //
-//  CategoryButton.h
+//  TPVideoCollectionViewCell.h
 //  Triplore
 //
 //  Created by Sorumi on 17/6/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryButton : UIButton
+@interface TPVideoCollectionViewCell : UICollectionViewCell
 
 @end

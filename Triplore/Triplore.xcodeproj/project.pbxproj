@@ -53,11 +53,12 @@
 		4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF78D1EE1046F0012F476 /* TPCityInfoTableViewCell.xib */; };
 		4D4DF7931EE104920012F476 /* TPCityVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7911EE104920012F476 /* TPCityVideoTableViewCell.m */; };
 		4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7921EE104920012F476 /* TPCityVideoTableViewCell.xib */; };
-		4D4DF7971EE10A4B0012F476 /* CategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7961EE10A4B0012F476 /* CategoryButton.m */; };
+		4D4DF7971EE10A4B0012F476 /* TPCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7961EE10A4B0012F476 /* TPCategoryButton.m */; };
+		4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7991EE1552C0012F476 /* TPVideoCollectionViewCell.m */; };
+		4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF79A1EE1552C0012F476 /* TPVideoCollectionViewCell.xib */; };
 		4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */; };
 		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
 		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
-		4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E41ED960DF00DA73AA /* Site.m */; };
 		4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
 		5F6651DD58331620A680E214C4156348 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */; };
@@ -185,13 +186,14 @@
 		4D4DF7901EE104920012F476 /* TPCityVideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCityVideoTableViewCell.h; sourceTree = "<group>"; };
 		4D4DF7911EE104920012F476 /* TPCityVideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCityVideoTableViewCell.m; sourceTree = "<group>"; };
 		4D4DF7921EE104920012F476 /* TPCityVideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPCityVideoTableViewCell.xib; sourceTree = "<group>"; };
-		4D4DF7951EE10A4B0012F476 /* CategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryButton.h; sourceTree = "<group>"; };
-		4D4DF7961EE10A4B0012F476 /* CategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryButton.m; sourceTree = "<group>"; };
+		4D4DF7951EE10A4B0012F476 /* TPCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCategoryButton.h; sourceTree = "<group>"; };
+		4D4DF7961EE10A4B0012F476 /* TPCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCategoryButton.m; sourceTree = "<group>"; };
+		4D4DF7981EE1552C0012F476 /* TPVideoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoCollectionViewCell.h; sourceTree = "<group>"; };
+		4D4DF7991EE1552C0012F476 /* TPVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoCollectionViewCell.m; sourceTree = "<group>"; };
+		4D4DF79A1EE1552C0012F476 /* TPVideoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteCollectionViewCell.h; sourceTree = "<group>"; };
 		4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteCollectionViewCell.m; sourceTree = "<group>"; };
 		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
-		4DA4F9E31ED960DF00DA73AA /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
-		4DA4F9E41ED960DF00DA73AA /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
 		4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteSearchViewController.h; sourceTree = "<group>"; };
 		4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteSearchViewController.m; sourceTree = "<group>"; };
 		52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
@@ -344,8 +346,6 @@
 		2402CE161ED44DD60098770A /* Site */ = {
 			isa = PBXGroup;
 			children = (
-				4DA4F9E31ED960DF00DA73AA /* Site.h */,
-				4DA4F9E41ED960DF00DA73AA /* Site.m */,
 				2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */,
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
 				4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */,
@@ -364,8 +364,11 @@
 				4D4DF7901EE104920012F476 /* TPCityVideoTableViewCell.h */,
 				4D4DF7911EE104920012F476 /* TPCityVideoTableViewCell.m */,
 				4D4DF7921EE104920012F476 /* TPCityVideoTableViewCell.xib */,
-				4D4DF7951EE10A4B0012F476 /* CategoryButton.h */,
-				4D4DF7961EE10A4B0012F476 /* CategoryButton.m */,
+				4D4DF7981EE1552C0012F476 /* TPVideoCollectionViewCell.h */,
+				4D4DF7991EE1552C0012F476 /* TPVideoCollectionViewCell.m */,
+				4D4DF79A1EE1552C0012F476 /* TPVideoCollectionViewCell.xib */,
+				4D4DF7951EE10A4B0012F476 /* TPCategoryButton.h */,
+				4D4DF7961EE10A4B0012F476 /* TPCategoryButton.m */,
 			);
 			name = Site;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 			files = (
 				E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */,
 				4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */,
+				4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */,
 				4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
@@ -850,10 +854,10 @@
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
-				4DA4F9E51ED960DF00DA73AA /* Site.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
-				4D4DF7971EE10A4B0012F476 /* CategoryButton.m in Sources */,
+				4D4DF7971EE10A4B0012F476 /* TPCategoryButton.m in Sources */,
+				4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
 				241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */,

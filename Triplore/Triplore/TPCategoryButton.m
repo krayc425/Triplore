@@ -6,9 +6,9 @@
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "CategoryButton.h"
+#import "TPCategoryButton.h"
 
-@implementation CategoryButton
+@implementation TPCategoryButton
 
 /*
 // Only override drawRect: if you perform custom drawing.

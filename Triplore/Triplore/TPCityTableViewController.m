@@ -64,11 +64,14 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CGFloat width = CGRectGetWidth(self.view.frame);
     if (indexPath.section == 0) {
-        return 260;
+        
+        return (width / 7 * 3 + width / 15 * 4);
+        
     } else {
-        return 180;
+
+        return (width - 30) / 2 / 16 * 9 + 55 + 42;
     }
 }
 

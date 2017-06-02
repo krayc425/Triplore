@@ -7,16 +7,16 @@
 //
 
 #import "TPCityInfoTableViewCell.h"
-#import "CategoryButton.h"
+#import "TPCategoryButton.h"
 #import "Utilities.h"
 
 @interface TPCityInfoTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UIView *overlayView;
-@property (weak, nonatomic) IBOutlet CategoryButton *foodButton;
-@property (weak, nonatomic) IBOutlet CategoryButton *shoppingButton;
-@property (weak, nonatomic) IBOutlet CategoryButton *placeButton;
+@property (weak, nonatomic) IBOutlet TPCategoryButton *foodButton;
+@property (weak, nonatomic) IBOutlet TPCategoryButton *shoppingButton;
+@property (weak, nonatomic) IBOutlet TPCategoryButton *placeButton;
 
 @end
 
