@@ -15,8 +15,11 @@ typedef NS_ENUM(NSInteger, TPSiteMode){
 
 @protocol TPSiteTableViewCellDelegate <NSObject>
 
-- (void)didTapAllWithMode:(TPSiteMode)mode;
 - (void)didSelectSite:(NSString * _Nonnull)site withMode:(TPSiteMode)mode;
+
+@optional
+
+- (void)didTapAllWithMode:(TPSiteMode)mode;
 
 @end
 

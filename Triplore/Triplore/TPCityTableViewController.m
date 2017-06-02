@@ -9,9 +9,11 @@
 #import "TPCityTableViewController.h"
 #import "TPCityInfoTableViewCell.h"
 #import "TPCityVideoTableViewCell.h"
+#import "PYSearchViewController.h"
+#import "TPVideoTableViewController.h"
 #import "Utilities.h"
 
-@interface TPCityTableViewController ()
+@interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate>
 
 @end
 
@@ -54,10 +56,23 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPCityInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellIdentifier forIndexPath:indexPath];
-         
         return cell;
     } else {
         TPCityVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
+        switch (indexPath.section) {
+            case 1:
+                cell.mode = TPCategoryFood;
+                break;
+            case 2:
+                cell.mode = TPCategoryShopping;
+                break;
+            case 3:
+                cell.mode = TPCategoryPlace;
+                break;
+            default:
+                break;
+        }
         return cell;
     }
 
@@ -83,12 +98,70 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     return 0.1;
 }
+#pragma mark - TPCityVideoTableViewCellDelegate
+
+- (void)didTapAllWithMode:(TPCategoryMode)mode {
+    
+    NSArray *titles = @[@"美食", @"购物", @"景点"];
+    
+    TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    videoViewController.navigationItem.title = titles[mode];
+    
+    [self.navigationController pushViewController:videoViewController animated:YES];
+    
+}
+
 
 #pragma mark - Action
 
 - (void)clickSearchButton:(id)sender {
+    NSArray *hotSeaches = @[@"美食", @"购物", @"景点"];
+    
+    PYSearchViewController *searchViewController =
+    [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches
+                                           searchBarPlaceholder:@"搜索视频"
+                                                 didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+                                                     TPVideoTableViewController *resultViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//                                                     resultViewController.mode = TPSiteSearchAll;
+                                                    resultViewController.navigationItem.title = searchText;
+                                                     [searchViewController.navigationController pushViewController:resultViewController animated:YES];
+                                                     
+                                                 }];
+    
+    
+    searchViewController.delegate = self;
+    
+    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:searchViewController animated:NO];
+
 }
 
+
+#pragma mark - PYSearchViewControllerDelegate
+
+- (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
+    
+    searchViewController.navigationItem.hidesBackButton = YES;
+    
+}
+
+
+- (void)didClickCancel:(PYSearchViewController *)searchViewController {
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [searchViewController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 
 /*

@@ -98,6 +98,8 @@ typedef NS_ENUM(NSInteger, PYSearchResultShowMode) {
 
 @optional
 
+- (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController;
+
 /**
  Called when search begain.
 

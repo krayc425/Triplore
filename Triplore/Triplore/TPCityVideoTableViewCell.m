@@ -34,8 +34,22 @@ static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    
- }
+}
+
+- (void)setMode:(TPCategoryMode)mode {
+    _mode = mode;
+    switch (self.mode) {
+        case TPCategoryFood:
+            self.categoryLabel.text = @"美食";
+            break;
+        case TPCategoryShopping:
+            self.categoryLabel.text = @"购物";
+            break;
+        case TPCategoryPlace:
+            self.categoryLabel.text = @"景点";
+            break;
+    }
+}
 
 #pragma mark - <UICollectionViewDataSource>
 
@@ -71,6 +85,12 @@ static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
                       (CGRectGetWidth(self.collectionView.frame) - 10) / 2 / 16 * 9 + 55);
 }
 
+- (IBAction)allDidTap:(id)sender {
+
+    if([self.delegate respondsToSelector:@selector(didTapAllWithMode:)]) {
+        [self.delegate didTapAllWithMode:self.mode];
+    }
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

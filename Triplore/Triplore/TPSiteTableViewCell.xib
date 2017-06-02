@@ -65,6 +65,9 @@
                                 <state key="normal" title="">
                                     <color key="titleColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="allDidTap:" destination="iwl-Mb-G63" eventType="touchUpInside" id="BYh-Fp-B06"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

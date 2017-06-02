@@ -51,7 +51,7 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     self.allButtons.hidden = !isAll;
 }
 
--(void)setMode:(TPSiteMode)mode {
+- (void)setMode:(TPSiteMode)mode {
     _mode = mode;
     if (mode == TPSiteCountry) {
         self.categoryLabel.text = @"国家";
@@ -96,7 +96,7 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 
 
 - (IBAction)allDidTap:(id)sender {
-    NSLog(@"all");
+
     if([self.delegate respondsToSelector:@selector(didTapAllWithMode:)]) {
         [self.delegate didTapAllWithMode:self.mode];
     }

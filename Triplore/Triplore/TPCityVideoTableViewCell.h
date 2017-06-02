@@ -8,12 +8,33 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, TPCategoryMode){
+    TPCategoryFood      = 1,
+    TPCategoryShopping  = 2,
+    TPCategoryPlace     = 3,
+};
+
+
+@protocol TPCityVideoTableViewCellDelegate <NSObject>
+
+//- (void)didSelectSite:(NSString * _Nonnull)site withMode:(TPSiteMode)mode;
+
+@optional
+
+- (void)didTapAllWithMode:(TPCategoryMode)mode;
+
+@end
+
 @interface TPCityVideoTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (weak, nonatomic) IBOutlet UIButton *allButton;
-@property (weak, nonatomic) IBOutlet UIButton *allButton2;
-@property (weak, nonatomic) IBOutlet UIStackView *allButtons;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonnull, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *allButton2;
+@property (nonnull, nonatomic) IBOutlet UIStackView *allButtons;
+@property (nonnull, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic) TPCategoryMode mode;
+
+@property (nonatomic, nonnull) id<TPCityVideoTableViewCellDelegate> delegate;
 
 @end
