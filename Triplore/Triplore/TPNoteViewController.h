@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, TPNoteMode){
+    TPNewNote     = 1,
+    TPOldNote     = 2,
+};
+
 @class TPNote;
 
 @interface TPNoteViewController : UIViewController 
+
+@property (nonatomic) TPNoteMode noteMode;
 
 @property (nonnull, nonatomic) TPNote *note;
 @property (nonnull, nonatomic) NSString *noteTitle;

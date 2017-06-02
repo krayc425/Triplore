@@ -53,6 +53,17 @@
     [self.tableView addGestureRecognizer:longPress];
     self.touchPoints = [[NSMutableArray alloc] init];
     
+    //保存按钮
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                      20,
+                                                                      24,
+                                                                      24)];
+    saveButton.tintColor = [UIColor whiteColor];
+    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+    self.navigationItem.rightBarButtonItem = saveButtonItem;
+
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
@@ -63,7 +74,7 @@
     
     UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
-    [exportButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
     UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
                                                                             CGRectGetHeight(self.tableView.bounds),
                                                                             CGRectGetWidth(self.view.bounds),
@@ -76,7 +87,7 @@
     buttonStack.distribution = UIStackViewDistributionFillEqually;
     
     //非添加，查看模式
-    if(self.note != NULL && self.note.noteid > 0){
+    if(self.noteMode == TPOldNote){
         [self.view addSubview:buttonStack];
     }
 }
@@ -88,7 +99,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
     
-    if(self.note != NULL && self.note.noteid > 0){
+    if(self.noteMode == TPOldNote){
         self.noteTitle = self.note.title;
         self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
     }
@@ -121,9 +132,44 @@
                                                         handler:nil];
     [alertC addAction:cancelAction];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除"
-                                                       style:UIAlertActionStyleDefault
+                                                       style:UIAlertActionStyleDestructive
                                                      handler:^(UIAlertAction * _Nonnull action) {
                                                          [self deleteNote];
+                                                     }];
+    [alertC addAction:okAction];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
+
+- (void)saveNoteAction{
+    BOOL success = NO;
+    //新增
+    if(self.noteMode == TPNewNote){
+        TPNote *note = [TPNote new];
+        [note setVideoid:(NSInteger)self.videoDict[@"id"]];
+        [note setTitle:self.noteTitle];
+        [note setViews:self.noteViews];
+        [note setCreateTime:[NSDate date]];
+        success = [TPNoteManager insertNote:note];
+        
+        TPVideo *video = [TPVideo new];
+        [video setVideoid:(NSInteger)self.videoDict[@"id"]];
+        [video setDict:self.videoDict];
+        success = success && [TPVideoManager insertVideo:video];
+    }else{
+        [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
+        
+        success = [TPNoteManager updateNote:self.note];
+    }
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:success ? @"保存成功" : @"保存失败"
+                                                                    message:nil
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){
+                                                         if(self.noteMode == TPNewNote){
+                                                             [self.navigationController popToRootViewControllerAnimated:YES];
+                                                         }
                                                      }];
     [alertC addAction:okAction];
     [self presentViewController:alertC animated:YES completion:nil];
@@ -287,7 +333,7 @@
 
 #pragma mark - Save to album
 
-- (void)saveNoteAction{
+- (void)exportAlbumAction{
     UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, NO, [[UIScreen mainScreen] scale]);
     
     CGPoint savedContentOffset = self.tableView.contentOffset;
@@ -307,25 +353,6 @@
                                    self,
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    nil);
-    
-    //新增
-    if(self.note == NULL){
-        TPNote *note = [TPNote new];
-        [note setVideoid:(NSInteger)self.videoDict[@"id"]];
-        [note setTitle:self.noteTitle];
-        [note setViews:self.noteViews];
-        [note setCreateTime:[NSDate date]];
-        [TPNoteManager insertNote:note];
-        
-        TPVideo *video = [TPVideo new];
-        [video setVideoid:(NSInteger)self.videoDict[@"id"]];
-        [video setDict:self.videoDict];
-        [TPVideoManager insertVideo:video];
-    }else{
-        [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
-        
-        [TPNoteManager updateNote:self.note];
-    }
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -382,13 +409,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if(self.tableView.editing){
-        selectedIndexPath = indexPath;
-        if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
-            UILabel *label = (UILabel *)self.noteViews[indexPath.row];
-            [self editNoteActionWithString:label.text];
-        }
-//    }
+    selectedIndexPath = indexPath;
+    if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
+        UILabel *label = (UILabel *)self.noteViews[indexPath.row];
+        [self editNoteActionWithString:label.text];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
