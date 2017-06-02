@@ -37,11 +37,11 @@
 //                                  }];
     //    [bar setTranslucent:NO];
     
-    UINavigationBar *bar = [UINavigationBar appearance];
-    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    bar.backIndicatorImage = image;
-    bar.backIndicatorTransitionMaskImage = image;
+//    UINavigationBar *bar = [UINavigationBar appearance];
+//    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
+//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    bar.backIndicatorImage = image;
+//    bar.backIndicatorTransitionMaskImage = image;
     
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];

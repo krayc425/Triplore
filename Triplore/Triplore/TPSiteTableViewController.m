@@ -11,6 +11,7 @@
 #import "Utilities.h"
 #import "PYSearchViewController.h"
 #import "TPSiteSearchViewController.h"
+#import "TPCityTableViewController.h"
 
 @interface TPSiteTableViewController () <TPSiteTableViewCellDelegate>
 
@@ -19,7 +20,10 @@
 
 @end
 
+
 @implementation TPSiteTableViewController
+
+static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +38,9 @@
 
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorColor = [UIColor clearColor];
+    
+    UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
     self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
     self.testCities = @[@"东京", @"京都", @"大阪"];
@@ -55,9 +62,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"TPSiteTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+
     TPSiteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     
@@ -97,10 +102,15 @@
 - (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
     if (mode == TPSiteCountry) {
         TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        countryViewController.mode = TPSiteSearchCountry;
+        countryViewController.mode = TPSiteSearchCity;
         countryViewController.cities = self.testCities;
         countryViewController.navigationItem.title = site;
         [self.navigationController pushViewController:countryViewController animated:YES];
+    } else if (mode == TPSiteSearchCity) {
+        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        cityViewController.navigationItem.title = site;
+        [self.navigationController pushViewController:cityViewController animated:YES];
     }
 }
 

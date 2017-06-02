@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="TPCityInfoTableViewCell" selectionStyle="default" indentationWidth="10" rowHeight="314" id="KGk-i7-Jjw" customClass="TPCityInfoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPo-xg-pW4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="137.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BPo-xg-pW4" secondAttribute="height" multiplier="7:3" id="0Uk-7t-wzv"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqC-EL-GTJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="137.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-sk-PmQ">
+                                <rect key="frame" x="20" y="96" width="44" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jci-wf-vAq">
+                        <rect key="frame" x="0.0" y="137.5" width="320" height="85.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJM-PT-XUP" customClass="CategoryButton">
+                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="美食" image="SITE_FOOD">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czy-o5-1r3" customClass="CategoryButton">
+                                <rect key="frame" x="106.5" y="0.0" width="107" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="购物" image="SITE_SHOPPING">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzr-sg-AON" customClass="CategoryButton">
+                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="景点" image="SITE_PLACE">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tzr-sg-AON" firstAttribute="height" secondItem="jci-wf-vAq" secondAttribute="height" id="K9w-bD-V0R"/>
+                            <constraint firstItem="EJM-PT-XUP" firstAttribute="height" secondItem="jci-wf-vAq" secondAttribute="height" id="MzT-hU-2SN"/>
+                            <constraint firstAttribute="width" secondItem="jci-wf-vAq" secondAttribute="height" multiplier="3:0.8" id="Reb-dV-ADn"/>
+                            <constraint firstItem="czy-o5-1r3" firstAttribute="height" secondItem="jci-wf-vAq" secondAttribute="height" id="wjr-Ii-eMw"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jci-wf-vAq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2UC-lH-y9o"/>
+                    <constraint firstItem="jci-wf-vAq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" id="3jl-b5-KLY"/>
+                    <constraint firstItem="BPo-xg-pW4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" id="6Y7-Tc-CIS"/>
+                    <constraint firstItem="BPo-xg-pW4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7E3-ra-XqQ"/>
+                    <constraint firstItem="pnK-sk-PmQ" firstAttribute="bottom" secondItem="BPo-xg-pW4" secondAttribute="bottom" constant="-20" id="8e8-Wl-T26"/>
+                    <constraint firstItem="iqC-EL-GTJ" firstAttribute="leading" secondItem="BPo-xg-pW4" secondAttribute="leading" id="Tto-xk-fae"/>
+                    <constraint firstItem="iqC-EL-GTJ" firstAttribute="bottom" secondItem="BPo-xg-pW4" secondAttribute="bottom" id="W1g-Uf-Gfa"/>
+                    <constraint firstItem="jci-wf-vAq" firstAttribute="top" secondItem="iqC-EL-GTJ" secondAttribute="bottom" id="b1E-FB-DId"/>
+                    <constraint firstItem="pnK-sk-PmQ" firstAttribute="leading" secondItem="BPo-xg-pW4" secondAttribute="leading" constant="20" id="b7b-ak-DpX"/>
+                    <constraint firstItem="iqC-EL-GTJ" firstAttribute="trailing" secondItem="BPo-xg-pW4" secondAttribute="trailing" id="d2D-yy-DbR"/>
+                    <constraint firstItem="BPo-xg-pW4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="er9-0h-RNT"/>
+                    <constraint firstItem="iqC-EL-GTJ" firstAttribute="top" secondItem="BPo-xg-pW4" secondAttribute="top" id="fK5-aK-xRn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backgroundImage" destination="BPo-xg-pW4" id="HR7-Hn-K0z"/>
+                <outlet property="foodButton" destination="EJM-PT-XUP" id="LT8-0F-TG3"/>
+                <outlet property="imageView" destination="BPo-xg-pW4" id="5f6-Zc-E8O"/>
+                <outlet property="overlayView" destination="iqC-EL-GTJ" id="Zg4-fq-zZL"/>
+                <outlet property="placeButton" destination="tzr-sg-AON" id="v0u-q2-AV7"/>
+                <outlet property="shoppingButton" destination="czy-o5-1r3" id="qWi-Qr-Ezr"/>
+            </connections>
+            <point key="canvasLocation" x="-41.5" y="140.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="SITE_FOOD" width="32" height="26"/>
+        <image name="SITE_PLACE" width="29" height="30"/>
+        <image name="SITE_SHOPPING" width="26" height="28"/>
+    </resources>
+</document>
