@@ -16,6 +16,7 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
     self = [super init];
     if (self) {
         self.title = dict[@"title"];
+        self.shortTitle = dict[@"short_title"];
         self.imgURL = [dict[@"img"] stringByAppendingString:@"?sign=iqiyi"];
         self.videoid = [dict[@"id"] integerValue];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -33,6 +34,7 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
                 self.videoType = TPVideoNormal;
                 break;
         }
+        self.videoDict = dict;
     }
     return self;
 }

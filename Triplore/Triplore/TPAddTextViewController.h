@@ -16,7 +16,19 @@ typedef NS_ENUM(NSInteger, TPAddMode){
 @protocol TPAddNoteViewDelegate <NSObject>
 
 @optional
+
+/**
+ 增加笔记 View
+
+ @param view 笔记 View
+ */
 - (void)addNoteView:(UIView *_Nonnull)view;
+
+/**
+  更新笔记 View
+
+ @param view 笔记 View
+ */
 - (void)updateNoteView:(UIView *_Nonnull)view;
 
 @end

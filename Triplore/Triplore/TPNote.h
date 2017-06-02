@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 存入数据库的 Note 模型
+ */
 @interface TPNote : NSObject
 
 @property (nonatomic) NSInteger noteid;

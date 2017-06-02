@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 存入数据库的 Video 模型
+ */
 @interface TPVideo : NSObject
 
 @property (nonatomic) NSInteger videoid;

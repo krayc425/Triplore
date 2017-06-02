@@ -10,8 +10,8 @@
 #import "AFNetworking.h"
 #import "TPVideoModel.h"
 
-static NSString *ALL_URL = @"http://iface.qiyi.com/openapi/batch/channel";
-static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/batch/search";
+static NSString *ALL_URL = @"http://iface.qiyi.com/openapi/realtime/channel";
+static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
 
 @implementation TPNetworkHelper
 

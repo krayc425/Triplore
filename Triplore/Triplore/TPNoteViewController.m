@@ -54,6 +54,7 @@
     self.touchPoints = [[NSMutableArray alloc] init];
     
     //保存按钮
+    /*
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
                                                                       20,
                                                                       24,
@@ -63,6 +64,7 @@
     [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
+     */
 
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -110,6 +112,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    
+    [self saveNoteAction];
 }
 
 #pragma mark - Button Action
@@ -141,6 +145,7 @@
 }
 
 - (void)saveNoteAction{
+    NSLog(@"保存");
     BOOL success = NO;
     //新增
     if(self.noteMode == TPNewNote){
