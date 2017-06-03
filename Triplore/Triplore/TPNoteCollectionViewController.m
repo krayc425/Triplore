@@ -14,7 +14,7 @@
 #import "TPNote.h"
 #import "TPNoteManager.h"
 
-@interface TPNoteCollectionViewController ()
+@interface TPNoteCollectionViewController () <UIViewControllerPreviewingDelegate>
 
 @end
 
@@ -69,6 +69,11 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     
     [cell configureWithNote:noteArr[indexPath.row]];
     
+    //注册3D Touch
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:cell];
+    }
+    
     return cell;
 }
 
@@ -99,6 +104,33 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
+}
+
+
+#pragma mark - UIViewControllerPreviewingDelegate
+
+- (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
+    
+    if ([self.presentedViewController isKindOfClass:[TPNoteViewController class]]){
+        return nil;
+    }
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:(TPNoteCollectionViewCell* )[previewingContext sourceView]];
+    
+    TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
+    TPNote *note = (TPNote *)noteArr[indexPath.row];
+    [noteVC setNote:note];
+    [noteVC setNoteMode:TPOldNote];
+    noteVC.preferredContentSize = CGSizeMake(0.0f, 525.0f);
+    
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
+    previewingContext.sourceRect = rect;
+    
+    return noteVC;
+}
+
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZNEmptyTableViewDelegate

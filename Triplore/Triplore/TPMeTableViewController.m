@@ -23,7 +23,7 @@
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationItem.title = @"我的";
+    self.navigationItem.title = @"我";
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

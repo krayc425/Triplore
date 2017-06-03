@@ -16,6 +16,7 @@
 #import "TPVideoManager.h"
 #import "TPAddTextViewController.h"
 #import "TPPlayViewController.h"
+#import "TPNoteCollectionViewController.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60

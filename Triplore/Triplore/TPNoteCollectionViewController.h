@@ -10,4 +10,6 @@
 
 @interface TPNoteCollectionViewController : UICollectionViewController
 
+- (void)loadNotes;
+
 @end

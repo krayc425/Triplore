@@ -20,6 +20,8 @@
 #import "TPNote.h"
 #import "TPNoteManager.h"
 #import "TPNoteViewTableViewCell.h"
+#import "TPVideoManager.h"
+#import "TPVideo.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
@@ -154,6 +156,12 @@
     NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
     NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
     [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
+    
+    //存入视频列表
+    TPVideo *newVideo = [TPVideo new];
+    [newVideo setDict:self.videoDict];
+    [newVideo setVideoid:[self.videoDict[@"id"] integerValue]];
+    [TPVideoManager insertVideo:newVideo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
