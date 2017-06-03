@@ -13,7 +13,7 @@
 #import "TPVideoTableViewController.h"
 #import "Utilities.h"
 
-@interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate>
+@interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate, TPCityInfoTableViewCellDelegate>
 
 @end
 
@@ -56,6 +56,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPCityInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
         return cell;
     } else {
         TPCityVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier forIndexPath:indexPath];
@@ -98,6 +99,20 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     return 0.1;
 }
+
+#pragma mark - TPCityInfoTableViewCellDelegate
+
+- (void)didTapCategory:(TPCategoryMode)mode {
+    NSArray *titles = @[@"美食", @"购物", @"景点"];
+    
+    TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    videoViewController.navigationItem.title = titles[mode-1];
+    
+    [self.navigationController pushViewController:videoViewController animated:YES];
+
+}
+
 #pragma mark - TPCityVideoTableViewCellDelegate
 
 - (void)didTapAllWithMode:(TPCategoryMode)mode {
@@ -106,7 +121,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.navigationItem.title = titles[mode];
+    videoViewController.navigationItem.title = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
     

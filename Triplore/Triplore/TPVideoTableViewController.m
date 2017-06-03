@@ -54,6 +54,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
+        cell.count = 6;
         
         return cell;
     } else {
@@ -67,7 +68,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     CGFloat width = CGRectGetWidth(self.view.frame);
     
     if (indexPath.section == 0) {
-        return (width / 2 - 10) / 16 * 9 + 180;
+        return (width / 2 - 10) / 16 * 9 + 20 + 47 + 3*30 + 2*10;
     } else {
         return (width / 2 - 10) / 16 * 9 + 20;
     }

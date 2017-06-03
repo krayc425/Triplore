@@ -28,21 +28,22 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
     self.bgImageView.image = [UIImage imageNamed:@"TEST_PNG"];
     self.overlayView.backgroundColor = nil;
     
     // buttons
-    self.foodButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.foodButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.shoppingButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.shoppingButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.placeButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.placeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-//        NSLog(@"%f", self.bgImageView.frame.size.height);
+    NSArray *buttons = @[self.foodButton, self.shoppingButton, self.placeButton];
+    
+    NSInteger start = 11;
+    for (UIButton *button in buttons) {
+        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.tag = start;
+        [button addTarget:self action:@selector(clickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+        start ++;
+
+    }
 }
 
 - (void)layoutSubviews {
@@ -66,6 +67,14 @@
     [self.overlayView.layer insertSublayer:gradientLayer atIndex:0];
     
 }
+
+- (void)clickCategoryButton:(UIButton *)button {
+    if([self.delegate respondsToSelector:@selector(didTapCategory:)]) {
+        [self.delegate didTapCategory:button.tag - 10];
+    }
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

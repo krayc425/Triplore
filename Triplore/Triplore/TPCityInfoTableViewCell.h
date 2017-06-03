@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
+
+@protocol TPCityInfoTableViewCellDelegate <NSObject>
+
+@optional
+
+- (void)didTapCategory:(TPCategoryMode)mode;
+
+@end
 
 @interface TPCityInfoTableViewCell : UITableViewCell
+
+
+@property (nonatomic, nonnull) id<TPCityInfoTableViewCellDelegate> delegate;
 
 @end

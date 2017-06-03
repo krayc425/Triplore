@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSInteger, TPCategoryMode){
-    TPCategoryFood      = 1,
-    TPCategoryShopping  = 2,
-    TPCategoryPlace     = 3,
-};
-
+#import "Utilities.h"
 
 @protocol TPCityVideoTableViewCellDelegate <NSObject>
 

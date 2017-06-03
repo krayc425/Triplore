@@ -10,4 +10,6 @@
 
 @interface TPVideoSeriesTableViewCell : UITableViewCell
 
+@property (nonatomic) NSInteger count;
+
 @end

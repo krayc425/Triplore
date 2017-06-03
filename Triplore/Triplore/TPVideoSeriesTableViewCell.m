@@ -42,10 +42,15 @@ static NSString *cellIdentifier = @"TPVideoEpisodeTableViewCell";
 
 }
 
+- (void)setCount:(NSInteger)count {
+    _count = count;
+    self.episodeButton.titleLabel.text = [NSString stringWithFormat:@"全部 %d 集", count];
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {\
-    return 3;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return MIN(3, self.count);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
