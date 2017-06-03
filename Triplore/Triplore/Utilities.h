@@ -15,6 +15,10 @@ typedef NS_ENUM(NSInteger, TPCategoryMode){
     TPCategoryPlace     = 3,
 };
 
+typedef NS_ENUM(NSInteger, TPNoteMode){
+    TPNewNote     = 1,
+    TPOldNote     = 2,
+};
 
 @interface Utilities : NSObject
 

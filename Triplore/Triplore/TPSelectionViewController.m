@@ -362,36 +362,36 @@
         self.TPPlayViewController = nil;
     }
     self.TPPlayViewController = [[TPPlayViewController alloc] init];
+    [self.TPPlayViewController setNoteMode:TPNewNote];
+    
     switch (eventImageView.tag) {
         case 100:
-            self.TPPlayViewController.playDetail = [self.dataSourceArrayFirst objectAtIndex:0];
+            self.TPPlayViewController.videoDict = [self.dataSourceArrayFirst objectAtIndex:0];
             break;
         case 200:
-            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:0];
+            self.TPPlayViewController.videoDict = [self.dataSourceArraySecond objectAtIndex:0];
             break;
         case 210:
-            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:1];
+            self.TPPlayViewController.videoDict = [self.dataSourceArraySecond objectAtIndex:1];
             break;
         case 220:
-            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:2];
+            self.TPPlayViewController.videoDict = [self.dataSourceArraySecond objectAtIndex:2];
             break;
         case 230:
-            self.TPPlayViewController.playDetail = [self.dataSourceArraySecond objectAtIndex:3];
+            self.TPPlayViewController.videoDict = [self.dataSourceArraySecond objectAtIndex:3];
             break;
         case 300:
-            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:0];
+            self.TPPlayViewController.videoDict = [self.dataSourceArrayThird objectAtIndex:0];
             break;
         case 310:
-            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:1];
+            self.TPPlayViewController.videoDict = [self.dataSourceArrayThird objectAtIndex:1];
             break;
         case 320:
-            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:2];
+            self.TPPlayViewController.videoDict = [self.dataSourceArrayThird objectAtIndex:2];
             break;
         case 330:
-            self.TPPlayViewController.playDetail = [self.dataSourceArrayThird objectAtIndex:3];
+            self.TPPlayViewController.videoDict = [self.dataSourceArrayThird objectAtIndex:3];
             break;
-            
-            
         default:
             break;
     }

@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSInteger, TPNoteMode){
-    TPNewNote     = 1,
-    TPOldNote     = 2,
-};
+#import "Utilities.h"
 
 @class TPNote;
 

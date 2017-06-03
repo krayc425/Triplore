@@ -45,6 +45,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
     [self loadNotes];
 }
 
@@ -74,13 +75,13 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    TPNoteViewController *testVC = [[TPNoteViewController alloc] init];
+    TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
     
     TPNote *note = (TPNote *)noteArr[indexPath.row];
-    [testVC setNote:note];
-    [testVC setNoteMode:TPOldNote];
+    [noteVC setNote:note];
+    [noteVC setNoteMode:TPOldNote];
     
-    [self.navigationController pushViewController:testVC animated:YES];
+    [self.navigationController pushViewController:noteVC animated:YES];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

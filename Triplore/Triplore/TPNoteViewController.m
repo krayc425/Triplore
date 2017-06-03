@@ -15,6 +15,7 @@
 #import "TPNoteManager.h"
 #import "TPVideoManager.h"
 #import "TPAddTextViewController.h"
+#import "TPPlayViewController.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
@@ -37,14 +38,14 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    0,
                                                                    CGRectGetWidth(self.view.bounds),
-                                                                   CGRectGetHeight(self.view.bounds) - 64 - TOOLBAR_HEIGHT * (self.note != NULL ? 1 : 0))
+                                                                   CGRectGetHeight(self.view.bounds) - 64 - TOOLBAR_HEIGHT * (self.noteMode == TPOldNote ? 1 : 0))
                                                   style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [UIView new];
-    [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
     [self.tableView reloadData];
     
     //长按拖动手势
@@ -54,17 +55,17 @@
     self.touchPoints = [[NSMutableArray alloc] init];
     
     //保存按钮
-    /*
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      20,
-                                                                      24,
-                                                                      24)];
-    saveButton.tintColor = [UIColor whiteColor];
-    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
-     */
+//    if(self.noteMode == TPNewNote) {
+        UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                          20,
+                                                                          24,
+                                                                          24)];
+        saveButton.tintColor = [UIColor whiteColor];
+        [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+        self.navigationItem.rightBarButtonItem = saveButtonItem;
+//    }
 
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -88,7 +89,7 @@
     buttonStack.alignment = UIStackViewAlignmentFill;
     buttonStack.distribution = UIStackViewDistributionFillEqually;
     
-    //非添加，查看模式
+    //老的 Note，查看模式
     if(self.noteMode == TPOldNote){
         [self.view addSubview:buttonStack];
     }
@@ -101,19 +102,18 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
     
-    if(self.noteMode == TPOldNote){
-        self.noteTitle = self.note.title;
-        self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
-    }
+    self.noteTitle = self.note.title;
+    self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
     self.title = self.noteTitle;
     
     [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    if(self.noteMode == TPOldNote){
+        [self saveNote];
+    }
     [self.tabBarController.tabBar setHidden:NO];
-    
-    [self saveNoteAction];
 }
 
 #pragma mark - Button Action
@@ -123,13 +123,20 @@
     if(video == NULL){
         NSLog(@"没视频");
     }else{
+        TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
+        [playViewController setNote:self.note];
+        [playViewController setNoteMode:TPOldNote];
+        [playViewController setVideoDict:video.dict];
+        [playViewController setNoteViews:self.noteViews];
+        [playViewController setNoteTitle:self.noteTitle];
         
+        [self.navigationController pushViewController:playViewController animated:YES];
     }
 }
 
 - (void)deleteAction{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"确认删除吗\n该操作不可恢复"
-                                                                    message:nil
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"确认删除吗"
+                                                                    message:@"该操作不可恢复"
                                                              preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                           style:UIAlertActionStyleCancel
@@ -144,14 +151,15 @@
     [self presentViewController:alertC animated:YES completion:nil];
 }
 
-- (void)saveNoteAction{
+- (BOOL)saveNote{
+    
     NSLog(@"保存");
     BOOL success = NO;
     //新增
     if(self.noteMode == TPNewNote){
         TPNote *note = [TPNote new];
         [note setVideoid:(NSInteger)self.videoDict[@"id"]];
-        [note setTitle:self.noteTitle];
+        [note setTitle:self.note.title];
         [note setViews:self.noteViews];
         [note setCreateTime:[NSDate date]];
         success = [TPNoteManager insertNote:note];
@@ -165,16 +173,18 @@
         
         success = [TPNoteManager updateNote:self.note];
     }
-    
+    return success;
+}
+
+- (void)saveNoteAction{
+    BOOL success = [self saveNote];
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:success ? @"保存成功" : @"保存失败"
                                                                     message:nil
                                                              preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action){
-                                                         if(self.noteMode == TPNewNote){
                                                              [self.navigationController popToRootViewControllerAnimated:YES];
-                                                         }
                                                      }];
     [alertC addAction:okAction];
     [self presentViewController:alertC animated:YES completion:nil];

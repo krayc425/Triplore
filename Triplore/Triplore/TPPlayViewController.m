@@ -13,11 +13,12 @@
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
-#import <objc/runtime.h>
 #import "QYAVPlayerController.h"
 #import "PlayerController.h"
 #import "UIImage+Extend.h"
 #import "TPNoteCreator.h"
+#import "TPNote.h"
+#import "TPNoteManager.h"
 #import "TPNoteViewTableViewCell.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
@@ -30,8 +31,6 @@
     CGRect playFrame;
     UIView *playerView;
     UITextField *titleText;
-    
-    NSMutableArray *noteViews;
     NSIndexPath *selectedIndexPath;
 }
 
@@ -45,8 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    noteViews = [[NSMutableArray alloc] init];
     
     self.view.backgroundColor = [Utilities getBackgroundColor];
 
@@ -128,6 +125,17 @@
                                                initWithTarget:self action:@selector(longPressGestureRecognized:)];
     [self.tableView addGestureRecognizer:longPress];
     self.touchPoints = [[NSMutableArray alloc] init];
+    
+    if(self.noteMode == TPNewNote){
+        self.noteViews = [[NSMutableArray alloc] init];
+    }else{
+        [titleText setText:self.noteTitle];
+        [[TPNoteCreator shareInstance] clearNoteView];
+        for(UIView *v in self.noteViews){
+            [[TPNoteCreator shareInstance] addNoteView:v];
+        }
+        [self reloadNoteViews];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -142,16 +150,16 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    NSString* aid = [self.playDetail valueForKey:@"a_id"];
-    NSString* tvid = [self.playDetail valueForKey:@"tv_id"];
-    NSString* isvip = [self.playDetail valueForKey:@"is_vip"];
+    NSString* aid = [self.videoDict valueForKey:@"a_id"];
+    NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
+    NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
     [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
-    
     [[QYPlayerController sharedInstance] pause];
+    [self saveNote];
 }
 
 - (void)dealloc{
@@ -159,8 +167,8 @@
 }
 
 - (void)reloadNoteViews{
-    [noteViews removeAllObjects];
-    [noteViews addObjectsFromArray:[[TPNoteCreator shareInstance] getNoteViews]];
+    [self.noteViews removeAllObjects];
+    [self.noteViews addObjectsFromArray:[[TPNoteCreator shareInstance] getNoteViews]];
     [self.tableView reloadData];
 }
 
@@ -354,7 +362,10 @@
     NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    //编辑完成，继续播放视频
+    [self playClick];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)updateNoteView:(UIView *_Nonnull)view{
@@ -362,12 +373,15 @@
     NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    //编辑完成，继续播放视频
+    [self playClick];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)screenShotAction{
     NSLog(@"截图");
-    
+    //隐藏暂停按钮
     [[self.view viewWithTag:200] setHidden:YES];
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
@@ -376,8 +390,26 @@
     image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width, playFrame.size.height)];
     image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
     [self addNoteView:[[UIImageView alloc] initWithImage:image]];
-    
+    //恢复暂停按钮
     [[self.view viewWithTag:200] setHidden:NO];
+}
+
+- (void)saveNote{
+    NSLog(@"保存");
+    NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
+    if(self.noteMode == TPNewNote){
+        //新增模式，进入 NoteVC
+        TPNote *newNote = [TPNote new];
+        [newNote setTitle:titleText.text];
+        [newNote setViews:noteArr];
+        self.note = newNote;
+    }else{
+        //直接更新返回
+        //更新：标题、Views
+        [self.note setTitle:titleText.text];
+        [self.note setViews:self.noteViews];
+        [TPNoteManager updateNote:self.note];
+    }
 }
 
 - (void)saveNoteAction{
@@ -386,15 +418,31 @@
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(noteArr.count <= 0){
         NSLog(@"没有 View");
+        
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"您的笔记内容为空"
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                                         }];
+        [alertC addAction:okAction];
+        [self presentViewController:alertC animated:YES completion:nil];
         return;
     }
     
-    TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
-    [noteVC setNoteTitle:titleText.text];
-    [noteVC setVideoDict:self.playDetail];
-    [noteVC setNoteMode:TPNewNote];
-    [noteVC setNoteViews:[NSMutableArray arrayWithArray:[[TPNoteCreator shareInstance] getNoteViews]]];
-    [self.navigationController pushViewController:noteVC animated:YES];
+    [self saveNote];
+    
+    if(self.noteMode == TPNewNote){
+        TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
+        [noteVC setVideoDict:self.videoDict];
+        [noteVC setNoteMode:self.noteMode];
+        [noteVC setNote:self.note];
+        [self.navigationController pushViewController:noteVC animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Long Pressed Gesture
@@ -520,7 +568,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return noteViews.count;
+    return self.noteViews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -530,26 +578,26 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [nib objectAtIndex:0];
     }
-    [cell setNoteView:noteViews[indexPath.row]];
+    [cell setNoteView:self.noteViews[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     selectedIndexPath = indexPath;
-    if([noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
-        UILabel *label = (UILabel *)noteViews[indexPath.row];
+    if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
+        UILabel *label = (UILabel *)self.noteViews[indexPath.row];
         [self editNoteActionWithString:label.text];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIView *view = noteViews[indexPath.row];
+    UIView *view = self.noteViews[indexPath.row];
     return view.frame.size.height + 20;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[TPNoteCreator shareInstance] removeNoteView:noteViews[indexPath.row]];
+    [[TPNoteCreator shareInstance] removeNoteView:self.noteViews[indexPath.row]];
     [self reloadNoteViews];
 //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [tableView reloadData];
