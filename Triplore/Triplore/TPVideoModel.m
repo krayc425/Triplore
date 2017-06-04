@@ -7,12 +7,21 @@
 //
 
 #import "TPVideoModel.h"
+#import "TPVideo.h"
 
 static NSString *dateFormatString = @"yyyy-MM-dd";
 
 @implementation TPVideoModel
 
-- (instancetype)initWithDict:(NSDictionary *)dict{
+- (instancetype)initWithTPVideo:(TPVideo *_Nonnull)video{
+    self = [super init];
+    if(self){
+        self = [self initWithDict:video.dict];
+    }
+    return self;
+}
+
+- (instancetype)initWithDict:(NSDictionary *_Nonnull)dict{
     self = [super init];
     if (self) {
         self.title = dict[@"title"];

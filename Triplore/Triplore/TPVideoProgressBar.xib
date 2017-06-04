@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TPVideoProgressBar"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="TPVideoProgressBar" customClass="TPVideoProgressBar">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="CM0-1T-5mh">
+                    <rect key="frame" x="0.0" y="9" width="84" height="12"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBr-zO-SOV">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="BUJ-f0-1Ku"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2q-Dn-jf8">
+                            <rect key="frame" x="40" y="0.0" width="4" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="4" id="bUe-mO-CK2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M49-cq-3xn">
+                            <rect key="frame" x="44" y="0.0" width="40" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="WL1-hg-FrB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="84" id="lH1-uz-mhM"/>
+                    </constraints>
+                </stackView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qa4-Yb-eOU">
+                    <rect key="frame" x="82" y="0.0" width="295" height="31"/>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Qa4-Yb-eOU" secondAttribute="bottom" id="0Ww-cT-FSu"/>
+                <constraint firstItem="CM0-1T-5mh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0lW-PV-ZC6"/>
+                <constraint firstItem="Qa4-Yb-eOU" firstAttribute="leading" secondItem="CM0-1T-5mh" secondAttribute="trailing" id="CwI-mZ-HMm"/>
+                <constraint firstItem="CM0-1T-5mh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LBJ-EZ-UT8"/>
+                <constraint firstItem="Qa4-Yb-eOU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Rbq-BL-Okq"/>
+                <constraint firstAttribute="trailing" secondItem="Qa4-Yb-eOU" secondAttribute="trailing" id="Sgd-3w-qaK"/>
+                <constraint firstItem="Qa4-Yb-eOU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="feH-29-ydP"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="currentTimeLabel" destination="KBr-zO-SOV" id="QIh-bh-Bvy"/>
+                <outlet property="endTimeLabel" destination="M49-cq-3xn" id="TVA-Fj-kIy"/>
+                <outlet property="slider" destination="Qa4-Yb-eOU" id="ysw-m0-zeX"/>
+            </connections>
+            <point key="canvasLocation" x="215.5" y="97"/>
+        </view>
+    </objects>
+</document>

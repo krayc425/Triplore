@@ -74,7 +74,6 @@
 /*
  * 播放影片
  */
-
 - (void)openPlayerByAlbumId:(NSString*)albumId tvId:(NSString*)tvId isVip:(NSString*)isVip;
 
 /*

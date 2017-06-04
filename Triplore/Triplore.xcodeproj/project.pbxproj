@@ -37,6 +37,8 @@
 		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
 		245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8B1EE4351900448986 /* libSDWebImage.a */; };
 		245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */; };
+		245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 245E5C901EE4510200448986 /* TPVideoProgressBar.m */; };
+		245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
@@ -175,6 +177,9 @@
 		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
 		245E5C8B1EE4351900448986 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
 		245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDZNEmptyDataSet.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/DZNEmptyDataSet/libDZNEmptyDataSet.a"; sourceTree = "<group>"; };
+		245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoProgressBar.h; sourceTree = "<group>"; };
+		245E5C901EE4510200448986 /* TPVideoProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoProgressBar.m; sourceTree = "<group>"; };
+		245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoProgressBar.xib; sourceTree = "<group>"; };
 		2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
@@ -426,6 +431,9 @@
 				71A44F81AE111CC04878CD49C5E6E129 /* TPSelectionViewController.m */,
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
+				245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */,
+				245E5C901EE4510200448986 /* TPVideoProgressBar.m */,
+				245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */,
 				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
 				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
 				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
@@ -785,6 +793,7 @@
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
+				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
 				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
@@ -927,6 +936,7 @@
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */,
+				245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,

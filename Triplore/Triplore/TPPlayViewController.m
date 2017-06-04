@@ -22,14 +22,18 @@
 #import "TPNoteViewTableViewCell.h"
 #import "TPVideoManager.h"
 #import "TPVideo.h"
+#import "TPVideoProgressBar.h"
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
 #define NAVIGATION_BAR_HEIGHT 0.0
 #define CONTROLLER_BAR_WIDTH 30.0
+#define VIDEO_PROGRESS_BAR_HEIGHT 20.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
+static TPVideoProgressBar *progressBar = NULL;
+
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate>{
     CGRect playFrame;
     UIView *playerView;
     UITextField *titleText;
@@ -76,7 +80,7 @@
     self.activityWheel.center = [QYPlayerController sharedInstance].view.center;
     
     titleText = [[UITextField alloc] initWithFrame:CGRectMake(20,
-                                                              playFrame.size.height + NAVIGATION_BAR_HEIGHT,
+                                                              playFrame.size.height + NAVIGATION_BAR_HEIGHT + VIDEO_PROGRESS_BAR_HEIGHT,
                                                               self.view.frame.size.width - 112 - 30,
                                                               64)];
     titleText.placeholder = @"填写笔记标题";
@@ -86,7 +90,7 @@
     [self.view addSubview:titleText];
     
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 112,
-                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
+                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT + VIDEO_PROGRESS_BAR_HEIGHT,
                                                                       24,
                                                                       24)];
     [editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
@@ -94,7 +98,7 @@
     [self.view addSubview:editButton];
     
     UIButton *screenshotButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 78,
-                                                                            playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
+                                                                            playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT + VIDEO_PROGRESS_BAR_HEIGHT,
                                                                             24,
                                                                             24)];
     [screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
@@ -102,7 +106,7 @@
     [self.view addSubview:screenshotButton];
     
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT,
+                                                                      playFrame.size.height + 20 + NAVIGATION_BAR_HEIGHT + VIDEO_PROGRESS_BAR_HEIGHT,
                                                                       24,
                                                                       24)];
     [saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
@@ -113,7 +117,7 @@
     //    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
-                                                                   CGRectGetHeight(playFrame) + 64,
+                                                                   CGRectGetHeight(playFrame) + 64 + VIDEO_PROGRESS_BAR_HEIGHT,
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    CGRectGetHeight(self.view.bounds) - CGRectGetHeight(playFrame) - 64 - 64)
                                                   style:UITableViewStylePlain];
@@ -203,6 +207,11 @@
         playView.hidden = NO;
         pauseView.hidden = YES;
     }
+}
+
+- (void)sliderValueChanged:(id)sender{
+    UISlider *slider = (UISlider *)sender;
+    NSLog(@"Slider value: %f", slider.value);
 }
 
 - (void)showPauseView{
@@ -313,7 +322,14 @@
  * 播放时长发生变化
  */
 -(void)playbackTimeChanged:(QYPlayerController *)player{
+    TPVideoProgressBar *bar = [TPPlayViewController getVideoProgressBar];
     
+    [bar setFrame:CGRectMake(15, playFrame.size.height, CGRectGetWidth(self.view.bounds) - 40, VIDEO_PROGRESS_BAR_HEIGHT)];
+    [bar setDelegate:self];
+    [bar setEndTimeWithSeconds:player.duration];
+    [bar setCurrentTimeWithSeconds:player.currentPlaybackTime];
+    
+    [self.view addSubview:[TPPlayViewController getVideoProgressBar]];
 }
 
 /*
@@ -330,13 +346,8 @@
     
 }
 
-- (BOOL)shouldAutorotate{
-    return YES;
-}
-
-//支持横竖屏显示
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskAll;
+- (void)setToTime:(double)time{
+    [[QYPlayerController sharedInstance] seekToTime:time];
 }
 
 #pragma mark - Button Action
@@ -614,7 +625,6 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     [[TPNoteCreator shareInstance] removeNoteView:self.noteViews[indexPath.row]];
     [self reloadNoteViews];
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [tableView reloadData];
 }
 
@@ -631,6 +641,18 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - TPVideoProgressBar Singleton
+
++ (TPVideoProgressBar *)getVideoProgressBar{
+    if(progressBar == NULL){
+        progressBar = [[[NSBundle mainBundle] loadNibNamed:@"TPVideoProgressBar" owner:nil options:nil] lastObject];
+        [progressBar.slider setThumbImage:[UIImage imageNamed:@"PROGRESS_OVAL"] forState:UIControlStateNormal];
+        [progressBar.slider setMinimumTrackTintColor:[UIColor colorWithRed:33.0/255.0 green:184.0/255.0 blue:34.0/255.0 alpha:1.0]];
+        [progressBar.slider addTarget:progressBar action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return progressBar;
 }
 
 @end
