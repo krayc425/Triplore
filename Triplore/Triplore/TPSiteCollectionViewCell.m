@@ -13,9 +13,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-//    self.backgroundColor = [UIColor lightGrayColor];
-    
+    // Initialization code    
     
     self.overlayView.backgroundColor = nil;
     

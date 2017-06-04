@@ -7,18 +7,22 @@
 //
 
 #import "TPVideoSingleTableViewCell.h"
+#import "TPVideoModel.h"
+#import "UIImage+URL.h"
 
 @interface TPVideoSingleTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *runtimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timesLabel;
 
 @end
 
 @implementation TPVideoSingleTableViewCell
+
+static NSInteger const width = 220;
+static NSInteger const height = 124;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -27,6 +31,19 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.coverImageView.image = [UIImage imageNamed:@"TEST_PNG"];
+}
+
+- (void)setVideo:(TPVideoModel *)video {
+    
+    NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
+    
+    self.titleLabel.text = video.shortTitle;
+    self.coverImageView.image = [UIImage imageWithUrl:url];
+  
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy.MM.dd"];
+    self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

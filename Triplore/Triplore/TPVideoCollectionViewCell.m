@@ -27,7 +27,7 @@ static NSInteger const height = 124;
     [super awakeFromNib];
     // Initialization code
     
-    self.coverImageView.image = [UIImage imageNamed:@"TEST_PNG"];
+//    self.coverImageView.image = [UIImage imageNamed:@"TEST_PNG"];
     
 }
 

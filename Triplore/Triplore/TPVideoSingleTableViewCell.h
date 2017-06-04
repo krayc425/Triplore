@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPVideoModel;
+
 @interface TPVideoSingleTableViewCell : UITableViewCell
+
+@property (nonatomic, nonnull) TPVideoModel *video;
 
 @end

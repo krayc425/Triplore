@@ -142,7 +142,9 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.navigationItem.title = titles[mode-1];
+    videoViewController.site = self.site;
+    videoViewController.keywords = titles[mode-1];
+//    videoViewController.navigationItem.title = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
 
@@ -156,7 +158,8 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.navigationItem.title = titles[mode-1];
+    videoViewController.site = self.site;
+    videoViewController.keywords = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
     
@@ -173,8 +176,10 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                                            searchBarPlaceholder:@"搜索视频"
                                                  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
                                                      TPVideoTableViewController *resultViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//                                                     resultViewController.mode = TPSiteSearchAll;
-                                                    resultViewController.navigationItem.title = searchText;
+                                                     
+                                                     resultViewController.site = self.site;
+                                                     resultViewController.keywords = searchText;
+                                                     
                                                      [searchViewController.navigationController pushViewController:resultViewController animated:YES];
                                                      
                                                  }];

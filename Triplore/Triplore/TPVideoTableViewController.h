@@ -10,4 +10,7 @@
 
 @interface TPVideoTableViewController : UITableViewController
 
+@property (nonatomic, nonnull) NSString *site;
+@property (nonatomic, nonnull) NSString *keywords;
+
 @end

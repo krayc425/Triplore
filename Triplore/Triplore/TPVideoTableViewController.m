@@ -9,9 +9,13 @@
 #import "TPVideoTableViewController.h"
 #import "TPVideoSingleTableViewCell.h"
 #import "TPVideoSeriesTableViewCell.h"
+#import "TPVideoModel.h"
+#import "TPNetworkHelper.h"
 #import "Utilities.h"
 
 @interface TPVideoTableViewController ()
+
+@property (nonatomic, strong) NSArray* videos;
 
 @end
 
@@ -33,6 +37,11 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPVideoSeriesTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
 
+    //
+    
+    self.navigationItem.title = self.keywords;
+    
+    [self request];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,10 +49,30 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Request
+
+- (void) request {
+    
+    NSArray *keywords;
+    
+    if (self.site == NULL) {
+        keywords = [self.keywords componentsSeparatedByString: @" "];
+    } else {
+        keywords = [[self.keywords componentsSeparatedByString: @" "] arrayByAddingObject:self.site];
+    }
+    
+    [TPNetworkHelper fetchVideosByKeywords:keywords withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videos = videos;
+        [self.tableView reloadData];
+    }];
+
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {\
-    return 4;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.videos.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -52,22 +81,27 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    
+    TPVideoModel *video = self.videos[indexPath.section];
+    
+    if (video.videoType == TPVideoAlbum) {
         TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
-        cell.count = 6;
+        cell.video = video;
+//        cell.count = 6;
         
         return cell;
     } else {
         TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
-    
+        cell.video = video;
         return cell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = CGRectGetWidth(self.view.frame);
+    TPVideoModel *video = self.videos[indexPath.section];
     
-    if (indexPath.section == 0) {
+    if (video.videoType == TPVideoAlbum) {
         return (width / 2 - 10) / 16 * 9 + 20 + 47 + 3*30 + 2*10;
     } else {
         return (width / 2 - 10) / 16 * 9 + 20;

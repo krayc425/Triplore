@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPVideoModel;
+
 @interface TPVideoSeriesTableViewCell : UITableViewCell
 
-@property (nonatomic) NSInteger count;
+@property (nonatomic, nonnull) TPVideoModel *video;
 
 @end

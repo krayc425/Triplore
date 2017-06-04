@@ -8,12 +8,14 @@
 
 #import "TPVideoSeriesTableViewCell.h"
 #import "TPVideoEpisodeTableViewCell.h"
+#import "TPVideoModel.h"
+#import "UIImage+URL.h"
 
 @interface TPVideoSeriesTableViewCell () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *episodeButton;
@@ -22,12 +24,14 @@
 
 @implementation TPVideoSeriesTableViewCell
 
+static NSInteger const width = 220;
+static NSInteger const height = 124;
+
 static NSString *cellIdentifier = @"TPVideoEpisodeTableViewCell";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -42,15 +46,26 @@ static NSString *cellIdentifier = @"TPVideoEpisodeTableViewCell";
 
 }
 
-- (void)setCount:(NSInteger)count {
-    _count = count;
-    self.episodeButton.titleLabel.text = [NSString stringWithFormat:@"全部 %d 集", count];
+
+- (void)setVideo:(TPVideoModel *)video {
+    
+    NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
+    
+    self.titleLabel.text = video.shortTitle;
+    self.coverImageView.image = [UIImage imageWithUrl:url];
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy.MM.dd"];
+    self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
+    
+//     self.episodeButton.titleLabel.text = [NSString stringWithFormat:@"全部 %d 集", video.];
+    
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return MIN(3, self.count);
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
