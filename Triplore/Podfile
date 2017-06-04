@@ -6,6 +6,7 @@ target 'Triplore' do
   pod 'PYSearch'
   pod 'DZNEmptyDataSet'
   pod 'FMDB'
+  pod 'SDWebImage'
 
 end
 

@@ -35,6 +35,8 @@
 		24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */; };
 		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
 		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
+		245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8B1EE4351900448986 /* libSDWebImage.a */; };
+		245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
@@ -171,6 +173,8 @@
 		24487CA81EDEB9780009E8E5 /* TPNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNote.m; sourceTree = "<group>"; };
 		24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNoteCollectionViewCell+Configure.h"; sourceTree = "<group>"; };
 		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
+		245E5C8B1EE4351900448986 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
+		245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDZNEmptyDataSet.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/DZNEmptyDataSet/libDZNEmptyDataSet.a"; sourceTree = "<group>"; };
 		2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
+				245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */,
 				24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */,
 				24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */,
 				2402CE091ED448080098770A /* libAFNetworking.a in Frameworks */,
@@ -578,6 +584,8 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */,
+				245E5C8B1EE4351900448986 /* libSDWebImage.a */,
 				24487C771EDE95F40009E8E5 /* libFMDB.a */,
 				24487C671EDE93940009E8E5 /* XCTest.framework */,
 				2402CE081ED448080098770A /* libAFNetworking.a */,

@@ -19,19 +19,24 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - PYSearch (0.8.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - FMDB
   - PYSearch
+  - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   PYSearch: 53c239376b392fe0658c2bd002f408e7caf63046
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: f4a3327b246b343f18a27208d90073fcf2cf9868
+PODFILE CHECKSUM: 2ac854104c838c02cb03fc2481c5fe14ec708a3d
 
 COCOAPODS: 1.2.1

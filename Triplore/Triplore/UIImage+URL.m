@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+URL.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UIImage (URL)
 

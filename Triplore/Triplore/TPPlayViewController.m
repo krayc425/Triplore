@@ -391,13 +391,19 @@
     NSLog(@"截图");
     //隐藏暂停按钮
     [[self.view viewWithTag:200] setHidden:YES];
+    //缩放因子
+    CGFloat factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, 1.0f);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, [[UIScreen mainScreen] scale]);
     [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width, playFrame.size.height)];
-    image = [image changeImageSizeWithOriginalImage:image percent:(1.0 - 40 / self.view.bounds.size.width)];
-    [self addNoteView:[[UIImageView alloc] initWithImage:image]];
+    image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width * 2, playFrame.size.height * 2)];
+    image = [image changeImageSizeWithOriginalImage:image percent:factor];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) * factor, CGRectGetHeight(playFrame) * factor)];
+    [imgView setImage:image];
+    [imgView setContentMode:UIViewContentModeScaleAspectFit];
+    [self addNoteView:imgView];
+    UIGraphicsEndImageContext();
     //恢复暂停按钮
     [[self.view viewWithTag:200] setHidden:NO];
 }
