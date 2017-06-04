@@ -82,10 +82,9 @@ static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    if([self.delegate respondsToSelector:@selector(didSelectSite:withMode:)]) {
-//        NSLog(@"select %@", self.sites[indexPath.item]);
-//        [self.delegate didSelectSite:self.sites[indexPath.item] withMode:self.mode];
-//    }
+    if([self.delegate respondsToSelector:@selector(didSelectVideo:)]) {
+        [self.delegate didSelectVideo:self.videos[indexPath.row]];
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

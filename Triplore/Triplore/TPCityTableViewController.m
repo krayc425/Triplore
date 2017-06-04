@@ -11,6 +11,8 @@
 #import "TPCityVideoTableViewCell.h"
 #import "PYSearchViewController.h"
 #import "TPVideoTableViewController.h"
+#import "TPPlayViewController.h"
+#import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
 #import "Utilities.h"
 
@@ -165,6 +167,14 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
 }
 
+- (void)didSelectVideo:(TPVideoModel *)video {
+ 
+    TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
+    [playViewController setNoteMode:TPNewNote];
+    playViewController.videoDict = video.videoDict;
+    
+    [self.navigationController pushViewController:playViewController animated:YES];
+}
 
 #pragma mark - Action
 

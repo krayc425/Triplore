@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
 
+@class TPVideoModel;
+
 @protocol TPCityVideoTableViewCellDelegate <NSObject>
 
-//- (void)didSelectSite:(NSString * _Nonnull)site withMode:(TPSiteMode)mode;
+- (void)didSelectVideo:(TPVideoModel * _Nonnull)video;
 
 @optional
 
 - (void)didTapAllWithMode:(TPCategoryMode)mode;
 
 @end
-
-@class TPVideoModel;
 
 @interface TPCityVideoTableViewCell : UITableViewCell
 

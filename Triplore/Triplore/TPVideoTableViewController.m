@@ -9,6 +9,7 @@
 #import "TPVideoTableViewController.h"
 #import "TPVideoSingleTableViewCell.h"
 #import "TPVideoSeriesTableViewCell.h"
+#import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
 #import "Utilities.h"
@@ -117,6 +118,15 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     return 0.1;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TPVideoModel *video = self.videos[indexPath.section];
+    TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
+    [playViewController setNoteMode:TPNewNote];
+    playViewController.videoDict = video.videoDict;
+    
+    [self.navigationController pushViewController:playViewController animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.
