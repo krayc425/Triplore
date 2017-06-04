@@ -393,11 +393,12 @@
     [[self.view viewWithTag:200] setHidden:YES];
     //缩放因子
     CGFloat factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
+    CGFloat scale = [[UIScreen mainScreen] scale];
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, scale);
     [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, playFrame.size.width * 2, playFrame.size.height * 2)];
+    image = [image getSubImage:CGRectMake(0, NAVIGATION_BAR_HEIGHT, CGRectGetWidth(self.view.frame) * scale, CGRectGetHeight(playFrame) * scale)];
     image = [image changeImageSizeWithOriginalImage:image percent:factor];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) * factor, CGRectGetHeight(playFrame) * factor)];
     [imgView setImage:image];

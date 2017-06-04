@@ -52,9 +52,14 @@ static DBManager * _instance = nil;
         //先看有没有这张表
         if(![self.db tableExists:@"t_video"]){
             BOOL result = [self.db executeUpdate:
-                      @"CREATE TABLE IF NOT EXISTS t_video (videoid integer PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL)"];
+                      @"CREATE TABLE IF NOT EXISTS t_video (videoid integer PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL, favorite integer)"];
             if (result){
                 NSLog(@"创建表 video 成功");
+            }
+        }else{
+            if(![self.db columnExists:@"favorite" inTableWithName:@"t_video"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ integer", @"t_video", @"favorite"]];
+                NSLog(@"增加表 video 字段 favorite 成功");
             }
         }
         

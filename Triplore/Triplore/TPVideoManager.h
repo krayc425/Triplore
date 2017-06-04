@@ -28,4 +28,20 @@
  */
 + (TPVideo *_Nullable)fetchVideoWithID:(NSInteger)videoid;
 
+/**
+ （取消）收藏/喜爱一个视频
+
+ @param video 视频
+ @param isFavorite   是喜爱还是取消喜爱
+ @return 是否（取消）收藏/喜爱成功
+ */
++ (BOOL)commentVideo:(TPVideo *_Nonnull)video withFavorite:(NSInteger)isFavorite;
+
+/**
+ 得到所有喜爱的视频
+
+ @return 喜爱的视频数组
+ */
++ (NSArray<TPVideo *> *_Nullable)fetchFavoriteVideos;
+
 @end
