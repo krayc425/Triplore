@@ -22,13 +22,18 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:dateFormatString];
         self.videoDate = [dateFormatter dateFromString:dict[@"date_format"]];
+        self.playCount = [dict[@"play_count"] longValue];
+        self.playCountString = dict[@"play_count_text"];
         switch ([dict[@"p_type"] integerValue]) {
             case 1:
                 self.videoType = TPVideoNormal;
                 break;
             case 2:
             case 3:
+            {
                 self.videoType = TPVideoAlbum;
+                self.totalEpisode = [dict[@"total_num"] integerValue];
+            }
                 break;
             default:
                 self.videoType = TPVideoNormal;

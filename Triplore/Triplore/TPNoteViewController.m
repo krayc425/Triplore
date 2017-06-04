@@ -55,6 +55,12 @@
     [self.tableView addGestureRecognizer:longPress];
     self.touchPoints = [[NSMutableArray alloc] init];
     
+    //点击标题进行更改
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    [button addTarget:self action:@selector(editTitleAction) forControlEvents:UIControlEventTouchUpInside];
+    button.contentMode = UIViewContentModeScaleAspectFit;
+    self.navigationItem.titleView = button;
+    
     //保存按钮
 //    if(self.noteMode == TPNewNote) {
         UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
@@ -98,6 +104,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setNoteTitle:(NSString *)noteTitle{
+    _noteTitle = noteTitle;
+    UIButton *button  = (UIButton *)self.navigationItem.titleView;
+    [button setTitle:self.noteTitle forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -153,14 +165,13 @@
 }
 
 - (BOOL)saveNote{
-    
     NSLog(@"保存");
     BOOL success = NO;
     //新增
     if(self.noteMode == TPNewNote){
         TPNote *note = [TPNote new];
         [note setVideoid:(NSInteger)self.videoDict[@"id"]];
-        [note setTitle:self.note.title];
+        [note setTitle:self.noteTitle];
         [note setViews:self.noteViews];
         [note setCreateTime:[NSDate date]];
         success = [TPNoteManager insertNote:note];
@@ -171,6 +182,7 @@
         success = success && [TPVideoManager insertVideo:video];
     }else{
         [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
+        [self.note setTitle:self.noteTitle];
         
         success = [TPNoteManager updateNote:self.note];
     }
@@ -215,11 +227,15 @@
     }
 }
 
-- (void)editNoteActionWithString:(NSString *)string{
+- (void)editTitleAction{
+    [self editNoteActionWithString:self.noteTitle andMode:TPUpdateTitle];
+}
+
+- (void)editNoteActionWithString:(NSString *)string andMode:(TPAddMode)mode{
     TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
     textVC.addNoteViewDelegate = self;
     [textVC setNoteString:string];
-    [textVC setAddMode:TPUpdateNote];
+    [textVC setAddMode:mode];
     [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
     [self presentViewController:textVC animated:YES completion:nil];
@@ -229,6 +245,10 @@
     [self.noteViews replaceObjectAtIndex:selectedIndexPath.row withObject:view];
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)updateTitle:(NSString *)title{
+    [self setNoteTitle:title];
 }
 
 #pragma mark - Long Pressed Gesture
@@ -428,7 +448,7 @@
     selectedIndexPath = indexPath;
     if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
         UILabel *label = (UILabel *)self.noteViews[indexPath.row];
-        [self editNoteActionWithString:label.text];
+        [self editNoteActionWithString:label.text andMode:TPUpdateNote];
     }
 }
 

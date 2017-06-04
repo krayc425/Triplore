@@ -42,10 +42,9 @@
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
     
-    
     if(self.addMode == TPAddNote){
         [self.okButton setTitle:@"添 加" forState:UIControlStateNormal];
-    }else if(self.addMode == TPUpdateNote){
+    }else if(self.addMode == TPUpdateNote || self.addMode == TPUpdateTitle){
         [self.okButton setTitle:@"保 存" forState:UIControlStateNormal];
     }
     
@@ -77,6 +76,8 @@
         [self.addNoteViewDelegate addNoteView:label];
     }else if(self.addMode == TPUpdateNote){
         [self.addNoteViewDelegate updateNoteView:label];
+    }else if(self.addMode == TPUpdateTitle){
+        [self.addNoteViewDelegate updateTitle:label.text];
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];

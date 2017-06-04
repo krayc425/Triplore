@@ -24,7 +24,14 @@ typedef NS_ENUM(NSInteger, TPVideoType){
 @property (nonatomic) NSInteger videoid;
 @property (nonnull, nonatomic) NSDate *videoDate;
 @property (nonatomic) TPVideoType videoType;
+@property (nonatomic) NSInteger playCount;
+@property (nonnull, nonatomic) NSString *playCountString;
 @property (nonnull, nonatomic) NSDictionary *videoDict;
+
+/**
+ 若是专辑类型，这个属性记录有几集
+ */
+@property (nonatomic) NSInteger totalEpisode;
 
 - (_Nonnull instancetype)initWithDict:(NSDictionary *_Nonnull)dict;
 
