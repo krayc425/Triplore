@@ -19,6 +19,8 @@
 
 @end
 
+@class TPVideoModel;
+
 @interface TPCityVideoTableViewCell : UITableViewCell
 
 @property (nonnull, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -28,6 +30,7 @@
 @property (nonnull, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic) TPCategoryMode mode;
+@property (nonatomic, nonnull) NSArray<TPVideoModel *> *videos;
 
 @property (nonatomic, nonnull) id<TPCityVideoTableViewCellDelegate> delegate;
 

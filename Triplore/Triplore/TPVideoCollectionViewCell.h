@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPVideoModel;
+
 @interface TPVideoCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, nonnull) TPVideoModel *video;
 
 @end

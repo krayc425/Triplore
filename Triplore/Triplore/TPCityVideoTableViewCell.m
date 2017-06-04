@@ -8,6 +8,7 @@
 
 #import "TPCityVideoTableViewCell.h"
 #import "TPVideoCollectionViewCell.h"
+#import "TPVideoModel.h"
 
 @interface TPCityVideoTableViewCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -51,6 +52,11 @@ static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
     }
 }
 
+- (void)setVideos:(NSArray *)videos {
+    _videos = videos;
+    [self.collectionView reloadData];
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -58,11 +64,13 @@ static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return self.videos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.video = self.videos[indexPath.row];
+    
 //    cell.titleLabel.text = self.sites[indexPath.item];
     
     // Configure the cell

@@ -12,6 +12,7 @@
 
 @interface TPCityInfoTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UILabel *siteLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UIView *overlayView;
 @property (weak, nonatomic) IBOutlet TPCategoryButton *foodButton;
@@ -46,6 +47,7 @@
     }
 }
 
+
 - (void)layoutSubviews {
     
     [super layoutSubviews];
@@ -66,6 +68,11 @@
     
     [self.overlayView.layer insertSublayer:gradientLayer atIndex:0];
     
+}
+
+- (void)setSite:(NSString *)site {
+    _site = site;
+    self.siteLabel.text = self.site;
 }
 
 - (void)clickCategoryButton:(UIButton *)button {

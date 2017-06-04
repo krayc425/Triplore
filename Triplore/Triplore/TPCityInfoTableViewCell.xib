@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oz6-zU-t5z">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oz6-zU-t5z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="oz6-zU-t5z" secondAttribute="height" multiplier="7:3" id="DXU-66-SBl"/>
@@ -90,6 +90,7 @@
                 <outlet property="overlayView" destination="iqC-EL-GTJ" id="Zg4-fq-zZL"/>
                 <outlet property="placeButton" destination="tzr-sg-AON" id="v0u-q2-AV7"/>
                 <outlet property="shoppingButton" destination="czy-o5-1r3" id="qWi-Qr-Ezr"/>
+                <outlet property="siteLabel" destination="pnK-sk-PmQ" id="Kxa-h0-6Qr"/>
             </connections>
             <point key="canvasLocation" x="-41.5" y="140.5"/>
         </tableViewCell>

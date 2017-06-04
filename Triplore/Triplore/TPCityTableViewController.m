@@ -11,9 +11,14 @@
 #import "TPCityVideoTableViewCell.h"
 #import "PYSearchViewController.h"
 #import "TPVideoTableViewController.h"
+#import "TPNetworkHelper.h"
 #import "Utilities.h"
 
 @interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate, TPCityInfoTableViewCellDelegate>
+
+@property (nonatomic, strong) NSArray* videosFood;
+@property (nonatomic, strong) NSArray* videosShopping;
+@property (nonatomic, strong) NSArray* videosPlace;
 
 @end
 
@@ -36,12 +41,38 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
+    
+    //
+    self.navigationItem.title = self.site;
+    
+    [self request];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Request
+
+- (void) request {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
+    }];
+    
+    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"购物"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
+    }];
+    
+    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"景点"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
+    }];
+}
+
 
 #pragma mark - Table view data source
 
@@ -56,6 +87,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPCityInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellIdentifier forIndexPath:indexPath];
+        cell.site = self.site;
         cell.delegate = self;
         return cell;
     } else {
@@ -64,12 +96,15 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
         switch (indexPath.section) {
             case 1:
                 cell.mode = TPCategoryFood;
+                cell.videos = self.videosFood;
                 break;
             case 2:
                 cell.mode = TPCategoryShopping;
+                cell.videos = self.videosShopping;
                 break;
             case 3:
                 cell.mode = TPCategoryPlace;
+                cell.videos = self.videosPlace;
                 break;
             default:
                 break;

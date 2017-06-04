@@ -75,7 +75,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
          }
          failure:^(NSURLSessionDataTask *_Nullable task, NSError * _Nonnull error) {
              if (completionBlock){
-                 completionBlock(nil, nil);
+                 completionBlock(nil, error);
              }
          }];
 }
@@ -147,7 +147,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
          }
          failure:^(NSURLSessionDataTask *_Nullable task, NSError * _Nonnull error) {
              if (completionBlock){
-                 completionBlock(nil, nil);
+                 completionBlock(nil, error);
              }
          }];
 
@@ -227,7 +227,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
          }
          failure:^(NSURLSessionDataTask *_Nullable task, NSError * _Nonnull error) {
              if (completionBlock){
-                 completionBlock(nil, nil);
+                 completionBlock(nil, error);
              }
          }];
 }

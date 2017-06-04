@@ -110,10 +110,11 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
         countryViewController.cities = self.cities;
         countryViewController.navigationItem.title = site;
         [self.navigationController pushViewController:countryViewController animated:YES];
+        
     } else if (mode == TPSiteSearchCity) {
         TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         
-        cityViewController.navigationItem.title = site;
+        cityViewController.site = site;
         [self.navigationController pushViewController:cityViewController animated:YES];
     }
 }

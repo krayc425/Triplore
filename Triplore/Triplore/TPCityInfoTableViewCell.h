@@ -19,6 +19,7 @@
 
 @interface TPCityInfoTableViewCell : UITableViewCell
 
+@property (nonatomic, nonnull) NSString *site;
 
 @property (nonatomic, nonnull) id<TPCityInfoTableViewCellDelegate> delegate;
 
