@@ -22,7 +22,7 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:dateFormatString];
         self.videoDate = [dateFormatter dateFromString:dict[@"date_format"]];
-        self.playCount = [dict[@"play_count"] longValue];
+        self.playCount = [dict[@"play_count"] integerValue];
         self.playCountString = dict[@"play_count_text"];
         switch ([dict[@"p_type"] integerValue]) {
             case 1:
