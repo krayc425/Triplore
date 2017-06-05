@@ -13,8 +13,9 @@
 #import "Utilities.h"
 #import "TPNote.h"
 #import "TPNoteManager.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface TPNoteCollectionViewController () <UIViewControllerPreviewingDelegate>
+@interface TPNoteCollectionViewController () <UIViewControllerPreviewingDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @end
 
@@ -29,6 +30,9 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     self.collectionView.backgroundColor = [Utilities getBackgroundColor];
+    
+    self.collectionView.emptyDataSetSource = self;
+    self.collectionView.emptyDataSetDelegate = self;
     
     self.navigationController.navigationBar.barTintColor = [Utilities getColor];
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
@@ -105,7 +109,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
 }
-
 
 #pragma mark - UIViewControllerPreviewingDelegate
 

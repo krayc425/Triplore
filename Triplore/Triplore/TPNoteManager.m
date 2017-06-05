@@ -45,7 +45,7 @@
 
 + (NSArray<TPNote *> *)fetchAllNotes{
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
-    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_note;"];
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_note ORDER BY createTime DESC;"];
     while([resultSet next]){
         TPNote *note = [TPNote new];
         [note setNoteid:[resultSet intForColumn:@"noteid"]];

@@ -119,7 +119,7 @@ static TPVideoProgressBar *progressBar = NULL;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    CGRectGetHeight(playFrame) + 64 + VIDEO_PROGRESS_BAR_HEIGHT,
                                                                    CGRectGetWidth(self.view.bounds),
-                                                                   CGRectGetHeight(self.view.bounds) - CGRectGetHeight(playFrame) - 64 - 64)
+                                                                   CGRectGetHeight(self.view.bounds) - CGRectGetHeight(playFrame) - 64 - 64 - VIDEO_PROGRESS_BAR_HEIGHT)
                                                   style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -159,7 +159,9 @@ static TPVideoProgressBar *progressBar = NULL;
     NSString* aid = [self.videoDict valueForKey:@"a_id"];
     NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
     NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
-    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
+    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:@"1"];
+    
+    self.title = self.videoDict[@"short_title"];
     
     //存入视频列表
     TPVideo *newVideo = [TPVideo new];

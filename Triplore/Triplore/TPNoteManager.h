@@ -45,7 +45,7 @@
 + (TPNote *_Nullable)fetchNoteWithID:(NSInteger)noteid;
 
 /**
- 得到所有笔记
+ 得到所有笔记，按创建时间排序
 
  @return 笔记模型数组
  */

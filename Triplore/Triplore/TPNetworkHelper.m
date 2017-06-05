@@ -183,7 +183,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
         
         NSDictionary *dict = @{
                                @"key" : albumName,
-                               @"from" : @"mobile_list",
+                               @"from" : @"mobile_search",
                                @"page_size" : @(300),   //这个……暂时先这样
                                @"version" : @(7.5),
                                @"app_k" : @"f0f6c3ee5709615310c0f053dc9c65f2",
