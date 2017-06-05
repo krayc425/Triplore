@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSInteger, TPAddMode){
     TPAddNote     = 1,
     TPUpdateNote  = 2,
+    TPUpdateTitle = 3,
 };
 
 @protocol TPAddNoteViewDelegate <NSObject>
@@ -30,6 +31,13 @@ typedef NS_ENUM(NSInteger, TPAddMode){
  @param view 笔记 View
  */
 - (void)updateNoteView:(UIView *_Nonnull)view;
+
+/**
+ 更新标题
+ 
+ @param title 标题 String 
+ */
+- (void)updateTitle:(NSString *_Nonnull)title;
 
 @end
 

@@ -74,7 +74,6 @@
 /*
  * 播放影片
  */
-
 - (void)openPlayerByAlbumId:(NSString*)albumId tvId:(NSString*)tvId isVip:(NSString*)isVip;
 
 /*
@@ -98,6 +97,7 @@
  * 参数：
  */
 - (double)currentPlaybackTime;
+
 /*
  * 功能:  返回视频总时长，加载完成后有效 单位 s
  * 参数：
@@ -137,7 +137,5 @@
  *
  */
 - (void)setMute:(BOOL)mute;
-
-- (BOOL)isJailBreakJudge;
 
 @end

@@ -9,7 +9,9 @@
 #import <XCTest/XCTest.h>
 #import "DBManager.h"
 #import "FMDatabase.h"
+#import "TPVideo.h"
 #import "TPNetworkHelper.h"
+#import "TPVideoManager.h"
 
 @interface TriploreTests : XCTestCase
 
@@ -119,6 +121,14 @@
         //TODO
            NSLog(@"!!!%@!!!", videos);
     }];
+}
+
+- (void)testFavoriteVideo{
+    TPVideo *video = [TPVideo new];
+    [video setVideoid:0];
+    [video setDict:@{}];
+    
+    [TPVideoManager commentVideo:video withFavorite:1];
 }
 
 - (void)testPerformanceExample {

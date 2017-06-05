@@ -50,21 +50,8 @@
     [self createTableView];
     [self requestUrl];
     [self showLoadingView];
-    
-    
-//    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-//        //TODO
-//    }];
-//    
-//    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-//        //TODO
-//    }];
-//    
-//    [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-//        //TODO
-//        NSLog(@"%lu videos in album", (unsigned long)videos.count);
-//    }];
 }
+
 -(void)showLoadingView
 {
     self.tableView.hidden = YES;

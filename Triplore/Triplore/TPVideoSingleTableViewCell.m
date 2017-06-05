@@ -9,6 +9,7 @@
 #import "TPVideoSingleTableViewCell.h"
 #import "TPVideoModel.h"
 #import "UIImage+URL.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TPVideoSingleTableViewCell ()
 
@@ -38,7 +39,9 @@ static NSInteger const height = 124;
     NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
     
     self.titleLabel.text = video.shortTitle;
-    self.coverImageView.image = [UIImage imageWithUrl:url];
+//    self.coverImageView.image = [UIImage imageWithUrl:url];
+    
+    [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
   
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];

@@ -7,12 +7,21 @@
 //
 
 #import "TPVideoModel.h"
+#import "TPVideo.h"
 
 static NSString *dateFormatString = @"yyyy-MM-dd";
 
 @implementation TPVideoModel
 
-- (instancetype)initWithDict:(NSDictionary *)dict{
+- (instancetype)initWithTPVideo:(TPVideo *_Nonnull)video{
+    self = [super init];
+    if(self){
+        self = [self initWithDict:video.dict];
+    }
+    return self;
+}
+
+- (instancetype)initWithDict:(NSDictionary *_Nonnull)dict{
     self = [super init];
     if (self) {
         self.title = dict[@"title"];
@@ -22,13 +31,18 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:dateFormatString];
         self.videoDate = [dateFormatter dateFromString:dict[@"date_format"]];
+        self.playCount = [dict[@"play_count"] integerValue];
+        self.playCountString = dict[@"play_count_text"];
         switch ([dict[@"p_type"] integerValue]) {
             case 1:
                 self.videoType = TPVideoNormal;
                 break;
             case 2:
             case 3:
+            {
                 self.videoType = TPVideoAlbum;
+                self.totalEpisode = [dict[@"total_num"] integerValue];
+            }
                 break;
             default:
                 self.videoType = TPVideoNormal;

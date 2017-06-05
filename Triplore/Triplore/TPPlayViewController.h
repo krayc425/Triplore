@@ -13,10 +13,6 @@
 
 @interface TPPlayViewController : UIViewController
 
-//@property (nonatomic, strong) NSDictionary *playDetail;
-//@property (nonatomic) NSInteger playMode;
-//@property (nonatomic, strong) NSMutableArray *noteViews;
-
 @property (nonatomic) TPNoteMode noteMode;
 
 @property (nonnull, nonatomic) TPNote *note;
