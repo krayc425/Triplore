@@ -35,6 +35,11 @@
 		24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */; };
 		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
 		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
+		245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0901EE5B905002CA7AC /* JSONTests.m */; };
+		245BD0941EE5B9F0002CA7AC /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 245BD0931EE5B9F0002CA7AC /* Site.plist */; };
+		245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0961EE5BA93002CA7AC /* TPCountryModel.m */; };
+		245BD09A1EE5BA9C002CA7AC /* TPCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0991EE5BA9C002CA7AC /* TPCityModel.m */; };
+		245BD09E1EE5BB27002CA7AC /* TPSiteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD09D1EE5BB27002CA7AC /* TPSiteHelper.m */; };
 		245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8B1EE4351900448986 /* libSDWebImage.a */; };
 		245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */; };
 		245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 245E5C901EE4510200448986 /* TPVideoProgressBar.m */; };
@@ -175,6 +180,14 @@
 		24487CA81EDEB9780009E8E5 /* TPNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNote.m; sourceTree = "<group>"; };
 		24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNoteCollectionViewCell+Configure.h"; sourceTree = "<group>"; };
 		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
+		245BD0901EE5B905002CA7AC /* JSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTests.m; sourceTree = "<group>"; };
+		245BD0931EE5B9F0002CA7AC /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
+		245BD0951EE5BA93002CA7AC /* TPCountryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCountryModel.h; sourceTree = "<group>"; };
+		245BD0961EE5BA93002CA7AC /* TPCountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCountryModel.m; sourceTree = "<group>"; };
+		245BD0981EE5BA9C002CA7AC /* TPCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCityModel.h; sourceTree = "<group>"; };
+		245BD0991EE5BA9C002CA7AC /* TPCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCityModel.m; sourceTree = "<group>"; };
+		245BD09C1EE5BB27002CA7AC /* TPSiteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteHelper.h; sourceTree = "<group>"; };
+		245BD09D1EE5BB27002CA7AC /* TPSiteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteHelper.m; sourceTree = "<group>"; };
 		245E5C8B1EE4351900448986 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/SDWebImage/libSDWebImage.a"; sourceTree = "<group>"; };
 		245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDZNEmptyDataSet.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphoneos/DZNEmptyDataSet/libDZNEmptyDataSet.a"; sourceTree = "<group>"; };
 		245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoProgressBar.h; sourceTree = "<group>"; };
@@ -384,6 +397,7 @@
 		2402CE161ED44DD60098770A /* Site */ = {
 			isa = PBXGroup;
 			children = (
+				245BD09B1EE5BAA2002CA7AC /* SiteData */,
 				2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */,
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
 				4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */,
@@ -463,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				24487C9C1EDE9D120009E8E5 /* TriploreTests.m */,
+				245BD0901EE5B905002CA7AC /* JSONTests.m */,
 				24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */,
 				24487C9E1EDE9D120009E8E5 /* Info.plist */,
 			);
@@ -480,6 +495,19 @@
 				24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */,
 			);
 			name = NoteData;
+			sourceTree = "<group>";
+		};
+		245BD09B1EE5BAA2002CA7AC /* SiteData */ = {
+			isa = PBXGroup;
+			children = (
+				245BD0951EE5BA93002CA7AC /* TPCountryModel.h */,
+				245BD0961EE5BA93002CA7AC /* TPCountryModel.m */,
+				245BD0981EE5BA9C002CA7AC /* TPCityModel.h */,
+				245BD0991EE5BA9C002CA7AC /* TPCityModel.m */,
+				245BD09C1EE5BB27002CA7AC /* TPSiteHelper.h */,
+				245BD09D1EE5BB27002CA7AC /* TPSiteHelper.m */,
+			);
+			name = SiteData;
 			sourceTree = "<group>";
 		};
 		2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */ = {
@@ -584,6 +612,7 @@
 				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
 				2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */,
 				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
+				245BD0931EE5B9F0002CA7AC /* Site.plist */,
 				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -791,6 +820,7 @@
 				4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */,
 				4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
+				245BD0941EE5B9F0002CA7AC /* Site.plist in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
 				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
@@ -907,6 +937,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */,
+				245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,8 +953,10 @@
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
+				245BD09E1EE5BB27002CA7AC /* TPSiteHelper.m in Sources */,
 				4D4DF7931EE104920012F476 /* TPCityVideoTableViewCell.m in Sources */,
 				4D4DF7A41EE17D470012F476 /* TPVideoSingleTableViewCell.m in Sources */,
+				245BD09A1EE5BA9C002CA7AC /* TPCityModel.m in Sources */,
 				241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */,
 				4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
@@ -950,6 +983,7 @@
 				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
 				4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */,
 				4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */,
+				245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */,
 				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				00A265D1E72E2ACBA479B13E8A172E43 /* TPSelectionViewController.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
