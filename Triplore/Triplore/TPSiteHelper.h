@@ -13,5 +13,5 @@
 @interface TPSiteHelper : NSObject
 
 + (void)fetchAllCountriesWithBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock;
-
++ (void)fetchCountriesWithNum:(NSInteger)num withBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock;
 @end

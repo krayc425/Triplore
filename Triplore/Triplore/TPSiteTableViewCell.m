@@ -9,7 +9,9 @@
 #import "TPSiteTableViewCell.h"
 #import "Utilities.h"
 #import "TPSiteCollectionViewCell.h"
-
+#import "TPCountryModel.h"
+#import "TPCityModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TPSiteTableViewCell () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -67,12 +69,26 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.sites.count;
+    if (self.mode == TPSiteCountry) {
+        return self.countries.count;
+    } else if (self.mode == TPSiteCity) {
+        return self.cities.count;
+    }
+    
+    return 0;
 }
 
 - (TPSiteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPSiteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.titleLabel.text = self.sites[indexPath.item];
+    
+    if (self.mode == TPSiteCountry) {
+        cell.titleLabel.text = self.countries[indexPath.item].chineseName;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.countries[indexPath.item].imageURL]];
+        
+    } else if (self.mode == TPSiteCity) {
+        cell.titleLabel.text = self.cities[indexPath.item].chineseName;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.cities[indexPath.item].imageURL]];
+    }
     
     // Configure the cell
     
@@ -84,8 +100,17 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
     if([self.delegate respondsToSelector:@selector(didSelectSite:withMode:)]) {
-        NSLog(@"select %@", self.sites[indexPath.item]);
-        [self.delegate didSelectSite:self.sites[indexPath.item] withMode:self.mode];
+        
+        if (self.mode == TPSiteCountry) {
+            NSLog(@"select %@", self.countries[indexPath.item]);
+            [self.delegate didSelectSite:self.countries[indexPath.item].chineseName withMode:self.mode];
+
+        } else if (self.mode == TPSiteCity) {
+            NSLog(@"select %@", self.cities[indexPath.item]);
+            [self.delegate didSelectSite:self.cities[indexPath.item].chineseName withMode:self.mode];
+
+        }
+
     }
 }
 

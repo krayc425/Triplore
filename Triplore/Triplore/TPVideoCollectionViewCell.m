@@ -35,13 +35,10 @@ static NSInteger const height = 124;
 - (void)setVideo:(TPVideoModel *)video {
     
     NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
-    
-    self.titleLabel.text = video.shortTitle;
-//    self.coverImageView.image = [UIImage imageWithUrl:url];
-    
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
     
-//    NSLog(@"%@", );
+    self.titleLabel.text = video.shortTitle;
+    
 }
 
 @end

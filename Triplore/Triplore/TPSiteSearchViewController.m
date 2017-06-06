@@ -10,7 +10,8 @@
 #import "TPCityTableViewController.h"
 #import "Utilities.h"
 #import "TPSiteTableViewCell.h"
-
+#import "TPCountryModel.h"
+#import "TPCityModel.h"
 
 @interface TPSiteSearchViewController () <TPSiteTableViewCellDelegate>
 
@@ -30,8 +31,8 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-    self.countries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
-    self.cities = @[@"东京", @"京都", @"大阪"];
+//    self.countries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
+//    self.cities = @[@"东京", @"京都", @"大阪"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,14 +65,14 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     if (self.mode == TPSiteSearchAll || self.mode == TPSiteSearchCountry) {
         if (indexPath.section == 0) {
             cell.mode = TPSiteCountry;
-            [cell setSites:self.countries];
+            cell.countries = self.countries;
         } else if (indexPath.section == 1) {
             cell.mode = TPSiteCity;
-            [cell setSites:self.cities];
+            cell.cities = self.cities;
         }
     } else if (self.mode == TPSiteSearchCity) {
         cell.mode = TPSiteCity;
-        [cell setSites:self.cities];
+        cell.cities = self.cities;
     }
 
     return cell;

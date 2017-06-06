@@ -67,6 +67,8 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
         self.videos = videos;
         [self.tableView reloadData];
     }];
+    
+    
 
 }
 
@@ -88,6 +90,19 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     if (video.videoType == TPVideoAlbum) {
         TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
         cell.video = video;
+            [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+                
+                NSLog(@"美食大冒险之文明之");
+                NSLog(@"%d", videos.count);
+                
+            }];
+        
+        [TPNetworkHelper fetchVideosInAlbum:@"" andAlbumID:[NSString stringWithFormat:@"%d", video.videoid] withBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+            
+            NSLog(@"%@ %d", video.title, video.videoid);
+            NSLog(@"%d", videos.count);
+            
+        }];
 //        cell.count = 6;
         
         return cell;

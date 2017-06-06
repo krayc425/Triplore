@@ -51,11 +51,10 @@ static NSString *cellIdentifier = @"TPVideoEpisodeTableViewCell";
 - (void)setVideo:(TPVideoModel *)video {
     
     NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
-    
-    self.titleLabel.text = video.shortTitle;
-//    self.coverImageView.image = [UIImage imageWithUrl:url];
-    
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
+    
+    self.titleLabel.text = video.shortTitle;    
+    self.timesLabel.text = [NSString stringWithFormat:@"播放%d次", video.playCount];
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];

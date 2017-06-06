@@ -13,6 +13,9 @@ typedef NS_ENUM(NSInteger, TPSiteMode){
     TPSiteCity      = 2,
 };
 
+@class TPCountryModel;
+@class TPCityModel;
+
 @protocol TPSiteTableViewCellDelegate <NSObject>
 
 - (void)didSelectSite:(NSString * _Nonnull)site withMode:(TPSiteMode)mode;
@@ -34,7 +37,8 @@ typedef NS_ENUM(NSInteger, TPSiteMode){
 @property (nonatomic) BOOL isAll;
 
 @property (nonatomic) TPSiteMode mode;
-@property (nonatomic, nonnull) NSArray *sites;
+@property (nonatomic, nonnull) NSArray<TPCountryModel *>*countries;
+@property (nonatomic, nonnull) NSArray<TPCityModel *>*cities;
 
 @property (nonatomic, nonnull) id<TPSiteTableViewCellDelegate> delegate;
 

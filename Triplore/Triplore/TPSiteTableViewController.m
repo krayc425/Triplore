@@ -12,11 +12,14 @@
 #import "PYSearchViewController.h"
 #import "TPSiteSearchViewController.h"
 #import "TPCityTableViewController.h"
+#import "TPSiteHelper.h"
+#import "TPCountryModel.h"
+#import "TPCityModel.h"
 
 @interface TPSiteTableViewController () <TPSiteTableViewCellDelegate, PYSearchViewControllerDelegate>
 
-@property (nonatomic, strong) NSArray* testCountries;
-@property (nonatomic, strong) NSArray* testCities;
+@property (nonatomic, strong) NSArray<TPCountryModel *>* testCountries;
+@property (nonatomic, strong) NSArray<TPCityModel *>* testCities;
 
 @end
 
@@ -42,8 +45,16 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-    self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
-    self.testCities = @[@"东京", @"京都", @"大阪"];
+    [TPSiteHelper fetchCountriesWithNum:3 withBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
+        self.testCountries = countries;
+    }];
+    
+    [TPSiteHelper fetchCountriesWithNum:1 withBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
+        self.testCities = countries[0].cityModelArr;
+    }];
+    
+//    self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
+//    self.testCities = @[@"东京", @"京都", @"大阪"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,10 +79,10 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     
     if (indexPath.section == 0) {
         cell.mode = TPSiteCountry;
-        [cell setSites:self.testCountries];
+        cell.countries = self.testCountries;
     } else if (indexPath.section == 1) {
         cell.mode = TPSiteCity;
-        [cell setSites:self.testCities];
+        cell.cities = self.testCities;
     }
     
     return cell;
@@ -118,8 +129,12 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     if (mode == TPSiteCountry) {
         TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
         countryViewController.mode = TPSiteSearchCountry;
-        countryViewController.cities = self.testCountries;
+        [TPSiteHelper fetchAllCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
+            countryViewController.countries = countries;
+        }];
         [self.navigationController pushViewController:countryViewController animated:YES];
+        
+        
     } else if (mode == TPSiteSearchCity) {
         TPSiteSearchViewController *cityViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
         cityViewController.mode = TPSiteSearchCity;
