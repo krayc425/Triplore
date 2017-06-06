@@ -117,9 +117,13 @@
 //     
 //    }];
     
-    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        //TODO
-           NSLog(@"!!!%@!!!", videos);
+//    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+//        //TODO
+//           NSLog(@"!!!%@!!!", videos);
+//    }];
+    
+    [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+        NSLog(@"----> %lu", (unsigned long)videos.count);
     }];
 }
 
