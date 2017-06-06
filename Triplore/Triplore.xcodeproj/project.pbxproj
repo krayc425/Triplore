@@ -36,7 +36,6 @@
 		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
 		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
 		245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0901EE5B905002CA7AC /* JSONTests.m */; };
-		245BD0941EE5B9F0002CA7AC /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 245BD0931EE5B9F0002CA7AC /* Site.plist */; };
 		245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0961EE5BA93002CA7AC /* TPCountryModel.m */; };
 		245BD09A1EE5BA9C002CA7AC /* TPCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0991EE5BA9C002CA7AC /* TPCityModel.m */; };
 		245BD09E1EE5BB27002CA7AC /* TPSiteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD09D1EE5BB27002CA7AC /* TPSiteHelper.m */; };
@@ -51,6 +50,7 @@
 		24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */; };
 		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
+		24CB53951EE69D6B0030DF25 /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24CB53941EE69D6B0030DF25 /* Site.plist */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -181,7 +181,6 @@
 		24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNoteCollectionViewCell+Configure.h"; sourceTree = "<group>"; };
 		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
 		245BD0901EE5B905002CA7AC /* JSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTests.m; sourceTree = "<group>"; };
-		245BD0931EE5B9F0002CA7AC /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
 		245BD0951EE5BA93002CA7AC /* TPCountryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCountryModel.h; sourceTree = "<group>"; };
 		245BD0961EE5BA93002CA7AC /* TPCountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCountryModel.m; sourceTree = "<group>"; };
 		245BD0981EE5BA9C002CA7AC /* TPCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCityModel.h; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCollectionViewCell.h; sourceTree = "<group>"; };
 		24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewCell.m; sourceTree = "<group>"; };
 		24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteCollectionViewCell.xib; sourceTree = "<group>"; };
+		24CB53941EE69D6B0030DF25 /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
 		24EFB7F51EE192BF00816675 /* TPVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoModel.h; sourceTree = "<group>"; };
@@ -612,7 +612,7 @@
 				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
 				2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */,
 				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
-				245BD0931EE5B9F0002CA7AC /* Site.plist */,
+				24CB53941EE69D6B0030DF25 /* Site.plist */,
 				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -820,12 +820,12 @@
 				4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */,
 				4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
-				245BD0941EE5B9F0002CA7AC /* Site.plist in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
 				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
 				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
+				24CB53951EE69D6B0030DF25 /* Site.plist in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,

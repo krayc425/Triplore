@@ -96,14 +96,19 @@ def country_crawler():
                 if sub_subList['class'] == "letter":
                     break
             except:
-                link = "http://www.mafengwo.cn" + sub_subList.find("a")['href']
-                name_arr = sub_subList.text.split(" ")
-                chinese_name = name_arr[0]
-                english_name = " ".join(name_arr[1:]).strip()
-                country_dict = {"link": link,
-                                "chinese_name": chinese_name,
-                                "english_name": english_name}
-                country_list.append(country_dict)
+                is_China = len(sub_subList.find_all("img", class_="domestic")) > 0
+                is_hot = len(sub_subList.find_all("i", class_="icon-label")) > 0
+                is_America = len(sub_subList.find_all("a", class_="texas")) > 0
+
+                if is_China or is_America or is_hot:
+                    link = "http://www.mafengwo.cn" + sub_subList.find("a")['href']
+                    name_arr = sub_subList.text.split(" ")
+                    chinese_name = name_arr[0]
+                    english_name = " ".join(name_arr[1:]).strip()
+                    country_dict = {"link": link,
+                                    "chinese_name": chinese_name,
+                                    "english_name": english_name}
+                    country_list.append(country_dict)
     return country_list
 
 
@@ -124,7 +129,18 @@ def city_crawler(country_list):
             country_image_url = soup.find("div", class_="r-main").find("a", class_="photo").find("img")['src']
             country_dict["country_image_url"] = country_image_url
         except:
-            continue
+            country_url = country_dict["link"].replace("travel-scenic-spot/mafengwo", "jd").replace(".html",
+                                                                                                    "/gonglve.html")
+            s = requests.session()
+            s.keep_alive = False
+            country_page = requests.get(country_url,
+                                        headers=getUserAgentHeader(),
+                                        # proxies={"http": change_proxy()},
+                                        timeout=10)
+            html_data = country_page.text
+            soup = BeautifulSoup(html_data, "html.parser")
+            country_image_url = soup.find("div", class_="pic").find("div", class_="large").find_all("img")[0]["src"]
+            country_dict["country_image_url"] = country_image_url
 
         try:
             city_url = country_dict["link"].replace("travel-scenic-spot/mafengwo", "mdd/citylist")
@@ -147,7 +163,6 @@ def city_crawler(country_list):
                 city_dict = {"image_url": image_url,
                              "chinese_name": chinese_name,
                              "english_name": english_name}
-                print(city_dict)
                 city_list.append(city_dict)
             country_dict["city_list"] = city_list
             real_country_list.append(country_dict)
@@ -155,9 +170,6 @@ def city_crawler(country_list):
             pass
         time.sleep(random.randint(0, 1))
 
-    print()
-    print()
-    print()
     return real_country_list
 
 

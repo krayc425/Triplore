@@ -27,7 +27,7 @@
 - (void)testJSON2Plist{
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSString *jsonPath = @"/Users/Kray/Desktop/Site.plist";
+    NSString *jsonPath = @"/Users/Kray/Desktop/Site.json";
     
     NSArray *areaArr = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:jsonPath] options:NSJSONReadingMutableContainers error:nil];
     
