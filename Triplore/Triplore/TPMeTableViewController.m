@@ -10,6 +10,7 @@
 #import "TPMeTableViewCell.h"
 #import "Utilities.h"
 #import "TPMeFavoriteTableViewController.h"
+#import "TPMeRecentTableViewController.h"
 
 @interface TPMeTableViewController ()
 
@@ -87,10 +88,10 @@
     
     if(indexPath.section == 0 && indexPath.row == 0){
         TPMeFavoriteTableViewController *favoVC = [[TPMeFavoriteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        
         [self.navigationController pushViewController:favoVC animated:YES];
     }else if(indexPath.section == 0 && indexPath.row == 1){
-        
+        TPMeRecentTableViewController *recentVC = [[TPMeRecentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:recentVC animated:YES];
     }else if(indexPath.section == 1 && indexPath.row == 0){
         
     }else if(indexPath.section == 2 && indexPath.row == 0){

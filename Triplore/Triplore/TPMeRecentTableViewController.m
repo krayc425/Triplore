@@ -1,12 +1,12 @@
 //
-//  TPMeFavoriteTableViewController.m
+//  TPMeRecentTableViewController.m
 //  Triplore
 //
 //  Created by 宋 奎熹 on 2017/6/13.
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "TPMeFavoriteTableViewController.h"
+#import "TPMeRecentTableViewController.h"
 #import "Utilities.h"
 #import "TPVideoManager.h"
 #import "TPVideoModel.h"
@@ -16,13 +16,13 @@
 static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
 static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
-@interface TPMeFavoriteTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface TPMeRecentTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, strong) NSArray* videos;
 
 @end
 
-@implementation TPMeFavoriteTableViewController
+@implementation TPMeRecentTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,11 +41,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPVideoSeriesTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
     
-    self.navigationItem.title = @"我的收藏";
+    UIBarButtonItem *clearBarItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearRecent)];
+    self.navigationItem.rightBarButtonItem = clearBarItem;
+    
+    self.navigationItem.title = @"观看记录";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self loadFavoriteVideos];
+    [self loadRecentVideos];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,13 +56,26 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadFavoriteVideos{
+- (void)loadRecentVideos{
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
-    [[TPVideoManager fetchFavoriteVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[TPVideoManager fetchRecentVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [tempArr addObject:[[TPVideoModel alloc] initWithTPVideo:obj]];
     }];
     self.videos = tempArr;
     [self.tableView reloadData];
+}
+
+- (void)clearRecent{
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:[TPVideoManager clearRecentRecord] ? @"清空成功" : @"清空失败"
+                                                                    message:nil
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            [self.navigationController popViewControllerAnimated:YES];
+                                                        }];
+    [alertC addAction:okAction];
+    [self presentViewController:alertC animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -87,7 +103,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 #pragma mark - DZNEmptyTableViewDelegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = @"暂无收藏";
+    NSString *text = @"暂无观看记录";
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],

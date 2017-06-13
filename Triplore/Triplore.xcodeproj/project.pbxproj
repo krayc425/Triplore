@@ -52,6 +52,7 @@
 		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
 		24CB53951EE69D6B0030DF25 /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24CB53941EE69D6B0030DF25 /* Site.plist */; };
+		24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -208,6 +209,8 @@
 		24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewCell.m; sourceTree = "<group>"; };
 		24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		24CB53941EE69D6B0030DF25 /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
+		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
+		24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeRecentTableViewController.m; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
 		24EFB7F51EE192BF00816675 /* TPVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoModel.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */,
 				2432FBEE1EF00B6F001560CC /* TPMeFavoriteTableViewController.h */,
 				2432FBEF1EF00B6F001560CC /* TPMeFavoriteTableViewController.m */,
+				24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */,
+				24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */,
 				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
 				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
 				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
@@ -966,6 +971,7 @@
 				4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
+				24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */,
 				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,

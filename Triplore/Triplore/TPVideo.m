@@ -10,4 +10,15 @@
 
 @implementation TPVideo
 
+- (instancetype)initWithVideoDict:(NSDictionary *_Nonnull)dict{
+    self = [super init];
+    if(self){
+        self.videoid = [dict[@"id"] integerValue];
+        self.dict = dict;
+        self.favorite = 0;
+        self.recent = [NSDate date];
+    }
+    return self;
+}
+
 @end

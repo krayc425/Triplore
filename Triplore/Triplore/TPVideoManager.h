@@ -44,4 +44,18 @@
  */
 + (NSArray<TPVideo *> *_Nullable)fetchFavoriteVideos;
 
+/**
+ 得到最近观看视频
+
+ @return 最近观看的视频数组
+ */
++ (NSArray<TPVideo *> *_Nullable)fetchRecentVideos;
+
+/**
+ 清空最近观看记录
+
+ @return 是否清空成功
+ */
++ (BOOL)clearRecentRecord;
+
 @end

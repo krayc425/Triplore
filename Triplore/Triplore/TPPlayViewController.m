@@ -151,6 +151,8 @@ static TPVideoProgressBar *progressBar = NULL;
 - (void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
     [self reloadNoteViews];
+    
+//    [TPVideoManager addRecentVideo:[[TPVideo alloc] initWithDict:self.videoDict]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -159,14 +161,12 @@ static TPVideoProgressBar *progressBar = NULL;
     NSString* aid = [self.videoDict valueForKey:@"a_id"];
     NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
     NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
-    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:@"1"];
+    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
     
     self.title = self.videoDict[@"short_title"];
     
-    //存入视频列表
-    TPVideo *newVideo = [TPVideo new];
-    [newVideo setDict:self.videoDict];
-    [newVideo setVideoid:[self.videoDict[@"id"] integerValue]];
+    //存入视频列表，因为要存“最近观看”
+    TPVideo *newVideo = [[TPVideo alloc] initWithVideoDict:self.videoDict];
     [TPVideoManager insertVideo:newVideo];
 }
 

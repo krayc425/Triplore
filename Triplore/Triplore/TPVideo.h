@@ -16,5 +16,8 @@
 @property (nonatomic) NSInteger videoid;
 @property (nonatomic, nonnull) NSDictionary *dict;
 @property (nonatomic) NSInteger favorite;
+@property (nonatomic, nonnull) NSDate *recent;
+
+- (_Nonnull instancetype)initWithVideoDict:(NSDictionary *_Nonnull)dict;
 
 @end
