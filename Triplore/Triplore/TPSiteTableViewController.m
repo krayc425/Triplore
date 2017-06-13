@@ -148,16 +148,19 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 - (void)clickSearchButton:(id)sender {
 //    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
 
+    NSMutableArray *countryNameArr = [[NSMutableArray alloc] init];
+    [self.testCountries enumerateObjectsUsingBlock:^(TPCountryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [countryNameArr addObject:obj.chineseName];
+    }];
+    
     PYSearchViewController *searchViewController =
-    [PYSearchViewController searchViewControllerWithHotSearches:self.testCountries
+    [PYSearchViewController searchViewControllerWithHotSearches:countryNameArr
                                            searchBarPlaceholder:@"搜索目的地"
                                                  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
                                                      TPSiteSearchViewController *resultViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
                                                      resultViewController.mode = TPSiteSearchAll;
                                                      resultViewController.navigationItem.title = searchText;
                                                      [searchViewController.navigationController pushViewController:resultViewController animated:YES];
-                                                     
-                                                     
     }];
     
     
@@ -184,7 +187,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 
 - (void)didClickCancel:(PYSearchViewController *)searchViewController {
-
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3;
     transition.type = kCATransitionFade;

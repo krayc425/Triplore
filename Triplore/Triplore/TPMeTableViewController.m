@@ -9,6 +9,7 @@
 #import "TPMeTableViewController.h"
 #import "TPMeTableViewCell.h"
 #import "Utilities.h"
+#import "TPMeFavoriteTableViewController.h"
 
 @interface TPMeTableViewController ()
 
@@ -83,7 +84,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
+    
+    if(indexPath.section == 0 && indexPath.row == 0){
+        TPMeFavoriteTableViewController *favoVC = [[TPMeFavoriteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        [self.navigationController pushViewController:favoVC animated:YES];
+    }else if(indexPath.section == 0 && indexPath.row == 1){
+        
+    }else if(indexPath.section == 1 && indexPath.row == 0){
+        
+    }else if(indexPath.section == 2 && indexPath.row == 0){
+        
+    }else{
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -77,8 +77,7 @@
         naviVC.navigationBar.translucent = NO;
         naviVC.navigationBar.opaque = YES;
     }
-    
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

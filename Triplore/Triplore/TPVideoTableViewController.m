@@ -41,8 +41,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     //
     
     self.navigationItem.title = self.keywords;
-    
-    [self request];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,11 +48,13 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self request];
+}
 
 #pragma mark - Request
 
-- (void) request {
-    
+- (void)request {
     NSArray *keywords;
     
     if (self.site == NULL) {
