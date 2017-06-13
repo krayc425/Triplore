@@ -548,7 +548,6 @@
 		24B810941ED7139B00CD7DC4 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				241BC4711EDFAE3A0056AFCA /* VideoData */,
 				24487CAA1EDEB9E30009E8E5 /* NoteData */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
 				24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */,
@@ -587,6 +586,7 @@
 		4D4DF79D1EE17C160012F476 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				241BC4711EDFAE3A0056AFCA /* VideoData */,
 				4D4DF79E1EE17CED0012F476 /* TPVideoTableViewController.h */,
 				4D4DF79F1EE17CED0012F476 /* TPVideoTableViewController.m */,
 				4D4DF7A11EE17D470012F476 /* TPVideoSingleTableViewCell.h */,

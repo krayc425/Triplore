@@ -34,7 +34,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     
-    // cell
     UINib *nib1 = [UINib nibWithNibName:@"TPVideoSingleTableViewCell" bundle:nil];
     [self.tableView registerNib:nib1 forCellReuseIdentifier:singleCellIdentifier];
     
@@ -42,10 +41,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
     
     self.navigationItem.title = @"我的收藏";
+    
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadFavoriteVideos];
+    
+    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {

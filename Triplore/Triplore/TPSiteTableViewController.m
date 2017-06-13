@@ -23,7 +23,6 @@
 
 @end
 
-
 @implementation TPSiteTableViewController
 
 static NSString *cellIdentifier = @"TPSiteTableViewCell";
@@ -52,14 +51,15 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     [TPSiteHelper fetchCountriesWithNum:1 withBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
         self.testCities = countries[0].cityModelArr;
     }];
-    
-//    self.testCountries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
-//    self.testCities = @[@"东京", @"京都", @"大阪"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 #pragma mark - Table view data source
@@ -146,8 +146,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 #pragma mark - Action
 
 - (void)clickSearchButton:(id)sender {
-//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-
     NSMutableArray *countryNameArr = [[NSMutableArray alloc] init];
     [self.testCountries enumerateObjectsUsingBlock:^(TPCountryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [countryNameArr addObject:obj.chineseName];

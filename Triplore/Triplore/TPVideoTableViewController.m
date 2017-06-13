@@ -39,6 +39,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
 
     //
+    self.hidesBottomBarWhenPushed = YES;
     
     self.navigationItem.title = self.keywords;
 }

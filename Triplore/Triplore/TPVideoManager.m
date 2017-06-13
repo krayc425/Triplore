@@ -56,7 +56,7 @@
 + (NSArray<TPVideo *> *_Nullable)fetchFavoriteVideos{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE favorite = ?;", @(1)];
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
-    if([resultSet next]){
+    while([resultSet next]){
         TPVideo *video = [TPVideo new];
         [video setVideoid:[resultSet intForColumn:@"videoid"]];
         NSDictionary *dict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"dict"]];
@@ -71,7 +71,7 @@
 + (NSArray<TPVideo *> *_Nullable)fetchRecentVideos{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE recent IS NOT NULL;"];
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
-    if([resultSet next]){
+    while([resultSet next]){
         TPVideo *video = [TPVideo new];
         [video setVideoid:[resultSet intForColumn:@"videoid"]];
         NSDictionary *dict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"dict"]];
@@ -80,7 +80,17 @@
         [video setRecent:[resultSet dateForColumn:@"recent"]];
         [resultArr addObject:video];
     }
+    //按时间倒序
+    [resultArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        TPVideo *v1 = (TPVideo *)obj1;
+        TPVideo *v2 = (TPVideo *)obj2;
+        return [v2.recent timeIntervalSinceDate:v1.recent] > 0;
+    }];
     return resultArr.count == 0 ? NULL : resultArr;
+}
+
++ (BOOL)deleteRecentVideo:(NSInteger)videoid{
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET recent = NULL WHERE videoid = ?;", @(videoid)];
 }
 
 + (BOOL)clearRecentRecord{

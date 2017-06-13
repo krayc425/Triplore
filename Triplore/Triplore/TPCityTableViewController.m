@@ -47,6 +47,8 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     //
     self.navigationItem.title = self.site;
     
+    self.hidesBottomBarWhenPushed = YES;
+    
     [self request];
 }
 
@@ -55,6 +57,9 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
+}
 
 #pragma mark - Request
 

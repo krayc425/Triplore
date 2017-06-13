@@ -52,6 +52,14 @@
 + (NSArray<TPVideo *> *_Nullable)fetchRecentVideos;
 
 /**
+ 删除最近观看视频
+
+ @param video 视频
+ @return 是否删除成功
+ */
++ (BOOL)deleteRecentVideo:(NSInteger)videoid;
+
+/**
  清空最近观看记录
 
  @return 是否清空成功

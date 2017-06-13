@@ -8,6 +8,7 @@
 
 #import "TPMeRecentTableViewController.h"
 #import "Utilities.h"
+#import "TPVideo.h"
 #import "TPVideoManager.h"
 #import "TPVideoModel.h"
 #import "TPVideoSingleTableViewCell.h"
@@ -18,7 +19,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 @interface TPMeRecentTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (nonatomic, strong) NSArray* videos;
+@property (nonatomic, strong) NSMutableArray* videos;
 
 @end
 
@@ -34,7 +35,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     
-    // cell
     UINib *nib1 = [UINib nibWithNibName:@"TPVideoSingleTableViewCell" bundle:nil];
     [self.tableView registerNib:nib1 forCellReuseIdentifier:singleCellIdentifier];
     
@@ -49,6 +49,8 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadRecentVideos];
+    
+    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,6 +100,22 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = CGRectGetWidth(self.view.frame);
     return (width / 2 - 10) / 16 * 9 + 20;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        TPVideoModel *video = self.videos[indexPath.row];
+        [TPVideoManager deleteRecentVideo:video.videoid];
+        [self loadRecentVideos];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
 }
 
 #pragma mark - DZNEmptyTableViewDelegate
