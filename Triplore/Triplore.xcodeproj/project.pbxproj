@@ -51,6 +51,7 @@
 		24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */; };
 		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
+		24BC3B331EF12EA6006793A3 /* libSVProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */; };
 		24CB53951EE69D6B0030DF25 /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24CB53941EE69D6B0030DF25 /* Site.plist */; };
 		24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
@@ -212,6 +213,7 @@
 		24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteCollectionViewCell.h; sourceTree = "<group>"; };
 		24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCollectionViewCell.m; sourceTree = "<group>"; };
 		24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteCollectionViewCell.xib; sourceTree = "<group>"; };
+		24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVProgressHUD.a; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/libSVProgressHUD.a"; sourceTree = "<group>"; };
 		24CB53941EE69D6B0030DF25 /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeRecentTableViewController.m; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24BC3B331EF12EA6006793A3 /* libSVProgressHUD.a in Frameworks */,
 				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
 				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
 				245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */,
@@ -647,6 +650,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */,
 				4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */,
 				245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */,
 				245E5C8B1EE4351900448986 /* libSDWebImage.a */,
@@ -924,7 +928,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */ = {
@@ -939,7 +943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
@@ -1048,7 +1052,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
@@ -1064,6 +1068,7 @@
 					"/Users/Kray/Documents/Programming/iOS/Triplore/**",
 					"$(PROJECT_DIR)/IOSPlayerLib",
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1158,7 +1163,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
@@ -1174,6 +1179,7 @@
 					"/Users/Kray/Documents/Programming/iOS/Triplore/**",
 					"$(PROJECT_DIR)/IOSPlayerLib",
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";

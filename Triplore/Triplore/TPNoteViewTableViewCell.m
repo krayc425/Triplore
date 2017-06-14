@@ -8,6 +8,8 @@
 
 #import "TPNoteViewTableViewCell.h"
 
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+
 @implementation TPNoteViewTableViewCell
 
 - (void)awakeFromNib {
@@ -27,16 +29,28 @@
                                                             CGRectGetWidth(self.frame) - 40,
                                                             CGRectGetHeight(noteView.frame) - 20)];
     [view setContentMode:UIViewContentModeScaleAspectFit];
-//    [view setBounds:CGRectMake(20,
-//                              10,
-//                              CGRectGetWidth(self.frame) - 40,
-//                               CGRectGetHeight(noteView.frame) - 20)];
     [view addSubview:noteView];
     view.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
     |UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:view];
-    self.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
-    |UIViewAutoresizingFlexibleRightMargin;
+//    self.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
+//    |UIViewAutoresizingFlexibleRightMargin;
+    
+    //自定义删除 View
+    UIView *deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
+                                                                  0,
+                                                                  300,
+                                                                  CGRectGetHeight(noteView.frame) + 20)];
+    
+    deleteView.backgroundColor = [UIColor whiteColor];
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
+                                                                        90,
+                                                                        CGRectGetHeight(deleteView.frame))];
+    [deleteButton setImage:[UIImage imageNamed:@"CELL_DELETE"] forState:UIControlStateNormal];
+    [deleteView addSubview:deleteButton];
+    
+    [self addSubview:deleteView];
 }
 
 @end
