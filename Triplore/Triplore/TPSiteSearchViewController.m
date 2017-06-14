@@ -128,7 +128,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
     countryViewController.mode = TPSiteSearchCity;
     countryViewController.cities = country.cityModelArr;
-    //    countryViewController.navigationItem.title = site;
+    countryViewController.title = country.chineseName;
     [self.navigationController pushViewController:countryViewController animated:YES];
 }
 

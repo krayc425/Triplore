@@ -54,7 +54,7 @@
 /**
  删除最近观看视频
 
- @param video 视频
+ @param videoid 视频
  @return 是否删除成功
  */
 + (BOOL)deleteRecentVideo:(NSInteger)videoid;

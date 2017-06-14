@@ -25,7 +25,7 @@
  @param keywords 关键字数组
  @param completionBlock 回调块
  */
-+ (void)fetchVideosByKeywords:(NSArray *_Nonnull)keywords withBlock:(void(^_Nonnull)(NSArray<TPVideoModel *> *_Nonnull videos, NSError *_Nullable error))completionBlock;
++ (void)fetchVideosByKeywords:(NSArray *_Nonnull)keywords withSize:(NSInteger)size withBlock:(void(^_Nonnull)(NSArray<TPVideoModel *> *_Nonnull videos, NSError *_Nullable error))completionBlock;
 
 /**
  根据专辑名称找视频

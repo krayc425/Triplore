@@ -50,8 +50,8 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_v" : @(1),
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
-                               @"req_sn" : @"1493946331320",
-                               @"req_times" : @(1)
+                               @"req_sn" : @([[NSDate date] timeIntervalSince1970]),
+                               @"req_times" : @(5)
                                };
         
         [manager GET:ALL_URL
@@ -89,7 +89,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
     });
 }
 
-+ (void)fetchVideosByKeywords:(NSArray *)keywords withBlock:(void(^)(NSArray<TPVideoModel *> *videos, NSError *error))completionBlock{
++ (void)fetchVideosByKeywords:(NSArray *)keywords withSize:(NSInteger)size withBlock:(void(^)(NSArray<TPVideoModel *> *videos, NSError *error))completionBlock{
     NSString *searchString = @"";
     for (NSString *s in keywords){
         searchString = [searchString stringByAppendingString:s];
@@ -112,7 +112,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
         NSDictionary *dict = @{
                                @"key" : searchString,
                                @"from" : @"mobile_list",
-                               @"page_size" : @(10),
+                               @"page_size" : @(size),
                                @"version" : @(7.5),
                                @"app_k" : @"f0f6c3ee5709615310c0f053dc9c65f2",
                                @"app_v" : @(8.4),
@@ -130,7 +130,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
                                @"req_sn" : @"1493946331320",
-                               @"req_times" : @(1)
+                               @"req_times" : @(5)
                                };
         
         [manager GET:SEARCH_URL
@@ -150,8 +150,18 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                          NSDictionary *dict = (NSDictionary *)responseObject;
                          NSMutableArray *resultArr = [[NSMutableArray alloc] init];
                          for(NSDictionary *subDict in dict[@"data"]){
-                             TPVideoModel *video = [[TPVideoModel alloc] initWithDict:subDict];
-                             [resultArr addObject:video];
+                             
+//                             BOOL flag = YES;
+//                             for(NSString *key in keywords) {
+                             NSLog(@"%@ ", subDict[@"title"]);
+                                 if([subDict[@"title"] containsString:keywords[0]]){
+                                     TPVideoModel *video = [[TPVideoModel alloc] initWithDict:subDict];
+                                     [resultArr addObject:video];
+                                 }
+//                             }
+                             
+//                             if(flag){
+//                             }
                          }
                          completionBlock([NSArray arrayWithArray:resultArr], nil);
                      }
@@ -202,7 +212,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
                                @"req_sn" : @"1493946331320",
-                               @"req_times" : @(1)
+                               @"req_times" : @(5)
                                };
         
         [manager GET:SEARCH_URL
