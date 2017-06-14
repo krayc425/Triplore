@@ -40,15 +40,24 @@
     return NULL;
 }
 
-+ (BOOL)commentVideo:(TPVideo *_Nonnull)video withFavorite:(NSInteger)isFavorite{
++ (BOOL)commentVideo:(TPVideo *_Nonnull)video{
     //如果没有，就插入这个视频
     if([self fetchVideoWithID:video.videoid] == NULL){
         [self insertVideo:video];
     }
     //设置这个视频的：是否收藏
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(video.videoid)];
+    NSLog(@"Is Favorite: %d for %d", [self isFavoriteVideo:video.videoid], video.videoid);
     if([resultSet next]){
-        return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET favorite = ? WHERE videoid = ?;", @(isFavorite), @(video.videoid)];
+        return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET favorite = ? WHERE videoid = ?;", ([self isFavoriteVideo:video.videoid] ? @(0) : @(1)), @(video.videoid)];
+    }
+    return NO;
+}
+
++ (BOOL)isFavoriteVideo:(NSInteger)videoid{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(videoid)];
+    if([resultSet next]){
+        return ([resultSet intForColumn:@"favorite"] == 1);
     }
     return NO;
 }

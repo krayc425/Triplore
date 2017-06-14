@@ -38,6 +38,7 @@ static TPVideoProgressBar *progressBar = NULL;
     UIView *playerView;
     UITextField *titleText;
     NSIndexPath *selectedIndexPath;
+    UIBarButtonItem *favoriteButton;
 }
 
 @property (nonnull, nonatomic) UITableView *tableView;
@@ -142,6 +143,11 @@ static TPVideoProgressBar *progressBar = NULL;
         }
         [self reloadNoteViews];
     }
+    
+    //收藏按钮
+    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
+    favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
+    self.navigationItem.rightBarButtonItem = favoriteButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -185,6 +191,8 @@ static TPVideoProgressBar *progressBar = NULL;
     [self.noteViews addObjectsFromArray:[[TPNoteCreator shareInstance] getNoteViews]];
     [self.tableView reloadData];
 }
+
+#pragma mark - Player Methods
 
 - (void)showPlayView{
     UIView *playView = [self.view viewWithTag:100];
@@ -473,6 +481,16 @@ static TPVideoProgressBar *progressBar = NULL;
     }
 }
 
+- (void)setFavoriteImage{
+    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
+    [favoriteButton setImage:favoriteImg];
+}
+
+- (void)favoriteAction{
+    [TPVideoManager commentVideo:[[TPVideo alloc] initWithVideoDict:self.videoDict]];
+    [self setFavoriteImage];
+}
+
 #pragma mark - Long Pressed Gesture
 
 - (UIView *)customSnapshoFromView:(UIView *)inputView {
@@ -635,7 +653,7 @@ static TPVideoProgressBar *progressBar = NULL;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
+    return @"               ";
 }
 
 #pragma mark - UITextField Delegate

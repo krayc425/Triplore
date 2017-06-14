@@ -27,6 +27,18 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                                              @"text/html",
                                                              @"application/json",
                                                              nil];
+        
+        NSDate *datenow =[NSDate date];//现在时间,你可以输出来看下是什么格式
+        
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        
+        NSInteger interval = [zone secondsFromGMTForDate:datenow];
+        
+        NSDate *localeDate = [datenow  dateByAddingTimeInterval: interval];
+        NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]];
+        timeSp = [timeSp stringByAppendingString:@"000"];
+        NSLog(@"%@", timeSp);
+        
         NSDictionary *dict = @{
                                @"type" : @"detail",
                                @"channel_name" : @"旅游",
@@ -49,7 +61,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_v" : @(1),
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
-                               @"req_sn" : @"1493946331320",
+                               @"req_sn" : timeSp,
                                @"req_times" : @(5)
                                };
         

@@ -8,6 +8,7 @@ target 'Triplore' do
   pod 'FMDB'
   pod 'SDWebImage'
   pod 'SDCycleScrollView'
+  pod 'SVProgressHUD'
 
 end
 
