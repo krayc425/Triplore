@@ -25,7 +25,9 @@
 #import "TPVideoProgressBar.h"
 
 #define CONTROLLER_BAR_WIDTH 30.0
-#define VIDEO_PROGRESS_BAR_HEIGHT 20.0
+
+#define KIPhone_AVPlayerRect_mwidth 320.0
+#define KIPhone_AVPlayerRect_mheight 180.0
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate>{
     CGRect playFrame;
@@ -65,11 +67,13 @@
     self.tabBarController.tabBar.hidden = YES;
     
     [QYPlayerController sharedInstance].delegate = self;
-    [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.bounds];
+    [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
     NSLog(@"%f %f %f %f", self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.origin.x, self.playerView.frame.origin.y);
     [_playerView addSubview:[QYPlayerController sharedInstance].view];
     
-    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame: CGRectMake(0, 0, 15, 15)];
+    playFrame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
+    
+    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     self.activityWheel = wheel;
     self.activityWheel.center = self.playerView.center;
@@ -307,8 +311,6 @@
 - (void)onContentStartPlay:(QYPlayerController *)player{
     [self showPauseView];
     [progressBarView setFrame:self.barContainerView.frame];
-//    [progressBarView clipsToBounds];
-//    [progressBarView layoutIfNeeded];
     [progressBarView layoutSubviews];
     [self.view addSubview:progressBarView];
 }
@@ -390,6 +392,7 @@
 - (void)screenShotAction{
     NSLog(@"截图");
     //隐藏暂停按钮
+    [[self.view viewWithTag:100] setHidden:YES];
     [[self.view viewWithTag:200] setHidden:YES];
     //缩放因子
     CGFloat factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
@@ -406,6 +409,7 @@
     [self addNoteView:imgView];
     UIGraphicsEndImageContext();
     //恢复暂停按钮
+    [[self.view viewWithTag:100] setHidden:NO];
     [[self.view viewWithTag:200] setHidden:NO];
 }
 
@@ -535,7 +539,6 @@
             CGFloat moveX = Npoint.x - Ppoint.x;
             center.x += moveX;
             snapshot.center = center;
-            NSLog(@"%@", NSStringFromCGRect(snapshot.frame));
             // 是否移动了
             if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
                 
@@ -646,52 +649,46 @@
     if (size.width > size.height) { // 横屏
         NSLog(@"横屏");
         [self.navigationController setNavigationBarHidden:YES];
-        
         [self.tableView setHidden:YES];
         [self.titleText setHidden:YES];
         [self.editButton setHidden:YES];
         [self.saveButton setHidden:YES];
         [self.screenshotButton setHidden:YES];
+        [self.view setBackgroundColor:[UIColor blackColor]];
         
-        [UIView
-         animateWithDuration:0.5
-         animations:^{
-//             self.playPauseView.frame = CGRectMake(20, self.playerView.frame.size.height, 30, 30);
-//             [self.playPauseView layoutSubviews];
-//             progressBarView.frame = CGRectMake(60, self.playerView.frame.size.height, self.view.bounds.size.width - 30 -20-20-10, 30);
-//             [progressBarView layoutSubviews];
-//             [_playerView layoutSubviews];
-             [self.view layoutSubviews];
-             
-         } completion:^(BOOL finished) {
-             
-         }];
+        [UIView animateWithDuration:0.5 animations:^{
+            
+        } completion:^(BOOL finished) {
+            self.playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
+            [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
+            [[self.view viewWithTag:100] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
+            [[self.view viewWithTag:200] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
+            [progressBarView setFrame:CGRectMake(50, self.playerView.frame.size.height, self.playerView.frame.size.width - 70, CONTROLLER_BAR_WIDTH)];
+            [progressBarView layoutSubviews];
+            [self.view layoutSubviews];
+        }];
     } else {
         NSLog(@"竖屏");
         [self.navigationController setNavigationBarHidden:NO];
-        
         [self.tableView setHidden:NO];
         [self.titleText setHidden:NO];
         [self.editButton setHidden:NO];
         [self.saveButton setHidden:NO];
         [self.screenshotButton setHidden:NO];
+        [self.view setBackgroundColor:[Utilities getBackgroundColor]];
         
-        [UIView
-         animateWithDuration:0.5
-         animations:^{
-             
-//             self.playerView.frame = self.view.bounds;
-//             [_playerView layoutSubviews];
-             [self.view layoutSubviews];
-             
-         } completion:^(BOOL finished) {
-             
-         }];
+        [UIView animateWithDuration:0.5 animations:^{
+            
+        } completion:^(BOOL finished) {
+            self.playerView.frame = playFrame;
+            [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
+            [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
+            [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
+            [progressBarView setFrame:self.barContainerView.frame];
+            [progressBarView layoutSubviews];
+            [self.view layoutSubviews];
+        }];
     }
-//    [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.bounds];
-    NSLog(@"%f %f %f %f", self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.origin.x, self.playerView.frame.origin.y);
-    
-//    [self.view layoutSubviews];
 }
 
 #pragma mark - UITextField Delegate

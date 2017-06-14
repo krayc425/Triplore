@@ -73,7 +73,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiQ-bb-4f7">
-                    <rect key="frame" x="20" y="211" width="30" height="30"/>
+                    <rect key="frame" x="10" y="211" width="30" height="30"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="9I2-PY-9gg"/>
@@ -83,9 +83,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaF-ev-uRp">
                     <rect key="frame" x="0.0" y="211" width="375" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="n0G-GT-h3H"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZW-pf-OWb" customClass="TPVideoProgressBar">
-                    <rect key="frame" x="60" y="211" width="305" height="30"/>
+                    <rect key="frame" x="50" y="211" width="315" height="30"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Qq8-ep-BDM"/>
@@ -97,7 +100,7 @@
                 <constraint firstAttribute="trailing" secondItem="gCx-kf-1Gn" secondAttribute="trailing" constant="20" id="5ni-UC-01E"/>
                 <constraint firstItem="RZW-pf-OWb" firstAttribute="leading" secondItem="yiQ-bb-4f7" secondAttribute="trailing" constant="10" id="8Me-CH-OSb"/>
                 <constraint firstAttribute="trailing" secondItem="SBf-es-w6m" secondAttribute="trailing" id="8mD-xQ-5Ge"/>
-                <constraint firstItem="yiQ-bb-4f7" firstAttribute="leading" secondItem="rlJ-0q-HfN" secondAttribute="leading" constant="20" id="94F-6z-km9"/>
+                <constraint firstItem="yiQ-bb-4f7" firstAttribute="leading" secondItem="rlJ-0q-HfN" secondAttribute="leading" constant="10" id="94F-6z-km9"/>
                 <constraint firstItem="RZW-pf-OWb" firstAttribute="top" secondItem="PbA-IR-Zss" secondAttribute="bottom" id="C0U-TA-pAG"/>
                 <constraint firstItem="SBf-es-w6m" firstAttribute="leading" secondItem="rlJ-0q-HfN" secondAttribute="leading" id="CSu-XT-gLO"/>
                 <constraint firstAttribute="trailing" secondItem="iaF-ev-uRp" secondAttribute="trailing" id="Cxa-9F-nd9"/>
@@ -111,6 +114,7 @@
                 <constraint firstItem="iaF-ev-uRp" firstAttribute="top" secondItem="PbA-IR-Zss" secondAttribute="bottom" id="OZl-BO-BPe"/>
                 <constraint firstItem="PbA-IR-Zss" firstAttribute="top" secondItem="rlJ-0q-HfN" secondAttribute="top" id="YGK-x0-Cl3"/>
                 <constraint firstItem="SBf-es-w6m" firstAttribute="top" secondItem="BaP-Y8-DEV" secondAttribute="bottom" id="bG2-X2-D8t"/>
+                <constraint firstItem="RZW-pf-OWb" firstAttribute="centerY" secondItem="yiQ-bb-4f7" secondAttribute="centerY" id="eRt-8F-TQS"/>
                 <constraint firstItem="gCx-kf-1Gn" firstAttribute="leading" secondItem="BaP-Y8-DEV" secondAttribute="trailing" constant="20" id="epu-9g-Vd6"/>
                 <constraint firstItem="BaP-Y8-DEV" firstAttribute="top" secondItem="yiQ-bb-4f7" secondAttribute="bottom" id="gG3-Ds-Hzs"/>
                 <constraint firstAttribute="trailing" secondItem="PbA-IR-Zss" secondAttribute="trailing" id="hWf-YA-K1A"/>
