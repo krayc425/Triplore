@@ -40,7 +40,7 @@ static NSInteger const height = 124;
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
 
     self.titleLabel.text = video.shortTitle;
-    self.timesLabel.text = [NSString stringWithFormat:@"播放%d次", video.playCount];
+    self.timesLabel.text = [NSString stringWithFormat:@"%d", video.playCount];
   
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];
