@@ -98,19 +98,14 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-    if([self.delegate respondsToSelector:@selector(didSelectSite:withMode:)]) {
+    if (self.mode == TPSiteCountry && [self.delegate respondsToSelector:@selector(didSelectCountry:)]) {
+        NSLog(@"select %@", self.countries[indexPath.item]);
+        [self.delegate didSelectCountry:self.countries[indexPath.item]];
         
-        if (self.mode == TPSiteCountry) {
-            NSLog(@"select %@", self.countries[indexPath.item]);
-            [self.delegate didSelectSite:self.countries[indexPath.item].chineseName withMode:self.mode];
-
-        } else if (self.mode == TPSiteCity) {
-            NSLog(@"select %@", self.cities[indexPath.item]);
-            [self.delegate didSelectSite:self.cities[indexPath.item].chineseName withMode:self.mode];
-
-        }
-
+    } else if (self.mode == TPSiteCity && [self.delegate respondsToSelector:@selector(didSelectCity:)]) {
+        NSLog(@"select %@", self.cities[indexPath.item]);
+        [self.delegate didSelectCity:self.cities[indexPath.item]];
+        
     }
 }
 

@@ -18,7 +18,8 @@ typedef NS_ENUM(NSInteger, TPSiteMode){
 
 @protocol TPSiteTableViewCellDelegate <NSObject>
 
-- (void)didSelectSite:(NSString * _Nonnull)site withMode:(TPSiteMode)mode;
+- (void)didSelectCountry:(TPCountryModel * _Nonnull)country;
+- (void)didSelectCity:(TPCityModel * _Nonnull)city;
 
 @optional
 

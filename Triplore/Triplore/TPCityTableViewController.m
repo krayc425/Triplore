@@ -15,6 +15,7 @@
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
 #import "Utilities.h"
+#import "TPCityModel.h"
 
 @interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate, TPCityInfoTableViewCellDelegate>
 
@@ -45,7 +46,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
     //
-    self.navigationItem.title = self.site;
+    self.navigationItem.title = self.city.chineseName;
     
     self.hidesBottomBarWhenPushed = YES;
     
@@ -64,17 +65,17 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 #pragma mark - Request
 
 - (void) request {
-    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName, @"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];
     
-    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"购物"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"购物"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];
     
-    [TPNetworkHelper fetchVideosByKeywords:@[self.site,@"景点"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"景点"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];
@@ -94,7 +95,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPCityInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellIdentifier forIndexPath:indexPath];
-        cell.site = self.site;
+        cell.city = self.city;
         cell.delegate = self;
         return cell;
     } else {
@@ -149,7 +150,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.site = self.site;
+    videoViewController.site = self.city.chineseName;
     videoViewController.keywords = titles[mode-1];
 //    videoViewController.navigationItem.title = titles[mode-1];
     
@@ -165,7 +166,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.site = self.site;
+    videoViewController.site = self.city.chineseName;
     videoViewController.keywords = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
@@ -192,7 +193,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                                                  didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
                                                      TPVideoTableViewController *resultViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                                                      
-                                                     resultViewController.site = self.site;
+                                                     resultViewController.site = self.city.chineseName;
                                                      resultViewController.keywords = searchText;
                                                      
                                                      [searchViewController.navigationController pushViewController:resultViewController animated:YES];

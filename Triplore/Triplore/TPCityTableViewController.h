@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TPCityModel;
 
 @interface TPCityTableViewController : UITableViewController
 
-@property (nonatomic, nonnull) NSString *site;
+@property (nonatomic, nonnull) TPCityModel *city;
 
 @end

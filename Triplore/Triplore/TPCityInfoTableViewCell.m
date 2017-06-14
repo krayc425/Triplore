@@ -9,6 +9,8 @@
 #import "TPCityInfoTableViewCell.h"
 #import "TPCategoryButton.h"
 #import "Utilities.h"
+#import "TPCityModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TPCityInfoTableViewCell ()
 
@@ -70,9 +72,11 @@
     
 }
 
-- (void)setSite:(NSString *)site {
-    _site = site;
-    self.siteLabel.text = self.site;
+- (void)setCity:(TPCityModel *)city {
+    _city = city;
+    self.siteLabel.text = city.chineseName;
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:city.imageURL]];
+    
 }
 
 - (void)clickCategoryButton:(UIButton *)button {

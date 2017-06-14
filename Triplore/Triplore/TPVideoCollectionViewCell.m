@@ -14,7 +14,7 @@
 @interface TPVideoCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timesLabel;
 
 @end
 
@@ -38,7 +38,7 @@ static NSInteger const height = 124;
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
     
     self.titleLabel.text = video.shortTitle;
-    
+    self.timesLabel.text = [NSString stringWithFormat:@"播放%d次", video.playCount];
 }
 
 @end

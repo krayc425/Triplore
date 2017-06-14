@@ -44,12 +44,13 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-    [TPSiteHelper fetchCountriesWithNum:3 withBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
+    
+    [TPSiteHelper fetchHotCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
         self.testCountries = countries;
     }];
     
-    [TPSiteHelper fetchCountriesWithNum:1 withBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
-        self.testCities = countries[0].cityModelArr;
+    [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
+        self.testCities = cities;
     }];
 }
 
@@ -83,6 +84,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     } else if (indexPath.section == 1) {
         cell.mode = TPSiteCity;
         cell.cities = self.testCities;
+        cell.isAll = NO;
     }
     
     return cell;
@@ -110,19 +112,19 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 #pragma mark - TPSiteTableViewCellDelegate
 
-- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
-    if (mode == TPSiteCountry) {
-        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        countryViewController.mode = TPSiteSearchCity;
-        countryViewController.cities = self.testCities;
-        countryViewController.navigationItem.title = site;
-        [self.navigationController pushViewController:countryViewController animated:YES];
-        
-    } else if (mode == TPSiteSearchCity) {
-        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        cityViewController.site = site;
-        [self.navigationController pushViewController:cityViewController animated:YES];
-    }
+- (void)didSelectCountry:(TPCountryModel *)country {
+    TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    countryViewController.mode = TPSiteSearchCity;
+    countryViewController.cities = country.cityModelArr;
+//    countryViewController.navigationItem.title = site;
+    [self.navigationController pushViewController:countryViewController animated:YES];
+}
+
+- (void)didSelectCity:(TPCityModel *)city {
+    TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    cityViewController.city = city;
+    [self.navigationController pushViewController:cityViewController animated:YES];
+
 }
 
 - (void)didTapAllWithMode:(TPSiteMode)mode {
@@ -158,6 +160,13 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
                                                      TPSiteSearchViewController *resultViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
                                                      resultViewController.mode = TPSiteSearchAll;
                                                      resultViewController.navigationItem.title = searchText;
+                                                     
+                                                     [TPSiteHelper searchCountriesWithName:searchText withBlock:^(NSArray<TPCountryModel *> * countries, NSError * error) {
+                                                         resultViewController.countries = countries;
+                                                     }];
+                                                     [TPSiteHelper searchCitiesWithName:searchText withBlock:^(NSArray<TPCityModel *> * cities, NSError * error) {
+                                                         resultViewController.cities = cities;
+                                                     }];
                                                      [searchViewController.navigationController pushViewController:resultViewController animated:YES];
     }];
     

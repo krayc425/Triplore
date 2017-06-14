@@ -30,7 +30,7 @@
                         <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介简介简介简介简介简介简介简介简介简介简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-pJ-StW">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.03.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-pJ-StW">
                         <rect key="frame" x="0.0" y="143.5" width="202" height="15"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,7 +52,7 @@
             <size key="customSize" width="202" height="170"/>
             <connections>
                 <outlet property="coverImageView" destination="jth-cw-eL7" id="Egf-VR-QTo"/>
-                <outlet property="introductionLabel" destination="bqI-pJ-StW" id="Oll-UJ-7al"/>
+                <outlet property="timesLabel" destination="bqI-pJ-StW" id="jNI-ZT-7qF"/>
                 <outlet property="titleLabel" destination="fIp-fu-STn" id="fub-Qd-Vpv"/>
             </connections>
             <point key="canvasLocation" x="101" y="112"/>

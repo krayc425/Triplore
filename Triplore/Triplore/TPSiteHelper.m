@@ -41,7 +41,7 @@
 
 + (void)fetchCountriesWithNum:(NSInteger)num withBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock{
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
-    NSMutableArray *allArr = [[[NSMutableArray alloc] initWithContentsOfFile:filePath] subarrayWithRange:NSMakeRange(0, num)];
+    NSArray *allArr = [[[NSMutableArray alloc] initWithContentsOfFile:filePath] subarrayWithRange:NSMakeRange(0, num)];
     
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
     for(NSDictionary *countryDict in allArr){
@@ -66,5 +66,128 @@
     }
 }
 
+
++ (void)fetchHotCountriesWithBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
+    
+    NSArray *hotIndex = @[@14, @8, @1, @17, @45, @51];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
+    NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    
+    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
+    for(NSNumber *index in hotIndex){
+        NSDictionary *countryDict = allArr[[index integerValue]];
+        
+        TPCountryModel *country = [TPCountryModel new];
+        [country setImageURL:countryDict[@"country_image_url"]];
+        [country setChineseName:countryDict[@"chinese_name"]];
+        [country setEnglishName:countryDict[@"english_name"]];
+        NSMutableArray *cityArr = [[NSMutableArray alloc] init];
+        for(NSDictionary *cityDict in (NSDictionary *)countryDict[@"city_list"]){
+            TPCityModel *city = [TPCityModel new];
+            [city setChineseName:cityDict[@"chinese_name"]];
+            [city setEnglishName:cityDict[@"english_name"]];
+            [city setImageURL:cityDict[@"image_url"]];
+            [cityArr addObject:city];
+        }
+        [country setCityModelArr:[NSArray arrayWithArray:cityArr]];
+        [resultArr addObject:country];
+    }
+    
+    if (completionBlock){
+        completionBlock([NSArray arrayWithArray:resultArr], nil);
+    }
+}
+
+
++ (void)fetchHotCitiesWithBlock:(void(^_Nonnull)(NSArray<TPCityModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
+    NSArray *countryIndexs = @[@14 , @8, @1, @17, @45, @51];
+    NSArray *cityIndexs = @[@3, @0, @0, @2, @0, @0];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
+    NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    
+    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
+    for (int i=0; i<countryIndexs.count; i++) {
+        NSNumber *index = countryIndexs[i];
+        NSDictionary *countryDict = allArr[[index integerValue]];
+    
+        NSNumber *cityIndex= cityIndexs[i];
+        NSArray *cityArr = countryDict[@"city_list"];
+        NSDictionary *cityDict = cityArr[[cityIndex integerValue]];
+        TPCityModel *city = [TPCityModel new];
+        [city setChineseName:cityDict[@"chinese_name"]];
+        [city setEnglishName:cityDict[@"english_name"]];
+        [city setImageURL:cityDict[@"image_url"]];
+        [resultArr addObject:city];
+    }
+    
+    if (completionBlock){
+        completionBlock([NSArray arrayWithArray:resultArr], nil);
+    }
+}
+
+
++ (void)searchCountriesWithName:(NSString *)name withBlock:(void (^)(NSArray<TPCountryModel *> * _Nonnull, NSError * _Nullable))completionBlock {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
+    NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    
+    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
+    for(NSDictionary *countryDict in allArr){
+        
+        NSString *chineseName = countryDict[@"chinese_name"];
+        
+        if ([chineseName rangeOfString:name].location != NSNotFound) {
+            TPCountryModel *country = [TPCountryModel new];
+            [country setImageURL:countryDict[@"country_image_url"]];
+            [country setChineseName:countryDict[@"chinese_name"]];
+            [country setEnglishName:countryDict[@"english_name"]];
+            NSMutableArray *cityArr = [[NSMutableArray alloc] init];
+            for(NSDictionary *cityDict in (NSDictionary *)countryDict[@"city_list"]){
+                TPCityModel *city = [TPCityModel new];
+                [city setChineseName:cityDict[@"chinese_name"]];
+                [city setEnglishName:cityDict[@"english_name"]];
+                [city setImageURL:cityDict[@"image_url"]];
+                [cityArr addObject:city];
+            }
+            [country setCityModelArr:[NSArray arrayWithArray:cityArr]];
+            [resultArr addObject:country];
+
+        }
+    }
+    
+    if (completionBlock){
+        completionBlock([NSArray arrayWithArray:resultArr], nil);
+    }
+
+}
+
++ (void)searchCitiesWithName:(NSString *)name withBlock:(void (^)(NSArray<TPCityModel *> * _Nonnull, NSError * _Nullable))completionBlock {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
+    NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    
+    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
+    
+    for(NSDictionary *countryDict in allArr){
+        for(NSDictionary *cityDict in (NSDictionary *)countryDict[@"city_list"]){
+            
+            NSString *chineseName = cityDict[@"chinese_name"];
+
+            if ([chineseName rangeOfString:name].location != NSNotFound) {
+                TPCityModel *city = [TPCityModel new];
+                [city setChineseName:cityDict[@"chinese_name"]];
+                [city setEnglishName:cityDict[@"english_name"]];
+                [city setImageURL:cityDict[@"image_url"]];
+                [resultArr addObject:city];
+            }
+        }
+
+    }
+    
+    if (completionBlock){
+        completionBlock([NSArray arrayWithArray:resultArr], nil);
+    }
+    
+}
 
 @end

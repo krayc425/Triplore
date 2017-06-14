@@ -108,35 +108,36 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 #pragma mark - TPSiteTableViewCellDelegate
 
-- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
-    if (mode == TPSiteCountry) {
-        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        countryViewController.mode = TPSiteSearchCity;
-        countryViewController.cities = self.cities;
-        countryViewController.navigationItem.title = site;
-        [self.navigationController pushViewController:countryViewController animated:YES];
-        
-    } else if (mode == TPSiteSearchCity) {
-        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        
-        cityViewController.site = site;
-        [self.navigationController pushViewController:cityViewController animated:YES];
-    }
-}
-
-//- (void)didTapAllWithMode:(TPSiteMode)mode {
+//- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
 //    if (mode == TPSiteCountry) {
 //        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        countryViewController.mode = TPSiteSearchCountry;
-//        countryViewController.cities = self.testCountries;
+//        countryViewController.mode = TPSiteSearchCity;
+//        countryViewController.cities = self.cities;
+//        countryViewController.navigationItem.title = site;
 //        [self.navigationController pushViewController:countryViewController animated:YES];
+//        
 //    } else if (mode == TPSiteSearchCity) {
-//        TPSiteSearchViewController *cityViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        cityViewController.mode = TPSiteSearchCity;
-//        cityViewController.cities = self.testCities;
+//        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//        
+//        cityViewController.site = site;
 //        [self.navigationController pushViewController:cityViewController animated:YES];
 //    }
 //}
+
+- (void)didSelectCountry:(TPCountryModel *)country {
+    TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    countryViewController.mode = TPSiteSearchCity;
+    countryViewController.cities = country.cityModelArr;
+    //    countryViewController.navigationItem.title = site;
+    [self.navigationController pushViewController:countryViewController animated:YES];
+}
+
+- (void)didSelectCity:(TPCityModel *)city {
+    TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    cityViewController.city = city;
+    [self.navigationController pushViewController:cityViewController animated:YES];
+    
+}
 
 
 /*

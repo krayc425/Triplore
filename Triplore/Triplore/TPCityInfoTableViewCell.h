@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
 
+@class TPCityModel;
+
 @protocol TPCityInfoTableViewCellDelegate <NSObject>
 
 @optional
@@ -19,7 +21,7 @@
 
 @interface TPCityInfoTableViewCell : UITableViewCell
 
-@property (nonatomic, nonnull) NSString *site;
+@property (nonatomic, nonnull) TPCityModel *city;
 
 @property (nonatomic, nonnull) id<TPCityInfoTableViewCellDelegate> delegate;
 
