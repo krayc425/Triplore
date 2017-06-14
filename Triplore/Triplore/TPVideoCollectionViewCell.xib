@@ -19,43 +19,55 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jth-cw-eL7">
-                        <rect key="frame" x="0.0" y="0.0" width="202" height="113.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="202" height="114"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="jth-cw-eL7" secondAttribute="height" multiplier="16:9" id="9cH-oC-bwO"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="视频标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIp-fu-STn">
-                        <rect key="frame" x="0.0" y="123.5" width="202" height="17"/>
+                        <rect key="frame" x="0.0" y="124" width="202" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.03.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-pJ-StW">
-                        <rect key="frame" x="0.0" y="143.5" width="202" height="15"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oof-UO-G6y">
+                        <rect key="frame" x="24" y="144" width="178" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VIDEO_TIMES" translatesAutoresizingMaskIntoConstraints="NO" id="vqX-Kf-vd0">
+                        <rect key="frame" x="0.0" y="144" width="14" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="Hrn-yf-8cj"/>
+                            <constraint firstAttribute="height" constant="15" id="ufm-Xf-hx1"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="vqX-Kf-vd0" firstAttribute="leading" secondItem="fIp-fu-STn" secondAttribute="leading" id="0d8-o5-yqU"/>
                 <constraint firstItem="fIp-fu-STn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6sY-hU-cZc"/>
                 <constraint firstItem="jth-cw-eL7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7Rk-xh-vLZ"/>
-                <constraint firstItem="bqI-pJ-StW" firstAttribute="top" secondItem="fIp-fu-STn" secondAttribute="bottom" constant="3" id="7x6-X5-gTj"/>
+                <constraint firstItem="Oof-UO-G6y" firstAttribute="trailing" secondItem="jth-cw-eL7" secondAttribute="trailing" id="LoD-0i-fYF"/>
                 <constraint firstAttribute="trailing" secondItem="fIp-fu-STn" secondAttribute="trailing" id="MYt-eD-aDM"/>
                 <constraint firstItem="jth-cw-eL7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXP-cx-e22"/>
-                <constraint firstItem="bqI-pJ-StW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bXk-pM-qDA"/>
+                <constraint firstItem="Oof-UO-G6y" firstAttribute="leading" secondItem="vqX-Kf-vd0" secondAttribute="trailing" constant="10" id="Qz2-rn-gtE"/>
                 <constraint firstAttribute="trailing" secondItem="jth-cw-eL7" secondAttribute="trailing" id="iTn-F6-F3E"/>
-                <constraint firstAttribute="trailing" secondItem="bqI-pJ-StW" secondAttribute="trailing" id="og3-M1-jMp"/>
+                <constraint firstItem="Oof-UO-G6y" firstAttribute="centerY" secondItem="vqX-Kf-vd0" secondAttribute="centerY" id="qPw-ww-oG5"/>
+                <constraint firstItem="vqX-Kf-vd0" firstAttribute="top" secondItem="fIp-fu-STn" secondAttribute="bottom" constant="3" id="qkc-If-AaF"/>
                 <constraint firstItem="fIp-fu-STn" firstAttribute="top" secondItem="jth-cw-eL7" secondAttribute="bottom" constant="10" id="xuH-Zd-KBU"/>
             </constraints>
             <size key="customSize" width="202" height="170"/>
             <connections>
                 <outlet property="coverImageView" destination="jth-cw-eL7" id="Egf-VR-QTo"/>
-                <outlet property="timesLabel" destination="bqI-pJ-StW" id="jNI-ZT-7qF"/>
+                <outlet property="timesLabel" destination="Oof-UO-G6y" id="lw2-zi-dFl"/>
                 <outlet property="titleLabel" destination="fIp-fu-STn" id="fub-Qd-Vpv"/>
             </connections>
             <point key="canvasLocation" x="101" y="112"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="VIDEO_TIMES" width="18" height="12"/>
+    </resources>
 </document>
