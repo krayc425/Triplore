@@ -64,7 +64,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
         keywords = [[self.keywords componentsSeparatedByString: @" "] arrayByAddingObject:self.site];
     }
     
-    [TPNetworkHelper fetchVideosByKeywords:keywords withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:keywords withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videos = videos;
         [self.tableView reloadData];
     }];

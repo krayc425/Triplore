@@ -110,18 +110,6 @@
 }
 
 - (void)testNetwork{
-//    [TPNetworkHelper fetchAllVideosWithBlock:^(NSDictionary *dict, NSError *error) {
-//        NSLog(@"!!!%@!!!", dict.description);
-//    }];
-//    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSDictionary *dict, NSError *error) {
-//     
-//    }];
-    
-//    [TPNetworkHelper fetchVideosByKeywords:@[@"京都",@"美食"] withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-//        //TODO
-//           NSLog(@"!!!%@!!!", videos);
-//    }];
-    
     [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
         NSLog(@"----> %lu", (unsigned long)videos.count);
     }];
@@ -133,6 +121,13 @@
     [video setDict:@{}];
     
     [TPVideoManager commentVideo:video withFavorite:1];
+}
+
+- (void)testAllVideo{
+//    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+        NSLog(@"--> %lu", (unsigned long)videos.count);
+    }];
 }
 
 - (void)testPerformanceExample {
