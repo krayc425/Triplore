@@ -77,6 +77,10 @@
 		4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */; };
 		4D4DF7AF1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */; };
 		4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */; };
+		4D9171551EF10C3900930372 /* TPSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */; };
+		4D9171591EF10E4200930372 /* TPSelectionSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9171571EF10E4200930372 /* TPSelectionSliderTableViewCell.m */; };
+		4D91715A1EF10E4200930372 /* TPSelectionSliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9171581EF10E4200930372 /* TPSelectionSliderTableViewCell.xib */; };
+		4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */; };
 		4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CDC0EDB85AB41CDA55A41F461F1AB2 /* AppDelegate.m */; };
 		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
 		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
@@ -246,6 +250,12 @@
 		4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoEpisodeTableViewCell.xib; sourceTree = "<group>"; };
 		4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+URL.h"; sourceTree = "<group>"; };
 		4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+URL.m"; sourceTree = "<group>"; };
+		4D9171531EF10C3900930372 /* TPSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSelectionTableViewController.h; sourceTree = "<group>"; };
+		4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSelectionTableViewController.m; sourceTree = "<group>"; };
+		4D9171561EF10E4200930372 /* TPSelectionSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSelectionSliderTableViewCell.h; sourceTree = "<group>"; };
+		4D9171571EF10E4200930372 /* TPSelectionSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSelectionSliderTableViewCell.m; sourceTree = "<group>"; };
+		4D9171581EF10E4200930372 /* TPSelectionSliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSelectionSliderTableViewCell.xib; sourceTree = "<group>"; };
+		4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDCycleScrollView.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/SDCycleScrollView/libSDCycleScrollView.a"; sourceTree = "<group>"; };
 		4DA4F9DE1ED95CA900DA73AA /* TPSiteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteCollectionViewCell.h; sourceTree = "<group>"; };
 		4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteCollectionViewCell.m; sourceTree = "<group>"; };
 		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -321,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
 				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
 				245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */,
 				24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */,
@@ -449,6 +460,11 @@
 			children = (
 				F5E9831470293F6C7351E91AB5DA8A30 /* TPSelectionViewController.h */,
 				71A44F81AE111CC04878CD49C5E6E129 /* TPSelectionViewController.m */,
+				4D9171531EF10C3900930372 /* TPSelectionTableViewController.h */,
+				4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */,
+				4D9171561EF10E4200930372 /* TPSelectionSliderTableViewCell.h */,
+				4D9171571EF10E4200930372 /* TPSelectionSliderTableViewCell.m */,
+				4D9171581EF10E4200930372 /* TPSelectionSliderTableViewCell.xib */,
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
 				245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */,
@@ -631,6 +647,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */,
 				245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */,
 				245E5C8B1EE4351900448986 /* libSDWebImage.a */,
 				24487C771EDE95F40009E8E5 /* libFMDB.a */,
@@ -831,6 +848,7 @@
 				4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */,
 				2402CE181ED44F690098770A /* Main.storyboard in Resources */,
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
+				4D91715A1EF10E4200930372 /* TPSelectionSliderTableViewCell.xib in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
 				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
@@ -971,6 +989,7 @@
 				4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
+				4D9171591EF10E4200930372 /* TPSelectionSliderTableViewCell.m in Sources */,
 				24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */,
 				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
@@ -978,6 +997,7 @@
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
 				4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
+				4D9171551EF10C3900930372 /* TPSelectionTableViewController.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */,
 				245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */,

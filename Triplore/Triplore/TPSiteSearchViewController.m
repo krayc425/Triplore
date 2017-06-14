@@ -31,8 +31,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-//    self.countries = @[@"中国", @"日本", @"泰国", @"英国", @"新加坡"];
-//    self.cities = @[@"东京", @"京都", @"大阪"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,11 +67,21 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     
     if (self.mode == TPSiteSearchAll || self.mode == TPSiteSearchCountry) {
         if (indexPath.section == 0) {
-            cell.mode = TPSiteCountry;
-            cell.countries = self.countries;
+            if (self.countries.count == 0) {
+                [cell setHidden:YES];
+            } else {
+                cell.mode = TPSiteCountry;
+                cell.countries = self.countries;
+            }
+            
         } else if (indexPath.section == 1) {
-            cell.mode = TPSiteCity;
-            cell.cities = self.cities;
+            if (self.cities.count == 0) {
+                [cell setHidden:YES];
+            } else {
+                cell.mode = TPSiteCity;
+                cell.cities = self.cities;
+            }
+           
         }
     } else if (self.mode == TPSiteSearchCity) {
         cell.mode = TPSiteCity;
@@ -108,27 +117,11 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 #pragma mark - TPSiteTableViewCellDelegate
 
-//- (void)didSelectSite:(NSString *)site withMode:(TPSiteMode)mode {
-//    if (mode == TPSiteCountry) {
-//        TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        countryViewController.mode = TPSiteSearchCity;
-//        countryViewController.cities = self.cities;
-//        countryViewController.navigationItem.title = site;
-//        [self.navigationController pushViewController:countryViewController animated:YES];
-//        
-//    } else if (mode == TPSiteSearchCity) {
-//        TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        
-//        cityViewController.site = site;
-//        [self.navigationController pushViewController:cityViewController animated:YES];
-//    }
-//}
-
 - (void)didSelectCountry:(TPCountryModel *)country {
     TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
     countryViewController.mode = TPSiteSearchCity;
     countryViewController.cities = country.cityModelArr;
-    //    countryViewController.navigationItem.title = site;
+    countryViewController.navigationItem.title = country.chineseName;
     [self.navigationController pushViewController:countryViewController animated:YES];
 }
 

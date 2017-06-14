@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="TPSelectionSliderTableViewCell" selectionStyle="default" indentationWidth="10" rowHeight="278" id="KGk-i7-Jjw" customClass="TPSelectionSliderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="278"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="277"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTu-Ma-0Ti">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="pTu-Ma-0Ti" secondAttribute="height" multiplier="7:3" id="phX-gb-5h8"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="7A7-em-0BI">
+                        <rect key="frame" x="0.0" y="137" width="320" height="85.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kw8-US-Qxi" customClass="TPCategoryButton">
+                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="美食" image="SITE_FOOD">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phy-a5-UxP" customClass="TPCategoryButton">
+                                <rect key="frame" x="106.5" y="0.0" width="107" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="购物" image="SITE_SHOPPING">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4q-RL-XGd" customClass="TPCategoryButton">
+                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="85.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <state key="normal" title="景点" image="SITE_PLACE">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="i4q-RL-XGd" firstAttribute="height" secondItem="7A7-em-0BI" secondAttribute="height" id="9kf-BD-sWD"/>
+                            <constraint firstItem="Kw8-US-Qxi" firstAttribute="height" secondItem="7A7-em-0BI" secondAttribute="height" id="Ele-rX-1CW"/>
+                            <constraint firstItem="phy-a5-UxP" firstAttribute="height" secondItem="7A7-em-0BI" secondAttribute="height" id="ZMA-mA-Qvn"/>
+                            <constraint firstAttribute="width" secondItem="7A7-em-0BI" secondAttribute="height" multiplier="3:0.8" id="uI3-OC-zHj"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7A7-em-0BI" firstAttribute="top" secondItem="pTu-Ma-0Ti" secondAttribute="bottom" id="8Tk-Nk-n8g"/>
+                    <constraint firstAttribute="trailing" secondItem="pTu-Ma-0Ti" secondAttribute="trailing" id="Jof-Qh-fdq"/>
+                    <constraint firstItem="7A7-em-0BI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="X92-Rl-qcW"/>
+                    <constraint firstItem="pTu-Ma-0Ti" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="m12-8s-3M1"/>
+                    <constraint firstAttribute="trailing" secondItem="7A7-em-0BI" secondAttribute="trailing" id="xLx-xR-PGj"/>
+                    <constraint firstItem="pTu-Ma-0Ti" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zsT-ly-hA1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="foodButton" destination="Kw8-US-Qxi" id="xXL-K1-c4o"/>
+                <outlet property="placeButton" destination="i4q-RL-XGd" id="vsZ-y9-ov9"/>
+                <outlet property="shoppingButton" destination="phy-a5-UxP" id="vbS-IQ-NER"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="205"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="SITE_FOOD" width="32" height="26"/>
+        <image name="SITE_PLACE" width="29" height="30"/>
+        <image name="SITE_SHOPPING" width="26" height="28"/>
+    </resources>
+</document>

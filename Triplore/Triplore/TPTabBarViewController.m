@@ -8,6 +8,7 @@
 
 #import "TPTabBarViewController.h"
 #import "TPSelectionViewController.h"
+#import "TPSelectionTableViewController.h"
 #import "Utilities.h"
 #import "TPSiteTableViewController.h"
 #import "TPNoteCollectionViewController.h"
@@ -45,15 +46,16 @@
     
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
-    TPSelectionViewController *vc = [[TPSelectionViewController alloc] init];
-    vc.tabBarItem = item1;
-    UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:vc];
+//    TPSelectionViewController *vc = [[TPSelectionViewController alloc] init];
+    TPSelectionTableViewController *selectionVC = [[TPSelectionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    selectionVC.tabBarItem = item1;
+    UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:selectionVC];
     
     //地点
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"地点" image:[UIImage imageNamed:@"TAB_SITE"] selectedImage:[UIImage imageNamed:@"TAB_SITE"]];
-    TPSiteTableViewController *tpSiteTableViewController = [[TPSiteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    tpSiteTableViewController.tabBarItem = item2;
-    UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:tpSiteTableViewController];
+    TPSiteTableViewController *siteVC = [[TPSiteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    siteVC.tabBarItem = item2;
+    UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:siteVC];
     
     //笔记
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
