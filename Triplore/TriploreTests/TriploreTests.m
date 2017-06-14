@@ -123,6 +123,13 @@
     [TPVideoManager commentVideo:video withFavorite:1];
 }
 
+- (void)testAllVideo{
+//    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+        NSLog(@"--> %lu", (unsigned long)videos.count);
+    }];
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

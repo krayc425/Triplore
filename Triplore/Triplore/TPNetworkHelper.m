@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "TPVideoModel.h"
 
-static NSString *ALL_URL = @"http://iface.qiyi.com/openapi/realtime/channel";
+static NSString *ALL_URL = @"http://iface.qiyi.com/openapi/batch/channel";
 static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
 
 @implementation TPNetworkHelper
@@ -27,7 +27,6 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                                              @"text/html",
                                                              @"application/json",
                                                              nil];
-        
         NSDictionary *dict = @{
                                @"type" : @"detail",
                                @"channel_name" : @"旅游",
@@ -50,7 +49,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_v" : @(1),
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
-                               @"req_sn" : @([[NSDate date] timeIntervalSince1970]),
+                               @"req_sn" : @"1493946331320",
                                @"req_times" : @(5)
                                };
         
@@ -75,6 +74,9 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                              TPVideoModel *video = [[TPVideoModel alloc] initWithDict:subDict];
                              [resultArr addObject:video];
                          }
+                         
+                         NSLog(@"All Count: %lu", (unsigned long)resultArr.count);
+                         
                          completionBlock([NSArray arrayWithArray:resultArr], nil);
                      }
                      
