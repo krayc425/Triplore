@@ -73,11 +73,11 @@ static DBManager * _instance = nil;
             if (result){
                 NSLog(@"创建表 note 成功");
             }
-            
         }
         
         //清理数据库缓存
-        [self.db executeStatements:@"VACUUM t_task"];
+        [self.db executeStatements:@"VACUUM t_note"];
+        [self.db executeStatements:@"VACUUM t_video"];
     }
     
     NSLog(@"Current Path: %@", self.getDBPath);

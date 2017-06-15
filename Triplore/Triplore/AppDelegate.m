@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "QYPlayerController.h"
 #import "TPTabBarViewController.h"
-#import "TPSelectionViewController.h"
 #import "Utilities.h"
 #import "DBManager.h"
 

@@ -17,6 +17,9 @@
 #import "TPAddTextViewController.h"
 #import "TPPlayViewController.h"
 #import "TPNoteCollectionViewController.h"
+#import "TPNoteDecorator.h"
+#import "TPNoteTemplate.h"
+#import "TPNoteTemplateFactory.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
@@ -30,10 +33,12 @@
 
 @implementation TPNoteViewController{
     NSIndexPath *selectedIndexPath;
+    NSMutableArray<UIView *> *showViews;    //展示用
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    showViews = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [Utilities getBackgroundColor];
     //滚动视图
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
@@ -62,17 +67,15 @@
     self.navigationItem.titleView = button;
     
     //保存按钮
-//    if(self.noteMode == TPNewNote) {
-        UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                          20,
-                                                                          24,
-                                                                          24)];
-        saveButton.tintColor = [UIColor whiteColor];
-        [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-        self.navigationItem.rightBarButtonItem = saveButtonItem;
-//    }
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                      20,
+                                                                      24,
+                                                                      24)];
+    saveButton.tintColor = [UIColor whiteColor];
+    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+    self.navigationItem.rightBarButtonItem = saveButtonItem;
 
     //底下按钮
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -108,6 +111,7 @@
 
 - (void)setNoteTitle:(NSString *)noteTitle{
     _noteTitle = noteTitle;
+    self.note.title = noteTitle;
     UIButton *button  = (UIButton *)self.navigationItem.titleView;
     [button setTitle:self.noteTitle forState:UIControlStateNormal];
 }
@@ -117,9 +121,8 @@
     
     self.noteTitle = self.note.title;
     self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
-    self.title = self.noteTitle;
-    
-    [self.tableView reloadData];
+
+    [self reloadShowViews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -129,6 +132,13 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
+- (void)reloadShowViews{
+    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:[TPNoteTemplateFactory getTemplateOfNum:TPBrown]]];
+    self.view.backgroundColor = showViews[0].backgroundColor;
+    self.tableView.backgroundColor = showViews[0].backgroundColor;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Button Action
 
 - (void)videoAction{
@@ -136,8 +146,6 @@
     if(video == NULL){
         NSLog(@"没视频");
     }else{
-//        MainViewController *vc=[[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
-        //    self.window.rootViewController = vc;
         TPPlayViewController *playViewController = [[TPPlayViewController alloc] initWithNibName:@"TPPlayViewController" bundle:nil];
         [playViewController setNote:self.note];
         [playViewController setNoteMode:TPOldNote];
@@ -175,9 +183,9 @@
         TPNote *note = [TPNote new];
         [note setVideoid:(NSInteger)self.videoDict[@"id"]];
         [note setTitle:self.noteTitle];
-        
+        [note setCreateTime:self.note.createTime];
         [note setViews:self.noteViews];
-        [note setCreateTime:[NSDate date]];
+        
         success = [TPNoteManager insertNote:note];
         
         TPVideo *video = [TPVideo new];
@@ -246,18 +254,20 @@
 }
 
 - (void)updateNoteView:(UIView *_Nonnull)view{
-    [self.noteViews replaceObjectAtIndex:selectedIndexPath.row withObject:view];
-    [self.tableView reloadData];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self.noteViews replaceObjectAtIndex:selectedIndexPath.row - 2 withObject:view];
+    self.note.views = self.noteViews;
+    [self reloadShowViews];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] + 2 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)updateTitle:(NSString *)title{
     [self setNoteTitle:title];
+    [self reloadShowViews];
 }
 
 #pragma mark - Long Pressed Gesture
 
-- (UIView *)customSnapshoFromView:(UIView *)inputView {
+- (UIView *)customSnapshotFromView:(UIView *)inputView {
     // 用cell的图层生成UIImage，方便一会显示
     UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
     [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -285,10 +295,13 @@
         case UIGestureRecognizerStateBegan: {
             // 判断是不是按在了cell上面
             if (indexPath) {
+                if(indexPath.row < 2){
+                    return;
+                }
                 sourceIndexPath = indexPath;
                 UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
                 // 为拖动的cell添加一个快照
-                snapshot = [self customSnapshoFromView:cell];
+                snapshot = [self customSnapshotFromView:cell];
                 // 添加快照至tableView中
                 __block CGPoint center = cell.center;
                 snapshot.center = center;
@@ -312,6 +325,9 @@
         }
             // 移动过程中
         case UIGestureRecognizerStateChanged: {
+            if(sourceIndexPath.row < 2){
+                return;
+            }
             // 这里保持数组里面只有最新的两次触摸点的坐标
             [self.touchPoints addObject:[NSValue valueWithCGPoint:location]];
             if (self.touchPoints.count > 2) {
@@ -326,13 +342,11 @@
             CGFloat moveX = Npoint.x - Ppoint.x;
             center.x += moveX;
             snapshot.center = center;
-            NSLog(@"%@", NSStringFromCGRect(snapshot.frame));
             // 是否移动了
-            if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
-                
+            if (indexPath && indexPath.row >= 2 && ![indexPath isEqual:sourceIndexPath]) {
                 // 更新数组中的内容
                 [self.noteViews exchangeObjectAtIndex:
-                 indexPath.row withObjectAtIndex:sourceIndexPath.row];
+                 indexPath.row - 2 withObjectAtIndex:sourceIndexPath.row - 2];
                 
                 // 把cell移动至指定行
                 [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
@@ -385,8 +399,6 @@
     [self.tableView reloadData];
     
     UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, NO, [[UIScreen mainScreen] scale]);
-    
-    NSLog(@"%lu", (unsigned long)self.noteViews.count);
     
     CGPoint savedContentOffset = self.tableView.contentOffset;
     CGRect saveFrame = self.tableView.frame;
@@ -450,7 +462,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.noteViews.count;
+    return showViews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -460,21 +472,33 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [nib objectAtIndex:0];
     }
-    [cell setNoteView:self.noteViews[indexPath.row]];
+    if(indexPath.row < 2){
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [cell setBackgroundColor:showViews[0].backgroundColor];
+    [cell setNoteView:showViews[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     selectedIndexPath = indexPath;
-    if([self.noteViews[indexPath.row] isKindOfClass:[UILabel class]]){
-        UILabel *label = (UILabel *)self.noteViews[indexPath.row];
+    if(indexPath.row == 0){
+        return;
+    }else if(indexPath.row == 1){
+        [self editTitleAction];
+    }else if([self.noteViews[indexPath.row - 2] isKindOfClass:[UILabel class]]){
+        UILabel *label = (UILabel *)self.noteViews[indexPath.row - 2];
         [self editNoteActionWithString:label.text andMode:TPUpdateNote];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.noteViews[indexPath.row].frame.size.height + 20;
+    if(indexPath.row < 2){
+        return showViews[indexPath.row].frame.size.height + 10;
+    }else{
+        return self.noteViews[indexPath.row - 2].frame.size.height + 20;
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -482,8 +506,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.noteViews removeObjectAtIndex:indexPath.row];
-    [tableView reloadData];
+    [self.noteViews removeObjectAtIndex:indexPath.row - 2];
+    self.note.views = self.noteViews;
+    [self reloadShowViews];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -492,6 +517,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"               ";
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

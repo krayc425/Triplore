@@ -8,9 +8,11 @@
 
 #import "TPNoteCreator.h"
 #import <UIKit/UIKit.h>
+#import "TPNoteTemplate.h"
 
 @implementation TPNoteCreator{
     NSMutableArray *noteViewArray;
+    TPNoteTemplate *template;
 }
 
 static TPNoteCreator *_instance = nil;
@@ -76,6 +78,12 @@ static TPNoteCreator *_instance = nil;
     [noteViewArray removeAllObjects];
 }
 
+/**
+ 修改 View
+
+ @param view  子 view
+ @param index  在哪个 index
+ */
 - (void)updateNoteView:(UIView *_Nonnull)view atIndex:(NSInteger)index{
     [noteViewArray replaceObjectAtIndex:index withObject:view];
 }

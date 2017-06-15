@@ -30,8 +30,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

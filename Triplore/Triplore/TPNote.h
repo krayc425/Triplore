@@ -19,5 +19,6 @@
 @property (nonatomic, nonnull) NSDate *createTime;
 @property (nonatomic, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSArray<UIView *> *views;
+@property (nonatomic, nonnull) UIImage *cover;
 
 @end

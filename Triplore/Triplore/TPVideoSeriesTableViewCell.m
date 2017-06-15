@@ -44,9 +44,7 @@ static NSString *cellIdentifier = @"TPVideoEpisodeTableViewCell";
     // cell
     UINib *nib = [UINib nibWithNibName:@"TPVideoEpisodeTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-
 }
-
 
 - (void)setVideo:(TPVideoModel *)video {
     

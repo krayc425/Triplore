@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TPNoteTitleViewGreen"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="TPNoteTitleViewGreen" customClass="TPNoteTitleViewGreen">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NOTE_TITLE_GREEN" translatesAutoresizingMaskIntoConstraints="NO" id="giW-Jw-RT9">
+                    <rect key="frame" x="10" y="0.0" width="24" height="50"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June 2017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-fE-d1K">
+                    <rect key="frame" x="268.5" y="10" width="56.5" height="16.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
+                    <color key="textColor" red="0.39211094379425049" green="0.39218336343765259" blue="0.39210647344589233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-wc-jQB">
+                    <rect key="frame" x="279" y="31.5" width="36" height="41.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="36"/>
+                    <color key="textColor" red="0.39211094379425049" green="0.39218336343765259" blue="0.39210647344589233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7mp-wc-jQB" firstAttribute="top" secondItem="aSG-fE-d1K" secondAttribute="bottom" constant="5" id="CLa-2S-ZEh"/>
+                <constraint firstItem="giW-Jw-RT9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HAr-Tb-Ked"/>
+                <constraint firstItem="aSG-fE-d1K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Pzq-a6-ANN"/>
+                <constraint firstItem="aSG-fE-d1K" firstAttribute="centerX" secondItem="7mp-wc-jQB" secondAttribute="centerX" id="cdl-GV-x0o"/>
+                <constraint firstItem="giW-Jw-RT9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="haG-g1-ITm"/>
+                <constraint firstAttribute="trailing" secondItem="aSG-fE-d1K" secondAttribute="trailing" constant="10" id="zww-mi-D1I"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dayLabel" destination="7mp-wc-jQB" id="Dp2-nZ-o04"/>
+                <outlet property="monthYearLabel" destination="aSG-fE-d1K" id="qft-d6-7MM"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="NOTE_TITLE_GREEN" width="24" height="50"/>
+    </resources>
+</document>

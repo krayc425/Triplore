@@ -15,6 +15,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,16 +34,13 @@
     view.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
     |UIViewAutoresizingFlexibleRightMargin;
     [self addSubview:view];
-//    self.autoresizesSubviews = UIViewAutoresizingFlexibleLeftMargin
-//    |UIViewAutoresizingFlexibleRightMargin;
     
     //自定义删除 View
     UIView *deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
                                                                   0,
                                                                   300,
                                                                   CGRectGetHeight(noteView.frame) + 20)];
-    
-    deleteView.backgroundColor = [UIColor whiteColor];
+    deleteView.backgroundColor = [UIColor clearColor];
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         90,

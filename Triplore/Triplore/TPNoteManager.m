@@ -54,7 +54,6 @@
         [note setCreateTime:[resultSet dateForColumn:@"createTime"]];
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
         [note setViews:noteViewArr];
-        
         [resultArr addObject:note];
     }
     return resultArr;

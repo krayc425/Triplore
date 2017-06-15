@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TPNoteTitleViewBrown"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="QeK-si-Qtw" userLabel="TPNoteTitleViewBrown" customClass="TPNoteTitleViewBrown">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NOTE_TITLE_BROWN" translatesAutoresizingMaskIntoConstraints="NO" id="sxY-2E-NE8">
+                    <rect key="frame" x="10" y="0.0" width="24" height="50"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June 2017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjD-sQ-XCL">
+                    <rect key="frame" x="268.5" y="10" width="56.5" height="16.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="14"/>
+                    <color key="textColor" red="0.3921109438" green="0.39218336339999998" blue="0.39210647339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcy-WU-bnb">
+                    <rect key="frame" x="279" y="31.5" width="36" height="41.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="36"/>
+                    <color key="textColor" red="0.3921109438" green="0.39218336339999998" blue="0.39210647339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Pcy-WU-bnb" firstAttribute="top" secondItem="PjD-sQ-XCL" secondAttribute="bottom" constant="5" id="Dky-XL-u1M"/>
+                <constraint firstAttribute="trailing" secondItem="PjD-sQ-XCL" secondAttribute="trailing" constant="10" id="Eth-sN-I58"/>
+                <constraint firstItem="PjD-sQ-XCL" firstAttribute="top" secondItem="QeK-si-Qtw" secondAttribute="top" constant="10" id="HLi-NM-GCu"/>
+                <constraint firstItem="sxY-2E-NE8" firstAttribute="leading" secondItem="QeK-si-Qtw" secondAttribute="leading" constant="10" id="iPB-t7-QDS"/>
+                <constraint firstItem="sxY-2E-NE8" firstAttribute="top" secondItem="QeK-si-Qtw" secondAttribute="top" id="sPO-lk-bdc"/>
+                <constraint firstItem="PjD-sQ-XCL" firstAttribute="centerX" secondItem="Pcy-WU-bnb" secondAttribute="centerX" id="uci-dc-pam"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dayLabel" destination="Pcy-WU-bnb" id="j9e-a3-YmR"/>
+                <outlet property="monthYearLabel" destination="PjD-sQ-XCL" id="dwD-Mi-I7a"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="NOTE_TITLE_BROWN" width="24" height="50"/>
+    </resources>
+</document>

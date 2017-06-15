@@ -16,7 +16,6 @@
 #import "QYAVPlayerController.h"
 #import "PlayerController.h"
 #import "UIImage+Extend.h"
-#import "TPNoteCreator.h"
 #import "TPNote.h"
 #import "TPNoteManager.h"
 #import "TPNoteViewTableViewCell.h"
@@ -73,7 +72,10 @@
     NSLog(@"%f %f %f %f", self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.origin.x, self.playerView.frame.origin.y);
     [_playerView addSubview:[QYPlayerController sharedInstance].view];
     
-    playFrame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
+    playFrame = CGRectMake(0,
+                           0,
+                           [[UIScreen mainScreen] bounds].size.width,
+                           [[UIScreen mainScreen] bounds].size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -134,10 +136,6 @@
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
-    
-//    [self.view layoutSubviews];
-    
-//    stackFrame = self.buttonStack.frame;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -181,6 +179,9 @@
 - (void)reloadNoteViews{
     [self.noteViews removeAllObjects];
     [self.noteViews addObjectsFromArray:[[TPNoteCreator shareInstance] getNoteViews]];
+    [self.noteViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.backgroundColor = [UIColor clearColor];
+    }];
     [self.tableView reloadData];
 }
 
@@ -333,7 +334,10 @@
  * 播放完成
  */
 - (void)playbackFinshed:(QYPlayerController *)player{
-    
+    if(self.view.bounds.size.width > self.view.bounds.size.height){
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    }
 }
 
 /*
@@ -427,6 +431,7 @@
         TPNote *newNote = [TPNote new];
         [newNote setTitle:_titleText.text];
         [newNote setViews:noteArr];
+        [newNote setCreateTime:[NSDate date]];
         self.note = newNote;
     }else{
         //直接更新返回
@@ -665,17 +670,23 @@
         [UIView animateWithDuration:0.5 animations:^{
             
         } completion:^(BOOL finished) {
-            self.playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
+            self.playerView.frame = CGRectMake(0,
+                                               0,
+                                               self.view.bounds.size.width,
+                                               self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [[self.view viewWithTag:100] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
-            [[self.view viewWithTag:200] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
-            [progressBarView setFrame:CGRectMake(50, self.playerView.frame.size.height, self.playerView.frame.size.width - 90 - stackFrame.size.width, CONTROLLER_BAR_WIDTH)];
-//                        [self.buttonStack setFrame:CGRectMake(progressBarView.frame.size.width + 110, self.playerView.frame.size.height, stackFrame.size.width, CONTROLLER_BAR_WIDTH)];
-//                        [self.buttonStack setFrame:CGRectMake(0,0,200,30)];
-//            for(UIButton *btn in self.buttonStack.arrangedSubviews){
-//                [btn setTintColor:[UIColor whiteColor]];
-//            }
-//            [self.buttonStack layoutSubviews];
+            [[self.view viewWithTag:100] setFrame:CGRectMake(10,
+                                                             self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
+                                                             CONTROLLER_BAR_WIDTH,
+                                                             CONTROLLER_BAR_WIDTH)];
+            [[self.view viewWithTag:200] setFrame:CGRectMake(10,
+                                                             self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
+                                                             CONTROLLER_BAR_WIDTH,
+                                                             CONTROLLER_BAR_WIDTH)];
+            [progressBarView setFrame:CGRectMake(50,
+                                                 self.playerView.frame.size.height,
+                                                 self.view.bounds.size.width - 90,
+                                                 CONTROLLER_BAR_WIDTH)];
             [progressBarView layoutSubviews];
             [self.view layoutSubviews];
         }];
@@ -697,11 +708,6 @@
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];
-//            [self.buttonStack setFrame:stackFrame];
-//            for(UIButton *btn in self.buttonStack.arrangedSubviews){
-//                [btn setTintColor:[Utilities getBackgroundColor]];
-//            }
-//            [self.buttonStack layoutSubviews];
             [progressBarView layoutSubviews];
             [self.view layoutSubviews];
         }];
