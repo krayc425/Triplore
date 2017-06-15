@@ -11,11 +11,12 @@
 #import "TPCityVideoTableViewCell.h"
 #import "TPVideoTableViewController.h"
 #import "TPPlayViewController.h"
+#import "PYSearchViewController.h"
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
 #import "Utilities.h"
 
-@interface TPSelectionTableViewController () <TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>
+@interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>
 
 @property (nonatomic, strong) NSArray* videosFood;
 @property (nonatomic, strong) NSArray* videosShopping;
@@ -93,9 +94,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     return 1;
 }
 
-- (void)clickSearchButton:(id)sender {
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPSelectionSliderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -153,7 +151,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    videoViewController.keywords = [titles[mode-1] stringByAppendingString:@" 旅游"];
+    videoViewController.keywords = titles[mode-1] ;
     
     [self.navigationController pushViewController:videoViewController animated:YES];
     
@@ -167,7 +165,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-        videoViewController.keywords = [titles[mode-1] stringByAppendingString:@" 旅游"];
+        videoViewController.keywords = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
     
@@ -180,6 +178,56 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     playViewController.videoDict = video.videoDict;
     
     [self.navigationController pushViewController:playViewController animated:YES];
+}
+
+#pragma mark - Action
+
+- (void)clickSearchButton:(id)sender {
+    NSArray *hotSeaches = @[@"美食", @"购物", @"景点"];
+    
+    PYSearchViewController *searchViewController =
+    [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches
+                                           searchBarPlaceholder:@"搜索视频"
+                                                 didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+                                                     TPVideoTableViewController *resultViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                                     
+                                                     resultViewController.keywords = searchText;
+                                                     
+                                                     [searchViewController.navigationController pushViewController:resultViewController animated:YES];
+                                                     
+                                                 }];
+    
+    
+    searchViewController.delegate = self;
+    
+    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:searchViewController animated:NO];
+    
+}
+
+#pragma mark - PYSearchViewControllerDelegate
+
+- (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
+    
+    searchViewController.navigationItem.hidesBackButton = YES;
+    
+}
+
+
+- (void)didClickCancel:(PYSearchViewController *)searchViewController {
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [searchViewController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 

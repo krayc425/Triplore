@@ -59,7 +59,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     NSArray *keywords;
     
     if (self.site == NULL) {
-        keywords = [self.keywords componentsSeparatedByString: @" "];
+        keywords = [[self.keywords componentsSeparatedByString: @" "] arrayByAddingObject:@"旅游"];
     } else {
         keywords = [[self.keywords componentsSeparatedByString: @" "] arrayByAddingObject:self.site];
     }
