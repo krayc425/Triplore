@@ -136,7 +136,9 @@
     if(video == NULL){
         NSLog(@"没视频");
     }else{
-        TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
+//        MainViewController *vc=[[MainViewController alloc]initWithNibName:@"MainViewController" bundle:nil];
+        //    self.window.rootViewController = vc;
+        TPPlayViewController *playViewController = [[TPPlayViewController alloc] initWithNibName:@"TPPlayViewController" bundle:nil];
         [playViewController setNote:self.note];
         [playViewController setNoteMode:TPOldNote];
         [playViewController setVideoDict:video.dict];
@@ -165,13 +167,15 @@
 }
 
 - (BOOL)saveNote{
-    NSLog(@"保存");
+    NSLog(@"保存笔记");
     BOOL success = NO;
+    
     //新增
     if(self.noteMode == TPNewNote){
         TPNote *note = [TPNote new];
         [note setVideoid:(NSInteger)self.videoDict[@"id"]];
         [note setTitle:self.noteTitle];
+        
         [note setViews:self.noteViews];
         [note setCreateTime:[NSDate date]];
         success = [TPNoteManager insertNote:note];
@@ -370,7 +374,19 @@
 #pragma mark - Save to album
 
 - (void)exportAlbumAction{
+    //加入 TitleView
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 20)];
+    [titleLabel setText:self.title];
+    [titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:25.0f]];
+    titleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
+    [titleLabel sizeToFit];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.noteViews insertObject:titleLabel atIndex:0];
+    [self.tableView reloadData];
+    
     UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, NO, [[UIScreen mainScreen] scale]);
+    
+    NSLog(@"%lu", (unsigned long)self.noteViews.count);
     
     CGPoint savedContentOffset = self.tableView.contentOffset;
     CGRect saveFrame = self.tableView.frame;
@@ -384,6 +400,11 @@
     self.tableView.frame = saveFrame;
     
     UIGraphicsEndImageContext();
+    
+    [self.noteViews removeObjectAtIndex:0];
+    [self.tableView reloadData];
+    
+    NSLog(@"%lu", (unsigned long)self.noteViews.count);
     
     UIImageWriteToSavedPhotosAlbum(image,
                                    self,
@@ -462,7 +483,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.noteViews removeObjectAtIndex:indexPath.row];
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [tableView reloadData];
 }
 

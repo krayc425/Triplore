@@ -26,6 +26,7 @@
     BOOL hasTitle = YES;
     BOOL hasImage = YES;
     [self.contentLabel setText:@""];
+    [self.backgroundImgView setImage:[UIImage new]];
     for(UIView *view in note.views){
         if(hasTitle && [view isKindOfClass:[UILabel class]]){
             UILabel *labelView = (UILabel *)view;

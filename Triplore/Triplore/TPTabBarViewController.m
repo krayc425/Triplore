@@ -13,8 +13,11 @@
 #import "TPSiteTableViewController.h"
 #import "TPNoteCollectionViewController.h"
 #import "TPMeTableViewController.h"
+#import "TPPlayViewController.h"
 
-@interface TPTabBarViewController ()
+@interface TPTabBarViewController (){
+    BOOL shouldAutorotate;
+}
 
 @end
 
@@ -79,7 +82,6 @@
         naviVC.navigationBar.translucent = NO;
         naviVC.navigationBar.opaque = YES;
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,11 +122,27 @@
     }
 }
 
-- (BOOL)shouldAutorotate{
+#pragma mark - Rotation
+
+- (BOOL)shouldAutorotate {
+    UINavigationController *nav = self.selectedViewController;
+    UIViewController *vc = nav.topViewController;
+    if ([vc isKindOfClass:[TPPlayViewController class]] &&
+        [vc respondsToSelector:@selector(shouldAutorotate)]) {
+        return [vc shouldAutorotate];
+    }
+    
     return NO;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+// 支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    UINavigationController *nav = self.selectedViewController;
+    UIViewController *vc = nav.topViewController;
+    if ([vc isKindOfClass:[TPPlayViewController class]] &&
+        [vc respondsToSelector:@selector(supportedInterfaceOrientations)]) {
+        return [vc supportedInterfaceOrientations];
+    }
     return UIInterfaceOrientationMaskPortrait;
 }
 
