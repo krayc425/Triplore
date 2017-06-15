@@ -66,17 +66,17 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 #pragma mark - Request
 
 - (void) request {
-    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"美食"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"美食"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosFood = [videos subarrayWithRange:NSMakeRange(0, fmin(2, videos.count))];
         [self.tableView reloadData];
     }];
     
-    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"购物"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"购物"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, fmin(2, videos.count))];
         [self.tableView reloadData];
     }];
     
-    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"景点"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[self.city.chineseName,@"景点"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, fmin(2, videos.count))];
         [self.tableView reloadData];
     }];

@@ -7,6 +7,7 @@
 //
 
 #import "TPNoteViewTableViewCell.h"
+#import "Utilities.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
@@ -40,7 +41,7 @@
                                                                   0,
                                                                   300,
                                                                   CGRectGetHeight(noteView.frame) + 20)];
-    deleteView.backgroundColor = [UIColor clearColor];
+    deleteView.backgroundColor = [UIColor whiteColor];
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         90,

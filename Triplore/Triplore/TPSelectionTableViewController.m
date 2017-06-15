@@ -65,15 +65,15 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (void)request {
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"美食"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"美食"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"购物"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"购物"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"景点"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"景点"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
         [self.tableView reloadData];
     }];

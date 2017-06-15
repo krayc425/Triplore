@@ -19,6 +19,7 @@
 + (NSArray<UIView *> *)getNoteViews:(TPNote *)note andTemplate:(TPNoteTemplate *)template{
     NSMutableArray<UIView *> *tempViews = [[NSMutableArray alloc] init];
     
+    [template.tem_titleView setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width - 40, 80)];
     [template.tem_titleView setDate:note.createTime];
     [tempViews addObject:template.tem_titleView];
     

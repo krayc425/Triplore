@@ -103,7 +103,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
     });
 }
 
-+ (void)fetchVideosByKeywords:(NSArray *)keywords withSize:(NSInteger)size withBlock:(void(^)(NSArray<TPVideoModel *> *videos, NSError *error))completionBlock{
++ (void)fetchVideosByKeywords:(NSArray *)keywords withSize:(NSUInteger)size inPage:(NSUInteger)pageNum withBlock:(void(^)(NSArray<TPVideoModel *> * videos, NSError * error))completionBlock{
     NSString *searchString = @"";
     for (NSString *s in keywords){
         searchString = [searchString stringByAppendingString:s];
@@ -123,10 +123,18 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                                              @"application/json",
                                                              nil];
         
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate:[NSDate date]];
+        NSDate *localeDate = [[NSDate date] dateByAddingTimeInterval:interval];
+        NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]];
+        timeSp = [timeSp stringByAppendingString:@"000"];
+        NSLog(@"%@", timeSp);
+        
         NSDictionary *dict = @{
                                @"key" : searchString,
                                @"from" : @"mobile_list",
                                @"page_size" : @(size),
+                               @"pg_num" : @(pageNum),
                                @"version" : @(7.5),
                                @"app_k" : @"f0f6c3ee5709615310c0f053dc9c65f2",
                                @"app_v" : @(8.4),
@@ -143,7 +151,7 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                                @"secure_v" : @(1),
                                @"secure_p" : @"iPhone",
                                @"core" : @(1),
-                               @"req_sn" : @"1493946331320",
+                               @"req_sn" : timeSp,
                                @"req_times" : @(5)
                                };
         

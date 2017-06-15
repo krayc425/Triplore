@@ -114,6 +114,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
     //长按拖动手势
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
@@ -429,14 +430,14 @@
     if(self.noteMode == TPNewNote){
         //新增模式，进入 NoteVC
         TPNote *newNote = [TPNote new];
-        [newNote setTitle:_titleText.text];
+        [newNote setTitle:([_titleText.text isEqualToString:@""] ? self.videoDict[@"short_title"] : _titleText.text)];
         [newNote setViews:noteArr];
         [newNote setCreateTime:[NSDate date]];
         self.note = newNote;
     }else{
         //直接更新返回
         //更新：标题、Views
-        [self.note setTitle:_titleText.text];
+        [self.note setTitle:([_titleText.text isEqualToString:@""] ? self.videoDict[@"short_title"] : _titleText.text)];
         [self.note setViews:self.noteViews];
         [TPNoteManager updateNote:self.note];
     }

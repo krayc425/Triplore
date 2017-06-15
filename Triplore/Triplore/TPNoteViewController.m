@@ -388,16 +388,6 @@
 #pragma mark - Save to album
 
 - (void)exportAlbumAction{
-    //加入 TitleView
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 20)];
-    [titleLabel setText:self.title];
-    [titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:25.0f]];
-    titleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
-    [titleLabel sizeToFit];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.noteViews insertObject:titleLabel atIndex:0];
-    [self.tableView reloadData];
-    
     UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, NO, [[UIScreen mainScreen] scale]);
     
     CGPoint savedContentOffset = self.tableView.contentOffset;
@@ -412,9 +402,6 @@
     self.tableView.frame = saveFrame;
     
     UIGraphicsEndImageContext();
-    
-    [self.noteViews removeObjectAtIndex:0];
-    [self.tableView reloadData];
     
     NSLog(@"%lu", (unsigned long)self.noteViews.count);
     
