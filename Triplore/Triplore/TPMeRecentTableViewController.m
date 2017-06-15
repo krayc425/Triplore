@@ -94,6 +94,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     TPVideoModel *video = self.videos[indexPath.section];
     TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
     cell.video = video;
+    cell.cellDelegate = self;
     return cell;
 }
 

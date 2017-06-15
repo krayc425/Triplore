@@ -10,7 +10,15 @@
 
 @class TPVideoModel;
 
+@protocol FavoriteCellDelegate <NSObject>
+
+- (void)didSelectFavorite:(id _Nonnull)sender;
+
+@end
+
 @interface TPVideoSingleTableViewCell : UITableViewCell
+
+@property (nonatomic, nonnull) id<FavoriteCellDelegate> cellDelegate;
 
 @property (nonatomic, nonnull) TPVideoModel *video;
 

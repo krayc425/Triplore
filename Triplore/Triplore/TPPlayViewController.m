@@ -31,6 +31,7 @@
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate>{
     CGRect playFrame;
+    CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
     UIBarButtonItem *favoriteButton;
     TPVideoProgressBar *progressBarView;
@@ -44,6 +45,7 @@
 @property (nonatomic, nonnull) IBOutlet UIView *playPauseView;
 @property (nonatomic, nonnull) IBOutlet UIView *barContainerView;
 @property (nonatomic, nonnull) IBOutlet UITableView *tableView;
+@property (nonatomic, nonnull) IBOutlet UIStackView *buttonStack;
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
 @property (nonnull, nonatomic) NSMutableArray *touchPoints;
@@ -76,7 +78,7 @@
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     self.activityWheel = wheel;
-    self.activityWheel.center = self.playerView.center;
+    self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
     
     _titleText.placeholder = @"填写笔记标题";
     _titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
@@ -132,6 +134,10 @@
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
+    
+//    [self.view layoutSubviews];
+    
+//    stackFrame = self.buttonStack.frame;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -663,7 +669,13 @@
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
             [[self.view viewWithTag:200] setFrame:CGRectMake(10, self.playerView.frame.size.height, CONTROLLER_BAR_WIDTH, CONTROLLER_BAR_WIDTH)];
-            [progressBarView setFrame:CGRectMake(50, self.playerView.frame.size.height, self.playerView.frame.size.width - 70, CONTROLLER_BAR_WIDTH)];
+            [progressBarView setFrame:CGRectMake(50, self.playerView.frame.size.height, self.playerView.frame.size.width - 90 - stackFrame.size.width, CONTROLLER_BAR_WIDTH)];
+//                        [self.buttonStack setFrame:CGRectMake(progressBarView.frame.size.width + 110, self.playerView.frame.size.height, stackFrame.size.width, CONTROLLER_BAR_WIDTH)];
+//                        [self.buttonStack setFrame:CGRectMake(0,0,200,30)];
+//            for(UIButton *btn in self.buttonStack.arrangedSubviews){
+//                [btn setTintColor:[UIColor whiteColor]];
+//            }
+//            [self.buttonStack layoutSubviews];
             [progressBarView layoutSubviews];
             [self.view layoutSubviews];
         }];
@@ -685,6 +697,11 @@
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];
+//            [self.buttonStack setFrame:stackFrame];
+//            for(UIButton *btn in self.buttonStack.arrangedSubviews){
+//                [btn setTintColor:[Utilities getBackgroundColor]];
+//            }
+//            [self.buttonStack layoutSubviews];
             [progressBarView layoutSubviews];
             [self.view layoutSubviews];
         }];

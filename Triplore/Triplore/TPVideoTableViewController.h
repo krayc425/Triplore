@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPVideoSingleTableViewCell.h"
 
-@interface TPVideoTableViewController : UITableViewController
+@interface TPVideoTableViewController : UITableViewController <FavoriteCellDelegate>
 
 @property (nonatomic, nonnull) NSString *site;
 @property (nonatomic, nonnull) NSString *keywords;

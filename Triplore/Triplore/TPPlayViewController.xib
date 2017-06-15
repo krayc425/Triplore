@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TPPlayViewController" customModule="Triplore" customModuleProvider="target">
             <connections>
                 <outlet property="barContainerView" destination="RZW-pf-OWb" id="mYb-9Q-rGv"/>
+                <outlet property="buttonStack" destination="gCx-kf-1Gn" id="rR9-Ab-DD3"/>
                 <outlet property="editButton" destination="EZn-T6-jXG" id="7V5-hI-apS"/>
                 <outlet property="playPauseView" destination="yiQ-bb-4f7" id="nBf-lu-nEP"/>
                 <outlet property="playerView" destination="PbA-IR-Zss" id="9cC-QA-vx0"/>
