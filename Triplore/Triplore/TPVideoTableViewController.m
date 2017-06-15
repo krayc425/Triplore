@@ -7,14 +7,15 @@
 //
 
 #import "TPVideoTableViewController.h"
-#import "TPVideoSingleTableViewCell.h"
 #import "TPVideoSeriesTableViewCell.h"
 #import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
 #import "Utilities.h"
+#import "TPVideoManager.h"
+#import "TPVideo.h"
 
-@interface TPVideoTableViewController ()
+@interface TPVideoTableViewController () 
 
 @property (nonatomic, strong) NSArray* videos;
 
@@ -104,12 +105,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
             NSLog(@"%d", videos.count);
             
         }];
-//        cell.count = 6;
         
         return cell;
     } else {
         TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
         cell.video = video;
+        
+        cell.cellDelegate = self;
+        
         return cell;
     }
 }
@@ -129,8 +132,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     return 10.0;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
 }
 
@@ -142,6 +144,15 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     playViewController.videoDict = video.videoDict;
     
     [self.navigationController pushViewController:playViewController animated:YES];
+}
+
+#pragma mark - Favorite Delegate
+
+- (void)didSelectFavorite:(id)sender{
+    TPVideoSingleTableViewCell *cell = (TPVideoSingleTableViewCell *)sender;
+    NSLog(@"%@", cell.video.videoDict[@"id"]);
+    [TPVideoManager commentVideo:[[TPVideo alloc] initWithVideoDict:cell.video.videoDict]];
+    [self.tableView reloadRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 /*

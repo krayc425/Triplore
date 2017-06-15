@@ -10,6 +10,7 @@
 #import "TPVideoModel.h"
 #import "UIImage+URL.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "TPVideoManager.h"
 
 @interface TPVideoSingleTableViewCell ()
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @end
 
@@ -35,6 +37,7 @@ static NSInteger const height = 124;
 }
 
 - (void)setVideo:(TPVideoModel *)video {
+    _video = video;
     
     NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
@@ -46,13 +49,24 @@ static NSInteger const height = 124;
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];
     self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
     
-    
+    UIImage *img;
+    if([TPVideoManager isFavoriteVideo:video.videoid]){
+        img = [UIImage imageNamed:@"ME_COLLECT_FULL"];
+    }else{
+        img = [UIImage imageNamed:@"ME_COLLECT"];
+    }
+    [self.favoriteButton setImage:img forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (IBAction)favoriteAction:(id)sender{
+    NSLog(@"Favorite in Cell");
+    [self.cellDelegate didSelectFavorite:self];
 }
 
 @end
