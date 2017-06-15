@@ -8,17 +8,25 @@
 
 #import "TPSelectionTableViewController.h"
 #import "TPSelectionSliderTableViewCell.h"
+#import "TPCityVideoTableViewCell.h"
+#import "TPVideoTableViewController.h"
+#import "TPPlayViewController.h"
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
 #import "Utilities.h"
 
-@interface TPSelectionTableViewController ()
+@interface TPSelectionTableViewController () <TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>
+
+@property (nonatomic, strong) NSArray* videosFood;
+@property (nonatomic, strong) NSArray* videosShopping;
+@property (nonatomic, strong) NSArray* videosPlace;
 
 @end
 
 @implementation TPSelectionTableViewController
 
 static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
+static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,17 +43,39 @@ static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
     self.tableView.separatorColor = [UIColor clearColor];
     
     
-    UINib *nib = [UINib nibWithNibName:@"TPSelectionSliderTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    UINib *nib1 = [UINib nibWithNibName:@"TPSelectionSliderTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib1 forCellReuseIdentifier:cellIdentifier];
     
+    UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
+    
+    
+    [self request];
     
     //
-    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
-        NSLog(@"%d", videos.count);
-        NSLog(@"%@", videos[0].title);
+//    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+//        NSLog(@"%d", videos.count);
+//        for (TPVideoModel* video in videos) {
+//             NSLog(@"%@", video.title);
+//        }
+//    }];
+    
+    
+}
+
+- (void)request {
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"美食"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
     }];
-    
-    
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"购物"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
+    }];
+    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"景点"] withSize:10 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +86,7 @@ static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -67,10 +97,32 @@ static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TPSelectionSliderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        TPSelectionSliderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
+        return cell;
+    } else {
+        TPCityVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:videoCellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
+        switch (indexPath.section) {
+            case 1:
+                cell.mode = TPCategoryFood;
+                cell.videos = self.videosFood;
+                break;
+            case 2:
+                cell.mode = TPCategoryShopping;
+                cell.videos = self.videosShopping;
+                break;
+            case 3:
+                cell.mode = TPCategoryPlace;
+                cell.videos = self.videosPlace;
+                break;
+            default:
+                break;
+        }
+        return cell;
+    }
 
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -78,6 +130,8 @@ static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
 
     if (indexPath.section == 0) {
         return (width / 7 * 3 + width / 15 * 4);
+    } else {
+        return (width - 30) / 2 / 16 * 9 + 55 + 42;
     }
     
     return 0;
@@ -91,6 +145,44 @@ static NSString *cellIdentifier = @"TPSelectionSliderTableViewCell";
     
     return 0.1;
 }
+
+#pragma mark - TPSelectionSliderTableViewCellDelegate
+
+- (void)didTapCategory:(TPCategoryMode)mode {
+    NSArray *titles = @[@"美食", @"购物", @"景点"];
+    
+    TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    videoViewController.keywords = [titles[mode-1] stringByAppendingString:@" 旅游"];
+    
+    [self.navigationController pushViewController:videoViewController animated:YES];
+    
+}
+
+#pragma mark - TPCityVideoTableViewCellDelegate
+
+- (void)didTapAllWithMode:(TPCategoryMode)mode {
+    
+    NSArray *titles = @[@"美食", @"购物", @"景点"];
+    
+    TPVideoTableViewController *videoViewController = [[TPVideoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+        videoViewController.keywords = [titles[mode-1] stringByAppendingString:@" 旅游"];
+    
+    [self.navigationController pushViewController:videoViewController animated:YES];
+    
+}
+
+- (void)didSelectVideo:(TPVideoModel *)video {
+    
+    TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
+    [playViewController setNoteMode:TPNewNote];
+    playViewController.videoDict = video.videoDict;
+    
+    [self.navigationController pushViewController:playViewController animated:YES];
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

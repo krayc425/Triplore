@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utilities.h"
+
+@protocol TPSelectionSliderTableViewCellDelegate <NSObject>
+
+@optional
+
+- (void)didTapCategory:(TPCategoryMode)mode;
+
+@end
 
 @interface TPSelectionSliderTableViewCell : UITableViewCell
+
+@property (nonatomic, nonnull) id<TPSelectionSliderTableViewCellDelegate> delegate;
 
 @end

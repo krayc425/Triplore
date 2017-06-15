@@ -23,9 +23,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-   
-    // buttons
     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // buttons
     NSArray *buttons = @[self.foodButton, self.shoppingButton, self.placeButton];
     
     NSInteger start = 11;
@@ -33,9 +34,8 @@
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.tag = start;
-//        [button addTarget:self action:@selector(clickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(clickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
         start ++;
-        
     }
 
 }
@@ -49,8 +49,14 @@
     
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame imageNamesGroup:@[@"TEST_PNG", @"TEST_PNG", @"TEST_PNG"]];
     [self addSubview:cycleScrollView];
-    
 }
+
+- (void)clickCategoryButton:(UIButton *)button {
+    if([self.delegate respondsToSelector:@selector(didTapCategory:)]) {
+        [self.delegate didTapCategory:button.tag - 10];
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

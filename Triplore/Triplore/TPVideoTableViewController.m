@@ -91,12 +91,12 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     if (video.videoType == TPVideoAlbum) {
         TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
         cell.video = video;
-            [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-                
-                NSLog(@"美食大冒险之文明之");
-                NSLog(@"%d", videos.count);
-                
-            }];
+//            [TPNetworkHelper fetchVideosInAlbum:@"美食大冒险之文明之旅" andAlbumID:@"205526001" withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+//                
+//                NSLog(@"美食大冒险之文明之");
+//                NSLog(@"%d", videos.count);
+//                
+//            }];
         
         [TPNetworkHelper fetchVideosInAlbum:@"" andAlbumID:[NSString stringWithFormat:@"%d", video.videoid] withBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
             
