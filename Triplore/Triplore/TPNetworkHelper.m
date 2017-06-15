@@ -37,7 +37,6 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
         NSDate *localeDate = [datenow  dateByAddingTimeInterval: interval];
         NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]];
         timeSp = [timeSp stringByAppendingString:@"000"];
-        NSLog(@"%@", timeSp);
         
         NSDictionary *dict = @{
                                @"type" : @"detail",
@@ -128,7 +127,6 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
         NSDate *localeDate = [[NSDate date] dateByAddingTimeInterval:interval];
         NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]];
         timeSp = [timeSp stringByAppendingString:@"000"];
-        NSLog(@"%@", timeSp);
         
         NSDictionary *dict = @{
                                @"key" : searchString,

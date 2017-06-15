@@ -34,6 +34,7 @@
 @implementation TPNoteViewController{
     NSIndexPath *selectedIndexPath;
     NSMutableArray<UIView *> *showViews;    //展示用
+    UISegmentedControl *segment;
 }
 
 - (void)viewDidLoad {
@@ -61,10 +62,10 @@
     self.touchPoints = [[NSMutableArray alloc] init];
     
     //点击标题进行更改
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    [button addTarget:self action:@selector(editTitleAction) forControlEvents:UIControlEventTouchUpInside];
-    button.contentMode = UIViewContentModeScaleAspectFit;
-    self.navigationItem.titleView = button;
+//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+//    [button addTarget:self action:@selector(editTitleAction) forControlEvents:UIControlEventTouchUpInside];
+//    button.contentMode = UIViewContentModeScaleAspectFit;
+//    self.navigationItem.titleView = button;
     
     //保存按钮
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
@@ -103,6 +104,15 @@
     if(self.noteMode == TPOldNote){
         [self.view addSubview:buttonStack];
     }
+    
+    segment = [[UISegmentedControl alloc] initWithItems:@[@"Green", @"Brown"]];
+    if(self.note.templateNum == 0){
+        [segment setSelectedSegmentIndex:0];
+    }else{
+        [segment setSelectedSegmentIndex:self.note.templateNum];
+    }
+    [segment addTarget:self action:@selector(reloadShowViews) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segment;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,8 +122,6 @@
 - (void)setNoteTitle:(NSString *)noteTitle{
     _noteTitle = noteTitle;
     self.note.title = noteTitle;
-    UIButton *button  = (UIButton *)self.navigationItem.titleView;
-    [button setTitle:self.noteTitle forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -133,7 +141,8 @@
 }
 
 - (void)reloadShowViews{
-    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:[TPNoteTemplateFactory getTemplateOfNum:TPBrown]]];
+    self.note.templateNum = segment.selectedSegmentIndex;
+    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:[TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum]]];
     self.view.backgroundColor = showViews[0].backgroundColor;
     self.tableView.backgroundColor = showViews[0].backgroundColor;
     [self.tableView reloadData];
@@ -185,6 +194,7 @@
         [note setTitle:self.noteTitle];
         [note setCreateTime:self.note.createTime];
         [note setViews:self.noteViews];
+        [note setTemplateNum:segment.selectedSegmentIndex];
         
         success = [TPNoteManager insertNote:note];
         
@@ -195,6 +205,7 @@
     }else{
         [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
         [self.note setTitle:self.noteTitle];
+        [self.note setTemplateNum:segment.selectedSegmentIndex];
         
         success = [TPNoteManager updateNote:self.note];
     }

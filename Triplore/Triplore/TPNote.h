@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "TPNoteTemplate.h"
 
 /**
  存入数据库的 Note 模型
@@ -19,6 +20,6 @@
 @property (nonatomic, nonnull) NSDate *createTime;
 @property (nonatomic, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSArray<UIView *> *views;
-@property (nonatomic, nonnull) UIImage *cover;
+@property (nonatomic) TPNoteTemplateNumber templateNum;
 
 @end

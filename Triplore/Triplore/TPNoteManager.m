@@ -16,12 +16,12 @@
 
 + (BOOL)insertNote:(TPNote *)note{
     NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:note.views];
-    return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_note (videoid, views, createTime, title) VALUES (?, ?, ?, ?)", @(note.videoid), arrayData, note.createTime, note.title];
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_note (videoid, views, createTime, title, template) VALUES (?, ?, ?, ?, ?)", @(note.videoid), arrayData, note.createTime, note.title, note.templateNum];
 }
 
 + (BOOL)updateNote:(TPNote *_Nonnull)note{
     NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:note.views];
-    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET title = ?, views = ? WHERE noteid = ?;", note.title, arrayData, @(note.noteid)];
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET title = ?, views = ?, template = ? WHERE noteid = ?;", note.title, arrayData, @(note.templateNum), @(note.noteid)];
 }
 
 + (BOOL)deleteNoteWithID:(NSInteger)noteid{
@@ -38,6 +38,7 @@
         [note setCreateTime:[resultSet dateForColumn:@"createTime"]];
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
         [note setViews:noteViewArr];
+        [note setTemplateNum:[resultSet intForColumn:@"template"]];
         return note;
     }
     return NULL;
@@ -54,6 +55,7 @@
         [note setCreateTime:[resultSet dateForColumn:@"createTime"]];
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
         [note setViews:noteViewArr];
+        [note setTemplateNum:[resultSet intForColumn:@"template"]];
         [resultArr addObject:note];
     }
     return resultArr;

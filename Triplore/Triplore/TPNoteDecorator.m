@@ -12,6 +12,8 @@
 #import "TPNoteTemplate.h"
 #import "UIImageView+Decorator.h"
 
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+
 @implementation TPNoteDecorator
 
 //  标题 Label ：Tag = 1
@@ -19,15 +21,20 @@
 + (NSArray<UIView *> *)getNoteViews:(TPNote *)note andTemplate:(TPNoteTemplate *)template{
     NSMutableArray<UIView *> *tempViews = [[NSMutableArray alloc] init];
     
-    [template.tem_titleView setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width - 40, 80)];
+    //最顶上 View
+    [template.tem_titleView setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 80)];
     [template.tem_titleView setDate:note.createTime];
     [tempViews addObject:template.tem_titleView];
     
+    //标题
     UILabel *titleLabel = [[UILabel alloc] init];
+    [titleLabel setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 40)];
     [titleLabel setText:note.title];
     [titleLabel setFont:template.tem_font];
-    [titleLabel sizeToFit];
+    [titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
     [titleLabel setTag:1];
+    [titleLabel setNumberOfLines:0];
+    [titleLabel sizeToFit];
     [tempViews addObject:titleLabel];
     
     for(UIView *view in note.views){

@@ -22,4 +22,5 @@
 - (void)stopAnimating;
 - (BOOL)isAnimating;
 - (void)setIsForVIP:(BOOL)isForVIP;
+
 @end

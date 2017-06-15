@@ -18,13 +18,4 @@
 }
 */
 
-- (void)setDate:(NSDate * _Nonnull)date{
-    NSDateFormatter *monthYearFmt = [[NSDateFormatter alloc] init];
-    [monthYearFmt setDateFormat:@"MMMM yyyy"];
-    [self.monthYearLabel setText:[monthYearFmt stringFromDate:date]];
-    NSDateFormatter *dayFmt = [[NSDateFormatter alloc] init];
-    [dayFmt setDateFormat:@"dd"];
-    [self.dayLabel setText:[dayFmt stringFromDate:date]];
-}
-
 @end

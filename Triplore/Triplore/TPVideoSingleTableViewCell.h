@@ -22,4 +22,6 @@
 
 @property (nonatomic, nonnull) TPVideoModel *video;
 
+- (void)setFavorite:(BOOL)isFavorite;
+
 @end

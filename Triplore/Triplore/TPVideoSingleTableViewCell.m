@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timesLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @end
@@ -48,14 +49,6 @@ static NSInteger const height = 124;
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];
     self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
-    
-    UIImage *img;
-    if([TPVideoManager isFavoriteVideo:video.videoid]){
-        img = [UIImage imageNamed:@"ME_COLLECT_FULL"];
-    }else{
-        img = [UIImage imageNamed:@"ME_COLLECT"];
-    }
-    [self.favoriteButton setImage:img forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -67,6 +60,16 @@ static NSInteger const height = 124;
 - (IBAction)favoriteAction:(id)sender{
     NSLog(@"Favorite in Cell");
     [self.cellDelegate didSelectFavorite:self];
+}
+
+- (void)setFavorite:(BOOL)isFavorite{
+    UIImage *img;
+    if(isFavorite){
+        img = [UIImage imageNamed:@"ME_COLLECT_FULL"];
+    }else{
+        img = [UIImage imageNamed:@"ME_COLLECT"];
+    }
+    [self.favoriteButton setImage:img forState:UIControlStateNormal];
 }
 
 @end

@@ -25,7 +25,7 @@
     [[QYPlayerController sharedInstance] initPlayer];
     
     //数据库
-    [[DBManager shareInstance] establishDB];
+    [DBManager shareInstance];
     
     TPTabBarViewController *tabVC = [[TPTabBarViewController alloc] init];
     UIWindow *windows = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

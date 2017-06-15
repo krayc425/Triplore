@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, TPNoteTemplateNumber){
-    TPGreen     = 1,
-    TPBrown     = 2,
+    TPGreen     = 0,
+    TPBrown     = 1,
 };
 
 @class TPNoteTitleView;

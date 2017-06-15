@@ -73,6 +73,11 @@ static DBManager * _instance = nil;
             if (result){
                 NSLog(@"创建表 note 成功");
             }
+        }else{
+            if(![self.db columnExists:@"template" inTableWithName:@"t_note"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ integer", @"t_note", @"template"]];
+                NSLog(@"增加表 note 字段 template 成功");
+            }
         }
         
         //清理数据库缓存
