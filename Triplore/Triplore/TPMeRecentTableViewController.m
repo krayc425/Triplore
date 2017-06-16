@@ -13,6 +13,7 @@
 #import "TPVideoModel.h"
 #import "TPVideoSingleTableViewCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "MJRefreshAutoGifFooter.h"
 
 static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
 static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
@@ -25,31 +26,19 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 @implementation TPMeRecentTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
-    self.tableView.separatorColor = [UIColor clearColor];
-    
+- (void)continueLoading{
+    self.videos = [[NSMutableArray alloc] init];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     
-    UINib *nib1 = [UINib nibWithNibName:@"TPVideoSingleTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib1 forCellReuseIdentifier:singleCellIdentifier];
-    
-    UINib *nib2 = [UINib nibWithNibName:@"TPVideoSeriesTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
-    
     UIBarButtonItem *clearBarItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearRecent)];
     self.navigationItem.rightBarButtonItem = clearBarItem;
-    
     self.navigationItem.title = @"观看记录";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadRecentVideos];
-    
     [self.tabBarController.tabBar setHidden:YES];
 }
 
@@ -59,11 +48,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (void)loadRecentVideos{
+    NSLog(@"Load Recent");
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
     [[TPVideoManager fetchRecentVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [tempArr addObject:[[TPVideoModel alloc] initWithTPVideo:obj]];
     }];
-    self.videos = tempArr;
+    NSLog(@"%lu", (unsigned long)tempArr.count);
+    [self.videos removeAllObjects];
+    [self.videos addObjectsFromArray:tempArr];
     [self.tableView reloadData];
 }
 
@@ -93,9 +85,9 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TPVideoModel *video = self.videos[indexPath.section];
     TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
-    cell.video = video;
-    [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
     cell.cellDelegate = self;
+    [cell setVideo:video];
+    [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
     return cell;
 }
 

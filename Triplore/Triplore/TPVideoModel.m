@@ -27,7 +27,7 @@ static NSString *dateFormatString = @"yyyy-MM-dd";
         self.title = dict[@"title"];
         self.shortTitle = dict[@"short_title"];
         self.imgURL = [dict[@"img"] stringByAppendingString:@"?sign=iqiyi"];
-        self.videoid = [dict[@"id"] integerValue];
+        self.videoid = dict[@"id"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:dateFormatString];
         self.videoDate = [dateFormatter dateFromString:dict[@"date_format"]];

@@ -15,19 +15,19 @@
 + (BOOL)insertVideo:(TPVideo *)video{
     if([self fetchVideoWithID:video.videoid] == NULL){
         NSData *dictData = [NSKeyedArchiver archivedDataWithRootObject:video.dict];
-        return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_video (videoid, dict, favorite, recent) VALUES (?, ?, ?, ?)", @(video.videoid), dictData, @(0), [NSDate date]];
+        return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_video (videoid, dict, favorite, recent) VALUES (?, ?, ?, ?)", video.videoid, dictData, @(0), [NSDate date]];
     }else{
         //如果已经有了，就更新一下最近日期
-        FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(video.videoid)];
+        FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", video.videoid];
         if([resultSet next]){
-            return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET recent = ? WHERE videoid = ?;", [NSDate date], @(video.videoid)];
+            return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET recent = ? WHERE videoid = ?;", [NSDate date], video.videoid];
         }
     }
     return NO;
 }
 
-+ (TPVideo *_Nullable)fetchVideoWithID:(NSInteger)videoid{
-    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(videoid)];
++ (TPVideo *_Nullable)fetchVideoWithID:(NSString *)videoid{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", videoid];
     if([resultSet next]){
         TPVideo *video = [TPVideo new];
         [video setVideoid:videoid];
@@ -46,16 +46,16 @@
         [self insertVideo:video];
     }
     //设置这个视频的：是否收藏
-    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(video.videoid)];
-    NSLog(@"Is Favorite: %d for %d", [self isFavoriteVideo:video.videoid], video.videoid);
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", video.videoid];
+    NSLog(@"Is Favorite: %d for %@", [self isFavoriteVideo:video.videoid], video.videoid);
     if([resultSet next]){
-        return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET favorite = ? WHERE videoid = ?;", ([self isFavoriteVideo:video.videoid] ? @(0) : @(1)), @(video.videoid)];
+        return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET favorite = ? WHERE videoid = ?;", ([self isFavoriteVideo:video.videoid] ? @(0) : @(1)), video.videoid];
     }
     return NO;
 }
 
-+ (BOOL)isFavoriteVideo:(NSInteger)videoid{
-    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", @(videoid)];
++ (BOOL)isFavoriteVideo:(NSString *)videoid{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_video WHERE videoid = ?;", videoid];
     if([resultSet next]){
         return ([resultSet intForColumn:@"favorite"] == 1);
     }
@@ -67,7 +67,7 @@
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
     while([resultSet next]){
         TPVideo *video = [TPVideo new];
-        [video setVideoid:[resultSet intForColumn:@"videoid"]];
+        [video setVideoid:[resultSet stringForColumn:@"videoid"]];
         NSDictionary *dict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"dict"]];
         [video setDict:dict];
         [video setFavorite:[resultSet intForColumn:@"favorite"]];
@@ -82,7 +82,7 @@
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
     while([resultSet next]){
         TPVideo *video = [TPVideo new];
-        [video setVideoid:[resultSet intForColumn:@"videoid"]];
+        [video setVideoid:[resultSet stringForColumn:@"videoid"]];
         NSDictionary *dict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"dict"]];
         [video setDict:dict];
         [video setFavorite:[resultSet intForColumn:@"favorite"]];
@@ -98,8 +98,8 @@
     return resultArr.count == 0 ? NULL : resultArr;
 }
 
-+ (BOOL)deleteRecentVideo:(NSInteger)videoid{
-    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET recent = NULL WHERE videoid = ?;", @(videoid)];
++ (BOOL)deleteRecentVideo:(NSString *)videoid{
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_video SET recent = NULL WHERE videoid = ?;", videoid];
 }
 
 + (BOOL)clearRecentRecord{

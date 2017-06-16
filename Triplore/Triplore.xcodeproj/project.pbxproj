@@ -20,6 +20,8 @@
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
 		241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */; };
 		241210F61ED84CD70066B99C /* TPNoteViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */; };
+		2419D1471EF38C2D008A7278 /* TPMeRecentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D1461EF38C2D008A7278 /* TPMeRecentTableViewController.m */; };
+		2419D1491EF3A231008A7278 /* libSVProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2419D1481EF3A231008A7278 /* libSVProgressHUD.a */; };
 		241BC46D1EDFAE2E0056AFCA /* TPVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */; };
 		241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BC46F1EDFAE370056AFCA /* TPVideo.m */; };
 		241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */; };
@@ -60,10 +62,8 @@
 		24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */; };
 		24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */; };
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
-		24BC3B331EF12EA6006793A3 /* libSVProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */; };
 		24BC3B381EF15FE2006793A3 /* TPPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */; };
 		24CB53951EE69D6B0030DF25 /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24CB53941EE69D6B0030DF25 /* Site.plist */; };
-		24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -169,6 +169,8 @@
 		241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewTableViewCell.h; sourceTree = "<group>"; };
 		241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteViewTableViewCell.m; sourceTree = "<group>"; };
 		241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteViewTableViewCell.xib; sourceTree = "<group>"; };
+		2419D1461EF38C2D008A7278 /* TPMeRecentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeRecentTableViewController.m; sourceTree = "<group>"; };
+		2419D1481EF3A231008A7278 /* libSVProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVProgressHUD.a; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/libSVProgressHUD.a"; sourceTree = "<group>"; };
 		241BC46B1EDFAE2E0056AFCA /* TPVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoManager.h; sourceTree = "<group>"; };
 		241BC46C1EDFAE2E0056AFCA /* TPVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoManager.m; sourceTree = "<group>"; };
 		241BC46E1EDFAE370056AFCA /* TPVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideo.h; sourceTree = "<group>"; };
@@ -245,7 +247,6 @@
 		24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPPlayViewController.xib; sourceTree = "<group>"; };
 		24CB53941EE69D6B0030DF25 /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
-		24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeRecentTableViewController.m; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
 		24EFB7F51EE192BF00816675 /* TPVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoModel.h; sourceTree = "<group>"; };
@@ -361,8 +362,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2419D1491EF3A231008A7278 /* libSVProgressHUD.a in Frameworks */,
 				4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */,
-				24BC3B331EF12EA6006793A3 /* libSVProgressHUD.a in Frameworks */,
 				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
 				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
 				245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */,
@@ -616,7 +617,7 @@
 				2432FBEE1EF00B6F001560CC /* TPMeFavoriteTableViewController.h */,
 				2432FBEF1EF00B6F001560CC /* TPMeFavoriteTableViewController.m */,
 				24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */,
-				24EC9B391EF01641000F262F /* TPMeRecentTableViewController.m */,
+				2419D1461EF38C2D008A7278 /* TPMeRecentTableViewController.m */,
 				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
 				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
 				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
@@ -710,6 +711,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2419D1481EF3A231008A7278 /* libSVProgressHUD.a */,
 				4DD722BA1EF3784200B36454 /* libMJRefresh.a */,
 				24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */,
 				4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */,
@@ -994,7 +996,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */ = {
@@ -1009,7 +1011,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
@@ -1062,7 +1064,6 @@
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D9171591EF10E4200930372 /* TPSelectionSliderTableViewCell.m in Sources */,
-				24EC9B3A1EF01641000F262F /* TPMeRecentTableViewController.m in Sources */,
 				2444AC9A1EF28F2F0007CC69 /* TPNoteTitleViewBrown.m in Sources */,
 				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
@@ -1088,6 +1089,7 @@
 				24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */,
 				241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */,
 				24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */,
+				2419D1471EF38C2D008A7278 /* TPMeRecentTableViewController.m in Sources */,
 				2444AC7E1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m in Sources */,
 				4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */,
 				4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */,

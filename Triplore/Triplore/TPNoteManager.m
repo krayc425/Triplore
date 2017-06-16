@@ -16,7 +16,7 @@
 
 + (BOOL)insertNote:(TPNote *)note{
     NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:note.views];
-    return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_note (videoid, views, createTime, title, template) VALUES (?, ?, ?, ?, ?)", @(note.videoid), arrayData, note.createTime, note.title, note.templateNum];
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"INSERT INTO t_note (videoid, views, createTime, title, template) VALUES (?, ?, ?, ?, ?)", note.videoid, arrayData, note.createTime, note.title, note.templateNum];
 }
 
 + (BOOL)updateNote:(TPNote *_Nonnull)note{
@@ -33,7 +33,7 @@
     if([resultSet next]){
         TPNote *note = [TPNote new];
         [note setNoteid:[resultSet intForColumn:@"noteid"]];
-        [note setVideoid:[resultSet intForColumn:@"videoid"]];
+        [note setVideoid:[resultSet stringForColumn:@"videoid"]];
         [note setTitle:[resultSet stringForColumn:@"title"]];
         [note setCreateTime:[resultSet dateForColumn:@"createTime"]];
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
@@ -50,7 +50,7 @@
     while([resultSet next]){
         TPNote *note = [TPNote new];
         [note setNoteid:[resultSet intForColumn:@"noteid"]];
-        [note setVideoid:[resultSet intForColumn:@"videoid"]];
+        [note setVideoid:[resultSet stringForColumn:@"videoid"]];
         [note setTitle:[resultSet stringForColumn:@"title"]];
         [note setCreateTime:[resultSet dateForColumn:@"createTime"]];
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];

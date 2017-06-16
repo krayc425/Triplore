@@ -190,7 +190,7 @@
     //新增
     if(self.noteMode == TPNewNote){
         TPNote *note = [TPNote new];
-        [note setVideoid:(NSInteger)self.videoDict[@"id"]];
+        [note setVideoid:self.videoDict[@"id"]];
         [note setTitle:self.noteTitle];
         [note setCreateTime:self.note.createTime];
         [note setViews:self.noteViews];
@@ -199,7 +199,7 @@
         success = [TPNoteManager insertNote:note];
         
         TPVideo *video = [TPVideo new];
-        [video setVideoid:(NSInteger)self.videoDict[@"id"]];
+        [video setVideoid:self.videoDict[@"id"]];
         [video setDict:self.videoDict];
         success = success && [TPVideoManager insertVideo:video];
     }else{

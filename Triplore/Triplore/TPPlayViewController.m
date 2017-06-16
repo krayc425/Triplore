@@ -134,7 +134,8 @@
     }
     
     //收藏按钮
-    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
+    NSLog(@"Video id: %@", self.videoDict[@"id"]);
+    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
 }
@@ -162,6 +163,10 @@
     //存入视频列表，因为要存“最近观看”
     TPVideo *newVideo = [[TPVideo alloc] initWithVideoDict:self.videoDict];
     [TPVideoManager insertVideo:newVideo];
+    
+    NSLog(@"Video id: %@", self.videoDict[@"id"]);
+    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
+    [favoriteButton setImage:favoriteImg];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -474,7 +479,7 @@
 }
 
 - (void)setFavoriteImage{
-    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:[self.videoDict[@"id"] integerValue]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
+    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     [favoriteButton setImage:favoriteImg];
 }
 

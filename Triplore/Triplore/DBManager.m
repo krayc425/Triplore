@@ -52,7 +52,7 @@ static DBManager * _instance = nil;
         //先看有没有这张表
         if(![self.db tableExists:@"t_video"]){
             BOOL result = [self.db executeUpdate:
-                      @"CREATE TABLE IF NOT EXISTS t_video (videoid integer PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL, favorite integer, recent date)"];
+                      @"CREATE TABLE IF NOT EXISTS t_video (videoid varchar PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL, favorite integer, recent date)"];
             if (result){
                 NSLog(@"创建表 video 成功");
             }
