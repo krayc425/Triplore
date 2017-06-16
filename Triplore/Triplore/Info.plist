@@ -29,6 +29,7 @@
 	<string>“Triplore”需要访问您的相册</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SourceHanSerifCN-Regular.otf</string>
 		<string>fontawesome-webfont.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

@@ -83,7 +83,7 @@
     self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
     
     _titleText.placeholder = @"填写笔记标题";
-    _titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
+    _titleText.font = [UIFont fontWithName:[Utilities getFont] size:18.0f];
     _titleText.delegate = self;
     _titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     
@@ -502,6 +502,7 @@
         cell = [nib objectAtIndex:0];
     }
     [cell setNoteView:self.noteViews[indexPath.row]];
+    [cell setBgColor:[UIColor whiteColor]];
     return cell;
 }
 
@@ -620,6 +621,8 @@
 - (void)tableView:(UITableView *)tableView dragCellFrom:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
     // 更新数组中的内容
     [[TPNoteCreator shareInstance] moveNoteViewFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
+    [self.noteViews exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
 - (void)tableView:(UITableView *)tableView endDragCellTo:(NSIndexPath *)indexPath{

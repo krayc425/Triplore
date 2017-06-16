@@ -35,6 +35,7 @@
     NSIndexPath *selectedIndexPath;
     NSMutableArray<UIView *> *showViews;    //展示用
     UISegmentedControl *segment;
+    TPNoteTemplate *template;
 }
 
 - (void)viewDidLoad {
@@ -133,9 +134,10 @@
 - (void)reloadShowViews{
     self.note.views = self.noteViews;
     self.note.templateNum = segment.selectedSegmentIndex;
-    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:[TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum]]];
-    self.view.backgroundColor = showViews[0].backgroundColor;
-    self.tableView.backgroundColor = showViews[0].backgroundColor;
+    template = [TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum];
+    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:template]];
+    self.view.backgroundColor = template.tem_color;
+    self.tableView.backgroundColor = template.tem_color;
     [self.tableView reloadData];
 }
 
@@ -344,9 +346,8 @@
     if(indexPath.row < 2){
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell setBackgroundColor:showViews[0].backgroundColor];
     [cell setNoteView:showViews[indexPath.row]];
-    [cell setBgColor:self.tableView.backgroundColor];
+    [cell setBgColor:template.tem_color];
     return cell;
 }
 
@@ -402,6 +403,7 @@
 - (void)tableView:(UITableView *)tableView dragCellFrom:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
     [self.noteViews exchangeObjectAtIndex:fromIndexPath.row - 2 withObjectAtIndex:toIndexPath.row - 2];
     [showViews exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canDragCellTo:(NSIndexPath *)indexPath{

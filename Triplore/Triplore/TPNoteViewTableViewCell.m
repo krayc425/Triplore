@@ -11,6 +11,12 @@
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
+@interface TPNoteViewTableViewCell(){
+    UIView *deleteView;
+}
+
+@end
+
 @implementation TPNoteViewTableViewCell
 
 - (void)awakeFromNib {
@@ -37,11 +43,10 @@
     [self addSubview:view];
     
     //自定义删除 View
-    UIView *deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
+    deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
                                                                   0,
                                                                   300,
                                                                   CGRectGetHeight(noteView.frame) + 20)];
-    deleteView.backgroundColor = self.bgColor;
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         90,
@@ -50,6 +55,12 @@
     [deleteView addSubview:deleteButton];
     
     [self addSubview:deleteView];
+}
+
+- (void)setBgColor:(UIColor *)bgColor{
+    _bgColor = bgColor;
+    self.backgroundColor = bgColor;
+    deleteView.backgroundColor = bgColor;
 }
 
 @end

@@ -57,6 +57,10 @@
 		245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
 		24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */; };
+		24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */; };
+		24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */; };
+		24AF8D231EF3C7C500C9B0CD /* TPFontTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */; };
+		24AF8D241EF3C7C500C9B0CD /* TPFontTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -238,6 +242,12 @@
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
 		24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Triplore-Bridging-Header.h"; sourceTree = "<group>"; };
 		24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragableTableExtension.swift; sourceTree = "<group>"; };
+		24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSerifCN-Regular.otf"; sourceTree = "<group>"; };
+		24AF8D1D1EF3C71200C9B0CD /* TPSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSettingsTableViewController.h; sourceTree = "<group>"; };
+		24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSettingsTableViewController.m; sourceTree = "<group>"; };
+		24AF8D201EF3C7C500C9B0CD /* TPFontTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPFontTableViewCell.h; sourceTree = "<group>"; };
+		24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPFontTableViewCell.m; sourceTree = "<group>"; };
+		24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPFontTableViewCell.xib; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -632,6 +642,11 @@
 				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
 				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
 				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
+				24AF8D1D1EF3C71200C9B0CD /* TPSettingsTableViewController.h */,
+				24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */,
+				24AF8D201EF3C7C500C9B0CD /* TPFontTableViewCell.h */,
+				24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */,
+				24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -716,6 +731,7 @@
 				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
 				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
 				2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */,
+				24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */,
 				78C24628C0C6412E9A13CBB71E045CD0 /* main.m */,
 				24CB53941EE69D6B0030DF25 /* Site.plist */,
 				BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */,
@@ -927,6 +943,7 @@
 			files = (
 				4D4DF7AF1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib in Resources */,
 				E70A2AC020B746963BA30B07F71DA267 /* Assets.xcassets in Resources */,
+				24AF8D241EF3C7C500C9B0CD /* TPFontTableViewCell.xib in Resources */,
 				4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */,
 				4D4DF79C1EE1552C0012F476 /* TPVideoCollectionViewCell.xib in Resources */,
 				4D4DF7941EE104920012F476 /* TPCityVideoTableViewCell.xib in Resources */,
@@ -934,6 +951,7 @@
 				1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */,
 				4D91715A1EF10E4200930372 /* TPSelectionSliderTableViewCell.xib in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
+				24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */,
 				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
 				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
@@ -1067,6 +1085,7 @@
 				241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */,
 				2444AC941EF28CF50007CC69 /* TPNoteTemplateFactory.m in Sources */,
 				4D4DF78E1EE1046F0012F476 /* TPCityInfoTableViewCell.m in Sources */,
+				24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */,
 				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
@@ -1076,6 +1095,7 @@
 				4D4DF7A41EE17D470012F476 /* TPVideoSingleTableViewCell.m in Sources */,
 				245BD09A1EE5BA9C002CA7AC /* TPCityModel.m in Sources */,
 				241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */,
+				24AF8D231EF3C7C500C9B0CD /* TPFontTableViewCell.m in Sources */,
 				4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */,
 				4DD722C11EF3A54800B36454 /* TestView.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,

@@ -30,25 +30,8 @@
     self.tabBarController.tabBar.delegate = self;
     self.tabBar.tintColor = [Utilities getColor];
     
-    //NavigationBar
-//    UINavigationBar *bar = [UINavigationBar appearance];
-//    [bar setBarTintColor:[Utilities getColor]];
-//    [bar setTintColor:[Utilities getColor]];
-//    [bar setTitleTextAttributes:@{
-//                                  NSForegroundColorAttributeName : [UIColor whiteColor],
-//                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
-//                                  }];
-    //    [bar setTranslucent:NO];
-    
-//    UINavigationBar *bar = [UINavigationBar appearance];
-//    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    bar.backIndicatorImage = image;
-//    bar.backIndicatorTransitionMaskImage = image;
-    
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
-//    TPSelectionViewController *vc = [[TPSelectionViewController alloc] init];
     TPSelectionTableViewController *selectionVC = [[TPSelectionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     selectionVC.tabBarItem = item1;
     UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:selectionVC];
