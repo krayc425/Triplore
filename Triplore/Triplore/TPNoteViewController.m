@@ -20,13 +20,13 @@
 #import "TPNoteDecorator.h"
 #import "TPNoteTemplate.h"
 #import "TPNoteTemplateFactory.h"
+#import "Triplore-Swift.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
 
-@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate>
+@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate, DragableTableDelegate>
 
-@property (nonnull, nonatomic) NSMutableArray *touchPoints;
 @property (nonnull, nonatomic) UITableView *tableView;
 
 @end
@@ -52,20 +52,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.dragable = YES;
+    self.tableView.dragableDelegate = self;
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
-    
-    //长按拖动手势
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
-                                               initWithTarget:self action:@selector(longPressGestureRecognized:)];
-    [self.tableView addGestureRecognizer:longPress];
-    self.touchPoints = [[NSMutableArray alloc] init];
-    
-    //点击标题进行更改
-//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-//    [button addTarget:self action:@selector(editTitleAction) forControlEvents:UIControlEventTouchUpInside];
-//    button.contentMode = UIViewContentModeScaleAspectFit;
-//    self.navigationItem.titleView = button;
     
     //保存按钮
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
@@ -141,6 +131,7 @@
 }
 
 - (void)reloadShowViews{
+    self.note.views = self.noteViews;
     self.note.templateNum = segment.selectedSegmentIndex;
     showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:[TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum]]];
     self.view.backgroundColor = showViews[0].backgroundColor;
@@ -276,126 +267,6 @@
     [self reloadShowViews];
 }
 
-#pragma mark - Long Pressed Gesture
-
-- (UIView *)customSnapshotFromView:(UIView *)inputView {
-    // 用cell的图层生成UIImage，方便一会显示
-    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
-    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    // 自定义这个快照的样子（下面的一些参数可以自己随意设置）
-    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
-    snapshot.layer.masksToBounds = NO;
-    snapshot.layer.cornerRadius = 0.0;
-    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
-    snapshot.layer.shadowRadius = 5.0;
-    snapshot.layer.shadowOpacity = 0.4;
-    return snapshot;
-}
-
-- (void)longPressGestureRecognized:(id)sender {
-    UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *)sender;
-    UIGestureRecognizerState state = longPress.state;
-    CGPoint location = [longPress locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
-    static UIView       *snapshot = nil;
-    static NSIndexPath  *sourceIndexPath = nil;
-    switch (state) {
-            // 已经开始按下
-        case UIGestureRecognizerStateBegan: {
-            // 判断是不是按在了cell上面
-            if (indexPath) {
-                if(indexPath.row < 2){
-                    return;
-                }
-                sourceIndexPath = indexPath;
-                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-                // 为拖动的cell添加一个快照
-                snapshot = [self customSnapshotFromView:cell];
-                // 添加快照至tableView中
-                __block CGPoint center = cell.center;
-                snapshot.center = center;
-                snapshot.alpha = 0.0;
-                [self.tableView addSubview:snapshot];
-                // 按下的瞬间执行动画
-                [UIView animateWithDuration:0.25 animations:^{
-                    center.y = location.y;
-                    snapshot.center = center;
-                    snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
-                    snapshot.alpha = 0.98;
-                    cell.alpha = 0.0;
-                    
-                } completion:^(BOOL finished) {
-                    
-                    cell.hidden = YES;
-                    
-                }];
-            }
-            break;
-        }
-            // 移动过程中
-        case UIGestureRecognizerStateChanged: {
-            if(sourceIndexPath.row < 2){
-                return;
-            }
-            // 这里保持数组里面只有最新的两次触摸点的坐标
-            [self.touchPoints addObject:[NSValue valueWithCGPoint:location]];
-            if (self.touchPoints.count > 2) {
-                [self.touchPoints removeObjectAtIndex:0];
-            }
-            CGPoint center = snapshot.center;
-            // 快照随触摸点y值移动（当然也可以根据触摸点的y轴移动量来移动）
-            center.y = location.y;
-            // 快照随触摸点x值改变量移动
-            CGPoint Ppoint = [[self.touchPoints firstObject] CGPointValue];
-            CGPoint Npoint = [[self.touchPoints lastObject] CGPointValue];
-            CGFloat moveX = Npoint.x - Ppoint.x;
-            center.x += moveX;
-            snapshot.center = center;
-            // 是否移动了
-            if (indexPath && indexPath.row >= 2 && ![indexPath isEqual:sourceIndexPath]) {
-                // 更新数组中的内容
-                [self.noteViews exchangeObjectAtIndex:
-                 indexPath.row - 2 withObjectAtIndex:sourceIndexPath.row - 2];
-                
-                // 把cell移动至指定行
-                [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
-                
-                // 存储改变后indexPath的值，以便下次比较
-                sourceIndexPath = indexPath;
-            }
-            break;
-        }
-            // 长按手势取消状态
-        default: {
-            // 清除操作
-            // 清空数组，非常重要，不然会发生坐标突变！
-            [self.touchPoints removeAllObjects];
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
-            cell.hidden = NO;
-            cell.alpha = 0.0;
-            // 将快照恢复到初始状态
-            [UIView animateWithDuration:0.25 animations:^{
-                snapshot.center = cell.center;
-                snapshot.transform = CGAffineTransformIdentity;
-                snapshot.alpha = 0.0;
-                cell.alpha = 1.0;
-                
-            } completion:^(BOOL finished) {
-                
-                sourceIndexPath = nil;
-                [snapshot removeFromSuperview];
-                snapshot = nil;
-                
-            }];
-            
-            break;
-        }
-    }
-    
-}
-
 #pragma mark - Save to album
 
 - (void)exportAlbumAction{
@@ -475,6 +346,7 @@
     }
     [cell setBackgroundColor:showViews[0].backgroundColor];
     [cell setNoteView:showViews[indexPath.row]];
+    [cell setBgColor:self.tableView.backgroundColor];
     return cell;
 }
 
@@ -523,6 +395,29 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Drag Delegate
+
+- (void)tableView:(UITableView *)tableView dragCellFrom:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    [self.noteViews exchangeObjectAtIndex:fromIndexPath.row - 2 withObjectAtIndex:toIndexPath.row - 2];
+    [showViews exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canDragCellTo:(NSIndexPath *)indexPath{
+    return indexPath.row >= 2;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canDragCellFrom:(NSIndexPath *)indexPath withTouchPoint:(CGPoint)point{
+    return indexPath.row >= 2;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canDragCellFrom:(NSIndexPath *)fromIndexPath over:(NSIndexPath *)overIndexPath{
+    return fromIndexPath.row >= 2 && overIndexPath.row >= 2;
+}
+
+- (void)tableView:(UITableView *)tableView endDragCellTo:(NSIndexPath *)indexPath{
+    [self reloadShowViews];
 }
 
 @end

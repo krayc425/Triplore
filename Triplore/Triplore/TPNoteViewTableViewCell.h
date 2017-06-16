@@ -11,5 +11,6 @@
 @interface TPNoteViewTableViewCell : UITableViewCell
 
 @property (nonatomic, nonnull) UIView *noteView;
+@property (nonatomic, nonnull) UIColor *bgColor;
 
 @end

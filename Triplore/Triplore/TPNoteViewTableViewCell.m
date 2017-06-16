@@ -16,7 +16,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = self.bgColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -41,7 +41,7 @@
                                                                   0,
                                                                   300,
                                                                   CGRectGetHeight(noteView.frame) + 20)];
-    deleteView.backgroundColor = [UIColor whiteColor];
+    deleteView.backgroundColor = self.bgColor;
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         90,
