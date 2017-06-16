@@ -52,16 +52,10 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     
     [self request];
-    
-    //
-//    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
-//        NSLog(@"%d", videos.count);
-//        for (TPVideoModel* video in videos) {
-//             NSLog(@"%@", video.title);
-//        }
-//    }];
-    
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)request {

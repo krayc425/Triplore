@@ -17,7 +17,7 @@
 #import "SVProgressHUD.h"
 #import "MJRefreshAutoGifFooter.h"
 
-@interface TPVideoTableViewController () 
+@interface TPVideoTableViewController ()
 
 @property (nonatomic) NSUInteger page;
 @property (nonatomic, strong) NSArray* keywordsArray;
@@ -45,7 +45,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
 
     //
-    self.hidesBottomBarWhenPushed = YES;
+//    self.hidesBottomBarWhenPushed = YES;
     
     [self continueLoading];
 }
@@ -136,9 +136,9 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 //    } else {
         TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
         cell.video = video;
-        
         cell.cellDelegate = self;
-        
+    
+        [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
         return cell;
 //    }
 }

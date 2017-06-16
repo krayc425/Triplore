@@ -40,8 +40,8 @@ static DBManager * _instance = nil;
     NSString *doc = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
     NSString *fileName = [doc stringByAppendingPathComponent:@"task.sqlite"];
     
-    NSLog(@"DB PATH : %@", doc);
-    NSLog(@"FILE PATH : %@", fileName);
+//    NSLog(@"DB PATH : %@", doc);
+//    NSLog(@"FILE PATH : %@", fileName);
     
     //获得数据库
     self.db = [FMDatabase databaseWithPath:fileName];

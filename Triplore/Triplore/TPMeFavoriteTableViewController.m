@@ -34,7 +34,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadFavoriteVideos];
-    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {

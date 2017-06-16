@@ -18,6 +18,10 @@ iQiyi Contest Project
 └── TriploreTests
 ```  
 
+* 下载项目后，`cd` 进项目根目录，然后打开终端执行 `pod install`。然后开启 `Triplore.xcworkspace` 运行项目。
+
+* 现在默认每一个 `Pod Target` 中的 `Build Active Architecture Only` 为 `NO`，但是对于 `FMDB` 需要将其设置为 `YES`（因为 `libav.a` 中也集成了这个第三方库）。
+
 * 需要在项目的 `TARGETS -> Triplore -> General -> Linked Frameworks And Libraries` 中手动添加本地路径的 `libav.a`。
 
 * 若出现与特定 `Pod` 相关的错误，尝试在 `TARGETS -> Triplore -> Build Phases -> Link Binary With Libraries` 中添加对应 `Pod` 库的 `.a` 文件。
@@ -26,7 +30,6 @@ iQiyi Contest Project
 
 * 更换图标在 `TARGETS -> Triplore -> General -> App Icons Source` 中选择。
 
-* 下载项目后，需要 `cd` 进项目根目录，然后打开终端执行 `pod install`。
 
 # Acknowledgement
 
