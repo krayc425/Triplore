@@ -40,8 +40,8 @@ static DBManager * _instance = nil;
     NSString *doc = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
     NSString *fileName = [doc stringByAppendingPathComponent:@"task.sqlite"];
     
-    NSLog(@"DB PATH : %@", doc);
-    NSLog(@"FILE PATH : %@", fileName);
+//    NSLog(@"DB PATH : %@", doc);
+//    NSLog(@"FILE PATH : %@", fileName);
     
     //获得数据库
     self.db = [FMDatabase databaseWithPath:fileName];
@@ -52,7 +52,7 @@ static DBManager * _instance = nil;
         //先看有没有这张表
         if(![self.db tableExists:@"t_video"]){
             BOOL result = [self.db executeUpdate:
-                      @"CREATE TABLE IF NOT EXISTS t_video (videoid integer PRIMARY KEY AUTOINCREMENT, dict blob NOT NULL, favorite integer, recent date)"];
+                      @"CREATE TABLE IF NOT EXISTS t_video (videoid varchar PRIMARY KEY, dict blob NOT NULL, favorite integer, recent date)"];
             if (result){
                 NSLog(@"创建表 video 成功");
             }
@@ -69,7 +69,7 @@ static DBManager * _instance = nil;
         
         if(![self.db tableExists:@"t_note"]){
             BOOL result = [self.db executeUpdate:
-                           @"CREATE TABLE IF NOT EXISTS t_note (noteid integer PRIMARY KEY AUTOINCREMENT, videoid integer NOT NULL, views blob NOT NULL, createTime date NOT NULL, title varchar,  CONSTRAINT fk_t_note_videoid_t_video_videoid FOREIGN KEY(videoid) REFERENCES t_video(videoid))"];
+                           @"CREATE TABLE IF NOT EXISTS t_note (noteid integer PRIMARY KEY AUTOINCREMENT, videoid integer NOT NULL, views blob NOT NULL, createTime date NOT NULL, title varchar, template integer, CONSTRAINT fk_t_note_videoid_t_video_videoid FOREIGN KEY(videoid) REFERENCES t_video(videoid))"];
             if (result){
                 NSLog(@"创建表 note 成功");
             }

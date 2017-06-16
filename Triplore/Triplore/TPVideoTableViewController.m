@@ -17,7 +17,7 @@
 #import "SVProgressHUD.h"
 #import "TPRefreshAutoFooter.h"
 
-@interface TPVideoTableViewController () 
+@interface TPVideoTableViewController ()
 
 @property (nonatomic) NSUInteger page;
 @property (nonatomic, strong) NSArray* keywordsArray;
@@ -45,9 +45,16 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
 
     //
-    self.hidesBottomBarWhenPushed = YES;
+//    self.hidesBottomBarWhenPushed = YES;
+    
+    [self continueLoading];
+}
+
+- (void)continueLoading{
+    NSLog(@"Super loading");
     
     self.navigationItem.title = self.keywords;
+    
     self.page = 1;
     
     if (self.site == NULL) {
@@ -79,7 +86,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 #pragma mark - Request
 
 - (void)request {
-
     [TPNetworkHelper fetchVideosByKeywords:self.keywordsArray withSize:10 inPage:self.page withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videos = videos;
         self.page ++;
@@ -129,16 +135,16 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 //    } else {
         TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
         cell.video = video;
-        
         cell.cellDelegate = self;
-        
+    
+        [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
         return cell;
 //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = CGRectGetWidth(self.view.frame);
-    TPVideoModel *video = self.videos[indexPath.section];
+//    TPVideoModel *video = self.videos[indexPath.section];
     
 //    if (video.videoType == TPVideoAlbum) {
 //        return (width / 2 - 10) / 16 * 9 + 20 + 47 + 3*30 + 2*10;

@@ -44,7 +44,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-    
     [TPSiteHelper fetchHotCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
         self.testCountries = countries;
     }];
@@ -52,8 +51,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
         self.testCities = cities;
     }];
-    
-    
 
 }
 

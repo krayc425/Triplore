@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, TPVideoType){
 @property (nonnull, nonatomic) NSString *title;
 @property (nonnull, nonatomic) NSString *shortTitle;
 @property (nonnull, nonatomic) NSString *imgURL;    //请求图片 URL 后面需要拼接上“?sign=iqiyi”
-@property (nonatomic) NSInteger videoid;
+@property (nonnull, nonatomic) NSString *videoid;
 @property (nonnull, nonatomic) NSDate *videoDate;
 @property (nonatomic) TPVideoType videoType;
 @property (nonatomic) NSInteger playCount;

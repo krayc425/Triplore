@@ -26,7 +26,7 @@
  @param videoid 视频 id
  @return  视频
  */
-+ (TPVideo *_Nullable)fetchVideoWithID:(NSInteger)videoid;
++ (TPVideo *_Nullable)fetchVideoWithID:(NSString *_Nonnull)videoid;
 
 #pragma mark - Favorite Videos
 
@@ -44,7 +44,7 @@
  @param videoid 视频 id
  @return  是否为收藏视频
  */
-+ (BOOL)isFavoriteVideo:(NSInteger)videoid;
++ (BOOL)isFavoriteVideo:(NSString *_Nonnull)videoid;
 
 /**
  得到所有喜爱的视频
@@ -68,7 +68,7 @@
  @param videoid 视频
  @return 是否删除成功
  */
-+ (BOOL)deleteRecentVideo:(NSInteger)videoid;
++ (BOOL)deleteRecentVideo:(NSString *_Nonnull)videoid;
 
 /**
  清空最近观看记录

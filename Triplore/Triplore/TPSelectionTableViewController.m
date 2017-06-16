@@ -50,8 +50,12 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
-    [self request];
     
+    [self request];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 - (void)request {

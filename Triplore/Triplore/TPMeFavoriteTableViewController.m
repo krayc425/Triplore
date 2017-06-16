@@ -18,37 +18,22 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 @interface TPMeFavoriteTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (nonatomic, strong) NSArray* videos;
+@property (nonatomic, strong) NSMutableArray *videos;
 
 @end
 
 @implementation TPMeFavoriteTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
-    self.tableView.separatorColor = [UIColor clearColor];
-    
+- (void)continueLoading{
+    self.videos = [[NSMutableArray alloc] init];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    
-    UINib *nib1 = [UINib nibWithNibName:@"TPVideoSingleTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib1 forCellReuseIdentifier:singleCellIdentifier];
-    
-    UINib *nib2 = [UINib nibWithNibName:@"TPVideoSeriesTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib2 forCellReuseIdentifier:seriesCellIdentifier];
-    
     self.navigationItem.title = @"我的收藏";
-    
-    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadFavoriteVideos];
-    
-    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +46,8 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     [[TPVideoManager fetchFavoriteVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [tempArr addObject:[[TPVideoModel alloc] initWithTPVideo:obj]];
     }];
-    self.videos = tempArr;
+    [self.videos removeAllObjects];
+    [self.videos addObjectsFromArray:tempArr];
     [self.tableView reloadData];
 }
 
@@ -78,8 +64,9 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TPVideoModel *video = self.videos[indexPath.section];
     TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
-    cell.video = video;
     cell.cellDelegate = self;
+    [cell setVideo:video];
+    [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
     return cell;
 }
 
