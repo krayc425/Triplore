@@ -9,6 +9,7 @@ target 'Triplore' do
   pod 'SDWebImage'
   pod 'SDCycleScrollView'
   pod 'SVProgressHUD'
+  pod 'MJRefresh'
 
 end
 

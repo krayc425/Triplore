@@ -52,6 +52,9 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
         self.testCities = cities;
     }];
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

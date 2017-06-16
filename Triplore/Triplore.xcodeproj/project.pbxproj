@@ -96,6 +96,7 @@
 		4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9DF1ED95CA900DA73AA /* TPSiteCollectionViewCell.m */; };
 		4DA4F9E21ED95CA900DA73AA /* TPSiteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */; };
 		4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */; };
+		4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD722BA1EF3784200B36454 /* libMJRefresh.a */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
 		5F6651DD58331620A680E214C4156348 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */; };
 		6B975E58F50BF40D71D495A576232E6A /* Tab.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */; };
@@ -291,6 +292,7 @@
 		4DA4F9E01ED95CA900DA73AA /* TPSiteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteCollectionViewCell.xib; sourceTree = "<group>"; };
 		4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteSearchViewController.h; sourceTree = "<group>"; };
 		4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteSearchViewController.m; sourceTree = "<group>"; };
+		4DD722BA1EF3784200B36454 /* libMJRefresh.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMJRefresh.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/MJRefresh/libMJRefresh.a"; sourceTree = "<group>"; };
 		52D7ECA22E4300F8EE4EB5B4B7081D3D /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
 		6168E06073E16C88CE77FF95A7BCE0CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */,
 				24BC3B331EF12EA6006793A3 /* libSVProgressHUD.a in Frameworks */,
 				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
 				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
@@ -707,6 +710,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DD722BA1EF3784200B36454 /* libMJRefresh.a */,
 				24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */,
 				4D91715B1EF11A7F00930372 /* libSDCycleScrollView.a */,
 				245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */,

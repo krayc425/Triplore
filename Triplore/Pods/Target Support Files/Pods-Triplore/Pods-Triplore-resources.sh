@@ -74,10 +74,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "PYSearch/PYSearch/PYSearch.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "PYSearch/PYSearch/PYSearch.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 fi
