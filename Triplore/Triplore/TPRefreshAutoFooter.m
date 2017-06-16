@@ -25,7 +25,7 @@
 @implementation TPRefreshAutoFooter
 
 static CGFloat WRAPPER_WIDTH = 160;
-static CGFloat WRAPPER_HEIGHT = 50;
+static CGFloat WRAPPER_HEIGHT = 60;
 
 - (void)prepare
 {

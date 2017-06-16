@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Utilities.h"
 
+@class TPVideoModel;
+
 @protocol TPSelectionSliderTableViewCellDelegate <NSObject>
 
 @optional
@@ -20,5 +22,7 @@
 @interface TPSelectionSliderTableViewCell : UITableViewCell
 
 @property (nonatomic, nonnull) id<TPSelectionSliderTableViewCellDelegate> delegate;
+
+@property (nonatomic, strong) NSArray<TPVideoModel *>* _Nonnull videos;
 
 @end

@@ -9,17 +9,22 @@
 #import "TPSelectionSliderTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "TPCategoryButton.h"
-#import "TestView.h"
+#import "TPVideoModel.h"
 
-@interface TPSelectionSliderTableViewCell ()
+@interface TPSelectionSliderTableViewCell () <SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet TPCategoryButton *foodButton;
 @property (weak, nonatomic) IBOutlet TPCategoryButton *shoppingButton;
 @property (weak, nonatomic) IBOutlet TPCategoryButton *placeButton;
 
+@property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 @end
 
 @implementation TPSelectionSliderTableViewCell
+
+
+static NSInteger const width = 480;
+static NSInteger const height = 270;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -45,15 +50,34 @@
     
     [super layoutSubviews];
 //    
-    CGFloat width = CGRectGetWidth(self.frame);
-    CGRect frame = CGRectMake(0, 0, width, width / 7 * 3);
-    
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame imageNamesGroup:@[@"TEST_PNG", @"TEST_PNG", @"TEST_PNG"]];
-    [self addSubview:cycleScrollView];
+   
+//    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame imageNamesGroup:@[@"TEST_PNG", @"TEST_PNG", @"TEST_PNG"]];
     
 //    TestView *view = [[TestView alloc] initWithFrame:CGRectMake(0, 0, width, 50)];
 //    [self addSubview:view];
 //    
+}
+
+- (void)setVideos:(NSArray<TPVideoModel *> *)videos {
+    _videos = videos;
+    
+    NSArray *images = [[NSArray alloc] init];
+    NSArray *titles = [[NSArray alloc] init];
+    
+    for (TPVideoModel *video in videos) {
+        NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
+        titles = [titles arrayByAddingObject:video.shortTitle];
+        images = [images arrayByAddingObject:url];
+    }
+    
+    CGFloat width = CGRectGetWidth(self.frame);
+    CGRect frame = CGRectMake(0, 0, width, width / 7 * 3);
+    
+    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"TEST_PNG"]];
+    [self addSubview:self.cycleScrollView];
+    self.cycleScrollView.imageURLStringsGroup = images;
+    self.cycleScrollView.titlesGroup = titles;
+
 }
 
 - (void)clickCategoryButton:(UIButton *)button {
