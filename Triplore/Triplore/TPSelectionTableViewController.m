@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSArray* videosShopping;
 @property (nonatomic, strong) NSArray* videosPlace;
 
+@property (nonatomic, strong) NSArray* videosHot;
+
 @end
 
 @implementation TPSelectionTableViewController
@@ -50,6 +52,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
+    self.videosHot = [[NSArray alloc] init];
     
     [self request];
 }
@@ -59,16 +62,25 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (void)request {
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"美食"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
+    [TPNetworkHelper fetchVideosByKeywords:@[@"美食", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        if (videos.count > 1) {
+            self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
+            self.videosHot = [self.videosHot arrayByAddingObject:videos[0]];
+        }
         [self.tableView reloadData];
     }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"购物"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
+    [TPNetworkHelper fetchVideosByKeywords:@[@"购物", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        if (videos.count > 1) {
+            self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
+            self.videosHot = [self.videosHot arrayByAddingObject:videos[1]];
+        }
         [self.tableView reloadData];
     }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"旅游", @"景点"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
+    [TPNetworkHelper fetchVideosByKeywords:@[@"景点", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        if (videos.count > 1) {
+            self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
+            self.videosHot = [self.videosHot arrayByAddingObject:videos[0]];
+        }
         [self.tableView reloadData];
     }];
 }
@@ -91,6 +103,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         TPSelectionSliderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.videos = self.videosHot;
         cell.delegate = self;
         return cell;
     } else {
@@ -130,12 +143,12 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10.0;
+    return 0.1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    return 0.1;
+    return 10.0;
 }
 
 #pragma mark - TPSelectionSliderTableViewCellDelegate

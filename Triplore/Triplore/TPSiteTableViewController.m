@@ -102,12 +102,12 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10.0;
+    return 0.1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-   
-    return 0.1;
+    
+    return 10.0;
 }
 
 #pragma mark - TPSiteTableViewCellDelegate
