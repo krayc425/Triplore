@@ -69,7 +69,7 @@ static DBManager * _instance = nil;
         
         if(![self.db tableExists:@"t_note"]){
             BOOL result = [self.db executeUpdate:
-                           @"CREATE TABLE IF NOT EXISTS t_note (noteid integer PRIMARY KEY AUTOINCREMENT, videoid integer NOT NULL, views blob NOT NULL, createTime date NOT NULL, title varchar, template integer, CONSTRAINT fk_t_note_videoid_t_video_videoid FOREIGN KEY(videoid) REFERENCES t_video(videoid))"];
+                           @"CREATE TABLE IF NOT EXISTS t_note (noteid integer PRIMARY KEY AUTOINCREMENT, videoid varchar NOT NULL, views blob NOT NULL, createTime date NOT NULL, title varchar, template integer, CONSTRAINT fk_t_note_videoid_t_video_videoid FOREIGN KEY(videoid) REFERENCES t_video(videoid))"];
             if (result){
                 NSLog(@"创建表 note 成功");
             }

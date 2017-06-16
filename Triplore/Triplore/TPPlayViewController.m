@@ -429,8 +429,14 @@
     if(self.noteMode == TPNewNote){
         //新增模式，进入 NoteVC
         TPNote *newNote = [TPNote new];
-        [newNote setTitle:([_titleText.text isEqualToString:@""] ? self.videoDict[@"short_title"] : _titleText.text)];
-        [newNote setViews:noteArr];
+        NSString *title;
+        if([self.titleText.text isEqualToString:@""]){
+            title = self.videoDict[@"short_title"];
+        }else{
+            title = self.titleText.text;
+        }
+        [newNote setTitle:title];
+        [newNote setViews:[NSMutableArray arrayWithArray:noteArr]];
         [newNote setCreateTime:[NSDate date]];
         self.note = newNote;
     }else{

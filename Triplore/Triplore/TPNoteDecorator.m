@@ -52,6 +52,7 @@
                     break;
                 case TPBrown:
                     [imageView decorateWithBrown];
+                    break;
                 default:
                     break;
             }

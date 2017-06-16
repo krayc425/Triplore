@@ -21,6 +21,7 @@
 #import "TPNoteTemplate.h"
 #import "TPNoteTemplateFactory.h"
 #import "Triplore-Swift.h"
+#import "TPNoteCreator.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
@@ -68,31 +69,31 @@
     [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
     self.navigationItem.rightBarButtonItem = saveButtonItem;
-
-    //底下按钮
-    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
-    [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-    [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
-    [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
-    UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
-                                                                            CGRectGetHeight(self.tableView.bounds),
-                                                                            CGRectGetWidth(self.view.bounds),
-                                                                            TOOLBAR_HEIGHT)];
-    [buttonStack addArrangedSubview:deleteButton];
-    [buttonStack addArrangedSubview:videoButton];
-    [buttonStack addArrangedSubview:exportButton];
-    buttonStack.axis = UILayoutConstraintAxisHorizontal;
-    buttonStack.alignment = UIStackViewAlignmentFill;
-    buttonStack.distribution = UIStackViewDistributionFillEqually;
     
     //老的 Note，查看模式
     if(self.noteMode == TPOldNote){
+        
+        //底下按钮
+        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
+        [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
+        [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
+        [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
+        UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
+                                                                                                            CGRectGetHeight(self.tableView.bounds),
+                                                                                                            CGRectGetWidth(self.view.bounds),
+                                                                                                            TOOLBAR_HEIGHT)];
+        [buttonStack addArrangedSubview:deleteButton];
+        [buttonStack addArrangedSubview:videoButton];
+        [buttonStack addArrangedSubview:exportButton];
+        buttonStack.axis = UILayoutConstraintAxisHorizontal;
+        buttonStack.alignment = UIStackViewAlignmentFill;
+        buttonStack.distribution = UIStackViewDistributionFillEqually;
         [self.view addSubview:buttonStack];
     }
     
@@ -110,17 +111,8 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)setNoteTitle:(NSString *)noteTitle{
-    _noteTitle = noteTitle;
-    self.note.title = noteTitle;
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
-    
-    self.noteTitle = self.note.title;
-    self.noteViews = [NSMutableArray arrayWithArray:self.note.views];
-
     [self reloadShowViews];
 }
 
@@ -132,7 +124,6 @@
 }
 
 - (void)reloadShowViews{
-    self.note.views = self.noteViews;
     self.note.templateNum = segment.selectedSegmentIndex;
     template = [TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum];
     showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:template]];
@@ -152,8 +143,8 @@
         [playViewController setNote:self.note];
         [playViewController setNoteMode:TPOldNote];
         [playViewController setVideoDict:video.dict];
-        [playViewController setNoteViews:self.noteViews];
-        [playViewController setNoteTitle:self.noteTitle];
+        [playViewController setNoteViews:self.note.views];
+        [playViewController setNoteTitle:self.note.title];
         
         [self.navigationController pushViewController:playViewController animated:YES];
     }
@@ -182,24 +173,16 @@
     
     //新增
     if(self.noteMode == TPNewNote){
-        TPNote *note = [TPNote new];
-        [note setVideoid:self.videoDict[@"id"]];
-        [note setTitle:self.noteTitle];
-        [note setCreateTime:self.note.createTime];
-        [note setViews:self.noteViews];
-        [note setTemplateNum:segment.selectedSegmentIndex];
-        
-        success = [TPNoteManager insertNote:note];
+        [self.note setVideoid:self.videoDict[@"id"]];
+        [self.note setTemplateNum:segment.selectedSegmentIndex];
+        success = [TPNoteManager insertNote:self.note];
         
         TPVideo *video = [TPVideo new];
         [video setVideoid:self.videoDict[@"id"]];
         [video setDict:self.videoDict];
         success = success && [TPVideoManager insertVideo:video];
     }else{
-        [self.note setViews:[NSArray arrayWithArray:self.noteViews]];
-        [self.note setTitle:self.noteTitle];
         [self.note setTemplateNum:segment.selectedSegmentIndex];
-        
         success = [TPNoteManager updateNote:self.note];
     }
     return success;
@@ -207,6 +190,9 @@
 
 - (void)saveNoteAction{
     BOOL success = [self saveNote];
+    
+    [[TPNoteCreator shareInstance] clearNoteView];
+    
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:success ? @"保存成功" : @"保存失败"
                                                                     message:nil
                                                              preferredStyle:UIAlertControllerStyleAlert];
@@ -244,7 +230,7 @@
 }
 
 - (void)editTitleAction{
-    [self editNoteActionWithString:self.noteTitle andMode:TPUpdateTitle];
+    [self editNoteActionWithString:self.note.title andMode:TPUpdateTitle];
 }
 
 - (void)editNoteActionWithString:(NSString *)string andMode:(TPAddMode)mode{
@@ -258,14 +244,13 @@
 }
 
 - (void)updateNoteView:(UIView *_Nonnull)view{
-    [self.noteViews replaceObjectAtIndex:selectedIndexPath.row - 2 withObject:view];
-    self.note.views = self.noteViews;
+    [self.note.views replaceObjectAtIndex:selectedIndexPath.row - 2 withObject:view];
     [self reloadShowViews];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.noteViews indexOfObject:view] + 2 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.note.views indexOfObject:view] + 2 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)updateTitle:(NSString *)title{
-    [self setNoteTitle:title];
+    [self.note setTitle:title];
     [self reloadShowViews];
 }
 
@@ -287,7 +272,7 @@
     
     UIGraphicsEndImageContext();
     
-    NSLog(@"%lu", (unsigned long)self.noteViews.count);
+    NSLog(@"%lu", (unsigned long)self.note.views.count);
     
     UIImageWriteToSavedPhotosAlbum(image,
                                    self,
@@ -358,8 +343,8 @@
         return;
     }else if(indexPath.row == 1){
         [self editTitleAction];
-    }else if([self.noteViews[indexPath.row - 2] isKindOfClass:[UILabel class]]){
-        UILabel *label = (UILabel *)self.noteViews[indexPath.row - 2];
+    }else if([self.note.views[indexPath.row - 2] isKindOfClass:[UILabel class]]){
+        UILabel *label = (UILabel *)self.note.views[indexPath.row - 2];
         [self editNoteActionWithString:label.text andMode:TPUpdateNote];
     }
 }
@@ -368,7 +353,7 @@
     if(indexPath.row < 2){
         return showViews[indexPath.row].frame.size.height + 10;
     }else{
-        return self.noteViews[indexPath.row - 2].frame.size.height + 20;
+        return self.note.views[indexPath.row - 2].frame.size.height + 20;
     }
 }
 
@@ -377,8 +362,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.noteViews removeObjectAtIndex:indexPath.row - 2];
-    self.note.views = self.noteViews;
+    [self.note.views removeObjectAtIndex:indexPath.row - 2];
+//    self.note.views = self.noteViews;
     [self reloadShowViews];
 }
 
@@ -401,7 +386,7 @@
 #pragma mark - Drag Delegate
 
 - (void)tableView:(UITableView *)tableView dragCellFrom:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
-    [self.noteViews exchangeObjectAtIndex:fromIndexPath.row - 2 withObjectAtIndex:toIndexPath.row - 2];
+    [self.note.views exchangeObjectAtIndex:fromIndexPath.row - 2 withObjectAtIndex:toIndexPath.row - 2];
     [showViews exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
