@@ -30,7 +30,6 @@
 		2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC7A1EF267B50007CC69 /* TPNoteDecorator.m */; };
 		2444AC7E1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC7D1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m */; };
 		2444AC801EF26B3A0007CC69 /* TPNoteTitleViewGreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2444AC7F1EF26B3A0007CC69 /* TPNoteTitleViewGreen.xib */; };
-		2444AC821EF26B800007CC69 /* NoteTemplate.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2444AC811EF26B800007CC69 /* NoteTemplate.xcassets */; };
 		2444AC911EF284840007CC69 /* UIImageView+Decorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC901EF284840007CC69 /* UIImageView+Decorator.m */; };
 		2444AC941EF28CF50007CC69 /* TPNoteTemplateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC931EF28CF50007CC69 /* TPNoteTemplateFactory.m */; };
 		2444AC971EF28DEF0007CC69 /* TPNoteTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC961EF28DEF0007CC69 /* TPNoteTitleView.m */; };
@@ -61,6 +60,7 @@
 		24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */; };
 		24AF8D231EF3C7C500C9B0CD /* TPFontTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */; };
 		24AF8D241EF3C7C500C9B0CD /* TPFontTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */; };
+		24AF8D261EF3CB9C00C9B0CD /* NoteTemplate.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */; };
 		24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */; };
 		24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */; };
 		24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */; };
@@ -192,7 +192,6 @@
 		2444AC7C1EF26B2F0007CC69 /* TPNoteTitleViewGreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteTitleViewGreen.h; sourceTree = "<group>"; };
 		2444AC7D1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteTitleViewGreen.m; sourceTree = "<group>"; };
 		2444AC7F1EF26B3A0007CC69 /* TPNoteTitleViewGreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPNoteTitleViewGreen.xib; sourceTree = "<group>"; };
-		2444AC811EF26B800007CC69 /* NoteTemplate.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = NoteTemplate.xcassets; path = ../NoteTemplate.xcassets; sourceTree = "<group>"; };
 		2444AC8F1EF284840007CC69 /* UIImageView+Decorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Decorator.h"; sourceTree = "<group>"; };
 		2444AC901EF284840007CC69 /* UIImageView+Decorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Decorator.m"; sourceTree = "<group>"; };
 		2444AC921EF28CF50007CC69 /* TPNoteTemplateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteTemplateFactory.h; sourceTree = "<group>"; };
@@ -212,8 +211,6 @@
 		24487C561EDE4AE10009E8E5 /* Triplore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Triplore.entitlements; sourceTree = "<group>"; };
 		24487C5E1EDE551D0009E8E5 /* TPSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewCell.h; sourceTree = "<group>"; };
 		24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSiteTableViewCell.m; sourceTree = "<group>"; };
-		24487C621EDE63E30009E8E5 /* QYAVPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYAVPlayerController.h; sourceTree = "<group>"; };
-		24487C631EDE66720009E8E5 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		24487C671EDE93940009E8E5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		24487C771EDE95F40009E8E5 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/FMDB/libFMDB.a"; sourceTree = "<group>"; };
 		24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriploreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +244,7 @@
 		24AF8D201EF3C7C500C9B0CD /* TPFontTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPFontTableViewCell.h; sourceTree = "<group>"; };
 		24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPFontTableViewCell.m; sourceTree = "<group>"; };
 		24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPFontTableViewCell.xib; sourceTree = "<group>"; };
+		24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NoteTemplate.xcassets; sourceTree = "<group>"; };
 		24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeTableViewCell.h; sourceTree = "<group>"; };
 		24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeTableViewCell.m; sourceTree = "<group>"; };
 		24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -615,6 +613,8 @@
 		2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */ = {
 			isa = PBXGroup;
 			children = (
+				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
+				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
 				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
@@ -622,7 +622,6 @@
 				2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */,
 				4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */,
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
-				24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -701,8 +700,6 @@
 				4D4DF7AB1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.h */,
 				4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */,
 				4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */,
-				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
-				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -722,6 +719,7 @@
 		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */,
 				2402CE171ED44F690098770A /* Main.storyboard */,
 				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
 				24487C561EDE4AE10009E8E5 /* Triplore.entitlements */,
@@ -806,7 +804,7 @@
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
-				2444AC811EF26B800007CC69 /* NoteTemplate.xcassets */,
+				24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */,
 				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
 				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
 			);
@@ -818,8 +816,6 @@
 			children = (
 				1AC3095A6612B03A93E00DD25B53E49D /* asihttp include */,
 				A3D401709B69183C4810D30100EAA80C /* QYPlayerController.h */,
-				24487C631EDE66720009E8E5 /* PlayerController.h */,
-				24487C621EDE63E30009E8E5 /* QYAVPlayerController.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -952,10 +948,10 @@
 				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
 				24CB53951EE69D6B0030DF25 /* Site.plist in Resources */,
 				2444AC801EF26B3A0007CC69 /* TPNoteTitleViewGreen.xib in Resources */,
-				2444AC821EF26B800007CC69 /* NoteTemplate.xcassets in Resources */,
 				24BC3B381EF15FE2006793A3 /* TPPlayViewController.xib in Resources */,
 				2444AC9C1EF28F410007CC69 /* TPNoteTitleViewBrown.xib in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
+				24AF8D261EF3CB9C00C9B0CD /* NoteTemplate.xcassets in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
 				2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */,

@@ -297,7 +297,7 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error == nil) {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存成功"
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存至相册成功"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"

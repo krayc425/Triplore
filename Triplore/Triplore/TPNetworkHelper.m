@@ -170,18 +170,11 @@ static NSString *SEARCH_URL = @"http://iface.qiyi.com/openapi/realtime/search";
                          NSDictionary *dict = (NSDictionary *)responseObject;
                          NSMutableArray *resultArr = [[NSMutableArray alloc] init];
                          for(NSDictionary *subDict in dict[@"data"]){
-                             
-//                             BOOL flag = YES;
-//                             for(NSString *key in keywords) {
-                             NSLog(@"%@ ", subDict[@"title"]);
-                                 if([subDict[@"title"] containsString:keywords[0]]){
-                                     TPVideoModel *video = [[TPVideoModel alloc] initWithDict:subDict];
-                                     [resultArr addObject:video];
-                                 }
-//                             }
-                             
-//                             if(flag){
-//                             }
+//                             NSLog(@"%@ ", subDict[@"title"]);
+                             if([subDict[@"title"] containsString:keywords[0]]){
+                                 TPVideoModel *video = [[TPVideoModel alloc] initWithDict:subDict];
+                                 [resultArr addObject:video];
+                             }
                          }
                          completionBlock([NSArray arrayWithArray:resultArr], nil);
                      }

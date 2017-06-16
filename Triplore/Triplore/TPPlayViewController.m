@@ -13,8 +13,6 @@
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
-#import "QYAVPlayerController.h"
-#import "PlayerController.h"
 #import "UIImage+Extend.h"
 #import "TPNote.h"
 #import "TPNoteManager.h"
@@ -29,7 +27,7 @@
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
