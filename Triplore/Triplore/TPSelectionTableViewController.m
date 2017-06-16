@@ -50,17 +50,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
-    
     [self request];
-    
-    //
-//    [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
-//        NSLog(@"%d", videos.count);
-//        for (TPVideoModel* video in videos) {
-//             NSLog(@"%@", video.title);
-//        }
-//    }];
-    
     
 }
 

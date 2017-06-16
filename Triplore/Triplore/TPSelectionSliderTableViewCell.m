@@ -9,6 +9,7 @@
 #import "TPSelectionSliderTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "TPCategoryButton.h"
+#import "TestView.h"
 
 @interface TPSelectionSliderTableViewCell ()
 
@@ -43,12 +44,16 @@
 - (void)layoutSubviews {
     
     [super layoutSubviews];
-    
+//    
     CGFloat width = CGRectGetWidth(self.frame);
     CGRect frame = CGRectMake(0, 0, width, width / 7 * 3);
     
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame imageNamesGroup:@[@"TEST_PNG", @"TEST_PNG", @"TEST_PNG"]];
     [self addSubview:cycleScrollView];
+    
+//    TestView *view = [[TestView alloc] initWithFrame:CGRectMake(0, 0, width, 50)];
+//    [self addSubview:view];
+//    
 }
 
 - (void)clickCategoryButton:(UIButton *)button {

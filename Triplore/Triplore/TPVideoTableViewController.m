@@ -15,14 +15,14 @@
 #import "TPVideoManager.h"
 #import "TPVideo.h"
 #import "SVProgressHUD.h"
-#import "MJRefreshAutoGifFooter.h"
+#import "TPRefreshAutoFooter.h"
 
 @interface TPVideoTableViewController () 
 
 @property (nonatomic) NSUInteger page;
 @property (nonatomic, strong) NSArray* keywordsArray;
 @property (nonatomic, strong) NSArray* videos;
-@property (nonatomic, strong) MJRefreshAutoGifFooter *footer;
+@property (nonatomic, strong) TPRefreshAutoFooter *footer;
 
 @end
 
@@ -57,7 +57,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     }
     
     // footer
-    self.footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMore)];
+    self.footer = [TPRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMore)];
     //    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
     self.tableView.mj_footer = self.footer;
     [self.footer setHidden:YES];
@@ -90,11 +90,10 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (void)requestMore {
-    NSLog(@"more!!!");
+
     [TPNetworkHelper fetchVideosByKeywords:self.keywordsArray withSize:10 inPage:self.page withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
         self.videos = [self.videos arrayByAddingObjectsFromArray:videos];
         self.page ++;
-        NSLog(@"%d", videos.count);
         [self.tableView reloadData];
         [self.footer endRefreshing];
     }];
