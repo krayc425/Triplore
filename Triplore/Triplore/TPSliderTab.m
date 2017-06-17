@@ -107,8 +107,12 @@ static const CGFloat sliderHeight = 2.0;
                          oldButton.alpha = 0.5;
                          newButton.alpha = 1;
                      }];
-    if (_buttonDidSelect) {
-        _buttonDidSelect(selectedIndex);
+//    if (_buttonDidSelect) {
+//        _buttonDidSelect(selectedIndex);
+//    }
+    
+    if ([self.delegate respondsToSelector:@selector(indexDidSelect:)]) {
+        [self.delegate indexDidSelect:selectedIndex];
     }
 }
 
