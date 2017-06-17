@@ -1,5 +1,16 @@
 # Triplore
-iQiyi Contest Project
+iQiyi Contest Project  
+<img src="https://github.com/songkuixi/Triplore/blob/master/Img/Logo/Logo2-2.png" width="100px" height="100px"> 
+
+# Preview
+<table>
+    <tr>
+        <td><img src="https://github.com/songkuixi/Triplore/blob/master/Img/Intro/Intro_Screen_One.png"></td>
+        <td><img src="https://github.com/songkuixi/Triplore/blob/master/Img/Intro/Intro_Screen_Two.png"></td>
+        <td><img src="https://github.com/songkuixi/Triplore/blob/master/Img/Intro/Intro_Screen_Three.png"></td>
+        <td><img src="https://github.com/songkuixi/Triplore/blob/master/Img/Intro/Intro_Screen_Four.png"></td>
+    </tr>
+</table>
 
 # Instruction
 * 由于其中一个所需的库 `libav.a` 太过庞大 `(1.86 GB)`，所以仓库中并不包含它，在项目中需要手动将它拖到 `Triplore/IOSPlayerLib` 中，完成后项目目录（省略细节文件）如下：
