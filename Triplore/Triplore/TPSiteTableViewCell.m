@@ -110,6 +110,7 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+ 
     return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
 }
 

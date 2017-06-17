@@ -25,4 +25,6 @@
 
 @property (nonatomic, nonnull) id<TPSliderTabDelegate> delegate;
 
+- (void)setUp;
+
 @end

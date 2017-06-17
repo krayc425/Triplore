@@ -49,6 +49,10 @@ static const CGFloat sliderHeight = 2.0;
         return;
     }
     
+    for (UIView *subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
+    
     NSMutableArray *buttons = [[NSMutableArray alloc] init];
     NSUInteger count = _strings.count;
     CGFloat width = self.frame.size.width / count;
@@ -107,9 +111,6 @@ static const CGFloat sliderHeight = 2.0;
                          oldButton.alpha = 0.5;
                          newButton.alpha = 1;
                      }];
-//    if (_buttonDidSelect) {
-//        _buttonDidSelect(selectedIndex);
-//    }
     
     if ([self.delegate respondsToSelector:@selector(indexDidSelect:)]) {
         [self.delegate indexDidSelect:selectedIndex];

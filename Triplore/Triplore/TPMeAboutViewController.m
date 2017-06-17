@@ -68,6 +68,13 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self.sliderTab setUp];
+    [self.collectionView reloadData];
+}
+
 #pragma mark - <TPSliderTabDelegate>
 
 - (void)indexDidSelect:(NSUInteger)selectedIndex {
@@ -112,7 +119,7 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
 #pragma mark - <UICollectionViewDelegate>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20), (CGRectGetHeight(self.collectionView.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 20));
+    return CGSizeMake(CGRectGetWidth(self.self.collectionView.frame) - 20, CGRectGetHeight(self.self.collectionView.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 20);
 }
 
 
