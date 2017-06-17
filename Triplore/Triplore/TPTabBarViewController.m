@@ -13,10 +13,13 @@
 #import "TPNoteCollectionViewController.h"
 #import "TPMeTableViewController.h"
 #import "TPPlayViewController.h"
+#import "ABCIntroView.h"
 
-@interface TPTabBarViewController (){
+@interface TPTabBarViewController () <ABCIntroViewDelegate> {
     BOOL shouldAutorotate;
 }
+
+@property (nonatomic, nonnull) ABCIntroView *introView;
 
 @end
 
@@ -63,6 +66,14 @@
     for(UINavigationController *naviVC in self.childViewControllers) {
         naviVC.navigationBar.translucent = NO;
         naviVC.navigationBar.opaque = YES;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:@"intro_screen_viewed"]) {
+        self.introView = [[ABCIntroView alloc] initWithFrame:self.view.frame];
+        self.introView.delegate = self;
+        self.introView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:self.introView];
     }
 }
 
@@ -126,6 +137,21 @@
         return [vc supportedInterfaceOrientations];
     }
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - ABCIntroViewDelegate Methods
+
+- (void)onDoneButtonPressed{
+    //    Uncomment so that the IntroView does not show after the user clicks "DONE"
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
+    [defaults synchronize];
+    
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.introView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.introView removeFromSuperview];
+    }];
 }
 
 @end

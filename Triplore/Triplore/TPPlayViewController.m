@@ -21,13 +21,14 @@
 #import "TPVideo.h"
 #import "TPVideoProgressBar.h"
 #import "Triplore-Swift.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
@@ -67,7 +68,6 @@
     
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-    NSLog(@"%f %f %f %f", self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.origin.x, self.playerView.frame.origin.y);
     [_playerView addSubview:[QYPlayerController sharedInstance].view];
     
     playFrame = CGRectMake(0,
@@ -115,6 +115,8 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.dragable = YES;
     self.tableView.dragableDelegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     if(self.noteMode == TPNewNote){
         self.noteViews = [[NSMutableArray alloc] init];
@@ -631,6 +633,22 @@
 
 - (void)tableView:(UITableView *)tableView endDragCellTo:(NSIndexPath *)indexPath{
     [self reloadNoteViews];
+}
+
+#pragma mark - DZNEmptyTableViewDelegate
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state{
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:@"添加一段文字笔记" attributes:attributes];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
+    // Do something
+    [self editNoteAction];
 }
 
 @end

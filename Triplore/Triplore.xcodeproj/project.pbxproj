@@ -17,6 +17,8 @@
 		2402CE181ED44F690098770A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE171ED44F690098770A /* Main.storyboard */; };
 		2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE191ED450790098770A /* TPSiteTableViewCell.xib */; };
 		2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */; };
+		24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */; };
+		24086A611EF4FD04002D36AF /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24086A601EF4FD04002D36AF /* Intro.xcassets */; };
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
 		241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */; };
 		241210F61ED84CD70066B99C /* TPNoteViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */; };
@@ -170,6 +172,9 @@
 		2402CE171ED44F690098770A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2402CE191ED450790098770A /* TPSiteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPSiteTableViewCell.xib; sourceTree = "<group>"; };
 		2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
+		24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCIntroView.m; sourceTree = "<group>"; };
+		24086A601EF4FD04002D36AF /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
 		241210EC1ED7EF400066B99C /* TPNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewController.h; sourceTree = "<group>"; };
 		241210ED1ED7EF400066B99C /* TPNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteViewController.m; sourceTree = "<group>"; };
 		241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteViewTableViewCell.h; sourceTree = "<group>"; };
@@ -613,6 +618,8 @@
 		2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */ = {
 			isa = PBXGroup;
 			children = (
+				24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */,
+				24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */,
 				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
 				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
@@ -804,6 +811,7 @@
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
+				24086A601EF4FD04002D36AF /* Intro.xcassets */,
 				24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */,
 				25139507DC2EC1DD4D0CAB080C384E5B /* Tab.xcassets */,
 				7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */,
@@ -949,6 +957,7 @@
 				24CB53951EE69D6B0030DF25 /* Site.plist in Resources */,
 				2444AC801EF26B3A0007CC69 /* TPNoteTitleViewGreen.xib in Resources */,
 				24BC3B381EF15FE2006793A3 /* TPPlayViewController.xib in Resources */,
+				24086A611EF4FD04002D36AF /* Intro.xcassets in Resources */,
 				2444AC9C1EF28F410007CC69 /* TPNoteTitleViewBrown.xib in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
 				24AF8D261EF3CB9C00C9B0CD /* NoteTemplate.xcassets in Resources */,
@@ -1122,6 +1131,7 @@
 				4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */,
 				4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */,
 				245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */,
+				24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */,
 				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */,
 				2444AC781EF265E80007CC69 /* TPNoteTemplate.m in Sources */,
