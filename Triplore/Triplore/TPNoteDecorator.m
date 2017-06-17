@@ -24,6 +24,7 @@
     //最顶上 View
     [template.tem_titleView setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 80)];
     [template.tem_titleView setDate:note.createTime];
+    [template.tem_titleView setTitleTextColor:template.tem_titleColor];
     [tempViews addObject:template.tem_titleView];
     
     //标题
@@ -35,12 +36,14 @@
     [titleLabel setTag:1];
     [titleLabel setNumberOfLines:0];
     [titleLabel sizeToFit];
+    [titleLabel setTextColor:template.tem_titleColor];
     [tempViews addObject:titleLabel];
     
     for(UIView *view in note.views){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel *)view;
             [label setFont:[UIFont fontWithName:template.tem_font size:16.0]];
+            [label setTextColor:template.tem_textColor];
             [tempViews addObject:label];
         }else if([view isKindOfClass:[UIImageView class]]){
             UIImageView *oldView = (UIImageView *)view;

@@ -10,12 +10,19 @@
 
 @implementation TPNoteTemplate
 
-- (instancetype)initWithColor:(UIColor *)color andFont:(NSString *)font andTitleView:(TPNoteTitleView *)titleView andImageStyle:(TPNoteTemplateNumber)number{
+- (instancetype)initWithColor:(UIColor *)color
+                      andFont:(NSString *)font
+                andTitleColor:(UIColor *)titleColor
+                 andTextColor:(UIColor *)textColor
+                 andTitleView:(TPNoteTitleView *)titleView
+                andImageStyle:(TPNoteTemplateNumber)number{
     self = [super init];
     if(self){
         self.tem_color = color;
         self.tem_font = font;
         self.tem_titleView = titleView;
+        self.tem_textColor = textColor;
+        self.tem_titleColor = titleColor;
         self.tem_num = number;
     }
     return self;

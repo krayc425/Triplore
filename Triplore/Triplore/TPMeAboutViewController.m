@@ -30,7 +30,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
     // navigation
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
@@ -42,7 +41,7 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     self.collectionView.contentInset = adjustForTabbarInsets;
     
     // sider tab
-       self.sliderTab.color = [UIColor whiteColor];
+    self.sliderTab.color = [UIColor whiteColor];
     
     // collection view
     self.collectionView.dataSource = self;
@@ -62,7 +61,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
         
         [self.collectionView reloadData];
         self.sliderTab.strings = names;
-
     }];
     
 }
@@ -74,7 +72,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
     return self.people.count;
 }
 
@@ -84,13 +81,11 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     return cell;
 }
 
-
 #pragma mark - <UICollectionViewDelegate>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20), (CGRectGetHeight(self.collectionView.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 20));
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
