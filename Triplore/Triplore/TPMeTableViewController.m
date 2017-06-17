@@ -11,6 +11,7 @@
 #import "Utilities.h"
 #import "TPMeFavoriteTableViewController.h"
 #import "TPMeRecentTableViewController.h"
+#import "TPMeAboutViewController.h"
 
 @interface TPMeTableViewController ()
 
@@ -99,7 +100,8 @@
     }else if(indexPath.section == 1 && indexPath.row == 0){
         
     }else if(indexPath.section == 2 && indexPath.row == 0){
-        
+        TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];
+        [self.navigationController pushViewController:aboutVC animated:YES];
     }else{
         
     }

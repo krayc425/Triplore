@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>avatar</key>
+		<string></string>
+		<key>name</key>
+		<string>Kray.C</string>
+		<key>introduction</key>
+		<string>一些介绍
+一些介绍
+一些介绍一些介绍
+一些介绍一些介绍
+一些介绍</string>
+	</dict>
+	<dict>
+		<key>avatar</key>
+		<string>Sorumi</string>
+		<key>name</key>
+		<string>Sorumi</string>
+		<key>introduction</key>
+		<string>一些介绍
+一些介绍
+一些介绍一些介绍
+一些介绍一些介绍
+一些介绍</string>
+	</dict>
+</array>
+</plist>
