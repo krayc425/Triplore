@@ -13,7 +13,7 @@
 #import "TPPersonModel.h"
 #import "Utilities.h"
 
-@interface TPMeAboutViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface TPMeAboutViewController () <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, TPSliderTabDelegate>
 
 @property (weak, nonatomic) IBOutlet TPSliderTab *sliderTab;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -42,6 +42,7 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     
     // sider tab
     self.sliderTab.color = [UIColor whiteColor];
+    self.sliderTab.delegate = self;
     
     // collection view
     self.collectionView.dataSource = self;
@@ -63,6 +64,21 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
         self.sliderTab.strings = names;
     }];
     
+}
+
+#pragma mark - <TPSliderTabDelegate>
+
+- (void)indexDidSelect:(NSUInteger)selectedIndex {
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
+
+#pragma mark - <UIScrollViewDelegate>
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat offsetX = scrollView.contentOffset.x;
+    CGFloat width = CGRectGetWidth(self.view.frame);
+    NSUInteger index = (NSUInteger) round(offsetX / width);
+    [self.sliderTab setSelectedIndex:index];
 }
 
 #pragma mark - <UICollectionViewDataSource>
