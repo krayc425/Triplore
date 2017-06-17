@@ -28,4 +28,10 @@ typedef NS_ENUM(NSInteger, TPNoteMode){
 
 + (UIColor *)getGradientColorDark;
 
++ (NSString *)getFont;
+
++ (NSArray *)getAllFonts;
+
++ (void)setFontAtIndex:(NSUInteger)index;
+
 @end

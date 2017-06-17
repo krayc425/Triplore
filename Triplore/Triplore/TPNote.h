@@ -19,7 +19,7 @@
 @property (nonatomic, nonnull) NSString *videoid;
 @property (nonatomic, nonnull) NSDate *createTime;
 @property (nonatomic, nonnull) NSString *title;
-@property (nonatomic, nonnull) NSArray<UIView *> *views;
+@property (nonatomic, nonnull) NSMutableArray<UIView *> *views;
 @property (nonatomic) TPNoteTemplateNumber templateNum;
 
 @end

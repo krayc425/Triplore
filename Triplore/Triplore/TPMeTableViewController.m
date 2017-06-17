@@ -12,6 +12,8 @@
 #import "TPMeFavoriteTableViewController.h"
 #import "TPMeRecentTableViewController.h"
 #import "TPMeAboutViewController.h"
+#import "TPSettingsTableViewController.h"
+
 
 @interface TPMeTableViewController ()
 
@@ -98,6 +100,8 @@
         TPMeRecentTableViewController *recentVC = [[TPMeRecentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:recentVC animated:YES];
     }else if(indexPath.section == 1 && indexPath.row == 0){
+        TPSettingsTableViewController *settingsVC = [[TPSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:settingsVC animated:YES];
         
     }else if(indexPath.section == 2 && indexPath.row == 0){
         TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];

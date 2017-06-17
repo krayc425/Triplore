@@ -9,6 +9,7 @@
 #import "TPNoteTemplateFactory.h"
 #import "TPNoteTitleViewGreen.h"
 #import "TPNoteTitleViewBrown.h"
+#import "Utilities.h"
 
 @implementation TPNoteTemplateFactory
 
@@ -17,13 +18,19 @@
         case TPGreen:
         {
             TPNoteTitleViewGreen *titleView = [[[NSBundle mainBundle] loadNibNamed:@"TPNoteTitleViewGreen" owner:nil options:nil] lastObject];
-            return [[TPNoteTemplate alloc] initWithColor:[UIColor whiteColor] andFont:[UIFont fontWithName:@"PingFangSC-Regular" size:35.0] andTitleView:titleView andImageStyle:TPGreen];
+            return [[TPNoteTemplate alloc] initWithColor:[UIColor whiteColor]
+                                                 andFont:[Utilities getFont]
+                                            andTitleView:titleView
+                                           andImageStyle:TPGreen];
         }
             break;
         case TPBrown:
         {
             TPNoteTitleViewBrown *titleView = [[[NSBundle mainBundle] loadNibNamed:@"TPNoteTitleViewBrown" owner:nil options:nil] lastObject];
-            return [[TPNoteTemplate alloc] initWithColor:[UIColor colorWithRed:247.0/255.0 green:244.0/255.0 blue:243.0/255.0 alpha:1.0] andFont:[UIFont fontWithName:@"PingFangSC-Regular" size:35.0] andTitleView:titleView andImageStyle:TPBrown];
+            return [[TPNoteTemplate alloc] initWithColor:[UIColor colorWithRed:247.0/255.0 green:244.0/255.0 blue:243.0/255.0 alpha:1.0]
+                                                 andFont:[Utilities getFont]
+                                            andTitleView:titleView
+                                           andImageStyle:TPBrown];
         }
             break;
         default:

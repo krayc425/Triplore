@@ -31,7 +31,7 @@ static CGFloat WRAPPER_HEIGHT = 60;
 {
     [super prepare];
     
-    
+
     self.mj_h = WRAPPER_HEIGHT;
     
     self.wrapperView = [[UIView alloc] init];
@@ -84,7 +84,6 @@ static CGFloat WRAPPER_HEIGHT = 60;
     
     
     self.planeView.transform = CGAffineTransformIdentity;;
-    
     
     
     self.label.frame = self.bounds;
@@ -201,7 +200,6 @@ static CGFloat WRAPPER_HEIGHT = 60;
 }
 
 - (void)stopAnimating {
-    
     [self.planeView.layer removeAllAnimations];
     [self.cloudView1.layer removeAllAnimations];
     [self.cloudView2.layer removeAllAnimations];
@@ -209,6 +207,5 @@ static CGFloat WRAPPER_HEIGHT = 60;
     [self.cloudView4.layer removeAllAnimations];
     [self.cloudView5.layer removeAllAnimations];
 }
-
 
 @end

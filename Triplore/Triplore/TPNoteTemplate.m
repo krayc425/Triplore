@@ -10,7 +10,7 @@
 
 @implementation TPNoteTemplate
 
-- (instancetype)initWithColor:(UIColor *)color andFont:(UIFont *)font andTitleView:(TPNoteTitleView *)titleView andImageStyle:(TPNoteTemplateNumber)number{
+- (instancetype)initWithColor:(UIColor *)color andFont:(NSString *)font andTitleView:(TPNoteTitleView *)titleView andImageStyle:(TPNoteTemplateNumber)number{
     self = [super init];
     if(self){
         self.tem_color = color;

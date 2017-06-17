@@ -33,6 +33,10 @@
     self.window.rootViewController = tabVC;
     [self.window makeKeyAndVisible];
     
+    if([Utilities getFont] == NULL || [[Utilities getFont] isEqualToString:@""]){
+        [Utilities setFontAtIndex:0];
+    }
+    
     return YES;
 }
 

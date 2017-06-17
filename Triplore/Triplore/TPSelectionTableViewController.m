@@ -15,13 +15,17 @@
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
 #import "Utilities.h"
+#import "MJRefresh.h"
 
-@interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>
+@interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>{
+    BOOL doneFood;
+    BOOL doneShop;
+    BOOL doneView;
+}
 
 @property (nonatomic, strong) NSArray* videosFood;
 @property (nonatomic, strong) NSArray* videosShopping;
 @property (nonatomic, strong) NSArray* videosPlace;
-
 @property (nonatomic, strong) NSArray* videosHot;
 
 @end
@@ -52,36 +56,75 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     UINib *nib2 = [UINib nibWithNibName:@"TPCityVideoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
-    self.videosHot = [[NSArray alloc] init];
+    [self startRequest];
     
-    [self request];
+    // header
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self startRequest];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
 }
 
+- (void)startRequest{
+    [self clearBools];
+    self.videosHot = [[NSArray alloc] init];
+    [self request];
+}
+
 - (void)request {
     [TPNetworkHelper fetchVideosByKeywords:@[@"美食", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        NSLog(@"美食 %lu", (unsigned long)videos.count);
         if (videos.count > 1) {
-            self.videosFood = [videos subarrayWithRange:NSMakeRange(0, 2)];
-            self.videosHot = [self.videosHot arrayByAddingObject:videos[0]];
+            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+            while ([randomSet count] < 2) {
+                int r = arc4random() % [videos count];
+                [randomSet addObject:videos[r]];
+            }
+            self.videosFood = [randomSet allObjects];
+            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosFood];
         }
-        [self.tableView reloadData];
+        doneFood = YES;
+        if([self checkBools]){
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        }
     }];
     [TPNetworkHelper fetchVideosByKeywords:@[@"购物", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        NSLog(@"购物 %lu", (unsigned long)videos.count);
         if (videos.count > 1) {
-            self.videosShopping = [videos subarrayWithRange:NSMakeRange(0, 2)];
-            self.videosHot = [self.videosHot arrayByAddingObject:videos[1]];
+            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+            while ([randomSet count] < 2) {
+                int r = arc4random() % [videos count];
+                [randomSet addObject:videos[r]];
+            }
+            self.videosShopping = [randomSet allObjects];
+            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosShopping];
         }
-        [self.tableView reloadData];
+        doneShop = YES;
+        if([self checkBools]){
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        }
     }];
     [TPNetworkHelper fetchVideosByKeywords:@[@"景点", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+        NSLog(@"景点 %lu", (unsigned long)videos.count);
         if (videos.count > 1) {
-            self.videosPlace = [videos subarrayWithRange:NSMakeRange(0, 2)];
-            self.videosHot = [self.videosHot arrayByAddingObject:videos[0]];
+            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+            while ([randomSet count] < 2) {
+                int r = arc4random() % [videos count];
+                [randomSet addObject:videos[r]];
+            }
+            self.videosPlace = [randomSet allObjects];
+            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosPlace];
         }
-        [self.tableView reloadData];
+        doneView = YES;
+        if([self checkBools]){
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        }
     }];
 }
 
@@ -146,8 +189,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     return 0.1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10.0;
 }
 
@@ -162,6 +204,10 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     [self.navigationController pushViewController:videoViewController animated:YES];
     
+}
+
+- (void)didTapVideo:(TPVideoModel *)video{
+    [self didSelectVideo:video];
 }
 
 #pragma mark - TPCityVideoTableViewCellDelegate
@@ -221,11 +267,8 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 #pragma mark - PYSearchViewControllerDelegate
 
 - (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
-    
     searchViewController.navigationItem.hidesBackButton = YES;
-    
 }
-
 
 - (void)didClickCancel:(PYSearchViewController *)searchViewController {
     
@@ -237,49 +280,16 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+#pragma MARK - Bools
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)clearBools{
+    doneFood = NO;
+    doneShop = NO;
+    doneView = NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (BOOL)checkBools{
+    return doneFood && doneView && doneShop;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

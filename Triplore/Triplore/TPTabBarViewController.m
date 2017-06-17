@@ -13,10 +13,13 @@
 #import "TPNoteCollectionViewController.h"
 #import "TPMeTableViewController.h"
 #import "TPPlayViewController.h"
+#import "ABCIntroView.h"
 
-@interface TPTabBarViewController (){
+@interface TPTabBarViewController () <ABCIntroViewDelegate> {
     BOOL shouldAutorotate;
 }
+
+@property (nonatomic, nonnull) ABCIntroView *introView;
 
 @end
 
@@ -30,25 +33,8 @@
     self.tabBarController.tabBar.delegate = self;
     self.tabBar.tintColor = [Utilities getColor];
     
-    //NavigationBar
-//    UINavigationBar *bar = [UINavigationBar appearance];
-//    [bar setBarTintColor:[Utilities getColor]];
-//    [bar setTintColor:[Utilities getColor]];
-//    [bar setTitleTextAttributes:@{
-//                                  NSForegroundColorAttributeName : [UIColor whiteColor],
-//                                  NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:16.0f]
-//                                  }];
-    //    [bar setTranslucent:NO];
-    
-//    UINavigationBar *bar = [UINavigationBar appearance];
-//    UIImage *image = [UIImage imageNamed:@"NAV_BACK"];
-//    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    bar.backIndicatorImage = image;
-//    bar.backIndicatorTransitionMaskImage = image;
-    
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];
-//    TPSelectionViewController *vc = [[TPSelectionViewController alloc] init];
     TPSelectionTableViewController *selectionVC = [[TPSelectionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     selectionVC.tabBarItem = item1;
     UINavigationController *naviVC1 = [[UINavigationController alloc] initWithRootViewController:selectionVC];
@@ -80,6 +66,14 @@
     for(UINavigationController *naviVC in self.childViewControllers) {
         naviVC.navigationBar.translucent = NO;
         naviVC.navigationBar.opaque = YES;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:@"intro_screen_viewed"]) {
+        self.introView = [[ABCIntroView alloc] initWithFrame:self.view.frame];
+        self.introView.delegate = self;
+        self.introView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:self.introView];
     }
 }
 
@@ -143,6 +137,21 @@
         return [vc supportedInterfaceOrientations];
     }
     return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - ABCIntroViewDelegate Methods
+
+- (void)onDoneButtonPressed{
+    //    Uncomment so that the IntroView does not show after the user clicks "DONE"
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
+    [defaults synchronize];
+    
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.introView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.introView removeFromSuperview];
+    }];
 }
 
 @end

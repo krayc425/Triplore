@@ -13,8 +13,6 @@
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
-#import "QYAVPlayerController.h"
-#import "PlayerController.h"
 #import "UIImage+Extend.h"
 #import "TPNote.h"
 #import "TPNoteManager.h"
@@ -23,13 +21,14 @@
 #import "TPVideo.h"
 #import "TPVideoProgressBar.h"
 #import "Triplore-Swift.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, PlayerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
@@ -69,7 +68,6 @@
     
     [QYPlayerController sharedInstance].delegate = self;
     [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-    NSLog(@"%f %f %f %f", self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.origin.x, self.playerView.frame.origin.y);
     [_playerView addSubview:[QYPlayerController sharedInstance].view];
     
     playFrame = CGRectMake(0,
@@ -83,7 +81,7 @@
     self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
     
     _titleText.placeholder = @"填写笔记标题";
-    _titleText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18.0f];
+    _titleText.font = [UIFont fontWithName:[Utilities getFont] size:18.0f];
     _titleText.delegate = self;
     _titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     
@@ -117,6 +115,8 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.dragable = YES;
     self.tableView.dragableDelegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     if(self.noteMode == TPNewNote){
         self.noteViews = [[NSMutableArray alloc] init];
@@ -431,8 +431,14 @@
     if(self.noteMode == TPNewNote){
         //新增模式，进入 NoteVC
         TPNote *newNote = [TPNote new];
-        [newNote setTitle:([_titleText.text isEqualToString:@""] ? self.videoDict[@"short_title"] : _titleText.text)];
-        [newNote setViews:noteArr];
+        NSString *title;
+        if([self.titleText.text isEqualToString:@""]){
+            title = self.videoDict[@"short_title"];
+        }else{
+            title = self.titleText.text;
+        }
+        [newNote setTitle:title];
+        [newNote setViews:[NSMutableArray arrayWithArray:noteArr]];
         [newNote setCreateTime:[NSDate date]];
         self.note = newNote;
     }else{
@@ -502,6 +508,7 @@
         cell = [nib objectAtIndex:0];
     }
     [cell setNoteView:self.noteViews[indexPath.row]];
+    [cell setBgColor:[UIColor whiteColor]];
     return cell;
 }
 
@@ -620,10 +627,28 @@
 - (void)tableView:(UITableView *)tableView dragCellFrom:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
     // 更新数组中的内容
     [[TPNoteCreator shareInstance] moveNoteViewFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
+    [self.noteViews exchangeObjectAtIndex:fromIndexPath.row withObjectAtIndex:toIndexPath.row];
+    [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
 - (void)tableView:(UITableView *)tableView endDragCellTo:(NSIndexPath *)indexPath{
     [self reloadNoteViews];
+}
+
+#pragma mark - DZNEmptyTableViewDelegate
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state{
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:@"添加一段文字笔记" attributes:attributes];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
+    // Do something
+    [self editNoteAction];
 }
 
 @end

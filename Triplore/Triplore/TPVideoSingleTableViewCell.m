@@ -48,7 +48,12 @@ static NSInteger const height = 124;
   
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];
-    self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
+    NSLog(@"%f", [video.videoDate timeIntervalSince1970]);
+    if([video.videoDate timeIntervalSince1970] == 0){
+        self.dateLabel.text = @"无日期";
+    }else{
+        self.dateLabel.text = [dateFormatter stringFromDate:video.videoDate];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

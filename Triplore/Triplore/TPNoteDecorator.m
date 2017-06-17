@@ -30,7 +30,7 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     [titleLabel setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 40)];
     [titleLabel setText:note.title];
-    [titleLabel setFont:template.tem_font];
+    [titleLabel setFont:[UIFont fontWithName:template.tem_font size:35.0]];
     [titleLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
     [titleLabel setTag:1];
     [titleLabel setNumberOfLines:0];
@@ -40,7 +40,7 @@
     for(UIView *view in note.views){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel *)view;
-            [label setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
+            [label setFont:[UIFont fontWithName:template.tem_font size:16.0]];
             [tempViews addObject:label];
         }else if([view isKindOfClass:[UIImageView class]]){
             UIImageView *oldView = (UIImageView *)view;
@@ -52,6 +52,7 @@
                     break;
                 case TPBrown:
                     [imageView decorateWithBrown];
+                    break;
                 default:
                     break;
             }

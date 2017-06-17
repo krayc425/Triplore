@@ -19,10 +19,10 @@ typedef NS_ENUM(NSInteger, TPNoteTemplateNumber){
 @interface TPNoteTemplate : NSObject
 
 @property (nonnull, nonatomic) UIColor *tem_color;
-@property (nonnull, nonatomic) UIFont *tem_font;
+@property (nonnull, nonatomic) NSString *tem_font;
 @property (nonnull, nonatomic) TPNoteTitleView *tem_titleView;
 @property (nonatomic) TPNoteTemplateNumber tem_num;
 
-- (instancetype _Nonnull)initWithColor:(UIColor *_Nonnull)color andFont:(UIFont *_Nonnull)font andTitleView:(TPNoteTitleView *_Nonnull)titleView andImageStyle:(TPNoteTemplateNumber)number;
+- (instancetype _Nonnull)initWithColor:(UIColor *_Nonnull)color andFont:(NSString *_Nonnull)font andTitleView:(TPNoteTitleView *_Nonnull)titleView andImageStyle:(TPNoteTemplateNumber)number;
 
 @end
