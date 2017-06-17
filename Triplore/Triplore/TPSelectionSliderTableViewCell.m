@@ -22,7 +22,6 @@
 
 @implementation TPSelectionSliderTableViewCell
 
-
 static NSInteger const width = 480;
 static NSInteger const height = 270;
 
@@ -47,15 +46,7 @@ static NSInteger const height = 270;
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
-//    
-   
-//    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame imageNamesGroup:@[@"TEST_PNG", @"TEST_PNG", @"TEST_PNG"]];
-    
-//    TestView *view = [[TestView alloc] initWithFrame:CGRectMake(0, 0, width, 50)];
-//    [self addSubview:view];
-//    
 }
 
 - (void)setVideos:(NSArray<TPVideoModel *> *)videos {
@@ -77,7 +68,7 @@ static NSInteger const height = 270;
     [self addSubview:self.cycleScrollView];
     self.cycleScrollView.imageURLStringsGroup = images;
     self.cycleScrollView.titlesGroup = titles;
-
+    self.cycleScrollView.delegate = self;
 }
 
 - (void)clickCategoryButton:(UIButton *)button {
@@ -90,6 +81,10 @@ static NSInteger const height = 270;
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    [self.delegate didTapVideo:self.videos[index]];
 }
 
 @end

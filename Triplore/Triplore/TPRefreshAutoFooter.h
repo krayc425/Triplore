@@ -9,6 +9,7 @@
 #import <MJRefresh/MJRefresh.h>
 
 @interface TPRefreshAutoFooter : MJRefreshAutoFooter
+
 - (void)startAnimating;
 
 @end

@@ -17,6 +17,8 @@
 
 - (void)didTapCategory:(TPCategoryMode)mode;
 
+- (void)didTapVideo:(TPVideoModel *_Nonnull)video;
+
 @end
 
 @interface TPSelectionSliderTableViewCell : UITableViewCell
