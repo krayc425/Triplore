@@ -56,6 +56,7 @@
 		245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 245E5C8D1EE4351C00448986 /* libDZNEmptyDataSet.a */; };
 		245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 245E5C901EE4510200448986 /* TPVideoProgressBar.m */; };
 		245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */; };
+		247B7D2B1EF5861F00FC5BF1 /* TPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
 		24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */; };
 		24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */; };
@@ -247,6 +248,8 @@
 		245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoProgressBar.h; sourceTree = "<group>"; };
 		245E5C901EE4510200448986 /* TPVideoProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoProgressBar.m; sourceTree = "<group>"; };
 		245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoProgressBar.xib; sourceTree = "<group>"; };
+		247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRefreshHeader.h; sourceTree = "<group>"; };
+		247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshHeader.m; sourceTree = "<group>"; };
 		2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
 		24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Triplore-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */,
 				4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */,
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
+				247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */,
+				247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -1158,6 +1163,7 @@
 				4D9171551EF10C3900930372 /* TPSelectionTableViewController.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,
 				24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */,
+				247B7D2B1EF5861F00FC5BF1 /* TPRefreshHeader.m in Sources */,
 				245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
@@ -1402,6 +1408,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7";
 			};

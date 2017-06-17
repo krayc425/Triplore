@@ -61,7 +61,7 @@
     self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationItem.title = @"视频";
+    self.title = @"视频";
     
     self.hidesBottomBarWhenPushed = YES;
     self.tabBarController.tabBar.hidden = YES;
@@ -265,12 +265,14 @@
 }
 
 - (void)playClick{
-    [[QYPlayerController sharedInstance] play];
-    [self showPauseView];
+    if ([QYPlayerController sharedInstance].isPlaying == NO) {
+        [[QYPlayerController sharedInstance] play];
+        [self showPauseView];
+    }
 }
 
 - (void)pauseClick{
-    if ([QYPlayerController sharedInstance].isPlaying==YES) {
+    if ([QYPlayerController sharedInstance].isPlaying == YES) {
         [[QYPlayerController sharedInstance] pause];
         [self showPlayView];
     }

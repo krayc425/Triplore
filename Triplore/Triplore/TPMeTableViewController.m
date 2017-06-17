@@ -32,6 +32,8 @@
     
     self.tableView.backgroundColor = [Utilities getBackgroundColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    self.tableView.scrollEnabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {

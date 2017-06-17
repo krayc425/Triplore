@@ -43,6 +43,8 @@
     [super viewDidLoad];
     showViews = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [Utilities getBackgroundColor];
+    
+    self.title = @"笔记";
     //滚动视图
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                    0,

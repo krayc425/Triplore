@@ -65,7 +65,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     
     // footer
     self.footer = [TPRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMore)];
-    //    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
     self.tableView.mj_footer = self.footer;
     [self.footer setHidden:YES];
     
