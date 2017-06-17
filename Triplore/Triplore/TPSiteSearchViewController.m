@@ -86,7 +86,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     NSInteger row = 0;
     if (self.mode == TPSiteSearchAll || self.mode == TPSiteSearchCountry) {
         if (indexPath.section == 0) {
@@ -104,8 +103,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     return 0.1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10.0;
 }
 
@@ -123,7 +121,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     TPCityTableViewController *cityViewController = [[TPCityTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     cityViewController.city = city;
     [self.navigationController pushViewController:cityViewController animated:YES];
-    
 }
 
 @end

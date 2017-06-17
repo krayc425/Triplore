@@ -192,7 +192,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                                                      
                                                  }];
     
-    
+    searchViewController.title = @"搜索";
     searchViewController.delegate = self;
     
     self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];

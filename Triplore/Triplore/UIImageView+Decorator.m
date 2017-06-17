@@ -26,7 +26,7 @@
     bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:bgView];
     UIImageView *tmpView = [[UIImageView alloc] initWithImage:self.image];
-    [tmpView setFrame:CGRectMake(5, 5, CGRectGetWidth(self.frame) - 10, CGRectGetHeight(self.frame) - 15)];
+    [tmpView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.frame) - 20, CGRectGetHeight(self.frame) - 30)];
     tmpView.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:tmpView];
     self.image = [UIImage new];

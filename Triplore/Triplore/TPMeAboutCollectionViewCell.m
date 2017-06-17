@@ -25,7 +25,6 @@
     // Initialization code
     
     self.avatarView.layer.cornerRadius = self.avatarView.frame.size.width/2;
-
 }
 
 - (void)setPerson:(TPPersonModel *)person {
@@ -34,4 +33,5 @@
     self.nameLabel.text = person.name;
     self.introductionText.text = person.introduction;
 }
+
 @end

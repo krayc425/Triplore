@@ -18,8 +18,8 @@
 
 @interface TPSliderTab : UIView
 
-@property (nonatomic, strong) UIColor *color;
-@property (nonatomic, strong) NSArray *strings;
+@property (nonatomic, strong) UIColor * _Nonnull color;
+@property (nonatomic, strong) NSArray * _Nonnull strings;
 @property (nonatomic) NSUInteger selectedIndex;
 //@property (nonatomic, copy) void (^buttonDidSelect)(NSUInteger index);
 

@@ -16,4 +16,6 @@
 
 - (void)setDate:(NSDate * _Nonnull)date;
 
+- (void)setTitleTextColor:(UIColor *_Nonnull)color;
+
 @end

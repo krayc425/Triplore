@@ -30,7 +30,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
     // navigation
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
@@ -63,7 +62,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
         
         [self.collectionView reloadData];
         self.sliderTab.strings = names;
-
     }];
     
 }
@@ -83,20 +81,12 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
 
 #pragma mark - <UIScrollViewDelegate>
 
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat offsetX = scrollView.contentOffset.x;
     CGFloat width = CGRectGetWidth(self.view.frame);
     NSUInteger index = (NSUInteger) round(offsetX / width);
     [self.sliderTab setSelectedIndex:index];
 }
-
-
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    
-//    NSLog(@"scrollViewDidScroll: %f", scrollView.contentOffset.x);
-//}
-
 
 #pragma mark - <UICollectionViewDataSource>
 
@@ -105,7 +95,6 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
     return self.people.count;
 }
 
@@ -115,13 +104,11 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     return cell;
 }
 
-
 #pragma mark - <UICollectionViewDelegate>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(CGRectGetWidth(self.self.collectionView.frame) - 20, CGRectGetHeight(self.self.collectionView.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) - 20);
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

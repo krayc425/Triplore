@@ -19,4 +19,9 @@
     [self.dayLabel setText:[dayFmt stringFromDate:date]];
 }
 
+- (void)setTitleTextColor:(UIColor *)color{
+    [self.dayLabel setTextColor:color];
+    [self.monthYearLabel setTextColor:color];
+}
+
 @end
