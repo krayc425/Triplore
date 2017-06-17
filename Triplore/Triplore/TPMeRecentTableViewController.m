@@ -108,7 +108,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
+    return @"               ";
 }
 
 #pragma mark - DZNEmptyTableViewDelegate

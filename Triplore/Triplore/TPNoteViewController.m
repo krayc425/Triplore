@@ -60,15 +60,15 @@
     [self.tableView reloadData];
     
     //保存按钮
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      20,
-                                                                      24,
-                                                                      24)];
-    saveButton.tintColor = [UIColor whiteColor];
-    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
+//    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+//                                                                      20,
+//                                                                      24,
+//                                                                      24)];
+//    saveButton.tintColor = [UIColor whiteColor];
+//    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+//    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+//    self.navigationItem.rightBarButtonItem = saveButtonItem;
     
     //老的 Note，查看模式
     if(self.noteMode == TPOldNote){
@@ -82,7 +82,7 @@
         [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
+        [exportButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
         [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
         UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
                                                                                                             CGRectGetHeight(self.tableView.bounds),
@@ -257,7 +257,7 @@
 #pragma mark - Save to album
 
 - (void)exportAlbumAction{
-    UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, NO, [[UIScreen mainScreen] scale]);
+    UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, YES, [[UIScreen mainScreen] scale]);
     
     CGPoint savedContentOffset = self.tableView.contentOffset;
     CGRect saveFrame = self.tableView.frame;
@@ -281,6 +281,8 @@
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    NSLog(@"%@", image.description);
+    
     if (error == nil) {
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存至相册成功"
                                                                         message:nil

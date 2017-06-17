@@ -31,7 +31,7 @@
     [self addSubview:tmpView];
     self.image = [UIImage new];
     self.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(2, 2);
+    self.layer.shadowOffset = CGSizeMake(2, 3);
     self.layer.shadowOpacity = 0.7;
 }
 
