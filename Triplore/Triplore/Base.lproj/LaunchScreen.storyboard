@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iWu-88-P3V">
-                                <rect key="frame" x="62.5" y="150.5" width="250" height="296"/>
+                                <rect key="frame" x="62.5" y="156.5" width="250" height="284.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1ms-MA-myH">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
@@ -32,9 +32,9 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Triplore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa0-c6-gpp">
-                                        <rect key="frame" x="17.5" y="250" width="215.5" height="46"/>
-                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="44" y="250" width="162" height="34.5"/>
+                                        <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="30"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

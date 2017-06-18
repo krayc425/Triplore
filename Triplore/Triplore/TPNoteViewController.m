@@ -61,19 +61,19 @@
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
     
-    //保存按钮
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-                                                                      20,
-                                                                      24,
-                                                                      24)];
-    saveButton.tintColor = [UIColor whiteColor];
-    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
-    
-    //老的 Note，查看模式
-    if(self.noteMode == TPOldNote){
+    //新的 Note，保存按钮
+    if(self.noteMode == TPNewNote){
+        UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                          20,
+                                                                          24,
+                                                                          24)];
+        saveButton.tintColor = [UIColor whiteColor];
+        [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+        self.navigationItem.rightBarButtonItem = saveButtonItem;
+    }else{
+        //老的 Note，查看模式
         
         //底下按钮
         UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
