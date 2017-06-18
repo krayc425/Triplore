@@ -36,12 +36,10 @@ static const CGFloat sliderHeight = 2.0;
 
 - (void)setStrings:(NSArray *)strings {
     _strings = strings;
-    [self setUp];
 }
 
 - (void)setColor:(UIColor *)color {
     _color = color;
-    [self setUp];
 }
 
 - (void)setUp {
@@ -88,9 +86,7 @@ static const CGFloat sliderHeight = 2.0;
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
-    //    if (selectedIndex == _selectedIndex) {
-    //        return;
-    //    }
+
     UIButton *oldButton = _buttons[_selectedIndex];
     UIButton *newButton = _buttons[selectedIndex];
     
@@ -104,7 +100,7 @@ static const CGFloat sliderHeight = 2.0;
     CGFloat textWidth = size.width;
     
     CGRect frame = CGRectMake(width*selectedIndex+(width-textWidth)/2, height-sliderHeight, textWidth, sliderHeight);
-    
+
     [UIView animateWithDuration:.3
                      animations:^{
                          _slider.frame = frame;

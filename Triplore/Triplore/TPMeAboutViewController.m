@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSArray *people;
 
+@property (nonatomic) int firstLayout;
+
 @end
 
 @implementation TPMeAboutViewController
@@ -64,13 +66,18 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
         self.sliderTab.strings = names;
     }];
     
+    self.firstLayout = 0;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    [self.sliderTab setUp];
-    [self.collectionView reloadData];
+    if (self.firstLayout < 2) {
+        [self.sliderTab setUp];
+        [self.collectionView reloadData];
+        self.firstLayout ++;
+    }
+    
 }
 
 #pragma mark - <TPSliderTabDelegate>
