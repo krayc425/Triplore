@@ -20,9 +20,9 @@
 
 @interface TPCityTableViewController () <PYSearchViewControllerDelegate, TPCityVideoTableViewCellDelegate, TPCityInfoTableViewCellDelegate>
 
-@property (nonatomic, strong) NSArray* videosFood;
-@property (nonatomic, strong) NSArray* videosShopping;
-@property (nonatomic, strong) NSArray* videosPlace;
+@property (nonatomic, copy) NSArray* videosFood;
+@property (nonatomic, copy) NSArray* videosShopping;
+@property (nonatomic, copy) NSArray* videosPlace;
 
 @end
 

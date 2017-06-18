@@ -13,16 +13,16 @@
 /**
  城市中文名
  */
-@property (nonnull, nonatomic) NSString *chineseName;
+@property (copy, nonnull, nonatomic) NSString *chineseName;
 
 /**
  城市英文名
  */
-@property (nonnull, nonatomic) NSString *englishName;
+@property (copy, nonatomic, nonnull) NSString *englishName;
 
 /**
  城市图片 URL
  */
-@property (nonnull, nonatomic) NSString *imageURL;
+@property (copy, nonnull, nonatomic) NSString *imageURL;
 
 @end

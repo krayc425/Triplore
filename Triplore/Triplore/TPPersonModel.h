@@ -10,9 +10,9 @@
 
 @interface TPPersonModel : NSObject
 
-@property (nonnull, nonatomic) NSString *name;
-@property (nonnull, nonatomic) NSString *avatarName;
-@property (nonnull, nonatomic) NSString *introduction;
+@property (copy, nonnull, nonatomic) NSString *name;
+@property (copy, nonnull, nonatomic) NSString *avatarName;
+@property (copy, nonnull, nonatomic) NSString *introduction;
 
 - (_Nonnull instancetype)initWithDict:(NSDictionary *_Nonnull)dict;
 

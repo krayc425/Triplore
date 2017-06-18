@@ -37,15 +37,15 @@
     TPVideoProgressBar *progressBarView;
 }
 
-@property (nonatomic, nonnull) IBOutlet UIView *playerView;
-@property (nonatomic, nonnull) IBOutlet UITextField *titleText;
-@property (nonatomic, nonnull) IBOutlet UIButton *editButton;
-@property (nonatomic, nonnull) IBOutlet UIButton *screenshotButton;
-@property (nonatomic, nonnull) IBOutlet UIButton *saveButton;
-@property (nonatomic, nonnull) IBOutlet UIView *playPauseView;
-@property (nonatomic, nonnull) IBOutlet UIView *barContainerView;
-@property (nonatomic, nonnull) IBOutlet UITableView *tableView;
-@property (nonatomic, nonnull) IBOutlet UIStackView *buttonStack;
+@property (nonatomic, weak) IBOutlet UIView *playerView;
+@property (nonatomic, weak) IBOutlet UITextField *titleText;
+@property (nonatomic, weak) IBOutlet UIButton *editButton;
+@property (nonatomic, weak) IBOutlet UIButton *screenshotButton;
+@property (nonatomic, weak) IBOutlet UIButton *saveButton;
+@property (nonatomic, weak) IBOutlet UIView *playPauseView;
+@property (nonatomic, weak) IBOutlet UIView *barContainerView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIStackView *buttonStack;
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
 

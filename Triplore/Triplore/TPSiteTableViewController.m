@@ -18,8 +18,8 @@
 
 @interface TPSiteTableViewController () <TPSiteTableViewCellDelegate, PYSearchViewControllerDelegate>
 
-@property (nonatomic, strong) NSArray<TPCountryModel *>* testCountries;
-@property (nonatomic, strong) NSArray<TPCityModel *>* testCities;
+@property (nonatomic, copy) NSArray<TPCountryModel *>* testCountries;
+@property (nonatomic, copy) NSArray<TPCityModel *>* testCities;
 
 @end
 

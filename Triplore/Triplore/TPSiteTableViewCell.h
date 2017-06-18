@@ -29,18 +29,19 @@ typedef NS_ENUM(NSInteger, TPSiteMode){
 
 @interface TPSiteTableViewCell : UITableViewCell
 
-@property (nonnull, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (nonnull, nonatomic) IBOutlet UIStackView *allButtons;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton2;
-@property (nonnull, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable categoryLabel;
+
+@property (weak, nonatomic) IBOutlet UIStackView * _Nullable allButtons;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable allButton;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable allButton2;
+@property (weak, nonatomic) IBOutlet UICollectionView * _Nullable collectionView;
 
 @property (nonatomic) BOOL isAll;
 
 @property (nonatomic) TPSiteMode mode;
-@property (nonatomic, nonnull) NSArray<TPCountryModel *>*countries;
-@property (nonatomic, nonnull) NSArray<TPCityModel *>*cities;
+@property (nonatomic, copy) NSArray<TPCountryModel *>* _Nonnull countries;
+@property (nonatomic, copy) NSArray<TPCityModel *>* _Nonnull cities;
 
-@property (nonatomic, nonnull) id<TPSiteTableViewCellDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TPSiteTableViewCellDelegate> delegate;
 
 @end

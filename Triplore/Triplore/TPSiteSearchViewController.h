@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, TPSiteSearchMode){
 @interface TPSiteSearchViewController : UITableViewController
 
 @property (nonatomic) TPSiteSearchMode mode;
-@property (nonatomic, strong) NSArray<TPCountryModel *>* countries;
-@property (nonatomic, strong) NSArray<TPCityModel *>* cities;
+@property (nonatomic, copy) NSArray<TPCountryModel *>* countries;
+@property (nonatomic, copy) NSArray<TPCityModel *>* cities;
 
 @end

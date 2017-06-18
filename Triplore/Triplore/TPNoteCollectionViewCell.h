@@ -10,9 +10,9 @@
 
 @interface TPNoteCollectionViewCell : UICollectionViewCell
 
-@property (nonnull, nonatomic) IBOutlet UIImageView *backgroundImgView;
-@property (nonnull, nonatomic) IBOutlet UILabel *dateLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *titleLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImgView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end

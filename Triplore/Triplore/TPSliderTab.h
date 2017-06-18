@@ -19,11 +19,11 @@
 @interface TPSliderTab : UIView
 
 @property (nonatomic, strong) UIColor * _Nonnull color;
-@property (nonatomic, strong) NSArray * _Nonnull strings;
+@property (nonatomic, copy) NSArray * _Nonnull strings;
 @property (nonatomic) NSUInteger selectedIndex;
 //@property (nonatomic, copy) void (^buttonDidSelect)(NSUInteger index);
 
-@property (nonatomic, nonnull) id<TPSliderTabDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TPSliderTabDelegate> delegate;
 
 - (void)setUp;
 

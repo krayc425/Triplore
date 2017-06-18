@@ -23,10 +23,10 @@
     BOOL doneView;
 }
 
-@property (nonatomic, strong) NSArray* videosFood;
-@property (nonatomic, strong) NSArray* videosShopping;
-@property (nonatomic, strong) NSArray* videosPlace;
-@property (nonatomic, strong) NSArray* videosHot;
+@property (nonatomic, copy) NSArray* videosFood;
+@property (nonatomic, copy) NSArray* videosShopping;
+@property (nonatomic, copy) NSArray* videosPlace;
+@property (nonatomic, copy) NSArray* videosHot;
 
 @end
 

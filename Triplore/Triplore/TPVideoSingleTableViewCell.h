@@ -18,7 +18,7 @@
 
 @interface TPVideoSingleTableViewCell : UITableViewCell
 
-@property (nonatomic, nonnull) id<FavoriteCellDelegate> cellDelegate;
+@property (nonatomic, weak, nullable) id<FavoriteCellDelegate> cellDelegate;
 
 @property (nonatomic, nonnull) TPVideoModel *video;
 

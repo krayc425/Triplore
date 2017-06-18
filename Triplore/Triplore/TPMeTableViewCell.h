@@ -10,8 +10,8 @@
 
 @interface TPMeTableViewCell : UITableViewCell
 
-@property (nonatomic, nonnull) IBOutlet UIImageView *cellImg;
-@property (nonatomic, nonnull) IBOutlet UILabel *infoLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *detailLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *cellImg;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
+@property (nonatomic, weak) IBOutlet UILabel *detailLabel;
 
 @end

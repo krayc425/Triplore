@@ -10,8 +10,8 @@
 
 @interface TPVideoProgressBar()
 
-@property (nonatomic, nonnull) IBOutlet UILabel *currentTimeLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *endTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *currentTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *endTimeLabel;
 
 @end
 

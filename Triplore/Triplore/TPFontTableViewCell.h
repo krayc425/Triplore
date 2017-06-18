@@ -10,6 +10,6 @@
 
 @interface TPFontTableViewCell : UITableViewCell
 
-@property (nonnull, nonatomic) IBOutlet UILabel *fontLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fontLabel;
 
 @end

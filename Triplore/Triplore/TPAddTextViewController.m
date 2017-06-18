@@ -11,9 +11,9 @@
 
 @interface TPAddTextViewController () <UITextViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIButton *okButton;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 @property (strong, nonatomic) UIButton *backButton;
-@property (strong, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UITextView *noteText;
 
 @end
 

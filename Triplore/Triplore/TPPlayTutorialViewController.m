@@ -11,9 +11,9 @@
 
 @interface TPPlayTutorialViewController ()
 
-@property (nonnull, nonatomic) IBOutlet UIButton *okButton;
-@property (nonnull, nonatomic) IBOutlet UIView *containerView;
-@property (nonnull, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 
 @end
 

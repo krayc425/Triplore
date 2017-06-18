@@ -16,8 +16,8 @@
 @interface TPNote : NSObject
 
 @property (nonatomic) NSInteger noteid;
-@property (nonatomic, nonnull) NSString *videoid;
-@property (nonatomic, nonnull) NSDate *createTime;
+@property (copy, nonatomic, nonnull) NSString *videoid;
+@property (copy, nonatomic, nonnull) NSDate *createTime;
 @property (nonatomic, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSMutableArray<UIView *> *views;
 @property (nonatomic) TPNoteTemplateNumber templateNum;

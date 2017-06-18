@@ -21,8 +21,8 @@
 
 @interface TPVideoProgressBar : UIControl
 
-@property (nonatomic, nonnull) id<TPVideoProgressDelegate> delegate;
-@property (nonatomic, nonnull) IBOutlet UISlider *slider;
+@property (nonatomic, weak, nullable) id<TPVideoProgressDelegate> delegate;
+@property (nonatomic, weak) IBOutlet UISlider * _Nullable slider;
 
 /**
  设置当前播放时间

@@ -11,7 +11,7 @@
 
 @interface TPVideoTableViewController : UITableViewController <FavoriteCellDelegate>
 
-@property (nonatomic, nonnull) NSString *site;
-@property (nonatomic, nonnull) NSString *keywords;
+@property (copy, nonatomic, nonnull) NSString *site;
+@property (copy, nonatomic, nonnull) NSString *keywords;
 
 @end

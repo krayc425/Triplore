@@ -23,6 +23,6 @@
 
 @property (nonatomic, nonnull) TPCityModel *city;
 
-@property (nonatomic, nonnull) id<TPCityInfoTableViewCellDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TPCityInfoTableViewCellDelegate> delegate;
 
 @end

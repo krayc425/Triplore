@@ -20,8 +20,8 @@
 @interface TPVideoTableViewController ()
 
 @property (nonatomic) NSUInteger page;
-@property (nonatomic, strong) NSArray* keywordsArray;
-@property (nonatomic, strong) NSArray* videos;
+@property (nonatomic, copy) NSArray* keywordsArray;
+@property (nonatomic, copy) NSArray* videos;
 @property (nonatomic, strong) TPRefreshAutoFooter *footer;
 
 @end

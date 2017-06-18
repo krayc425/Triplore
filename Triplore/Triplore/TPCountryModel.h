@@ -15,21 +15,21 @@
 /**
  国家中文名
  */
-@property (nonnull, nonatomic) NSString *chineseName;
+@property (copy, nonnull, nonatomic) NSString *chineseName;
 
 /**
  国家英文名
  */
-@property (nonnull, nonatomic) NSString *englishName;
+@property (copy, nonnull, nonatomic) NSString *englishName;
 
 /**
  国家图片 URL
  */
-@property (nonnull, nonatomic) NSString *imageURL;
+@property (copy, nonnull, nonatomic) NSString *imageURL;
 
 /**
  拥有的城市数组
  */
-@property (nonnull, nonatomic) NSArray *cityModelArr;
+@property (copy, nonatomic) NSArray * _Nonnull cityModelArr;
 
 @end

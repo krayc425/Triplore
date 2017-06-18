@@ -23,8 +23,8 @@
 
 @interface TPSelectionSliderTableViewCell : UITableViewCell
 
-@property (nonatomic, nonnull) id<TPSelectionSliderTableViewCellDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TPSelectionSliderTableViewCellDelegate> delegate;
 
-@property (nonatomic, strong) NSArray<TPVideoModel *>* _Nonnull videos;
+@property (nonatomic, copy) NSArray<TPVideoModel *>* _Nonnull videos;
 
 @end

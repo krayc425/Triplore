@@ -13,7 +13,7 @@
  */
 @interface TPVideo : NSObject
 
-@property (nonatomic, nonnull) NSString *videoid;
+@property (copy, nonatomic, nonnull) NSString *videoid;
 @property (nonatomic, nonnull) NSDictionary *dict;
 @property (nonatomic) NSInteger favorite;
 @property (nonatomic, nonnull) NSDate *recent;

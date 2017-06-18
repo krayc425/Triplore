@@ -11,8 +11,8 @@
 
 @interface TPNoteTitleView : UIView
 
-@property (nonatomic, nonnull) IBOutlet UILabel *dayLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *monthYearLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Nullable dayLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Nullable monthYearLabel;
 
 - (void)setDate:(NSDate * _Nonnull)date;
 

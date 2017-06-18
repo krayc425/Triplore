@@ -23,15 +23,15 @@
 
 @interface TPCityVideoTableViewCell : UITableViewCell
 
-@property (nonnull, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton2;
-@property (nonnull, nonatomic) IBOutlet UIStackView *allButtons;
-@property (nonnull, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable categoryLabel;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable allButton;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable allButton2;
+@property (weak, nonatomic) IBOutlet UIStackView * _Nullable allButtons;
+@property (weak, nonatomic) IBOutlet UICollectionView * _Nullable collectionView;
 
 @property (nonatomic) TPCategoryMode mode;
-@property (nonatomic, nonnull) NSArray<TPVideoModel *> *videos;
+@property (nonatomic, copy) NSArray<TPVideoModel *> * _Nonnull videos;
 
-@property (nonatomic, nonnull) id<TPCityVideoTableViewCellDelegate> delegate;
+@property (nonatomic, weak, nullable) id<TPCityVideoTableViewCellDelegate> delegate;
 
 @end

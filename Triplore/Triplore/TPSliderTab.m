@@ -11,7 +11,7 @@
 
 @interface TPSliderTab ()
 
-@property (nonatomic, strong) NSArray *buttons;
+@property (nonatomic, copy) NSArray *buttons;
 @property (nonatomic, strong) UIView *slider;
 
 @end

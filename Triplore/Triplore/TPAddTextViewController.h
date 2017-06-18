@@ -43,9 +43,9 @@ typedef NS_ENUM(NSInteger, TPAddMode){
 
 @interface TPAddTextViewController : UIViewController
 
-@property (nonnull, nonatomic) id<TPAddNoteViewDelegate> addNoteViewDelegate;
+@property (nonatomic, weak, nullable) id<TPAddNoteViewDelegate> addNoteViewDelegate;
 
-@property (nonnull, nonatomic) NSString *noteString;
+@property (copy, nonnull, nonatomic) NSString *noteString;
 @property (nonatomic) TPAddMode addMode;
 
 @end

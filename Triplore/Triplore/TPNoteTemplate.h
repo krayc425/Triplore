@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, TPNoteTemplateNumber){
 @property (nonnull, nonatomic) UIColor *tem_color;
 @property (nonnull, nonatomic) UIColor *tem_titleColor;
 @property (nonnull, nonatomic) UIColor *tem_textColor;
-@property (nonnull, nonatomic) NSString *tem_font;
+@property (copy, nonnull, nonatomic) NSString *tem_font;
 @property (nonnull, nonatomic) TPNoteTitleView *tem_titleView;
 @property (nonatomic) TPNoteTemplateNumber tem_num;
 
