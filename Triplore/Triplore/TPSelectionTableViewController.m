@@ -15,7 +15,7 @@
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
 #import "Utilities.h"
-#import "MJRefresh.h"
+#import "TPRefreshHeader.h"
 
 @interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>{
     BOOL doneFood;
@@ -58,10 +58,10 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     [self startRequest];
     
+    
     // header
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self startRequest];
-    }];
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(startRequest)];
+    self.tableView.mj_header = header;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

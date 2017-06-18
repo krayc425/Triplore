@@ -65,7 +65,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     
     // footer
     self.footer = [TPRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMore)];
-    //    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
     self.tableView.mj_footer = self.footer;
     [self.footer setHidden:YES];
     
@@ -115,7 +114,6 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     TPVideoModel *video = self.videos[indexPath.section];
     
 //    if (video.videoType == TPVideoAlbum) {
@@ -155,8 +153,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     return 0.1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10.0;
 }
 

@@ -12,7 +12,11 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TPVideoManager.h"
 
-@interface TPVideoSingleTableViewCell ()
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+
+@interface TPVideoSingleTableViewCell (){
+    UIView *deleteView;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -35,6 +39,23 @@ static NSInteger const height = 124;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.coverImageView.image = [UIImage imageNamed:@"TEST_PNG"];
+    
+    //自定义删除 View
+    deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
+                                                          0,
+                                                          300,
+                                                          CGRectGetHeight(self.frame))];
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
+                                                                        90,
+                                                                        CGRectGetHeight(deleteView.frame))];
+    [deleteButton setImage:[UIImage imageNamed:@"CELL_DELETE"] forState:UIControlStateNormal];
+    deleteView.backgroundColor = [UIColor whiteColor];
+    [deleteView addSubview:deleteButton];
+    
+    self.backgroundColor = [UIColor whiteColor];
+    
+    [self addSubview:deleteView];
 }
 
 - (void)setVideo:(TPVideoModel *)video {
@@ -58,12 +79,9 @@ static NSInteger const height = 124;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (IBAction)favoriteAction:(id)sender{
-    NSLog(@"Favorite in Cell");
     [self.cellDelegate didSelectFavorite:self];
 }
 
