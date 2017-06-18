@@ -8,7 +8,7 @@
 
 #import "TPSiteTableViewController.h"
 #import "TPSiteTableViewCell.h"
-#import "Utilities.h"
+
 #import "PYSearchViewController.h"
 #import "TPSiteSearchViewController.h"
 #import "TPCityTableViewController.h"
@@ -30,15 +30,15 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
-    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barTintColor = TPColor;
+    self.navigationController.navigationBar.backgroundColor = TPColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"地点";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
 
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];

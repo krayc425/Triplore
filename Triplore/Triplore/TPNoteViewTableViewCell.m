@@ -7,7 +7,7 @@
 //
 
 #import "TPNoteViewTableViewCell.h"
-#import "Utilities.h"
+
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 

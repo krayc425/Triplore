@@ -8,7 +8,7 @@
 
 #import "TPSiteSearchViewController.h"
 #import "TPCityTableViewController.h"
-#import "Utilities.h"
+
 #import "TPSiteTableViewCell.h"
 #import "TPCountryModel.h"
 #import "TPCityModel.h"
@@ -25,7 +25,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];

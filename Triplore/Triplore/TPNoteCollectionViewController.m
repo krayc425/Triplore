@@ -10,7 +10,7 @@
 #import "TPNoteCollectionViewCell.h"
 #import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteViewController.h"
-#import "Utilities.h"
+
 #import "TPNote.h"
 #import "TPNoteManager.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
@@ -29,13 +29,13 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
-    self.collectionView.backgroundColor = [Utilities getBackgroundColor];
+    self.collectionView.backgroundColor = TPBackgroundColor;
     
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
     
-    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
-    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barTintColor = TPColor;
+    self.navigationController.navigationBar.backgroundColor = TPColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"笔记";
@@ -142,7 +142,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     NSString *text = @"没有笔记";
     
     NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSForegroundColorAttributeName: TPColor,
                                  NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
                                  };
     

@@ -62,7 +62,7 @@
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetWidth(self.bounds)/7
                                      *3);
-    UIColor *darkColor = [Utilities getGradientColorDark];
+    UIColor *darkColor = TPGradientColor;
     
     gradientLayer.colors = @[(id)darkColor.CGColor, (id)[UIColor clearColor].CGColor];
     gradientLayer.startPoint = CGPointMake(0.0, 0.5);

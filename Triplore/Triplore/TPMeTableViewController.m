@@ -8,7 +8,7 @@
 
 #import "TPMeTableViewController.h"
 #import "TPMeTableViewCell.h"
-#import "Utilities.h"
+
 #import "TPMeFavoriteTableViewController.h"
 #import "TPMeRecentTableViewController.h"
 #import "TPMeAboutViewController.h"
@@ -24,13 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
-    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barTintColor = TPColor;
+    self.navigationController.navigationBar.backgroundColor = TPColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"我";
     
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.tableView.scrollEnabled = NO;

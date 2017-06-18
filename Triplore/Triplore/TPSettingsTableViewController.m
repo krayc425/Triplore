@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     self.title = @"设置";
@@ -42,7 +42,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return [[Utilities getAllFonts] count];
+            return [TPAllFonts count];
         default:
             return 0;
     }
@@ -51,11 +51,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TPFontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TPFontTableViewCell" forIndexPath:indexPath];
     
-    NSDictionary *fontDict = [Utilities getAllFonts][indexPath.row];
+    NSDictionary *fontDict = TPAllFonts[indexPath.row];
     [cell.fontLabel setText:fontDict[@"display_name"]];
     [cell.fontLabel setFont:[UIFont fontWithName:fontDict[@"name"] size:16.0]];
     
-    if([cell.fontLabel.font.fontName isEqualToString:[Utilities getFont]]){
+    if([cell.fontLabel.font.fontName isEqualToString:TPFont]){
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }else{
         [cell setAccessoryType:UITableViewCellAccessoryNone];

@@ -7,7 +7,7 @@
 //
 
 #import "TPSiteCollectionViewCell.h"
-#import "Utilities.h"
+
 
 @implementation TPSiteCollectionViewCell
 
@@ -31,7 +31,7 @@
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.bounds;
-    UIColor *darkColor = [Utilities getGradientColorDark];
+    UIColor *darkColor = TPGradientColor;
     
     gradientLayer.colors = @[(id)darkColor.CGColor, (id)[UIColor clearColor].CGColor];
     gradientLayer.startPoint = CGPointMake(0.0, 0.5);

@@ -7,7 +7,7 @@
 //
 
 #import "TPSiteTableViewCell.h"
-#import "Utilities.h"
+
 #import "TPSiteCollectionViewCell.h"
 #import "TPCountryModel.h"
 #import "TPCityModel.h"
@@ -28,8 +28,8 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     [self.categoryLabel sizeToFit];
     
     [self.categoryLabel setTextColor:[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]];
-    [self.allButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-    [self.allButton2 setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    [self.allButton setTitleColor:TPColor forState:UIControlStateNormal];
+    [self.allButton2 setTitleColor:TPColor forState:UIControlStateNormal];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     

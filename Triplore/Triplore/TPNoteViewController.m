@@ -7,7 +7,7 @@
 //
 
 #import "TPNoteViewController.h"
-#import "Utilities.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import "TPNoteViewTableViewCell.h"
 #import "TPNote.h"
@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     showViews = [[NSMutableArray alloc] init];
-    self.view.backgroundColor = [Utilities getBackgroundColor];
+    self.view.backgroundColor = TPBackgroundColor;
     
     self.title = @"笔记";
     //滚动视图

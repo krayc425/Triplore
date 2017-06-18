@@ -8,7 +8,7 @@
 
 #import "TPTabBarViewController.h"
 #import "TPSelectionTableViewController.h"
-#import "Utilities.h"
+
 #import "TPSiteTableViewController.h"
 #import "TPNoteCollectionViewController.h"
 #import "TPMeTableViewController.h"
@@ -31,7 +31,7 @@
     
     //TabBar
     self.tabBarController.tabBar.delegate = self;
-    self.tabBar.tintColor = [Utilities getColor];
+    self.tabBar.tintColor = TPColor;
     
     //精选
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"精选" image:[UIImage imageNamed:@"TAB_HOME"] selectedImage:[UIImage imageNamed:@"TAB_HOME"]];

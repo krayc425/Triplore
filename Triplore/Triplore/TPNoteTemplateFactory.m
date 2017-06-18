@@ -9,7 +9,7 @@
 #import "TPNoteTemplateFactory.h"
 #import "TPNoteTitleViewGreen.h"
 #import "TPNoteTitleViewBrown.h"
-#import "Utilities.h"
+
 
 @implementation TPNoteTemplateFactory
 
@@ -19,7 +19,7 @@
         {
             TPNoteTitleViewGreen *titleView = [[[NSBundle mainBundle] loadNibNamed:@"TPNoteTitleViewGreen" owner:nil options:nil] lastObject];
             return [[TPNoteTemplate alloc] initWithColor:[UIColor whiteColor]
-                                                 andFont:[Utilities getFont]
+                                                 andFont:TPFont
                                             andTitleColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1.0]
                                             andTextColor:[UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0]
                                             andTitleView:titleView
@@ -30,7 +30,7 @@
         {
             TPNoteTitleViewBrown *titleView = [[[NSBundle mainBundle] loadNibNamed:@"TPNoteTitleViewBrown" owner:nil options:nil] lastObject];
             return [[TPNoteTemplate alloc] initWithColor:[UIColor colorWithRed:247.0/255.0 green:244.0/255.0 blue:243.0/255.0 alpha:1.0]
-                                                 andFont:[Utilities getFont]
+                                                 andFont:TPFont
                                            andTitleColor:[UIColor colorWithRed:75.0/255.0 green:66.0/255.0 blue:58.0/255.0 alpha:1.0]
                                             andTextColor:[UIColor colorWithRed:125.0/255.0 green:122.0/255.0 blue:118.0/255.0 alpha:1.0]
                                             andTitleView:titleView

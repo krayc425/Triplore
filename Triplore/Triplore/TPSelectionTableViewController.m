@@ -14,7 +14,7 @@
 #import "PYSearchViewController.h"
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
-#import "Utilities.h"
+
 #import "TPRefreshHeader.h"
 
 @interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>{
@@ -38,15 +38,15 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
-    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barTintColor = TPColor;
+    self.navigationController.navigationBar.backgroundColor = TPColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"精选";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
 
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     

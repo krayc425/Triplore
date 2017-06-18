@@ -7,7 +7,6 @@
 //
 
 #import "TPAddTextViewController.h"
-#import "Utilities.h"
 
 @interface TPAddTextViewController () <UITextViewDelegate>
 
@@ -30,7 +29,7 @@
     
     //笔记 Text
     [self.noteText.layer setCornerRadius:10.0f];
-    [self.noteText setFont:[UIFont fontWithName:[Utilities getFont] size:16.0]];
+    [self.noteText setFont:[UIFont fontWithName:TPFont size:16.0]];
     [self.noteText setContentMode:UIViewContentModeTopLeft];
     [self.noteText setTextAlignment:NSTextAlignmentLeft];
     self.noteText.delegate = self;
@@ -68,7 +67,7 @@
 - (void)doneAction{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 20)];
     [label setText:self.noteText.text];
-    [label setFont:[UIFont fontWithName:[Utilities getFont] size:16.0]];
+    [label setFont:[UIFont fontWithName:TPFont size:16.0]];
     [label setNumberOfLines:100];
     [label sizeToFit];
     
@@ -90,7 +89,7 @@
         [self.okButton setBackgroundColor:[UIColor lightGrayColor]];
         [self.okButton setUserInteractionEnabled:NO];
     }else{
-        [self.okButton setBackgroundColor:[Utilities getColor]];
+        [self.okButton setBackgroundColor:TPColor];
         [self.okButton setUserInteractionEnabled:YES];
     }
 }

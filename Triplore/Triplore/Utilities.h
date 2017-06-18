@@ -22,16 +22,6 @@ typedef NS_ENUM(NSInteger, TPNoteMode){
 
 @interface Utilities : NSObject
 
-+ (UIColor *)getColor;
-
-+ (UIColor *)getBackgroundColor;
-
-+ (UIColor *)getGradientColorDark;
-
-+ (NSString *)getFont;
-
-+ (NSArray *)getAllFonts;
-
 + (void)setFontAtIndex:(NSUInteger)index;
 
 @end

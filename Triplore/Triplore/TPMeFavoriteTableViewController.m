@@ -7,7 +7,7 @@
 //
 
 #import "TPMeFavoriteTableViewController.h"
-#import "Utilities.h"
+
 #import "TPVideoManager.h"
 #import "TPVideoModel.h"
 #import "TPVideoSingleTableViewCell.h"
@@ -81,7 +81,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
     NSString *text = @"暂无收藏";
     
     NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSForegroundColorAttributeName:TPColor,
                                  NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
                                  };
     

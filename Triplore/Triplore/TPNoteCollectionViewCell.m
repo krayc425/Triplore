@@ -7,7 +7,7 @@
 //
 
 #import "TPNoteCollectionViewCell.h"
-#import "Utilities.h"
+
 
 @implementation TPNoteCollectionViewCell
 
@@ -16,7 +16,7 @@
     // Initialization code
     self.backgroundColor = [UIColor whiteColor];
     
-    [self.dateLabel setBackgroundColor:[Utilities getColor]];
+    [self.dateLabel setBackgroundColor:TPColor];
     [self.dateLabel setTextColor:[UIColor whiteColor]];
     
     [self.titleLabel setTextColor:[UIColor colorWithRed:94.0/255.0 green:133.0/255.0 blue:133.0/255.0 alpha:1.0]];

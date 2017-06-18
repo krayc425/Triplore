@@ -7,7 +7,7 @@
 //
 
 #import "TPPlayTutorialViewController.h"
-#import "Utilities.h"
+
 
 @interface TPPlayTutorialViewController ()
 
@@ -27,12 +27,12 @@
     // Do any additional setup after loading the view from its nib.
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton setTitle:@"好 的" forState:UIControlStateNormal];
-    [self.okButton setBackgroundColor:[Utilities getColor]];
+    [self.okButton setBackgroundColor:TPColor];
     [self.okButton addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
     [self.okButton.layer setCornerRadius:20.0];
     
     self.containerView.layer.cornerRadius = 10.0;
-    self.containerView.layer.borderColor = [Utilities getColor].CGColor;
+    self.containerView.layer.borderColor = TPColor.CGColor;
     self.containerView.layer.borderWidth = 2.0;
     
     for (UILabel *label in self.labels) {

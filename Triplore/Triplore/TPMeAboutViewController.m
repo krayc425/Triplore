@@ -11,7 +11,7 @@
 #import "TPMeAboutCollectionViewCell.h"
 #import "TPPersonHelper.h"
 #import "TPPersonModel.h"
-#import "Utilities.h"
+
 
 @interface TPMeAboutViewController () <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, TPSliderTabDelegate>
 

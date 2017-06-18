@@ -14,7 +14,7 @@
 #import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
-#import "Utilities.h"
+
 #import "TPCityModel.h"
 #import <math.h>
 
@@ -36,7 +36,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(clickSearchButton:)];
     
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     // cell

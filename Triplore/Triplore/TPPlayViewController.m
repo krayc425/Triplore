@@ -9,7 +9,7 @@
 #import "TPPlayViewController.h"
 #import "QYPlayerController.h"
 #import "ActivityIndicatorView.h"
-#import "Utilities.h"
+
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
@@ -56,10 +56,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [Utilities getBackgroundColor];
+    self.view.backgroundColor = TPBackgroundColor;
 
-    self.navigationController.navigationBar.barTintColor = [Utilities getColor];
-    self.navigationController.navigationBar.backgroundColor = [Utilities getColor];
+    self.navigationController.navigationBar.barTintColor = TPColor;
+    self.navigationController.navigationBar.backgroundColor = TPColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.title = @"视频";
@@ -82,22 +82,22 @@
     self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
     
     _titleText.placeholder = @"填写笔记标题";
-    _titleText.font = [UIFont fontWithName:[Utilities getFont] size:18.0f];
+    _titleText.font = [UIFont fontWithName:TPFont size:18.0f];
     _titleText.delegate = self;
     _titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     
     //三个按钮
     [_editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
     [_editButton addTarget:self action:@selector(editNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    _editButton.tintColor = [Utilities getColor];
+    _editButton.tintColor = TPColor;
     
     [_screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
     [_screenshotButton addTarget:self action:@selector(screenShotAction) forControlEvents:UIControlEventTouchUpInside];
-    _screenshotButton.tintColor = [Utilities getColor];
+    _screenshotButton.tintColor = TPColor;
     
     [_saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
     [_saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    _saveButton.tintColor = [Utilities getColor];
+    _saveButton.tintColor = TPColor;
     
     //进度
     progressBarView = [[[NSBundle mainBundle] loadNibNamed:@"TPVideoProgressBar" owner:nil options:nil] lastObject];
@@ -612,7 +612,7 @@
         [self.editButton setHidden:NO];
         [self.saveButton setHidden:NO];
         [self.screenshotButton setHidden:NO];
-        [self.view setBackgroundColor:[Utilities getBackgroundColor]];
+        [self.view setBackgroundColor:TPBackgroundColor];
         
         [UIView animateWithDuration:0.5 animations:^{
             
@@ -652,7 +652,7 @@
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state{
     NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSForegroundColorAttributeName: TPColor,
                                  NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
                                  };
     

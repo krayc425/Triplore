@@ -253,6 +253,8 @@
 		245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPVideoProgressBar.h; sourceTree = "<group>"; };
 		245E5C901EE4510200448986 /* TPVideoProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPVideoProgressBar.m; sourceTree = "<group>"; };
 		245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoProgressBar.xib; sourceTree = "<group>"; };
+		2477534D1EF6AE95005F0CCC /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		247753521EF6B4D7005F0CCC /* TPConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPConstant.h; sourceTree = "<group>"; };
 		247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRefreshHeader.h; sourceTree = "<group>"; };
 		247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshHeader.m; sourceTree = "<group>"; };
 		2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 		7C0B3AD5FADDF09368056650F0AFC38D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2477534D1EF6AE95005F0CCC /* PrefixHeader.pch */,
 				24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */,
 				2402CE171ED44F690098770A /* Main.storyboard */,
 				20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */,
@@ -865,6 +868,7 @@
 				24EFB7F41EE1928700816675 /* Network */,
 				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
 				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
+				247753521EF6B4D7005F0CCC /* TPConstant.h */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
 				24086A601EF4FD04002D36AF /* Intro.xcassets */,
 				24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */,
@@ -1238,6 +1242,8 @@
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Triplore/PrefixHeader.pch";
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1354,6 +1360,8 @@
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Triplore/PrefixHeader.pch";
 				INFOPLIST_FILE = Triplore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

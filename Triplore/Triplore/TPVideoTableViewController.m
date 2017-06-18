@@ -11,7 +11,7 @@
 #import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
-#import "Utilities.h"
+
 #import "TPVideoManager.h"
 #import "TPVideo.h"
 #import "SVProgressHUD.h"
@@ -34,7 +34,7 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = [Utilities getBackgroundColor];
+    self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
     // cell

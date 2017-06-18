@@ -7,7 +7,6 @@
 //
 
 #import "ABCIntroView.h"
-#import "Utilities.h"
 
 @interface ABCIntroView () <UIScrollViewDelegate>
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -223,7 +222,7 @@
         [_doneButton setTintColor:[UIColor whiteColor]];
         [_doneButton setTitle:@"开始 Triplore！" forState:UIControlStateNormal];
         [_doneButton.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
-        [_doneButton setBackgroundColor:[Utilities getColor]];
+        [_doneButton setBackgroundColor:TPColor];
         [_doneButton addTarget:self.delegate action:@selector(onDoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     }
     return _doneButton;
