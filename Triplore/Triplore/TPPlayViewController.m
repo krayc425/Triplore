@@ -22,6 +22,7 @@
 #import "TPVideoProgressBar.h"
 #import "Triplore-Swift.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "TPPlayTutorialViewController.h"
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
@@ -134,6 +135,16 @@
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
+    
+    //第一次的教程
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPlay"];
+        [self pauseClick];
+        TPPlayTutorialViewController *tutoVC = [[TPPlayTutorialViewController alloc] init];
+        [self.navigationController presentViewController:tutoVC animated:YES completion:^{
+            [self playClick];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

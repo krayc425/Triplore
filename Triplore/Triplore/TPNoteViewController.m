@@ -62,15 +62,15 @@
     [self.tableView reloadData];
     
     //保存按钮
-//    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-//                                                                      20,
-//                                                                      24,
-//                                                                      24)];
-//    saveButton.tintColor = [UIColor whiteColor];
-//    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-//    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-//    self.navigationItem.rightBarButtonItem = saveButtonItem;
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                      20,
+                                                                      24,
+                                                                      24)];
+    saveButton.tintColor = [UIColor whiteColor];
+    [saveButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+    self.navigationItem.rightBarButtonItem = saveButtonItem;
     
     //老的 Note，查看模式
     if(self.noteMode == TPOldNote){
@@ -84,7 +84,7 @@
         [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [exportButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
+        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
         [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
         UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
                                                                                                             CGRectGetHeight(self.tableView.bounds),
@@ -99,7 +99,7 @@
         [self.view addSubview:buttonStack];
     }
     
-    segment = [[UISegmentedControl alloc] initWithItems:@[@"Green", @"Brown"]];
+    segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
     if(self.note.templateNum == 0){
         [segment setSelectedSegmentIndex:0];
     }else{
@@ -153,7 +153,7 @@
 }
 
 - (void)deleteAction{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"确认删除吗"
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"确认删除笔记吗"
                                                                     message:@"该操作不可恢复"
                                                              preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
@@ -286,7 +286,7 @@
     NSLog(@"%@", image.description);
     
     if (error == nil) {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存至相册成功"
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存到相册成功"
                                                                         message:nil
                                                                  preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
