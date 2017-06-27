@@ -8,7 +8,9 @@
 
 #import "TPMeTableViewController.h"
 #import "TPMeTableViewCell.h"
+#import "TPMeAuthTableViewCell.h"
 
+#import "TPAuthViewController.h"
 #import "TPMeFavoriteTableViewController.h"
 #import "TPMeRecentTableViewController.h"
 #import "TPMeAboutViewController.h"
@@ -48,15 +50,17 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0){
-        return 2;
-    }else if(section == 1){
         return 1;
+    }else if(section == 1){
+        return 2;
     }else if(section == 2){
+        return 1;
+    }else if(section == 3){
         return 1;
     }else{
         return 0;
@@ -64,48 +68,62 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"TPMeTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"TPMeTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    TPMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    if(indexPath.section == 0 && indexPath.row == 0){
-        [cell.cellImg setImage:[UIImage imageNamed:@"ME_COLLECT"]];
-        [cell.infoLabel setText:@"我的收藏"];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        static NSString *cellIdentifier = @"TPMeAuthTableViewCell";
+        UINib *nib = [UINib nibWithNibName:@"TPMeAuthTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        TPMeAuthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-    }else if(indexPath.section == 0 && indexPath.row == 1){
-        [cell.cellImg setImage:[UIImage imageNamed:@"ME_RECORD"]];
-        [cell.infoLabel setText:@"观看记录"];
+        return cell;
+
+    } else {
+        static NSString *cellIdentifier = @"TPMeTableViewCell";
+        UINib *nib = [UINib nibWithNibName:@"TPMeTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        TPMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-    }else if(indexPath.section == 1 && indexPath.row == 0){
-        [cell.cellImg setImage:[UIImage imageNamed:@"ME_SETTINGS"]];
-        [cell.infoLabel setText:@"设置"];
+        if(indexPath.section == 1 && indexPath.row == 0){
+            [cell.cellImg setImage:[UIImage imageNamed:@"ME_COLLECT"]];
+            [cell.infoLabel setText:@"我的收藏"];
+            
+        }else if(indexPath.section == 1 && indexPath.row == 1){
+            [cell.cellImg setImage:[UIImage imageNamed:@"ME_RECORD"]];
+            [cell.infoLabel setText:@"观看记录"];
+            
+        }else if(indexPath.section == 2 && indexPath.row == 0){
+            [cell.cellImg setImage:[UIImage imageNamed:@"ME_SETTINGS"]];
+            [cell.infoLabel setText:@"设置"];
+            
+        }else if(indexPath.section == 3 && indexPath.row == 0){
+            [cell.cellImg setImage:[UIImage imageNamed:@"ME_ABOUT"]];
+            [cell.infoLabel setText:@"关于我们"];
+            
+        }else{
+            
+        }
         
-    }else if(indexPath.section == 2 && indexPath.row == 0){
-        [cell.cellImg setImage:[UIImage imageNamed:@"ME_ABOUT"]];
-        [cell.infoLabel setText:@"关于我们"];
-        
-    }else{
-        
+        return cell;
     }
-    
-    return cell;
+   
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if(indexPath.section == 0 && indexPath.row == 0){
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        TPAuthViewController *authVC = [[TPAuthViewController alloc] init];
+        [self.navigationController presentViewController:authVC animated:YES completion:nil];
+    }else if(indexPath.section == 1 && indexPath.row == 0){
         TPMeFavoriteTableViewController *favoVC = [[TPMeFavoriteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:favoVC animated:YES];
-    }else if(indexPath.section == 0 && indexPath.row == 1){
+    }else if(indexPath.section == 1 && indexPath.row == 1){
         TPMeRecentTableViewController *recentVC = [[TPMeRecentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:recentVC animated:YES];
-    }else if(indexPath.section == 1 && indexPath.row == 0){
+    }else if(indexPath.section == 2 && indexPath.row == 0){
         TPSettingsTableViewController *settingsVC = [[TPSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:settingsVC animated:YES];
         
-    }else if(indexPath.section == 2 && indexPath.row == 0){
+    }else if(indexPath.section == 3 && indexPath.row == 0){
         TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else{

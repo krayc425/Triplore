@@ -24,9 +24,19 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.avatarView.layer.cornerRadius = self.avatarView.frame.size.width/2;
 }
 
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    
+    self.avatarView.layer.cornerRadius = CGRectGetWidth(self.frame)/6;
+    
+    
+    NSLog(@"%f", CGRectGetWidth(self.frame));
+    
+}
 - (void)setPerson:(TPPersonModel *)person {
     _person = person;
     self.avatarView.image = [UIImage imageNamed:person.avatarName];
