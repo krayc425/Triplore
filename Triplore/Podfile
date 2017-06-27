@@ -10,6 +10,7 @@ target 'Triplore' do
   pod 'SDCycleScrollView'
   pod 'SVProgressHUD'
   pod 'MJRefresh'
+  pod 'AVOSCloud'
 
 end
 

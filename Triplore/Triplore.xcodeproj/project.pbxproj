@@ -74,6 +74,9 @@
 		24B810931ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */; };
 		24BC3B381EF15FE2006793A3 /* TPPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */; };
 		24CB53951EE69D6B0030DF25 /* Site.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24CB53941EE69D6B0030DF25 /* Site.plist */; };
+		24CF351C1F027D5400C11EF6 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF351B1F027D5400C11EF6 /* libicucore.tbd */; };
+		24CF351E1F027D5700C11EF6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF351D1F027D5700C11EF6 /* libz.tbd */; };
+		24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -281,6 +284,10 @@
 		24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVProgressHUD.a; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/libSVProgressHUD.a"; sourceTree = "<group>"; };
 		24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPPlayViewController.xib; sourceTree = "<group>"; };
 		24CB53941EE69D6B0030DF25 /* Site.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Site.plist; sourceTree = "<group>"; };
+		24CF351B1F027D5400C11EF6 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		24CF351D1F027D5700C11EF6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		24CF351F1F027DBF00C11EF6 /* TPAVCloudInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPAVCloudInfo.h; sourceTree = "<group>"; };
+		24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
@@ -412,6 +419,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */,
+				24CF351E1F027D5700C11EF6 /* libz.tbd in Frameworks */,
+				24CF351C1F027D5400C11EF6 /* libicucore.tbd in Frameworks */,
 				2419D1491EF3A231008A7278 /* libSVProgressHUD.a in Frameworks */,
 				4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */,
 				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
@@ -719,6 +729,17 @@
 			name = Note;
 			sourceTree = "<group>";
 		};
+		24CF35221F027E3F00C11EF6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
+				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
+				247753521EF6B4D7005F0CCC /* TPConstant.h */,
+				24CF351F1F027DBF00C11EF6 /* TPAVCloudInfo.h */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		24EFB7F41EE1928700816675 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,6 +821,9 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */,
+				24CF351D1F027D5700C11EF6 /* libz.tbd */,
+				24CF351B1F027D5400C11EF6 /* libicucore.tbd */,
 				2419D1481EF3A231008A7278 /* libSVProgressHUD.a */,
 				4DD722BA1EF3784200B36454 /* libMJRefresh.a */,
 				24BC3B321EF12EA6006793A3 /* libSVProgressHUD.a */,
@@ -866,9 +890,7 @@
 				24487C511EDDC7090009E8E5 /* Selection */,
 				24487C571EDE53490009E8E5 /* DataBase */,
 				24EFB7F41EE1928700816675 /* Network */,
-				01F842711EECE53C7C80558C40CF944A /* Utilities.h */,
-				F4EC30A36418A591B6379FCD5FA98AA9 /* Utilities.m */,
-				247753521EF6B4D7005F0CCC /* TPConstant.h */,
+				24CF35221F027E3F00C11EF6 /* Utilities */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
 				24086A601EF4FD04002D36AF /* Intro.xcassets */,
 				24AF8D251EF3CB9C00C9B0CD /* NoteTemplate.xcassets */,

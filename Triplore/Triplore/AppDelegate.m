@@ -11,6 +11,7 @@
 #import "TPTabBarViewController.h"
 #import "Utilities.h"
 #import "DBManager.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +21,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //AVOSCloud
+    [AVOSCloud setApplicationId:AVCloudID clientKey:AVCloudKEY];
+    
+#if DEBUG
+    [AVOSCloud setAllLogsEnabled:YES];  //Release 时设为 NO
+#else
+    [AVOSCloud setAllLogsEnabled:NO];  //Release 时设为 NO
+#endif
+
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //必须调用
     [[QYPlayerController sharedInstance] initPlayer];

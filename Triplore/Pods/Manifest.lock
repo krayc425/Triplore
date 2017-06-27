@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AVOSCloud (4.8.0)
   - DZNEmptyDataSet (1.8.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -29,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AVOSCloud
   - DZNEmptyDataSet
   - FMDB
   - MJRefresh
@@ -39,6 +41,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AVOSCloud: 2f0cc98a61ee8c8c3c1bc4447129147468e49efa
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: eb4aea31f80f2d7c919a057c539d4322ddd6c542
+PODFILE CHECKSUM: 4668eea2c62cd1e8451608f95552765a590b45b3
 
 COCOAPODS: 1.2.1
