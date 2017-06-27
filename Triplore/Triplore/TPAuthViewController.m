@@ -7,7 +7,7 @@
 //
 
 #import "TPAuthViewController.h"
-
+#import "TPAuthHelper.h"
 
 typedef NS_ENUM(NSInteger, TPAuthMode){
     TPAuthLogin         = 1,
@@ -50,10 +50,14 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     _mode = mode;
     switch (mode) {
         case TPAuthLogin:
+        {
             self.authButton.titleLabel.text = @"登 录";
+        }
             break;
         case TPAuthRegister:
+        {
             self.authButton.titleLabel.text = @"注 册";
+        }
             break;
         default:
             break;
@@ -108,7 +112,6 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
         case TPAuthRegister:
             [self registerRequest];
             break;
-            
         default:
             break;
     }
@@ -126,11 +129,23 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (void)loginRequest {
-    
+    [TPAuthHelper loginWithUsername:self.usernameTextField.text
+                        andPassword:self.passwordTextField.text
+                          withBlock:^(AVUser * _Nonnull user, NSError * _Nullable error) {
+                              NSLog(@"登陆成功，用户：%@", user.description);
+                          }];
 }
 
-- (void) registerRequest {
-    
+- (void)registerRequest {
+    [TPAuthHelper signUpWithUsername:self.usernameTextField.text
+                         andPassword:self.passwordTextField.text
+                           withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                               if(succeed){
+                                   NSLog(@"注册成功");
+                               }else{
+                                   NSLog(@"注册失败， %@", error.description);
+                               }
+                           }];
 }
 
 /*

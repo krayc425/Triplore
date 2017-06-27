@@ -78,6 +78,7 @@
 		24CF351E1F027D5700C11EF6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF351D1F027D5700C11EF6 /* libz.tbd */; };
 		24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */; };
 		24CF35241F0297E900C11EF6 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35231F0297E900C11EF6 /* UserTests.m */; };
+		24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -294,6 +295,8 @@
 		24CF351F1F027DBF00C11EF6 /* TPAVCloudInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPAVCloudInfo.h; sourceTree = "<group>"; };
 		24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
 		24CF35231F0297E900C11EF6 /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
+		24CF35281F02AE3F00C11EF6 /* TPAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAuthHelper.h; sourceTree = "<group>"; };
+		24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAuthHelper.m; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
@@ -696,9 +699,9 @@
 			isa = PBXGroup;
 			children = (
 				4D9004C01EF50AC7004FD8B4 /* AboutData */,
-				4D7E14E41F0289E50065954C /* TPAuthViewController.h */,
-				4D7E14E51F0289E50065954C /* TPAuthViewController.m */,
-				4D7E14E61F0289E50065954C /* TPAuthViewController.xib */,
+				24CF35251F02ACE500C11EF6 /* Font */,
+				24CF35261F02ACED00C11EF6 /* About */,
+				24CF35271F02ACF700C11EF6 /* Auth */,
 				24B810881ED700C900CD7DC4 /* TPMeTableViewController.h */,
 				24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */,
 				2432FBEE1EF00B6F001560CC /* TPMeFavoriteTableViewController.h */,
@@ -707,23 +710,11 @@
 				2419D1461EF38C2D008A7278 /* TPMeRecentTableViewController.m */,
 				24AF8D1D1EF3C71200C9B0CD /* TPSettingsTableViewController.h */,
 				24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */,
-				24AF8D201EF3C7C500C9B0CD /* TPFontTableViewCell.h */,
-				24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */,
-				24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */,
-				4D9004B91EF50AA8004FD8B4 /* TPMeAboutViewController.h */,
-				4D9004BA1EF50AA8004FD8B4 /* TPMeAboutViewController.m */,
-				4D9004BB1EF50AA8004FD8B4 /* TPMeAboutViewController.xib */,
-				4D9004B61EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.h */,
-				4D9004B71EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m */,
-				4D9004B81EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.xib */,
 				4D9004B31EF50A90004FD8B4 /* TPSliderTab.h */,
 				4D9004B41EF50A90004FD8B4 /* TPSliderTab.m */,
 				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
 				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
 				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
-				4DA7B9361F029971004A8B5A /* TPMeAuthTableViewCell.h */,
-				4DA7B9371F029971004A8B5A /* TPMeAuthTableViewCell.m */,
-				4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -759,11 +750,49 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		24CF35251F02ACE500C11EF6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				24AF8D201EF3C7C500C9B0CD /* TPFontTableViewCell.h */,
+				24AF8D211EF3C7C500C9B0CD /* TPFontTableViewCell.m */,
+				24AF8D221EF3C7C500C9B0CD /* TPFontTableViewCell.xib */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		24CF35261F02ACED00C11EF6 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				4D9004B91EF50AA8004FD8B4 /* TPMeAboutViewController.h */,
+				4D9004BA1EF50AA8004FD8B4 /* TPMeAboutViewController.m */,
+				4D9004BB1EF50AA8004FD8B4 /* TPMeAboutViewController.xib */,
+				4D9004B61EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.h */,
+				4D9004B71EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m */,
+				4D9004B81EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.xib */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		24CF35271F02ACF700C11EF6 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4D7E14E41F0289E50065954C /* TPAuthViewController.h */,
+				4D7E14E51F0289E50065954C /* TPAuthViewController.m */,
+				4D7E14E61F0289E50065954C /* TPAuthViewController.xib */,
+				4DA7B9361F029971004A8B5A /* TPMeAuthTableViewCell.h */,
+				4DA7B9371F029971004A8B5A /* TPMeAuthTableViewCell.m */,
+				4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
 		24EFB7F41EE1928700816675 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */,
 				24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */,
+				24CF35281F02AE3F00C11EF6 /* TPAuthHelper.h */,
+				24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1225,6 +1254,7 @@
 				245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
+				24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */,
 				2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */,
