@@ -65,4 +65,7 @@ iOSInjectionProject/
 CityCrawler/.idea/
 
 *.sketch
+
+Triplore/Triplore/TPAVCloudInfo.h
+
 Triplore/IOSPlayerLib/libav.a

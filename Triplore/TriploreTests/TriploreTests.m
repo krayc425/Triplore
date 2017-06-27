@@ -120,7 +120,7 @@
     [video setVideoid:0];
     [video setDict:@{}];
     
-    [TPVideoManager commentVideo:video withFavorite:1];
+    [TPVideoManager commentVideo:video];
 }
 
 - (void)testAllVideo{
