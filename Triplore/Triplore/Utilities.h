@@ -24,4 +24,6 @@ typedef NS_ENUM(NSInteger, TPNoteMode){
 
 + (void)setFontAtIndex:(NSUInteger)index;
 
++ (NSString *)getErrorCodeDescription:(NSUInteger)code;
+
 @end

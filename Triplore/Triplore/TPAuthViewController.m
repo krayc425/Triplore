@@ -10,6 +10,7 @@
 #import "TPTextField.h"
 #import "SVProgressHUD.h"
 #import "TPAuthHelper.h"
+#import "Utilities.h"
 
 typedef NS_ENUM(NSInteger, TPAuthMode){
     TPAuthLogin         = 1,
@@ -180,7 +181,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
                                       if (succeed) {
                                           [self showSuccessHubWithText:@"密码重置邮件已发送至您的邮箱"];
                                       } else {
-                                          NSString *reason = [error localizedDescription];
+                                          NSString *reason = [Utilities getErrorCodeDescription:error.code];
                                           [self showErrorHubWithText:[NSString stringWithFormat:@"重置密码失败\n%@", reason]];
                                       }
                                   }];
@@ -203,7 +204,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
                                                                                       object:nil];
                               } else {
-                                  NSString *reason = [error localizedDescription];
+                                  NSString *reason = [Utilities getErrorCodeDescription:error.code];
                                   [self showErrorHubWithText:[NSString stringWithFormat:@"登录失败\n%@", reason]];
                               }
                           }];
@@ -219,10 +220,10 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
                                    [self showSuccessHubWithText:@"注册成功"];
                                    
                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
-                                                                                       object:nil];
+                                                                                    object:nil];
                                    
                                }else{
-                                   NSString *reason = [error localizedDescription];
+                                   NSString *reason = [Utilities getErrorCodeDescription:error.code];
                                    [self showErrorHubWithText:[NSString stringWithFormat:@"注册失败\n%@", reason]];
                                }
                            }];
