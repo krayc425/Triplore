@@ -23,6 +23,9 @@
 #import "Triplore-Swift.h"
 #import "TPNoteCreator.h"
 
+#import "TPNoteServerHelper.h"
+#import "TPNoteServer.h"
+
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
 
@@ -97,6 +100,17 @@
         buttonStack.alignment = UIStackViewAlignmentFill;
         buttonStack.distribution = UIStackViewDistributionFillEqually;
         [self.view addSubview:buttonStack];
+        
+#warning TODO temporarily
+        UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
+                                                                          20,
+                                                                          24,
+                                                                          24)];
+        uploadButton.tintColor = [UIColor whiteColor];
+        [uploadButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [uploadButton addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *uploadItem = [[UIBarButtonItem alloc] initWithCustomView:uploadButton];
+        self.navigationItem.rightBarButtonItem = uploadItem;
     }
     
     segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
@@ -109,6 +123,17 @@
     self.navigationItem.titleView = segment;
 }
 
+- (void)uploadAction{
+    TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
+    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSError * _Nullable error) {
+        if(succeed) {
+            NSLog(@"上传成功");
+        }else{
+            NSLog(@"上传失败");
+        }
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -116,6 +141,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
     [self reloadShowViews];
+    
+    
+    [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
+        [noteServers enumerateObjectsUsingBlock:^(TPNoteServer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"Note ID : %@", obj.noteServerID);
+        }];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

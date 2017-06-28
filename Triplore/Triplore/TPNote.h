@@ -13,7 +13,7 @@
 /**
  存入数据库的 Note 模型
  */
-@interface TPNote : NSObject
+@interface TPNote : NSObject <NSCoding>
 
 @property (nonatomic) NSInteger noteid;
 @property (copy, nonatomic, nonnull) NSString *videoid;

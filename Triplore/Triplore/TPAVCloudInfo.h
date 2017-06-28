@@ -9,7 +9,7 @@
 #ifndef TPAVCloudInfo_h
 #define TPAVCloudInfo_h
 
-#define AVCloudID @"R5WYBax69j1Bht4u1qNYOh3C-gzGzoHsz"
-#define AVCloudKEY @"MR2ljOnzMWvIzxRVxMgJKAVi"
+#define AVCloudID @""
+#define AVCloudKEY @""
 
 #endif /* TPAVCloudInfo_h */
