@@ -9,6 +9,7 @@
 #import "TPMeTableViewController.h"
 #import "TPMeTableViewCell.h"
 #import "TPMeAuthTableViewCell.h"
+#import "TPMeLogoutTableViewCell.h"
 
 #import "TPAuthViewController.h"
 #import "TPMeFavoriteTableViewController.h"
@@ -16,8 +17,11 @@
 #import "TPMeAboutViewController.h"
 #import "TPSettingsTableViewController.h"
 
+#import "TPAuthHelper.h"
 
-@interface TPMeTableViewController ()
+@interface TPMeTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, strong) AVUser* user;
 
 @end
 
@@ -36,6 +40,15 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.tableView.scrollEnabled = NO;
+    
+    // user
+    
+    [TPAuthHelper currentUserWithBlock:^(AVUser * _Nonnull user) {
+        if (user) {
+            self.user = user;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +63,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.user) {
+        return 5;
+    }
     return 4;
 }
 
@@ -62,7 +78,9 @@
         return 1;
     }else if(section == 3){
         return 1;
-    }else{
+    }else if (section == 4){
+        return 1;
+    } else {
         return 0;
     }
 }
@@ -74,9 +92,18 @@
         UINib *nib = [UINib nibWithNibName:@"TPMeAuthTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         TPMeAuthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.user = self.user;
         
         return cell;
+        
+    } else if (indexPath.section == 4 && indexPath.row == 0) {
+        static NSString *cellIdentifier = @"TPMeLogoutTableViewCell";
+        UINib *nib = [UINib nibWithNibName:@"TPMeLogoutTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        TPMeLogoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
+        return cell;
+        
     } else {
         static NSString *cellIdentifier = @"TPMeTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"TPMeTableViewCell" bundle:nil];
@@ -111,8 +138,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0 && indexPath.row == 0) {
-        TPAuthViewController *authVC = [[TPAuthViewController alloc] init];
-        [self.navigationController presentViewController:authVC animated:YES completion:nil];
+        if (self.user) {
+            [self updateAvatar];
+        } else {
+            TPAuthViewController *authVC = [[TPAuthViewController alloc] init];
+            [self.navigationController presentViewController:authVC animated:YES completion:nil];
+        }
+        
     }else if(indexPath.section == 1 && indexPath.row == 0){
         TPMeFavoriteTableViewController *favoVC = [[TPMeFavoriteTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:favoVC animated:YES];
@@ -126,8 +158,18 @@
     }else if(indexPath.section == 3 && indexPath.row == 0){
         TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVC animated:YES];
-    }else{
+    }else if(indexPath.section == 4 && indexPath.row == 0){
+#warning todo logout
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        return 160;
         
+    } else {
+        return 44;
     }
 }
 
@@ -145,6 +187,54 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.0001)];
+}
+
+#pragma mark - Action
+
+- (void)updateAvatar {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    // From albums.
+    [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+        pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        pickerController.allowsEditing = YES;
+        pickerController.delegate = self;
+        [self presentViewController:pickerController animated:YES completion:nil];
+    }]];
+    // From camera.
+    [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
+        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        pickerController.allowsEditing = YES;
+        pickerController.delegate = self;
+        [self presentViewController:pickerController animated:YES completion:nil];
+    }]];
+    // Cancel.
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *avatar = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (avatar) {
+# warning todo
+        
+//        BOOL success;
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSError *error;
+//        
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//        NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.jpg"];
+//        NSLog(@"imageFile->>%@", imageFilePath);
+//        success = [fileManager fileExistsAtPath:imageFilePath];
+//        if (success) {
+//            success = [fileManager removeItemAtPath:imageFilePath error:&error];
+//        }
+//        UIImage *smallImage = [self thumbnailWithImageWithoutScale:avatar size:CGSizeMake(1242, 1242)];
+//        [UIImageJPEGRepresentation(smallImage, 1.0f) writeToFile:imageFilePath atomically:YES];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

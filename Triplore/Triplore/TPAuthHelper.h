@@ -37,4 +37,7 @@
  */
 + (void)resetPasswordWithUsername:(NSString *_Nonnull)username withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
 
+
++ (void)currentUserWithBlock:(void(^_Nonnull)(AVUser * _Nonnull user))completionBlock;
+
 @end

@@ -124,6 +124,8 @@
 		4DA7B9391F029971004A8B5A /* TPMeAuthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B9371F029971004A8B5A /* TPMeAuthTableViewCell.m */; };
 		4DA7B93A1F029971004A8B5A /* TPMeAuthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */; };
 		4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B93C1F0334C9004A8B5A /* TPTextField.m */; };
+		4DA7B9411F0348C4004A8B5A /* TPMeLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B93F1F0348C4004A8B5A /* TPMeLogoutTableViewCell.m */; };
+		4DA7B9421F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7B9401F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib */; };
 		4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD722BA1EF3784200B36454 /* libMJRefresh.a */; };
 		4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
@@ -366,6 +368,9 @@
 		4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeAuthTableViewCell.xib; sourceTree = "<group>"; };
 		4DA7B93B1F0334C9004A8B5A /* TPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTextField.h; sourceTree = "<group>"; };
 		4DA7B93C1F0334C9004A8B5A /* TPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTextField.m; sourceTree = "<group>"; };
+		4DA7B93E1F0348C4004A8B5A /* TPMeLogoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeLogoutTableViewCell.h; sourceTree = "<group>"; };
+		4DA7B93F1F0348C4004A8B5A /* TPMeLogoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeLogoutTableViewCell.m; sourceTree = "<group>"; };
+		4DA7B9401F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeLogoutTableViewCell.xib; sourceTree = "<group>"; };
 		4DD722BA1EF3784200B36454 /* libMJRefresh.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMJRefresh.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/MJRefresh/libMJRefresh.a"; sourceTree = "<group>"; };
 		4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -720,6 +725,9 @@
 				24B810831ED700B500CD7DC4 /* TPMeTableViewCell.h */,
 				24B810841ED700B500CD7DC4 /* TPMeTableViewCell.m */,
 				24B810851ED700B500CD7DC4 /* TPMeTableViewCell.xib */,
+				4DA7B93E1F0348C4004A8B5A /* TPMeLogoutTableViewCell.h */,
+				4DA7B93F1F0348C4004A8B5A /* TPMeLogoutTableViewCell.m */,
+				4DA7B9401F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -1087,6 +1095,7 @@
 				4D9004C81EF50AFF004FD8B4 /* About.plist in Resources */,
 				4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */,
 				24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */,
+				4DA7B9421F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib in Resources */,
 				245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */,
 				4D4DF7A51EE17D470012F476 /* TPVideoSingleTableViewCell.xib in Resources */,
 				4D4DF7AA1EE19D1C0012F476 /* TPVideoSeriesTableViewCell.xib in Resources */,
@@ -1247,6 +1256,7 @@
 				2444AC9A1EF28F2F0007CC69 /* TPNoteTitleViewBrown.m in Sources */,
 				4D9004C51EF50ADF004FD8B4 /* TPPersonHelper.m in Sources */,
 				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
+				4DA7B9411F0348C4004A8B5A /* TPMeLogoutTableViewCell.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,

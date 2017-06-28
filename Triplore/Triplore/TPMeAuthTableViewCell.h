@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class AVUser;
+
 @interface TPMeAuthTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) AVUser* user;
 
 @end
