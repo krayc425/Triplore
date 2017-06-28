@@ -7,6 +7,8 @@
 //
 
 #import "TPAuthViewController.h"
+#import "TPTextField.h"
+#import "SVProgressHUD.h"
 #import "TPAuthHelper.h"
 
 typedef NS_ENUM(NSInteger, TPAuthMode){
@@ -18,11 +20,14 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 
 @property (nonatomic) TPAuthMode mode;
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet TPTextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet TPTextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgetButton;
+@property (weak, nonatomic) IBOutlet UIView *separateLine;
 
 @end
 
@@ -34,12 +39,27 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     
     self.mode = TPAuthLogin;
     
-    self.usernameTextField.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-    self.usernameTextField.layer.cornerRadius = 3.0;
-    self.passwordTextField.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-    self.passwordTextField.layer.cornerRadius = 3.0;
+    // title
+
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Triplore"];
     
+    float spacing = 1.0f;
+    [attributedString addAttribute:NSKernAttributeName
+                             value:@(spacing)
+                             range:NSMakeRange(0, [attributedString length])];
     
+    self.titleLabel.attributedText = attributedString;
+    
+    // text fild
+    UIImageView *usernameImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AUTH_MAIL"]];
+    usernameImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.usernameTextField.rightView = usernameImage;
+
+    UIImageView *passwordImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AUTH_LOCK"]];
+    passwordImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.passwordTextField.rightView = passwordImage;
+
+
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
@@ -52,11 +72,19 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
         case TPAuthLogin:
         {
             self.authButton.titleLabel.text = @"登 录";
+            self.loginButton.hidden = YES;
+            self.registerButton.hidden = NO;
+            self.forgetButton.hidden = NO;
+            self.separateLine.hidden = NO;
         }
             break;
         case TPAuthRegister:
         {
             self.authButton.titleLabel.text = @"注 册";
+            self.loginButton.hidden = NO;
+            self.registerButton.hidden = YES;
+            self.forgetButton.hidden = YES;
+            self.separateLine.hidden = YES;
         }
             break;
         default:
@@ -105,6 +133,20 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 
 
 - (IBAction)authButtonDidTap:(id)sender {
+    
+    NSString *email = self.usernameTextField.text;
+    NSString *password = self.passwordTextField.text;
+    
+    if ([email isEqual: @""]) {
+        [self showInfoHubWithText:@"请输入邮箱"];
+        return;
+    }
+    
+    if ([password isEqual: @""]) {
+        [self showInfoHubWithText:@"请输入密码"];
+        return;
+    }
+
     switch (self.mode) {
         case TPAuthLogin:
             [self loginRequest];
@@ -122,6 +164,19 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     self.mode = TPAuthRegister;
 }
 
+- (IBAction)loginButtonDidTap:(id)sender {
+    self.mode = TPAuthLogin;
+}
+
+- (IBAction)forgetButtonDidTap:(id)sender {
+    
+    NSString *email = self.usernameTextField.text;
+    
+    if ([email isEqual: @""]) {
+        [self showInfoHubWithText:@"请输入邮箱找回密码"];
+        return;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -132,7 +187,11 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     [TPAuthHelper loginWithUsername:self.usernameTextField.text
                         andPassword:self.passwordTextField.text
                           withBlock:^(AVUser * _Nonnull user, NSError * _Nullable error) {
-                              NSLog(@"登陆成功，用户：%@", user.description);
+                              if (user) {
+                                NSLog(@"登陆成功，用户：%@", user.description);
+                              } else {
+                                [self showErrorHubWithText:@"登录失败"];
+                              }
                           }];
 }
 
@@ -141,11 +200,29 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
                          andPassword:self.passwordTextField.text
                            withBlock:^(BOOL succeed, NSError * _Nullable error) {
                                if(succeed){
+                                   [self showErrorHubWithText:@"注册成功"];
                                    NSLog(@"注册成功");
                                }else{
+                                   [self showErrorHubWithText:@"注册失败"];
                                    NSLog(@"注册失败， %@", error.description);
                                }
                            }];
+}
+
+
+- (void)showInfoHubWithText:(NSString *)text {
+    [SVProgressHUD showInfoWithStatus:text];
+    [SVProgressHUD dismissWithDelay:1];
+}
+
+- (void)showSuccessHubWithText:(NSString *)text {
+    [SVProgressHUD showSuccessWithStatus:text];
+    [SVProgressHUD dismissWithDelay:1];
+}
+
+- (void)showErrorHubWithText:(NSString *)text {
+    [SVProgressHUD showErrorWithStatus:text];
+    [SVProgressHUD dismissWithDelay:1];
 }
 
 /*

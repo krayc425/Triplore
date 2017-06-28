@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -15,8 +15,11 @@
             <connections>
                 <outlet property="authButton" destination="wya-qx-92U" id="cL8-ZY-EcN"/>
                 <outlet property="forgetButton" destination="L3q-Tz-oUZ" id="n3W-Zh-Hfj"/>
+                <outlet property="loginButton" destination="ztU-lM-bDt" id="TGm-Qj-QJ7"/>
                 <outlet property="passwordTextField" destination="qth-DF-cJA" id="YuM-jt-Ecp"/>
                 <outlet property="registerButton" destination="bNh-0Z-gb7" id="Yjt-8C-h56"/>
+                <outlet property="separateLine" destination="pBA-f3-4eA" id="E23-YZ-nSP"/>
+                <outlet property="titleLabel" destination="ltS-4k-dne" id="5Jk-m9-mhF"/>
                 <outlet property="usernameTextField" destination="ip7-nC-m5T" id="4Kz-gN-p0W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,29 +35,29 @@
                         <constraint firstAttribute="width" secondItem="3ky-dW-Zp0" secondAttribute="height" multiplier="1:1" id="Xsu-53-4bc"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Triplore" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltS-4k-dne">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Triplore" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltS-4k-dne">
                     <rect key="frame" x="166" y="225" width="42" height="20"/>
                     <fontDescription key="fontDescription" name="OriyaSangamMN-Bold" family="Oriya Sangam MN" pointSize="14"/>
                     <color key="textColor" red="0.71372549019607845" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="ip7-nC-m5T">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="ip7-nC-m5T" customClass="TPTextField">
                     <rect key="frame" x="40" y="315" width="295" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="qfA-NI-grz"/>
                     </constraints>
                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="qth-DF-cJA">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="qth-DF-cJA" customClass="TPTextField">
                     <rect key="frame" x="40" y="369" width="295" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="laV-u5-QnU"/>
                     </constraints>
                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wya-qx-92U">
                     <rect key="frame" x="40" y="443" width="295" height="44"/>
@@ -80,6 +83,16 @@
                         <action selector="registerButtonDidTap:" destination="-1" eventType="touchUpInside" id="wrL-a0-4u0"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztU-lM-bDt">
+                    <rect key="frame" x="172.5" y="491.5" width="30" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="登录">
+                        <color key="titleColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="loginButtonDidTap:" destination="-1" eventType="touchUpInside" id="OHm-GE-JT1"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBA-f3-4eA">
                     <rect key="frame" x="187" y="497" width="1" height="18"/>
                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +107,9 @@
                     <state key="normal" title="忘记密码">
                         <color key="titleColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="forgetButtonDidTap:" destination="-1" eventType="touchUpInside" id="lQG-Jj-dYW"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-xc-mdJ">
                     <rect key="frame" x="339" y="28" width="16" height="22"/>
@@ -113,9 +129,11 @@
                 <constraint firstItem="pBA-f3-4eA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LJD-dm-ZRM"/>
                 <constraint firstItem="3ky-dW-Zp0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LnL-b1-fCj"/>
                 <constraint firstAttribute="trailing" secondItem="ip7-nC-m5T" secondAttribute="trailing" constant="40" id="N7g-lj-NrI"/>
+                <constraint firstItem="ztU-lM-bDt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Uf9-qY-pyd"/>
                 <constraint firstItem="pBA-f3-4eA" firstAttribute="top" secondItem="wya-qx-92U" secondAttribute="bottom" constant="10" id="WN7-Yw-gS7"/>
                 <constraint firstItem="qth-DF-cJA" firstAttribute="leading" secondItem="ip7-nC-m5T" secondAttribute="leading" id="ZjU-di-ENR"/>
                 <constraint firstItem="qth-DF-cJA" firstAttribute="top" secondItem="ip7-nC-m5T" secondAttribute="bottom" constant="10" id="bG7-Z8-vW6"/>
+                <constraint firstItem="ztU-lM-bDt" firstAttribute="centerY" secondItem="pBA-f3-4eA" secondAttribute="centerY" id="fKP-YT-JjR"/>
                 <constraint firstItem="ltS-4k-dne" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hQ4-rJ-ur3"/>
                 <constraint firstItem="L3q-Tz-oUZ" firstAttribute="leading" secondItem="pBA-f3-4eA" secondAttribute="trailing" constant="16" id="kAn-2Y-QWG"/>
                 <constraint firstItem="bNh-0Z-gb7" firstAttribute="centerY" secondItem="pBA-f3-4eA" secondAttribute="centerY" id="ltB-8g-w9k"/>

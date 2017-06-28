@@ -123,6 +123,7 @@
 		4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4F9E71ED971C700DA73AA /* TPSiteSearchViewController.m */; };
 		4DA7B9391F029971004A8B5A /* TPMeAuthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B9371F029971004A8B5A /* TPMeAuthTableViewCell.m */; };
 		4DA7B93A1F029971004A8B5A /* TPMeAuthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */; };
+		4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B93C1F0334C9004A8B5A /* TPTextField.m */; };
 		4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD722BA1EF3784200B36454 /* libMJRefresh.a */; };
 		4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
@@ -363,6 +364,8 @@
 		4DA7B9361F029971004A8B5A /* TPMeAuthTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeAuthTableViewCell.h; sourceTree = "<group>"; };
 		4DA7B9371F029971004A8B5A /* TPMeAuthTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeAuthTableViewCell.m; sourceTree = "<group>"; };
 		4DA7B9381F029971004A8B5A /* TPMeAuthTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeAuthTableViewCell.xib; sourceTree = "<group>"; };
+		4DA7B93B1F0334C9004A8B5A /* TPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTextField.h; sourceTree = "<group>"; };
+		4DA7B93C1F0334C9004A8B5A /* TPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTextField.m; sourceTree = "<group>"; };
 		4DD722BA1EF3784200B36454 /* libMJRefresh.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMJRefresh.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/MJRefresh/libMJRefresh.a"; sourceTree = "<group>"; };
 		4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -680,8 +683,6 @@
 			children = (
 				24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */,
 				24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */,
-				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
-				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
 				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
@@ -691,6 +692,10 @@
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
 				247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */,
 				247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */,
+				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
+				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
+				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
+				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -1256,6 +1261,7 @@
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
 				24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
+				4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */,
 				4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */,
 				2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
