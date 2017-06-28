@@ -10,4 +10,6 @@
 
 @interface TPMeTableViewController : UITableViewController
 
+- (void)loadUser;
+
 @end

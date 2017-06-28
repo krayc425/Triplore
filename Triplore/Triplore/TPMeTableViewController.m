@@ -16,10 +16,12 @@
 #import "TPMeRecentTableViewController.h"
 #import "TPMeAboutViewController.h"
 #import "TPSettingsTableViewController.h"
+#import "TPMeTableViewController+Avatar.h"
+#import "SVProgressHUD.h"
 
 #import "TPAuthHelper.h"
 
-@interface TPMeTableViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface TPMeTableViewController ()
 
 @property (nonatomic, strong) AVUser* user;
 
@@ -42,13 +44,12 @@
     self.tableView.scrollEnabled = NO;
     
     // user
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadUser)
+                                                 name:@"change_user"
+                                               object:nil];
     
-    [TPAuthHelper currentUserWithBlock:^(AVUser * _Nonnull user) {
-        if (user) {
-            self.user = user;
-            [self.tableView reloadData];
-        }
-    }];
+    [self loadUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +59,14 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+}
+
+- (void)loadUser{
+    NSLog(@"Load User");
+    [TPAuthHelper currentUserWithBlock:^(AVUser * _Nonnull user) {
+        self.user = user;
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -92,6 +101,7 @@
         UINib *nib = [UINib nibWithNibName:@"TPMeAuthTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         TPMeAuthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        
         cell.user = self.user;
         
         return cell;
@@ -159,7 +169,12 @@
         TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else if(indexPath.section == 4 && indexPath.row == 0){
-#warning todo logout
+        // Log out
+        [AVUser logOut];
+        [SVProgressHUD showSuccessWithStatus:@"注销成功"];
+        [SVProgressHUD dismissWithDelay:2.0 completion:^{
+            [self loadUser];
+        }];
     }
 }
 
@@ -167,7 +182,6 @@
     
     if (indexPath.section == 0) {
         return 160;
-        
     } else {
         return 44;
     }
@@ -187,54 +201,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.0001)];
-}
-
-#pragma mark - Action
-
-- (void)updateAvatar {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    // From albums.
-    [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
-        pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        pickerController.allowsEditing = YES;
-        pickerController.delegate = self;
-        [self presentViewController:pickerController animated:YES completion:nil];
-    }]];
-    // From camera.
-    [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
-        UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
-        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        pickerController.allowsEditing = YES;
-        pickerController.delegate = self;
-        [self presentViewController:pickerController animated:YES completion:nil];
-    }]];
-    // Cancel.
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *avatar = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    if (avatar) {
-# warning todo
-        
-//        BOOL success;
-//        NSFileManager *fileManager = [NSFileManager defaultManager];
-//        NSError *error;
-//        
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.jpg"];
-//        NSLog(@"imageFile->>%@", imageFilePath);
-//        success = [fileManager fileExistsAtPath:imageFilePath];
-//        if (success) {
-//            success = [fileManager removeItemAtPath:imageFilePath error:&error];
-//        }
-//        UIImage *smallImage = [self thumbnailWithImageWithoutScale:avatar size:CGSizeMake(1242, 1242)];
-//        [UIImageJPEGRepresentation(smallImage, 1.0f) writeToFile:imageFilePath atomically:YES];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

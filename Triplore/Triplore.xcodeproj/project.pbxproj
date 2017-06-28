@@ -79,6 +79,7 @@
 		24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */; };
 		24CF35241F0297E900C11EF6 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35231F0297E900C11EF6 /* UserTests.m */; };
 		24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */; };
+		24CF35301F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -300,6 +301,8 @@
 		24CF35231F0297E900C11EF6 /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		24CF35281F02AE3F00C11EF6 /* TPAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAuthHelper.h; sourceTree = "<group>"; };
 		24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAuthHelper.m; sourceTree = "<group>"; };
+		24CF352E1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPMeTableViewController+Avatar.h"; sourceTree = "<group>"; };
+		24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPMeTableViewController+Avatar.m"; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 				24CF35271F02ACF700C11EF6 /* Auth */,
 				24B810881ED700C900CD7DC4 /* TPMeTableViewController.h */,
 				24B810891ED700C900CD7DC4 /* TPMeTableViewController.m */,
+				24CF352E1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.h */,
+				24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */,
 				2432FBEE1EF00B6F001560CC /* TPMeFavoriteTableViewController.h */,
 				2432FBEF1EF00B6F001560CC /* TPMeFavoriteTableViewController.m */,
 				24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */,
@@ -1257,6 +1262,7 @@
 				4D9004C51EF50ADF004FD8B4 /* TPPersonHelper.m in Sources */,
 				24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */,
 				4DA7B9411F0348C4004A8B5A /* TPMeLogoutTableViewCell.m in Sources */,
+				24CF35301F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m in Sources */,
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,

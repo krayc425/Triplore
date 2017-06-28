@@ -8,6 +8,7 @@
 
 #import "TPMeAuthTableViewCell.h"
 #import "TPAuthHelper.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TPMeAuthTableViewCell ()
 
@@ -23,22 +24,29 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    // Initialization code
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
     
-    self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame)/2;
-    
+    self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame) / 2;
 }
 
 - (void)setUser:(AVUser *)user {
     _user = user;
-    self.usernameLabel.text = user.username;
+    if (user) {
+        self.usernameLabel.text = user.username;
+        
+        AVFile *file = [user objectForKey:@"avatar"];
+        
+        NSLog(@"Avatar URL : %@", file.url);
+        
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:file.url]];
+    }else{
+        self.usernameLabel.text = @"未登录";
+        
+        [self.avatarImageView setImage:[UIImage imageNamed:@"DEFAULT_AVATAR"]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

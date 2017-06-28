@@ -131,18 +131,17 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 - (IBAction)authButtonDidTap:(id)sender {
     
     NSString *email = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
     
-    if ([email isEqual: @""]) {
+    if ([email isEqualToString: @""]) {
         [self showInfoHubWithText:@"请输入邮箱"];
         return;
     }
     
-    if ([password isEqual: @""]) {
+    if ([password isEqualToString: @""]) {
         [self showInfoHubWithText:@"请输入密码"];
         return;
     }
@@ -169,13 +168,22 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (IBAction)forgetButtonDidTap:(id)sender {
-    
     NSString *email = self.usernameTextField.text;
     
-    if ([email isEqual: @""]) {
+    if ([email isEqualToString:@""]) {
         [self showInfoHubWithText:@"请输入邮箱找回密码"];
         return;
     }
+    
+    [TPAuthHelper resetPasswordWithUsername:email
+                                  withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                                      if (succeed) {
+                                          [self showSuccessHubWithText:@"密码重置邮件已发送至您的邮箱"];
+                                      } else {
+                                          NSString *reason = [error localizedDescription];
+                                          [self showErrorHubWithText:[NSString stringWithFormat:@"重置密码失败\n%@", reason]];
+                                      }
+                                  }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,27 +192,38 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (void)loginRequest {
+    [SVProgressHUD show];
     [TPAuthHelper loginWithUsername:self.usernameTextField.text
                         andPassword:self.passwordTextField.text
                           withBlock:^(AVUser * _Nonnull user, NSError * _Nullable error) {
+                              [SVProgressHUD dismiss];
                               if (user) {
-                                NSLog(@"登陆成功，用户：%@", user.description);
+                                  [self showSuccessHubWithText:@"登录成功"];
+                                  
+                                  [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
+                                                                                      object:nil];
                               } else {
-                                [self showErrorHubWithText:@"登录失败"];
+                                  NSString *reason = [error localizedDescription];
+                                  [self showErrorHubWithText:[NSString stringWithFormat:@"登录失败\n%@", reason]];
                               }
                           }];
 }
 
 - (void)registerRequest {
+    [SVProgressHUD show];
     [TPAuthHelper signUpWithUsername:self.usernameTextField.text
                          andPassword:self.passwordTextField.text
                            withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                               [SVProgressHUD dismiss];
                                if(succeed){
-                                   [self showErrorHubWithText:@"注册成功"];
-                                   NSLog(@"注册成功");
+                                   [self showSuccessHubWithText:@"注册成功"];
+                                   
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
+                                                                                       object:nil];
+                                   
                                }else{
-                                   [self showErrorHubWithText:@"注册失败"];
-                                   NSLog(@"注册失败， %@", error.description);
+                                   NSString *reason = [error localizedDescription];
+                                   [self showErrorHubWithText:[NSString stringWithFormat:@"注册失败\n%@", reason]];
                                }
                            }];
 }
@@ -212,17 +231,19 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 
 - (void)showInfoHubWithText:(NSString *)text {
     [SVProgressHUD showInfoWithStatus:text];
-    [SVProgressHUD dismissWithDelay:1];
+    [SVProgressHUD dismissWithDelay:2];
 }
 
 - (void)showSuccessHubWithText:(NSString *)text {
     [SVProgressHUD showSuccessWithStatus:text];
-    [SVProgressHUD dismissWithDelay:1];
+    [SVProgressHUD dismissWithDelay:2 completion:^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)showErrorHubWithText:(NSString *)text {
     [SVProgressHUD showErrorWithStatus:text];
-    [SVProgressHUD dismissWithDelay:1];
+    [SVProgressHUD dismissWithDelay:2];
 }
 
 /*

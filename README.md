@@ -23,7 +23,7 @@ iQiyi Contest Project
     .
     ├── IOSPlayerLib
     │   ├── include
-    │   └── libav.a
+    │   └── libav.a     <------ 放到这里
     ├── Podfile
     ├── Podfile.lock
     ├── Pods
@@ -39,13 +39,17 @@ iQiyi Contest Project
 
 6. 在项目的 `TARGETS -> Triplore -> General -> Linked Frameworks And Libraries` 中手动添加本地路径的 `libav.a`。
 
-7. 按 `Cmd + R` 运行项目。
+7. 本项目使用了 [LeanCloud](https://leancloud.cn) 作为后端，所以代码中需要硬编码进 `App ID` 和 `App Key`。为了安全起见，并未把它们存放在仓库中，所以有些功能如注册、登录不能使用。
+
+8. 按 `Cmd + R` 运行项目。
 
 #### 可能出现的问题
 
 * 若出现与特定 `Pod` 相关的错误，尝试在 `TARGETS -> Triplore -> Build Phases -> Link Binary With Libraries` 中添加对应 `Pod` 库的 `.a` 文件。
 
 * 若出现 `Invalid Bitcode Signing`, 请到最左边 `Pods -> 每一个 Target -> Build Settings` 中搜索 `Bitcode` 将 `Enable Bitcode` 设为 `NO`。
+
+#### 其他
 
 * 更换图标在 `TARGETS -> Triplore -> General -> App Icons Source` 中选择。
 
