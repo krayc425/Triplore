@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
     switch (mode) {
         case TPAuthLogin:
         {
-            self.authButton.titleLabel.text = @"登 录";
+            [self.authButton setTitle:@"登 录" forState:UIControlStateNormal];
             self.loginButton.hidden = YES;
             self.registerButton.hidden = NO;
             self.forgetButton.hidden = NO;
@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
             break;
         case TPAuthRegister:
         {
-            self.authButton.titleLabel.text = @"注 册";
+            [self.authButton setTitle:@"注 册" forState:UIControlStateNormal];
             self.loginButton.hidden = NO;
             self.registerButton.hidden = YES;
             self.forgetButton.hidden = YES;
