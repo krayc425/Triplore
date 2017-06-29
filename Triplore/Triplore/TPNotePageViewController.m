@@ -70,11 +70,10 @@
     _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
     [self.view addSubview:_pageMenu.view];
    
-//     _pageMenu.menuScrollView.backgroundColor = [UIColor grayColor];
-    _pageMenu.menuScrollView.layer.shadowColor = [UIColor grayColor].CGColor;
-    _pageMenu.menuScrollView.layer.shadowOffset = CGSizeMake(0, 0);
-    _pageMenu.menuScrollView.layer.shadowRadius = 4;
-    _pageMenu.menuScrollView.layer.shadowOpacity = 0.3;
+//    _pageMenu.menuScrollView.layer.shadowColor = [UIColor grayColor].CGColor;
+//    _pageMenu.menuScrollView.layer.shadowOffset = CGSizeMake(0, 0);
+//    _pageMenu.menuScrollView.layer.shadowRadius = 4;
+//    _pageMenu.menuScrollView.layer.shadowOpacity = 0.3;
 
 
 }
