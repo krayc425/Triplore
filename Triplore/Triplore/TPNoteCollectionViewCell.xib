@@ -72,6 +72,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="14" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" image="NOTE_LIKE_NORMAL"/>
+                                <connections>
+                                    <action selector="likeButtonDidTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="SL5-qK-l9O"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLQ-rD-VRK">
                                 <rect key="frame" x="18" y="0.5" width="27.5" height="12"/>

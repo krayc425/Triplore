@@ -8,7 +8,6 @@
 
 #import "TPNoteCollectionViewController.h"
 #import "TPNoteCollectionViewCell.h"
-#import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteViewController.h"
 #import "TPNote.h"
 #import "TPNoteManager.h"
@@ -70,7 +69,9 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell configureWithNote:noteArr[indexPath.row]];
+//    [cell configureWithNote:noteArr[indexPath.row]];
+    
+    cell.note = noteArr[indexPath.row];
     
     //注册3D Touch
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {

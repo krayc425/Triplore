@@ -49,7 +49,6 @@
 		24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C9C1EDE9D120009E8E5 /* TriploreTests.m */; };
 		24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */; };
 		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
-		24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */; };
 		245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0901EE5B905002CA7AC /* JSONTests.m */; };
 		245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0961EE5BA93002CA7AC /* TPCountryModel.m */; };
 		245BD09A1EE5BA9C002CA7AC /* TPCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 245BD0991EE5BA9C002CA7AC /* TPCityModel.m */; };
@@ -261,8 +260,6 @@
 		24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteManager.m; sourceTree = "<group>"; };
 		24487CA71EDEB9780009E8E5 /* TPNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNote.h; sourceTree = "<group>"; };
 		24487CA81EDEB9780009E8E5 /* TPNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNote.m; sourceTree = "<group>"; };
-		24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNoteCollectionViewCell+Configure.h"; sourceTree = "<group>"; };
-		24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPNoteCollectionViewCell+Configure.m"; sourceTree = "<group>"; };
 		245BD0901EE5B905002CA7AC /* JSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTests.m; sourceTree = "<group>"; };
 		245BD0951EE5BA93002CA7AC /* TPCountryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCountryModel.h; sourceTree = "<group>"; };
 		245BD0961EE5BA93002CA7AC /* TPCountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCountryModel.m; sourceTree = "<group>"; };
@@ -776,15 +773,13 @@
 				4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
 				24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */,
-				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
-				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
-				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
-				24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */,
-				24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */,
 				2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */,
 				2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */,
 				2498EB491F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.h */,
 				2498EB4A1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m */,
+				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
+				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
+				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
 				241210EC1ED7EF400066B99C /* TPNoteViewController.h */,
 				241210ED1ED7EF400066B99C /* TPNoteViewController.m */,
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
@@ -1351,7 +1346,6 @@
 				245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */,
 				4D6747261F04D42E00AA67C5 /* CAPSPageMenu.m in Sources */,
 				24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */,
-				24487CAD1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m in Sources */,
 				24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */,
 				2444AC781EF265E80007CC69 /* TPNoteTemplate.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,

@@ -10,14 +10,13 @@
 #import "TPNoteServerHelper.h"
 #import "TPNoteCollectionViewCell.h"
 #import "TPNoteViewController.h"
-#import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteServer.h"
 #import "TPNote.h"
 #import "TPRefreshHeader.h"
 
 static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
-@interface TPNoteServerCollectionViewController () <UIViewControllerPreviewingDelegate> {
+@interface TPNoteServerCollectionViewController () <UIViewControllerPreviewingDelegate, TPNoteCollectionViewCellDelegate> {
     NSArray *noteArr;
 }
 
@@ -58,6 +57,15 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     });
 }
 
+#pragma mark - TPNoteCollectionViewCellDelegate
+
+- (void)didTapLikeButtonWithNote:(TPNoteServer *)note {
+    [TPNoteServerHelper commentServerNote:note withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
+        // todo
+        NSLog(@"Like!!!!!!!!!!!!!!!!!!");
+    }];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -71,7 +79,9 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell configureWithNoteServer:noteArr[indexPath.row]];
+    cell.mode = TPNoteCellRemote;
+    cell.noteServer = noteArr[indexPath.row];
+    cell.delegate = self;
     
     //注册3D Touch
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {

@@ -8,6 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, TPNoteToolbarMode){
+    TPNoteToolbarLocal      = 1,
+    TPNoteToolbarRemote     = 2,
+};
+
+typedef NS_ENUM(NSInteger, TPNoteToolbarShareMode){
+    TPNoteToolbarShareNone      = 1,
+    TPNoteToolbarShareAlready   = 2,
+};
+
+typedef NS_ENUM(NSInteger, TPNoteToolbarLikeMode){
+    TPNoteToolbarLikeNone       = 1,
+    TPNoteToolbarLikeAlready    = 2,
+};
+
+typedef NS_ENUM(NSInteger, TPNoteToolbarCollectMode){
+    TPNoteToolbarCollectNone       = 1,
+    TPNoteToolbarCollectAlready    = 2,
+};
+
+
 @protocol TPNoteToolbarDelegate <NSObject>
 
 @optional

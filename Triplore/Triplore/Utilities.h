@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, TPCategoryMode){
 typedef NS_ENUM(NSInteger, TPNoteMode){
     TPNewNote     = 1,
     TPOldNote     = 2,
+    
 };
 
 @interface Utilities : NSObject
