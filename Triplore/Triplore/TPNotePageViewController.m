@@ -8,6 +8,7 @@
 
 #import "TPNotePageViewController.h"
 #import "TPNoteCollectionViewController.h"
+#import "TPNoteServerCollectionViewController.h"
 #import "CAPSPageMenu.h"
 
 @interface TPNotePageViewController ()
@@ -33,7 +34,7 @@
     
     
     UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteCollectionViewController *controller1 = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout1];
+    TPNoteServerCollectionViewController *controller1 = [[TPNoteServerCollectionViewController alloc] initWithCollectionViewLayout:layout1];
     controller1.title = @"推荐";
     
     UICollectionViewFlowLayout *layout2 = [[UICollectionViewFlowLayout alloc] init];

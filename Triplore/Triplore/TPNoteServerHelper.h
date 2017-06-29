@@ -21,6 +21,14 @@
 + (void)uploadNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString * _Nullable serverID, NSError *_Nullable error))completionBlock;
 
 /**
+ 更新服务器上的笔记
+
+ @param note 笔记模型
+ @param completionBlock 回调块
+ */
++ (void)updateNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
+
+/**
  得到所有的笔记
 
  @param completionBlock 回调块
@@ -28,10 +36,18 @@
 + (void)loadServerNotesStartWith:(NSUInteger)start withSize:(NSUInteger)size withBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError *_Nullable error))completionBlock;
 
 /**
+ 删除笔记
+
+ @param note 笔记模型
+ @param completionBlock 回调块
+ */
++ (void)deleteNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
+
+/**
  评论笔记
 
  @param note 笔记模型
- @param isLike 是否喜欢？赞 or 踩
+ @param isLike 是否喜欢
  @param completionBlock 回调块
  */
 + (void)commentNote:(TPNoteServer *_Nonnull)note withIsLike:(BOOL)isLike withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;

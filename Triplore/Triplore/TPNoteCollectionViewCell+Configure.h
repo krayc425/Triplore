@@ -9,9 +9,12 @@
 #import "TPNoteCollectionViewCell.h"
 
 @class TPNote;
+@class TPNoteServer;
 
 @interface TPNoteCollectionViewCell (Configure)
 
 - (void)configureWithNote:(TPNote *)note;
+
+- (void)configureWithNoteServer:(TPNoteServer *)noteServer;
 
 @end

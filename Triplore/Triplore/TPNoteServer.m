@@ -19,7 +19,6 @@
     if(self) {
         self.title = note.title;
         self.like = @0;
-        self.dislike = @0;
         self.views = [NSKeyedArchiver archivedDataWithRootObject:note.views];
         self.videoDict = [TPVideoManager fetchVideoWithID:note.videoid].dict;
     }
@@ -29,16 +28,13 @@
 - (instancetype)initWithAVObject:(AVObject *)object{
     self = [super init];
     if(self) {
+        self.views = [[AVFile fileWithURL:[object objectForKey:@"views"]] getData];
         self.title = (NSString *)[object objectForKey:@"title"];
         self.like = (NSNumber *)[object objectForKey:@"like"];
-        self.dislike = (NSNumber *)[object objectForKey:@"dislike"];
         self.noteServerID = object.objectId;
-        AVFile *viewsFile = (AVFile *)[object objectForKey:@"views"];
-        self.views = [viewsFile getData];
         self.videoDict = (NSDictionary *)[object objectForKey:@"videoDict"];
     }
     return self;
 }
-
 
 @end

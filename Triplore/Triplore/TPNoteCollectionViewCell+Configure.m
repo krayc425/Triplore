@@ -7,7 +7,9 @@
 //
 
 #import "TPNoteCollectionViewCell+Configure.h"
+#import "TPNoteServer.h"
 #import "TPNote.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation TPNoteCollectionViewCell (Configure)
 
@@ -40,6 +42,11 @@
             hasImage = NO;
         }
     }
+}
+
+- (void)configureWithNoteServer:(TPNoteServer *)noteServer{
+    TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteServer];
+    [self configureWithNote:note];
 }
 
 @end

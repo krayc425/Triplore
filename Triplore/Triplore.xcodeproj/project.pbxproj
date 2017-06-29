@@ -60,6 +60,7 @@
 		245E5C931EE4510C00448986 /* TPVideoProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */; };
 		247B7D2B1EF5861F00FC5BF1 /* TPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
+		2498EB451F04DF6700291F64 /* TPNoteServerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */; };
 		24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */; };
 		24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */; };
 		24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */; };
@@ -279,6 +280,8 @@
 		247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshHeader.m; sourceTree = "<group>"; };
 		2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extend.h"; sourceTree = "<group>"; };
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
+		2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteServerCollectionViewController.h; sourceTree = "<group>"; };
+		2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServerCollectionViewController.m; sourceTree = "<group>"; };
 		24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Triplore-Bridging-Header.h"; sourceTree = "<group>"; };
 		24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragableTableExtension.swift; sourceTree = "<group>"; };
 		24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSerifCN-Regular.otf"; sourceTree = "<group>"; };
@@ -775,6 +778,8 @@
 				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
 				24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */,
 				24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */,
+				2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */,
+				2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */,
 				241210EC1ED7EF400066B99C /* TPNoteViewController.h */,
 				241210ED1ED7EF400066B99C /* TPNoteViewController.m */,
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
@@ -1078,7 +1083,7 @@
 					};
 					797C8388D8C8BBE00F20B818DD62D32B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 49PM32K82W;
+						DevelopmentTeam = VEBQ28K9EA;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1309,6 +1314,7 @@
 				247B7D2B1EF5861F00FC5BF1 /* TPRefreshHeader.m in Sources */,
 				245E5C911EE4510200448986 /* TPVideoProgressBar.m in Sources */,
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
+				2498EB451F04DF6700291F64 /* TPNoteServerCollectionViewController.m in Sources */,
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
 				24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */,
 				24CF35361F03E0C700C11EF6 /* TPNoteServer.m in Sources */,
@@ -1377,7 +1383,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1396,7 +1402,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = sorumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1495,7 +1501,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 49PM32K82W;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1514,7 +1520,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = sorumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

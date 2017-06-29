@@ -14,6 +14,7 @@
 #import "TPVideoSingleTableViewCell.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "MJRefreshAutoGifFooter.h"
+#import "SVProgressHUD.h"
 
 static NSString *singleCellIdentifier = @"TPVideoSingleTableViewCell";
 static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
@@ -59,16 +60,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (void)clearRecent{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:[TPVideoManager clearRecentRecord] ? @"清空成功" : @"清空失败"
-                                                                    message:nil
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                            [self.navigationController popViewControllerAnimated:YES];
-                                                        }];
-    [alertC addAction:okAction];
-    [self presentViewController:alertC animated:YES completion:nil];
+    if ([TPVideoManager clearRecentRecord]) {
+        [SVProgressHUD showSuccessWithStatus:@"清空成功"];
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"清空失败"];
+    }
+    [SVProgressHUD dismissWithDelay:2.0 completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark - Table view data source

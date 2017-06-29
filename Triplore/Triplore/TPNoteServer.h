@@ -11,13 +11,15 @@
 @class TPNote;
 @class AVObject;
 
+/**
+ 服务器上的笔记模型
+ */
 @interface TPNoteServer : NSObject
 
 @property (nonatomic, copy, nonnull) NSString *noteServerID;
 @property (nonatomic, copy, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSNumber *like;
-@property (nonatomic, nonnull) NSNumber *dislike;
-@property (nonatomic, nonnull) NSData *views;
+@property (nonatomic, nullable) NSData *views;
 @property (nonatomic, nonnull) NSDictionary *videoDict;
 
 - (instancetype _Nonnull)initWithTPNote:(TPNote *_Nonnull)note;

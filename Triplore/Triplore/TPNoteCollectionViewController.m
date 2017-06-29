@@ -35,7 +35,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
 
-
     UINib *nib = [UINib nibWithNibName:@"TPNoteCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
 }
@@ -129,7 +128,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
+    [self.parentNavigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZNEmptyTableViewDelegate

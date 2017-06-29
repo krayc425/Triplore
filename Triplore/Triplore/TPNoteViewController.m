@@ -26,6 +26,7 @@
 
 #import "TPNoteServerHelper.h"
 #import "TPNoteServer.h"
+#import "SVProgressHUD.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
@@ -77,66 +78,11 @@
         UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
         self.navigationItem.rightBarButtonItem = saveButtonItem;
     }else{
-//        //老的 Note，查看模式
-//        
-//        //底下按钮
-//        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-//        [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
-//        [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
-//        UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-//        [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
-//        [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-//        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
-//        [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
-//        UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
-//                                                                                                            CGRectGetHeight(self.tableView.bounds),
-//                                                                                                            CGRectGetWidth(self.view.bounds),
-//                                                                                                            TOOLBAR_HEIGHT)];
-//        [buttonStack addArrangedSubview:deleteButton];
-//        [buttonStack addArrangedSubview:videoButton];
-//        [buttonStack addArrangedSubview:exportButton];
-//        buttonStack.axis = UILayoutConstraintAxisHorizontal;
-//        buttonStack.alignment = UIStackViewAlignmentFill;
-//        buttonStack.distribution = UIStackViewDistributionFillEqually;
-//        [self.view addSubview:buttonStack];
-        
-        
-//<<<<<<< HEAD
         // add tool bar
         CGSize size = self.navigationController.view.frame.size;
         self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height-44, size.width, 44)];
         self.buttonBar.delegate = self;
         [self.navigationController.view addSubview:_buttonBar];
-
-//=======
-//        UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-//        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
-//        [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
-//        UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
-//                                                                                                            CGRectGetHeight(self.tableView.bounds),
-//                                                                                                            CGRectGetWidth(self.view.bounds),
-//                                                                                                            TOOLBAR_HEIGHT)];
-//        [buttonStack addArrangedSubview:deleteButton];
-//        [buttonStack addArrangedSubview:videoButton];
-//        [buttonStack addArrangedSubview:exportButton];
-//        buttonStack.axis = UILayoutConstraintAxisHorizontal;
-//        buttonStack.alignment = UIStackViewAlignmentFill;
-//        buttonStack.distribution = UIStackViewDistributionFillEqually;
-//        [self.view addSubview:buttonStack];
-//        
-//#warning TODO temporarily
-//        UIButton *uploadButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 44,
-//                                                                          20,
-//                                                                          24,
-//                                                                          24)];
-//        uploadButton.tintColor = [UIColor whiteColor];
-//        [uploadButton setImage:[[UIImage imageNamed:@"NOTE_SAVE"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-//        [uploadButton addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
-//        UIBarButtonItem *uploadItem = [[UIBarButtonItem alloc] initWithCustomView:uploadButton];
-//        self.navigationItem.rightBarButtonItem = uploadItem;
-//>>>>>>> 8c06ce36285d66e74c1ba24e053112ad01985f02
     }
     
     segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
@@ -149,18 +95,6 @@
     self.navigationItem.titleView = segment;
 }
 
-- (void)uploadAction{
-    TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
-    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
-        if(succeed) {
-            [TPNoteManager updateNote:self.note withServerID:serverID];
-            NSLog(@"上传成功");
-        }else{
-            NSLog(@"上传失败");
-        }
-    }];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -169,15 +103,29 @@
     [self.tabBarController.tabBar setHidden:YES];
     [self reloadShowViews];
     
+    [_buttonBar setHidden:NO];
     
-    [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
-        [noteServers enumerateObjectsUsingBlock:^(TPNoteServer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSLog(@"Note ID : %@", obj.noteServerID);
-            [TPNoteServerHelper commentNote:obj withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
-                NSLog(@"Commect success %d", succeed);
-            }];
-        }];
-    }];
+//    NSMutableArray *arr = [[NSMutableArray alloc] init];
+//    
+//    [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
+//        
+//        [arr addObjectsFromArray:noteServers];
+//        
+//        [noteServers enumerateObjectsUsingBlock:^(TPNoteServer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            NSLog(@"Note ID : %@", obj.noteServerID);
+//            [TPNoteServerHelper commentNote:obj withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
+//                NSLog(@"Commect success %d", succeed);
+//            }];
+//        }];
+//        
+//        
+//        [TPNoteServerHelper deleteNote:arr[0] withBlock:^(BOOL succeed, NSError * _Nullable error) {
+//            if(succeed) {
+//                NSLog(@"删除成功");
+//            }
+//        }];
+//    }];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -185,6 +133,7 @@
         [self saveNote];
     }
     [self.tabBarController.tabBar setHidden:NO];
+    [_buttonBar setHidden:YES];
 }
 
 - (void)reloadShowViews{
@@ -211,7 +160,6 @@
 }
 
 - (void)didTapShareButton:(UIButton *)button {
-    // todo
     [self uploadAction];
 }
 
@@ -276,39 +224,39 @@
     
     [[TPNoteCreator shareInstance] clearNoteView];
     
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:success ? @"保存成功" : @"保存失败"
-                                                                    message:nil
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action){
-                                                             [self.navigationController popToRootViewControllerAnimated:YES];
-                                                     }];
-    [alertC addAction:okAction];
-    [self presentViewController:alertC animated:YES completion:nil];
+    if(success){
+        [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"保存失败"];
+    }
+    [SVProgressHUD dismissWithDelay:2.0 completion:^{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+}
+
+- (void)uploadAction{
+    [SVProgressHUD showWithStatus:@"分享中"];
+    TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
+    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
+        if(succeed) {
+            [TPNoteManager updateNote:self.note withServerID:serverID];
+            [SVProgressHUD showSuccessWithStatus:@"分享成功"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"分享失败"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        }
+    }];
 }
 
 - (void)deleteNote{
     if ([TPNoteManager deleteNoteWithID:self.note.noteid]) {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"删除成功"
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"好的"
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction * _Nonnull action) {
-                                                                [self.navigationController popViewControllerAnimated:YES];
-                                                            }];
-        [alertC addAction:albumAction];
-        [self presentViewController:alertC animated:YES completion:nil];
+        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+        [SVProgressHUD dismissWithDelay:2.0 completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }else{
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"删除失败"
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-        [alertC addAction:okAction];
-        [self presentViewController:alertC animated:YES completion:nil];
+        [SVProgressHUD showErrorWithStatus:@"删除失败"];
     }
 }
 

@@ -23,6 +23,7 @@
 #import "Triplore-Swift.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "TPPlayTutorialViewController.h"
+#import "SVProgressHUD.h"
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
@@ -467,16 +468,8 @@
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(noteArr.count <= 0){
         NSLog(@"没有 View");
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"您的笔记内容为空"
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             
-                                                         }];
-        [alertC addAction:okAction];
-        [self presentViewController:alertC animated:YES completion:nil];
+        [SVProgressHUD showInfoWithStatus:@"您的笔记内容为空"];
+        [SVProgressHUD dismissWithDelay:2.0];
         return;
     }
     

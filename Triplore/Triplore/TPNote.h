@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "TPNoteTemplate.h"
 
+@class TPNoteServer;
+
 /**
  存入数据库的 Note 模型
  */
@@ -21,5 +23,7 @@
 @property (nonatomic, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSMutableArray<UIView *> *views;
 @property (nonatomic) TPNoteTemplateNumber templateNum;
+
+- (id _Nonnull )initWithTPNoteServer:(TPNoteServer *_Nonnull)noteServer;
 
 @end
