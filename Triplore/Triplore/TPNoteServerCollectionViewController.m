@@ -63,6 +63,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [TPNoteServerHelper commentServerNote:note withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
         // todo
         NSLog(@"Like!!!!!!!!!!!!!!!!!!");
+        
     }];
 }
 

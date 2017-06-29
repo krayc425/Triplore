@@ -40,7 +40,7 @@
 
  @param completionBlock 回调块
  */
-+ (void)loadFavoriteServerNotesWithBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError *_Nullable error))completionBlock;
++ (void)loadFavoriteServerNotesWithBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nullable noteServers, NSError *_Nullable error))completionBlock;
 
 /**
  删除笔记
@@ -74,5 +74,21 @@
  @param completionBlock 回调块
  */
 + (void)cancelFavoriteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
+
+/**
+ 笔记是不是喜欢的
+
+ @param note 笔记模型
+ @return 是否喜欢
+ */
++ (BOOL)isLikeServerNote:(TPNoteServer *_Nonnull)note;
+
+/**
+ 笔记是不是收藏的
+
+ @param note 笔记模型
+ @return 是否收藏
+ */
++ (BOOL)isFavoriteServerNote:(TPNoteServer *_Nonnull)note;
 
 @end
