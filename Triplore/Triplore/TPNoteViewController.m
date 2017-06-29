@@ -22,12 +22,13 @@
 #import "TPNoteTemplateFactory.h"
 #import "Triplore-Swift.h"
 #import "TPNoteCreator.h"
+#import "TPNoteToolbar.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 60
 
-@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate, DragableTableDelegate>
-
+@interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate, DragableTableDelegate, TPNoteToolbarDelegate>
+@property (nonatomic, strong) TPNoteToolbar *buttonBar;
 @property (nonnull, nonatomic) UITableView *tableView;
 
 @end
@@ -73,30 +74,38 @@
         UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
         self.navigationItem.rightBarButtonItem = saveButtonItem;
     }else{
-        //老的 Note，查看模式
+//        //老的 Note，查看模式
+//        
+//        //底下按钮
+//        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+//        [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
+//        [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
+//        UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+//        [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
+//        [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+//        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
+//        [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
+//        UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
+//                                                                                                            CGRectGetHeight(self.tableView.bounds),
+//                                                                                                            CGRectGetWidth(self.view.bounds),
+//                                                                                                            TOOLBAR_HEIGHT)];
+//        [buttonStack addArrangedSubview:deleteButton];
+//        [buttonStack addArrangedSubview:videoButton];
+//        [buttonStack addArrangedSubview:exportButton];
+//        buttonStack.axis = UILayoutConstraintAxisHorizontal;
+//        buttonStack.alignment = UIStackViewAlignmentFill;
+//        buttonStack.distribution = UIStackViewDistributionFillEqually;
+//        [self.view addSubview:buttonStack];
         
-        //底下按钮
-        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [deleteButton setImage:[UIImage imageNamed:@"NOTE_DELETE"] forState:UIControlStateNormal];
-        [deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
-        UIButton *videoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [videoButton setImage:[UIImage imageNamed:@"NOTE_VIDEO"] forState:UIControlStateNormal];
-        [videoButton addTarget:self action:@selector(videoAction) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton *exportButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [exportButton setImage:[UIImage imageNamed:@"NOTE_EXPORT"] forState:UIControlStateNormal];
-        [exportButton addTarget:self action:@selector(exportAlbumAction) forControlEvents:UIControlEventTouchUpInside];
-        UIStackView *buttonStack = [[UIStackView alloc] initWithFrame:CGRectMake(0,
-                                                                                                            CGRectGetHeight(self.tableView.bounds),
-                                                                                                            CGRectGetWidth(self.view.bounds),
-                                                                                                            TOOLBAR_HEIGHT)];
-        [buttonStack addArrangedSubview:deleteButton];
-        [buttonStack addArrangedSubview:videoButton];
-        [buttonStack addArrangedSubview:exportButton];
-        buttonStack.axis = UILayoutConstraintAxisHorizontal;
-        buttonStack.alignment = UIStackViewAlignmentFill;
-        buttonStack.distribution = UIStackViewDistributionFillEqually;
-        [self.view addSubview:buttonStack];
+        // add tool bar
+        CGSize size = self.navigationController.view.frame.size;
+        self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height-44, size.width, 44)];
+        self.buttonBar.delegate = self;
+        [self.navigationController.view addSubview:_buttonBar];
+
     }
     
     segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
@@ -132,6 +141,24 @@
     self.view.backgroundColor = template.tem_color;
     self.tableView.backgroundColor = template.tem_color;
     [self.tableView reloadData];
+}
+
+#pragma mark - TPNoteToolBarDelegate 
+
+- (void)didTapDeleteButton:(UIButton *)button {
+    [self deleteAction];
+}
+
+- (void)didTapVideoButton:(UIButton *)button {
+    [self videoAction];
+}
+
+- (void)didTapExportButton:(UIButton *)button {
+    [self exportAlbumAction];
+}
+
+- (void)didTapShareButton:(UIButton *)button {
+    // todo
 }
 
 #pragma mark - Button Action
