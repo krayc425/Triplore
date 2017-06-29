@@ -89,6 +89,12 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [self.parentNavigationController pushViewController:noteVC animated:YES];
 }
 
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat width = (CGRectGetWidth(self.view.frame) - 30) / 2;
+    return CGSizeMake(width, width/16*9 + 107);
+}
+
 #pragma mark - UIViewControllerPreviewingDelegate
 
 - (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{

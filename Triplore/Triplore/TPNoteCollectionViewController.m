@@ -89,7 +89,8 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((CGRectGetWidth(self.view.frame) - 30) / 2, (CGRectGetWidth(self.view.frame) - 30) / 2);
+    CGFloat width = (CGRectGetWidth(self.view.frame) - 30) / 2;
+    return CGSizeMake(width, width/16*9 + 82);
 }
 
 //每一个分组的上左下右间距

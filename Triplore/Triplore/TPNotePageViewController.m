@@ -68,7 +68,7 @@
                                  CAPSPageMenuOptionSelectionIndicatorHeight: @(2)
                                  };
     
-    _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
+    _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height-40) options:parameters];
     [self.view addSubview:_pageMenu.view];
    
 //    _pageMenu.menuScrollView.layer.shadowColor = [UIColor grayColor].CGColor;
