@@ -10,6 +10,8 @@
 
 @interface TPNoteCollectionViewController : UICollectionViewController
 
+@property (nonatomic, strong) UINavigationController *parentNavigationController;
+
 - (void)loadNotes;
 
 @end

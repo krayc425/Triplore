@@ -86,7 +86,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [noteVC setNote:note];
     [noteVC setNoteMode:TPOldNote];
     
-    [self.navigationController pushViewController:noteVC animated:YES];
+    [self.parentNavigationController pushViewController:noteVC animated:YES];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

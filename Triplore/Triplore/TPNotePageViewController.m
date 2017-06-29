@@ -47,12 +47,16 @@
     
     NSArray *controllerArray = @[controller1, controller2, controller3];
     
+    for (TPNoteCollectionViewController *controller in controllerArray) {
+        controller.parentNavigationController = self.navigationController;
+    }
     
     NSDictionary *parameters = @{
                                  CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor whiteColor],
                                  CAPSPageMenuOptionViewBackgroundColor: [UIColor whiteColor],
                                  CAPSPageMenuOptionSelectionIndicatorColor: TPColor,
                                  CAPSPageMenuOptionSelectedMenuItemLabelColor: TPColor,
+                                 CAPSPageMenuOptionAddBottomMenuHairline: @(NO),
                                  CAPSPageMenuOptionMenuItemWidth: @(54),
                                  CAPSPageMenuOptionMenuHeight: @(40),
                                  CAPSPageMenuOptionMenuMargin: @(20),
@@ -60,10 +64,18 @@
 //                                 CAPSPageMenuOptionMenuItemWidthBasedOnTitleTextWidth: @(YES),
                                  CAPSPageMenuOptionCenterMenuItems: @(YES),
                                  CAPSPageMenuOptionMenuItemFont: [UIFont systemFontOfSize:14.0f],
+                                 CAPSPageMenuOptionSelectionIndicatorHeight: @(2)
                                  };
     
     _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
     [self.view addSubview:_pageMenu.view];
+   
+//     _pageMenu.menuScrollView.backgroundColor = [UIColor grayColor];
+    _pageMenu.menuScrollView.layer.shadowColor = [UIColor grayColor].CGColor;
+    _pageMenu.menuScrollView.layer.shadowOffset = CGSizeMake(0, 0);
+    _pageMenu.menuScrollView.layer.shadowRadius = 4;
+    _pageMenu.menuScrollView.layer.shadowOpacity = 0.3;
+
 
 }
 
