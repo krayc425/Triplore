@@ -14,7 +14,6 @@
 #import "PYSearchViewController.h"
 #import "TPNetworkHelper.h"
 #import "TPVideoModel.h"
-
 #import "TPRefreshHeader.h"
 
 @interface TPSelectionTableViewController () <PYSearchViewControllerDelegate,TPSelectionSliderTableViewCellDelegate, TPCityVideoTableViewCellDelegate>{
@@ -49,7 +48,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
-    
     UINib *nib1 = [UINib nibWithNibName:@"TPSelectionSliderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib1 forCellReuseIdentifier:cellIdentifier];
     
@@ -57,7 +55,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     [self.tableView registerNib:nib2 forCellReuseIdentifier:videoCellIdentifier];
     
     [self startRequest];
-    
     
     // header
     TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(startRequest)];

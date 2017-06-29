@@ -29,7 +29,7 @@
 #import "SVProgressHUD.h"
 
 #define STACK_SPACING 20
-#define TOOLBAR_HEIGHT 60
+#define TOOLBAR_HEIGHT 44
 
 @interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate, DragableTableDelegate, TPNoteToolbarDelegate>
 @property (nonatomic, strong) TPNoteToolbar *buttonBar;
@@ -80,7 +80,7 @@
     }else{
         // add tool bar
         CGSize size = self.navigationController.view.frame.size;
-        self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height-44, size.width, 44)];
+        self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height - TOOLBAR_HEIGHT, size.width, TOOLBAR_HEIGHT)];
         self.buttonBar.delegate = self;
         [self.navigationController.view addSubview:_buttonBar];
     }
@@ -104,28 +104,6 @@
     [self reloadShowViews];
     
     [_buttonBar setHidden:NO];
-    
-//    NSMutableArray *arr = [[NSMutableArray alloc] init];
-//    
-//    [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
-//        
-//        [arr addObjectsFromArray:noteServers];
-//        
-//        [noteServers enumerateObjectsUsingBlock:^(TPNoteServer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSLog(@"Note ID : %@", obj.noteServerID);
-//            [TPNoteServerHelper commentNote:obj withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
-//                NSLog(@"Commect success %d", succeed);
-//            }];
-//        }];
-//        
-//        
-//        [TPNoteServerHelper deleteNote:arr[0] withBlock:^(BOOL succeed, NSError * _Nullable error) {
-//            if(succeed) {
-//                NSLog(@"删除成功");
-//            }
-//        }];
-//    }];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -139,7 +117,8 @@
 - (void)reloadShowViews{
     self.note.templateNum = segment.selectedSegmentIndex;
     template = [TPNoteTemplateFactory getTemplateOfNum:self.note.templateNum];
-    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note andTemplate:template]];
+    showViews = [NSMutableArray arrayWithArray:[TPNoteDecorator getNoteViews:self.note
+                                                                 andTemplate:template]];
     self.view.backgroundColor = template.tem_color;
     self.tableView.backgroundColor = template.tem_color;
     [self.tableView reloadData];

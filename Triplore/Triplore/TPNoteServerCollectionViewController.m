@@ -11,7 +11,9 @@
 #import "TPNoteCollectionViewCell.h"
 #import "TPNoteViewController.h"
 #import "TPNoteCollectionViewCell+Configure.h"
+#import "TPNoteServer.h"
 #import "TPNote.h"
+#import "TPRefreshHeader.h"
 
 static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
@@ -27,6 +29,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadNotes];
+    
+    // header
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNotes)];
+    self.collectionView.mj_header = header;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +48,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
         noteArr = [NSArray arrayWithArray:noteServers];
         NSLog(@"Load finished, %d notes", noteArr.count);
+        [self.collectionView.mj_header endRefreshing];
         [self.collectionView reloadData];
     }];
 }
@@ -73,10 +80,11 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
-    
-    TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteArr[indexPath.row]];
+    TPNoteServer *noteServer = noteArr[indexPath.row];
+    TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteServer];
     [noteVC setNote:note];
     [noteVC setNoteMode:TPNewNote];
+    [noteVC setVideoDict:noteServer.videoDict];
     
     [self.parentNavigationController pushViewController:noteVC animated:YES];
 }

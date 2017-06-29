@@ -43,7 +43,6 @@ static CGFloat WRAPPER_HEIGHT = 60;
     self.cloudView4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CLOUD"]];
     self.cloudView5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CLOUD"]];
     
-    
     [self.wrapperView addSubview:self.cloudView1];
     [self.wrapperView addSubview:self.cloudView2];
     [self.wrapperView addSubview:self.cloudView3];
@@ -58,7 +57,7 @@ static CGFloat WRAPPER_HEIGHT = 60;
     self.label.textColor = [UIColor lightGrayColor];
     self.label.font = [UIFont systemFontOfSize:14];
     self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.text = @"下拉刷新视频";
+    self.label.text = @"下拉刷新";
     [self addSubview:self.label];
 }
 
@@ -114,7 +113,7 @@ static CGFloat WRAPPER_HEIGHT = 60;
             break;
             
         case MJRefreshStateNoMoreData:
-            self.label.text = @"没有视频了";
+            self.label.text = @"没有了";
             [self.label setHidden:NO];
             [self.wrapperView setHidden:YES];
             break;

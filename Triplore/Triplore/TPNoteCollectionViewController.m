@@ -128,7 +128,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-    [self.parentNavigationController pushViewController:viewControllerToCommit animated:YES];
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZNEmptyTableViewDelegate
