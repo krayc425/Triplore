@@ -57,7 +57,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     });
 }
 
-
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
