@@ -65,6 +65,11 @@
     return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET serverid = ? WHERE noteid = ?;", serverid, @(note.noteid)];
 }
 
++ (BOOL)hasUploadedToServer:(TPNote *)note{
+    NSString *serverid = [[[[DBManager shareInstance] getDB] executeQuery:@"SELECT noteid FROM t_note WHERE noteid = ?", @(note.noteid)] stringForColumn:0];
+    return !(serverid == NULL || [serverid isEqualToString:@""]);
+}
+
 + (NSInteger)countNoteNumbers{
     return [[self fetchAllNotes] count];
 }

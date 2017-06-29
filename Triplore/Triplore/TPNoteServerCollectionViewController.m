@@ -27,10 +27,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadNotes];
     
     // header
-    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNotes)];
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self
+                                                         refreshingAction:@selector(loadNotes)];
     self.collectionView.mj_header = header;
 }
 
@@ -41,6 +41,8 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    
+    [self loadNotes];
 }
 
 - (void)loadNotes{
@@ -90,6 +92,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [noteVC setNote:note];
     [noteVC setNoteMode:TPRemoteNote];
     [noteVC setVideoDict:noteServer.videoDict];
+    [noteVC setNoteServer:noteServer];
     
     [self.parentNavigationController pushViewController:noteVC animated:YES];
 }

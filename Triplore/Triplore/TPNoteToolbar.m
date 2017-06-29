@@ -97,11 +97,10 @@
 
 }
 
-
 - (void)setIsLike:(BOOL)isLike {
     _isLike = isLike;
-    [self.likeButton setImage:[UIImage imageNamed:isLike ? @"NOTE_LIKE_FULL" : @"NOTE_LIKE"] forState:UIControlStateNormal];
-    [self.likeButton setTitle:[NSString stringWithFormat:isLike ? @"已赞 · %d" : @"赞 · %d", self.likeCount] forState:UIControlStateNormal];
+    [self.likeButton setImage:[UIImage imageNamed:_isLike ? @"NOTE_LIKE_FULL" : @"NOTE_LIKE"] forState:UIControlStateNormal];
+    [self.likeButton setTitle:[NSString stringWithFormat:_isLike ? @"已赞 · %d" : @"赞 · %d", self.likeCount] forState:UIControlStateNormal];
 }
 
 - (void)setIsCollect:(BOOL)isCollect {
@@ -143,7 +142,6 @@
     if ([_delegate respondsToSelector:@selector(didTapDeleteButton:)]) {
         [_delegate didTapDeleteButton:button];
     }
-    
 }
 
 - (void)videoButtonDidTap:(UIButton *)button {

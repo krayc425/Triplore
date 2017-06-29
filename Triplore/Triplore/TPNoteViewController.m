@@ -32,6 +32,7 @@
 #define TOOLBAR_HEIGHT 44
 
 @interface TPNoteViewController () <UITableViewDelegate, UITableViewDataSource, TPAddNoteViewDelegate, DragableTableDelegate, TPNoteToolbarDelegate>
+
 @property (nonatomic, strong) TPNoteToolbar *buttonBar;
 @property (nonnull, nonatomic) UITableView *tableView;
 
@@ -82,16 +83,20 @@
         CGSize size = self.navigationController.view.frame.size;
         self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height - TOOLBAR_HEIGHT, size.width, TOOLBAR_HEIGHT)];
         self.buttonBar.delegate = self;
-        [self.navigationController.view addSubview:self.buttonBar];
-        
         if(self.noteMode == TPOldNote){
             self.buttonBar.mode = TPNoteToolbarLocal;
         } else if (self.noteMode == TPRemoteNote) {
             self.buttonBar.mode = TPNoteToolbarRemote;
+            
+            [self.buttonBar setLikeCount:self.noteServer.like.integerValue];
+            
+            [self.buttonBar setIsCollect:[TPNoteServerHelper isFavoriteServerNote:self.noteServer.noteServerID]];
+            [self.buttonBar setIsLike:[TPNoteServerHelper isLikeServerNote:self.noteServer.noteServerID]];
         }
+        [self.navigationController.view addSubview:self.buttonBar];
     }
     
-    segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
+    segment = [[UISegmentedControl alloc] initWithItems:@[@"清新绿", @"活力棕"]];
     if(self.note.templateNum == 0){
         [segment setSelectedSegmentIndex:0];
     }else{
@@ -150,16 +155,48 @@
 
 - (void)didTapLikeButton:(UIButton *)button {
     // todo
-    self.buttonBar.isLike = YES;
+    BOOL changeToLike = ![TPNoteServerHelper isLikeServerNote:self.noteServer.noteServerID];
+    [self.buttonBar setIsLike:changeToLike];
+    
+    [TPNoteServerHelper commentServerNote:self.noteServer withIsLike:changeToLike withBlock:^(BOOL succeed, NSError * _Nullable error) {
+        if(succeed){
+            NSLog(@"点赞成功");
+            [self.buttonBar setLikeCount:self.buttonBar.likeCount + (changeToLike ? 1 : -1)];
+        }else{
+            NSLog(@"点赞失败");
+            self.buttonBar.isLike = !changeToLike;
+        }
+    }];
 }
 
 - (void)didTapCollectButton:(UIButton *)button {
-    // todo
-    self.buttonBar.isCollect = YES;
+    BOOL changeToCollect = ![TPNoteServerHelper isFavoriteServerNote:self.noteServer.noteServerID];
+    [self.buttonBar setIsCollect:changeToCollect];
+    
+    if(changeToCollect){
+        [TPNoteServerHelper favoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
+            if(succeed){
+                NSLog(@"收藏成功");
+            }else{
+                NSLog(@"收藏失败");
+                self.buttonBar.isLike = !changeToCollect;
+            }
+        }];
+    }else{
+        [TPNoteServerHelper cancelFavoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
+            if(succeed){
+                NSLog(@"取消收藏成功");
+            }else{
+                NSLog(@"取消收藏失败");
+                self.buttonBar.isCollect = !changeToCollect;
+            }
+        }];
+    }
 }
 
 - (void)didTapAddButton:(UIButton *)button {
     // todo
+    [self saveNoteAction];
 }
 
 #pragma mark - Button Action
@@ -202,7 +239,7 @@
     BOOL success = NO;
     
     //新增
-    if(self.noteMode == TPNewNote){
+    if(self.noteMode == TPNewNote || self.noteMode == TPRemoteNote){
         [self.note setVideoid:self.videoDict[@"id"]];
         [self.note setTemplateNum:segment.selectedSegmentIndex];
         success = [TPNoteManager insertNote:self.note];

@@ -14,6 +14,7 @@
 @implementation TPNoteServerHelper
 
 + (void)uploadServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString *serverID, NSError *_Nullable error))completionBlock{
+    
     AVFile *noteContextFile = [AVFile fileWithData:note.views];
     [noteContextFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
@@ -87,7 +88,7 @@
             completionBlock(nil, error);
         }
     }else{
-        NSString *cql = [NSString stringWithFormat:@"select note from collect where user = ? order by updatedAt desc"];
+        NSString *cql = [NSString stringWithFormat:@"select include note from favorite where user = ? order by updatedAt desc"];
         NSArray *pVals = @[[AVUser currentUser]];
         [AVQuery doCloudQueryInBackgroundWithCQL:cql
                                          pvalues:pVals
@@ -96,8 +97,8 @@
                                                 // 操作成功
                                                 NSMutableArray *resultNoteArray = [[NSMutableArray alloc] init];
                                                 [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                    AVObject *noteObj = (AVObject *)obj;
-                                                    [resultNoteArray addObject:[[TPNoteServer alloc] initWithAVObject:noteObj]];
+                                                    AVObject *avObj = (AVObject *)obj[@"note"];
+                                                    [resultNoteArray addObject:[[TPNoteServer alloc] initWithAVObject:avObj]];
                                                 }];
                                                 if(completionBlock){
                                                     completionBlock([NSArray arrayWithArray:resultNoteArray], error);
@@ -205,7 +206,9 @@
                                                 [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                                                     
                                                     AVObject *commentObj = (AVObject *)obj;
-                                                    [AVQuery doCloudQueryWithCQL:@"delete from comment_on where objectId = ?" pvalues:@[commentObj.objectId] error:nil];
+                                                    [AVQuery doCloudQueryWithCQL:@"delete from comment_on where objectId = ?"
+                                                                         pvalues:@[commentObj.objectId]
+                                                                           error:nil];
                                                     [noteObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                                         // 原子减少查看的次数
                                                         [noteObject incrementKey:@"like" byAmount:@(-1)];
@@ -283,13 +286,13 @@
 
 #pragma mark - Helper Private Methods
 
-+ (BOOL)isLikeServerNote:(TPNoteServer *)note{
-    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:note.noteServerID];
++ (BOOL)isLikeServerNote:(NSString *_Nonnull)noteServerID{
+    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
     return [self isLike:noteObj];
 }
 
-+ (BOOL)isFavoriteServerNote:(TPNoteServer *)note{
-    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:note.noteServerID];
++ (BOOL)isFavoriteServerNote:(NSString *_Nonnull)noteServerID{
+    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
     return [self isFavorite:noteObj];
 }
 

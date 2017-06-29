@@ -10,6 +10,7 @@
 #import "Utilities.h"
 
 @class TPNote;
+@class TPNoteServer;
 
 @interface TPNoteViewController : UIViewController 
 
@@ -17,5 +18,7 @@
 
 @property (nonnull, nonatomic) TPNote *note;
 @property (nonnull, nonatomic) NSDictionary *videoDict;
+
+@property (nonnull, nonatomic) TPNoteServer *noteServer;
 
 @end

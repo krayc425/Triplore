@@ -67,4 +67,12 @@
  */
 + (BOOL)updateNote:(TPNote *_Nonnull)note withServerID:(NSString *_Nullable)serverid;
 
+/**
+ 有没有上传到服务器过
+
+ @param note 笔记模型
+ @return 是否上传过
+ */
++ (BOOL)hasUploadedToServer:(TPNote *_Nonnull)note;
+
 @end

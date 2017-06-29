@@ -78,17 +78,17 @@
 /**
  笔记是不是喜欢的
 
- @param note 笔记模型
+ @param noteServerID 笔记模型id
  @return 是否喜欢
  */
-+ (BOOL)isLikeServerNote:(TPNoteServer *_Nonnull)note;
++ (BOOL)isLikeServerNote:(NSString *_Nonnull)noteServerID;
 
 /**
  笔记是不是收藏的
 
- @param note 笔记模型
+ @param noteServerID 笔记模型id
  @return 是否收藏
  */
-+ (BOOL)isFavoriteServerNote:(TPNoteServer *_Nonnull)note;
++ (BOOL)isFavoriteServerNote:(NSString *_Nonnull)noteServerID;
 
 @end
