@@ -18,7 +18,7 @@
  @param note 笔记模型
  @param completionBlock 回调块
  */
-+ (void)uploadNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString * _Nullable serverID, NSError *_Nullable error))completionBlock;
++ (void)uploadServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString * _Nullable serverID, NSError *_Nullable error))completionBlock;
 
 /**
  更新服务器上的笔记
@@ -26,7 +26,7 @@
  @param note 笔记模型
  @param completionBlock 回调块
  */
-+ (void)updateNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
++ (void)updateServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
 
 /**
  得到所有的笔记
@@ -36,12 +36,19 @@
 + (void)loadServerNotesStartWith:(NSUInteger)start withSize:(NSUInteger)size withBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError *_Nullable error))completionBlock;
 
 /**
+ 得到我收藏的所有笔记
+
+ @param completionBlock 回调块
+ */
++ (void)loadFavoriteServerNotesWithBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError *_Nullable error))completionBlock;
+
+/**
  删除笔记
 
  @param note 笔记模型
  @param completionBlock 回调块
  */
-+ (void)deleteNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
++ (void)deleteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
 
 /**
  评论笔记
@@ -50,6 +57,22 @@
  @param isLike 是否喜欢
  @param completionBlock 回调块
  */
-+ (void)commentNote:(TPNoteServer *_Nonnull)note withIsLike:(BOOL)isLike withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
++ (void)commentServerNote:(TPNoteServer *_Nonnull)note withIsLike:(BOOL)isLike withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
+
+/**
+ 收藏笔记
+
+ @param note 笔记模型
+ @param completionBlock 回调块
+ */
++ (void)favoriteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
+
+/**
+ 取消收藏笔记
+
+ @param note 笔记模型
+ @param completionBlock 回调块
+ */
++ (void)cancelFavoriteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
 
 @end

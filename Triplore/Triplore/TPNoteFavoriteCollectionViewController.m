@@ -1,12 +1,12 @@
 //
-//  TPNoteServerCollectionViewController.m
+//  TPNoteFavoriteCollectionViewController.m
 //  Triplore
 //
 //  Created by 宋 奎熹 on 2017/6/29.
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "TPNoteServerCollectionViewController.h"
+#import "TPNoteFavoriteCollectionViewController.h"
 #import "TPNoteServerHelper.h"
 #import "TPNoteCollectionViewCell.h"
 #import "TPNoteViewController.h"
@@ -14,20 +14,25 @@
 #import "TPNoteServer.h"
 #import "TPNote.h"
 #import "TPRefreshHeader.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
+static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
 
-@interface TPNoteServerCollectionViewController () <UIViewControllerPreviewingDelegate> {
+@interface TPNoteFavoriteCollectionViewController () <UIViewControllerPreviewingDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
     NSArray *noteArr;
 }
 
 @end
 
-@implementation TPNoteServerCollectionViewController
+@implementation TPNoteFavoriteCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.collectionView.emptyDataSetSource = self;
+    self.collectionView.emptyDataSetDelegate = self;
+    
     [self loadNotes];
     
     // header
@@ -47,7 +52,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (void)loadNotes{
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
+        [TPNoteServerHelper loadFavoriteServerNotesWithBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
             noteArr = [NSArray arrayWithArray:noteServers];
             NSLog(@"Load finished, %d notes", noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -57,6 +62,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
         }];
     });
 }
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -120,14 +126,18 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - DZNEmptyTableViewDelegate
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    NSString *text = @"暂无收藏笔记";
+    
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: TPColor,
+                                 NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size:20.0]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
-*/
 
 @end

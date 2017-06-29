@@ -63,10 +63,9 @@
 
 - (void)loadUser{
     NSLog(@"Load User");
-    [TPAuthHelper currentUserWithBlock:^(AVUser * _Nonnull user) {
-        self.user = user;
-        [self.tableView reloadData];
-    }];
+    
+    self.user = [AVUser currentUser];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

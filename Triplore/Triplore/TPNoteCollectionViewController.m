@@ -10,7 +10,6 @@
 #import "TPNoteCollectionViewCell.h"
 #import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteViewController.h"
-
 #import "TPNote.h"
 #import "TPNoteManager.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
@@ -49,8 +48,13 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)loadNotes{
-    noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
-    [self.collectionView reloadData];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    });
 }
 
 #pragma mark <UICollectionViewDataSource>

@@ -42,11 +42,4 @@
     }];
 }
 
-+ (void)currentUserWithBlock:(void (^)(AVUser * _Nonnull))completionBlock {
-    AVUser *user = [AVUser currentUser];
-    if (completionBlock) {
-        completionBlock(user);
-    }
-}
-
 @end

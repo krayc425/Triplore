@@ -216,7 +216,7 @@
 - (void)uploadAction{
     [SVProgressHUD showWithStatus:@"分享中"];
     TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
-    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
+    [TPNoteServerHelper uploadServerNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
         if(succeed) {
             [TPNoteManager updateNote:self.note withServerID:serverID];
             [SVProgressHUD showSuccessWithStatus:@"分享成功"];
