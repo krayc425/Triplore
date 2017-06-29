@@ -45,12 +45,17 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)loadNotes{
-    [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
-        noteArr = [NSArray arrayWithArray:noteServers];
-        NSLog(@"Load finished, %d notes", noteArr.count);
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView reloadData];
-    }];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
+            noteArr = [NSArray arrayWithArray:noteServers];
+            NSLog(@"Load finished, %d notes", noteArr.count);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView.mj_header endRefreshing];
+                [self.collectionView reloadData];
+            });
+        }];
+    });
 }
 
 #pragma mark <UICollectionViewDataSource>

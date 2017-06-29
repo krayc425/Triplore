@@ -61,6 +61,7 @@
 		247B7D2B1EF5861F00FC5BF1 /* TPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */; };
 		2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */; };
 		2498EB451F04DF6700291F64 /* TPNoteServerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */; };
+		2498EB4B1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2498EB4A1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m */; };
 		24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */; };
 		24AF8D1C1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */; };
 		24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF8D1E1EF3C71200C9B0CD /* TPSettingsTableViewController.m */; };
@@ -282,6 +283,8 @@
 		2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extend.m"; sourceTree = "<group>"; };
 		2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteServerCollectionViewController.h; sourceTree = "<group>"; };
 		2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServerCollectionViewController.m; sourceTree = "<group>"; };
+		2498EB491F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteFavoriteCollectionViewController.h; sourceTree = "<group>"; };
+		2498EB4A1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteFavoriteCollectionViewController.m; sourceTree = "<group>"; };
 		24AF8D181EF3B8D000C9B0CD /* Triplore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Triplore-Bridging-Header.h"; sourceTree = "<group>"; };
 		24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragableTableExtension.swift; sourceTree = "<group>"; };
 		24AF8D1B1EF3C45300C9B0CD /* SourceHanSerifCN-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSerifCN-Regular.otf"; sourceTree = "<group>"; };
@@ -773,13 +776,15 @@
 				4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
 				24B8108D1ED7138900CD7DC4 /* TPNoteCollectionViewController.m */,
-				2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */,
-				2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */,
 				24B8108F1ED7139700CD7DC4 /* TPNoteCollectionViewCell.h */,
 				24B810901ED7139700CD7DC4 /* TPNoteCollectionViewCell.m */,
 				24B810911ED7139700CD7DC4 /* TPNoteCollectionViewCell.xib */,
 				24487CAB1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.h */,
 				24487CAC1EDEBD6E0009E8E5 /* TPNoteCollectionViewCell+Configure.m */,
+				2498EB431F04DF6700291F64 /* TPNoteServerCollectionViewController.h */,
+				2498EB441F04DF6700291F64 /* TPNoteServerCollectionViewController.m */,
+				2498EB491F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.h */,
+				2498EB4A1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m */,
 				241210EC1ED7EF400066B99C /* TPNoteViewController.h */,
 				241210ED1ED7EF400066B99C /* TPNoteViewController.m */,
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
@@ -1307,6 +1312,7 @@
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
 				4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */,
+				2498EB4B1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
 				4D9171551EF10C3900930372 /* TPSelectionTableViewController.m in Sources */,
 				A98BE4E1C560B68015483E3B4F7F36E9 /* TPTabBarViewController.m in Sources */,

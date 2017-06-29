@@ -1,61 +1,68 @@
 //
-//  TPNoteCollectionViewController.m
+//  TPNoteFavoriteCollectionViewController.m
 //  Triplore
 //
-//  Created by 宋 奎熹 on 2017/5/25.
+//  Created by 宋 奎熹 on 2017/6/29.
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "TPNoteCollectionViewController.h"
+#import "TPNoteFavoriteCollectionViewController.h"
+#import "TPNoteServerHelper.h"
 #import "TPNoteCollectionViewCell.h"
-#import "TPNoteCollectionViewCell+Configure.h"
 #import "TPNoteViewController.h"
+#import "TPNoteCollectionViewCell+Configure.h"
+#import "TPNoteServer.h"
 #import "TPNote.h"
-#import "TPNoteManager.h"
+#import "TPRefreshHeader.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface TPNoteCollectionViewController () <UIViewControllerPreviewingDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
 
-@end
-
-@implementation TPNoteCollectionViewController{
+@interface TPNoteFavoriteCollectionViewController () <UIViewControllerPreviewingDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
     NSArray *noteArr;
 }
 
-static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
+@end
+
+@implementation TPNoteFavoriteCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    self.collectionView.backgroundColor = TPBackgroundColor;
+    // Do any additional setup after loading the view.
     
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;
-
-    UINib *nib = [UINib nibWithNibName:@"TPNoteCollectionViewCell" bundle:nil];
-    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    
+    [self loadNotes];
+    
+    // header
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNotes)];
+    self.collectionView.mj_header = header;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    [self loadNotes];
 }
 
 - (void)loadNotes{
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-        });
+        [TPNoteServerHelper loadFavoriteServerNotesWithBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
+            noteArr = [NSArray arrayWithArray:noteServers];
+            NSLog(@"Load finished, %d notes", noteArr.count);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView.mj_header endRefreshing];
+                [self.collectionView reloadData];
+            });
+        }];
     });
 }
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -70,7 +77,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell configureWithNote:noteArr[indexPath.row]];
+    [cell configureWithNoteServer:noteArr[indexPath.row]];
     
     //注册3D Touch
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
@@ -84,30 +91,13 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
-    
-    TPNote *note = (TPNote *)noteArr[indexPath.row];
+    TPNoteServer *noteServer = noteArr[indexPath.row];
+    TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteServer];
     [noteVC setNote:note];
-    [noteVC setNoteMode:TPOldNote];
+    [noteVC setNoteMode:TPNewNote];
+    [noteVC setVideoDict:noteServer.videoDict];
     
     [self.parentNavigationController pushViewController:noteVC animated:YES];
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat width = (CGRectGetWidth(self.view.frame) - 30) / 2;
-    return CGSizeMake(width, width/16*9 + 82);
-}
-
-//每一个分组的上左下右间距
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 0, 10);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 10;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 10;
 }
 
 #pragma mark - UIViewControllerPreviewingDelegate
@@ -121,7 +111,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:(TPNoteCollectionViewCell* )[previewingContext sourceView]];
     
     TPNoteViewController *noteVC = [[TPNoteViewController alloc] init];
-    TPNote *note = (TPNote *)noteArr[indexPath.row];
+    TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteArr[indexPath.row]];
     [noteVC setNote:note];
     [noteVC setNoteMode:TPOldNote];
     noteVC.preferredContentSize = CGSizeMake(0.0f, 525.0f);
@@ -136,10 +126,11 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
+
 #pragma mark - DZNEmptyTableViewDelegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = @"没有笔记";
+    NSString *text = @"暂无收藏笔记";
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: TPColor,

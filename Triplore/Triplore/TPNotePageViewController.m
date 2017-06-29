@@ -9,6 +9,7 @@
 #import "TPNotePageViewController.h"
 #import "TPNoteCollectionViewController.h"
 #import "TPNoteServerCollectionViewController.h"
+#import "TPNoteFavoriteCollectionViewController.h"
 #import "CAPSPageMenu.h"
 
 @interface TPNotePageViewController ()
@@ -42,9 +43,8 @@
     controller2.title = @"我的";
     
     UICollectionViewFlowLayout *layout3 = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteCollectionViewController *controller3 = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout3];
+    TPNoteFavoriteCollectionViewController *controller3 = [[TPNoteFavoriteCollectionViewController alloc] initWithCollectionViewLayout:layout3];
     controller3.title = @"收藏";
-    
     
     NSArray *controllerArray = @[controller1, controller2, controller3];
     

@@ -72,57 +72,66 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (void)request {
-    [TPNetworkHelper fetchVideosByKeywords:@[@"美食", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        NSLog(@"美食 %lu", (unsigned long)videos.count);
-        if (videos.count > 1) {
-            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
-            while ([randomSet count] < 2) {
-                int r = arc4random() % [videos count];
-                [randomSet addObject:videos[r]];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [TPNetworkHelper fetchVideosByKeywords:@[@"美食", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+            NSLog(@"美食 %lu", (unsigned long)videos.count);
+            if (videos.count > 1) {
+                NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+                while ([randomSet count] < 2) {
+                    int r = arc4random() % [videos count];
+                    [randomSet addObject:videos[r]];
+                }
+                self.videosFood = [randomSet allObjects];
+                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosFood];
             }
-            self.videosFood = [randomSet allObjects];
-            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosFood];
-        }
-        doneFood = YES;
-        if([self checkBools]){
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-        }
-    }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"购物", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        NSLog(@"购物 %lu", (unsigned long)videos.count);
-        if (videos.count > 1) {
-            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
-            while ([randomSet count] < 2) {
-                int r = arc4random() % [videos count];
-                [randomSet addObject:videos[r]];
+            doneFood = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([self checkBools]){
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }
+            });
+        }];
+        [TPNetworkHelper fetchVideosByKeywords:@[@"购物", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+            NSLog(@"购物 %lu", (unsigned long)videos.count);
+            if (videos.count > 1) {
+                NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+                while ([randomSet count] < 2) {
+                    int r = arc4random() % [videos count];
+                    [randomSet addObject:videos[r]];
+                }
+                self.videosShopping = [randomSet allObjects];
+                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosShopping];
             }
-            self.videosShopping = [randomSet allObjects];
-            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosShopping];
-        }
-        doneShop = YES;
-        if([self checkBools]){
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-        }
-    }];
-    [TPNetworkHelper fetchVideosByKeywords:@[@"景点", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        NSLog(@"景点 %lu", (unsigned long)videos.count);
-        if (videos.count > 1) {
-            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
-            while ([randomSet count] < 2) {
-                int r = arc4random() % [videos count];
-                [randomSet addObject:videos[r]];
+            doneShop = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([self checkBools]){
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }
+            });
+        }];
+        [TPNetworkHelper fetchVideosByKeywords:@[@"景点", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
+            NSLog(@"景点 %lu", (unsigned long)videos.count);
+            if (videos.count > 1) {
+                NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+                while ([randomSet count] < 2) {
+                    int r = arc4random() % [videos count];
+                    [randomSet addObject:videos[r]];
+                }
+                self.videosPlace = [randomSet allObjects];
+                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosPlace];
             }
-            self.videosPlace = [randomSet allObjects];
-            self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosPlace];
-        }
-        doneView = YES;
-        if([self checkBools]){
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-        }
-    }];
+            doneView = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([self checkBools]){
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView reloadData];
+                }
+            });
+        }];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
