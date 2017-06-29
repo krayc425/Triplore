@@ -13,26 +13,31 @@
 
 - (void)decorateWithGreen{
     UIImageView *leftImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOTE_IMAGE_GREEN_1"]];
-    [leftImg setFrame:CGRectMake(-5, CGRectGetHeight(self.frame) - 40 + 5, 40, 40)];
+    [leftImg setFrame:CGRectMake(-2, CGRectGetHeight(self.frame) - 40 + 2, 40, 40)];
     UIImageView *rightImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NOTE_IMAGE_GREEN_2"]];
-    [rightImg setFrame:CGRectMake(CGRectGetWidth(self.frame) - 40 + 5, -5, 40, 40)];
+    [rightImg setFrame:CGRectMake(CGRectGetWidth(self.frame) - 40 + 2, -2, 40, 40)];
     [self addSubview:leftImg];
     [self addSubview:rightImg];
 }
 
 - (void)decorateWithBrown{
     self.backgroundColor = [UIColor whiteColor];
-    UIView *bgView = [[UIView alloc] initWithFrame:self.frame];
+    
+    CGFloat width = CGRectGetWidth(self.frame) - 20;
+    CGFloat height = CGRectGetHeight(self.frame) / CGRectGetWidth(self.frame) * width;
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width+20, height+50)];
     bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:bgView];
     UIImageView *tmpView = [[UIImageView alloc] initWithImage:self.image];
-    [tmpView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.frame) - 20, CGRectGetHeight(self.frame) - 30)];
+    [tmpView setFrame:CGRectMake(10, 10, width, height)];
     tmpView.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:tmpView];
     self.image = [UIImage new];
     self.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(2, 3);
-    self.layer.shadowOpacity = 0.7;
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowRadius = 2.0;
+    self.layer.shadowOpacity = 0.3;
 }
 
 @end

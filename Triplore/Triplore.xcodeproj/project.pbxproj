@@ -107,6 +107,8 @@
 		4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AC1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m */; };
 		4D4DF7AF1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */; };
 		4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */; };
+		4D6746F81F04971D00AA67C5 /* TPNoteToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */; };
+		4D6746FB1F049BD400AA67C5 /* TPNoteBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */; };
 		4D7E14E71F0289E50065954C /* TPAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E14E51F0289E50065954C /* TPAuthViewController.m */; };
 		4D7E14E81F0289E50065954C /* TPAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D7E14E61F0289E50065954C /* TPAuthViewController.xib */; };
 		4D9004B51EF50A90004FD8B4 /* TPSliderTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9004B41EF50A90004FD8B4 /* TPSliderTab.m */; };
@@ -347,6 +349,10 @@
 		4D4DF7AD1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPVideoEpisodeTableViewCell.xib; sourceTree = "<group>"; };
 		4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+URL.h"; sourceTree = "<group>"; };
 		4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+URL.m"; sourceTree = "<group>"; };
+		4D6746F61F04971D00AA67C5 /* TPNoteToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteToolbar.h; sourceTree = "<group>"; };
+		4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteToolbar.m; sourceTree = "<group>"; };
+		4D6746F91F049BD400AA67C5 /* TPNoteBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteBarButton.h; sourceTree = "<group>"; };
+		4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteBarButton.m; sourceTree = "<group>"; };
 		4D7E14E41F0289E50065954C /* TPAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAuthViewController.h; sourceTree = "<group>"; };
 		4D7E14E51F0289E50065954C /* TPAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAuthViewController.m; sourceTree = "<group>"; };
 		4D7E14E61F0289E50065954C /* TPAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAuthViewController.xib; sourceTree = "<group>"; };
@@ -764,6 +770,10 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
+				4D6746F61F04971D00AA67C5 /* TPNoteToolbar.h */,
+				4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */,
+				4D6746F91F049BD400AA67C5 /* TPNoteBarButton.h */,
+				4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -1261,6 +1271,7 @@
 				24487C4B1EDDB3020009E8E5 /* TPPlayViewController.m in Sources */,
 				24B810921ED7139700CD7DC4 /* TPNoteCollectionViewCell.m in Sources */,
 				24B8108A1ED700C900CD7DC4 /* TPMeTableViewController.m in Sources */,
+				4D6746F81F04971D00AA67C5 /* TPNoteToolbar.m in Sources */,
 				245BD09E1EE5BB27002CA7AC /* TPSiteHelper.m in Sources */,
 				4D4DF7931EE104920012F476 /* TPCityVideoTableViewCell.m in Sources */,
 				4D4DF7A41EE17D470012F476 /* TPVideoSingleTableViewCell.m in Sources */,
@@ -1320,6 +1331,7 @@
 				24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */,
 				2444AC781EF265E80007CC69 /* TPNoteTemplate.m in Sources */,
 				70A0643C31E32BD015C761D63F503C21 /* main.m in Sources */,
+				4D6746FB1F049BD400AA67C5 /* TPNoteBarButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
