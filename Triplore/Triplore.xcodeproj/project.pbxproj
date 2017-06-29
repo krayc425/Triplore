@@ -80,6 +80,9 @@
 		24CF35241F0297E900C11EF6 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35231F0297E900C11EF6 /* UserTests.m */; };
 		24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */; };
 		24CF35301F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */; };
+		24CF35331F03DEA000C11EF6 /* TPNoteServerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35321F03DEA000C11EF6 /* TPNoteServerHelper.m */; };
+		24CF35361F03E0C700C11EF6 /* TPNoteServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35351F03E0C700C11EF6 /* TPNoteServer.m */; };
+		24CF35381F03E2FB00C11EF6 /* NoteServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -305,6 +308,11 @@
 		24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAuthHelper.m; sourceTree = "<group>"; };
 		24CF352E1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPMeTableViewController+Avatar.h"; sourceTree = "<group>"; };
 		24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TPMeTableViewController+Avatar.m"; sourceTree = "<group>"; };
+		24CF35311F03DEA000C11EF6 /* TPNoteServerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteServerHelper.h; sourceTree = "<group>"; };
+		24CF35321F03DEA000C11EF6 /* TPNoteServerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServerHelper.m; sourceTree = "<group>"; };
+		24CF35341F03E0C700C11EF6 /* TPNoteServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteServer.h; sourceTree = "<group>"; };
+		24CF35351F03E0C700C11EF6 /* TPNoteServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServer.m; sourceTree = "<group>"; };
+		24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteServerTest.m; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
@@ -656,9 +664,10 @@
 			isa = PBXGroup;
 			children = (
 				24487C9C1EDE9D120009E8E5 /* TriploreTests.m */,
+				24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */,
 				245BD0901EE5B905002CA7AC /* JSONTests.m */,
-				24CF35231F0297E900C11EF6 /* UserTests.m */,
 				24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */,
+				24CF35231F0297E900C11EF6 /* UserTests.m */,
 				24487C9E1EDE9D120009E8E5 /* Info.plist */,
 			);
 			path = TriploreTests;
@@ -671,6 +680,8 @@
 				2444AC9D1EF28FFE0007CC69 /* NoteTemplate */,
 				24487CA71EDEB9780009E8E5 /* TPNote.h */,
 				24487CA81EDEB9780009E8E5 /* TPNote.m */,
+				24CF35341F03E0C700C11EF6 /* TPNoteServer.h */,
+				24CF35351F03E0C700C11EF6 /* TPNoteServer.m */,
 				241C545E1EDDA62000E9E8D7 /* TPNoteCreator.h */,
 				241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */,
 				24487CA41EDE9FC90009E8E5 /* TPNoteManager.h */,
@@ -819,6 +830,8 @@
 			children = (
 				24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */,
 				24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */,
+				24CF35311F03DEA000C11EF6 /* TPNoteServerHelper.h */,
+				24CF35321F03DEA000C11EF6 /* TPNoteServerHelper.m */,
 				24CF35281F02AE3F00C11EF6 /* TPAuthHelper.h */,
 				24CF35291F02AE3F00C11EF6 /* TPAuthHelper.m */,
 			);
@@ -1234,6 +1247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CF35381F03E2FB00C11EF6 /* NoteServerTest.m in Sources */,
 				24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */,
 				245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */,
 				24CF35241F0297E900C11EF6 /* UserTests.m in Sources */,
@@ -1287,6 +1301,7 @@
 				24B8108E1ED7138900CD7DC4 /* TPNoteCollectionViewController.m in Sources */,
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
 				24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */,
+				24CF35361F03E0C700C11EF6 /* TPNoteServer.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */,
 				4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */,
@@ -1300,6 +1315,7 @@
 				2432FBF01EF00B6F001560CC /* TPMeFavoriteTableViewController.m in Sources */,
 				4D7E14E71F0289E50065954C /* TPAuthViewController.m in Sources */,
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
+				24CF35331F03DEA000C11EF6 /* TPNoteServerHelper.m in Sources */,
 				2444AC971EF28DEF0007CC69 /* TPNoteTitleView.m in Sources */,
 				4D9004B51EF50A90004FD8B4 /* TPSliderTab.m in Sources */,
 				24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */,
