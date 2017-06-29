@@ -58,4 +58,13 @@
  */
 + (NSInteger)countNoteNumbers;
 
+/**
+ 更新服务器 id
+
+ @param note  笔记模型
+ @param serverid 服务器 id（可为 NULL）
+ @return 是否添加成功
+ */
++ (BOOL)updateNote:(TPNote *_Nonnull)note withServerID:(NSString *_Nullable)serverid;
+
 @end

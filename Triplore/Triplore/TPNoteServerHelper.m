@@ -9,10 +9,11 @@
 #import "TPNoteServerHelper.h"
 #import "TPNoteServer.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "TPNoteManager.h"
 
 @implementation TPNoteServerHelper
 
-+ (void)uploadNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
++ (void)uploadNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString *serverID, NSError *_Nullable error))completionBlock{
     AVFile *noteContextFile = [AVFile fileWithData:note.views];
     [noteContextFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
@@ -23,7 +24,7 @@
             [noteObject setObject:note.videoDict forKey:@"videoDict"];
             [noteObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if(completionBlock) {
-                    completionBlock(succeeded, error);
+                    completionBlock(succeeded, noteObject.objectId, error);
                 }
             }];
         }
@@ -50,6 +51,34 @@
             }
         }
     }];
+}
+
++ (void)commentNote:(TPNoteServer *_Nonnull)note withIsLike:(BOOL)isLike withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
+    
+    AVObject *noteObject = [AVObject objectWithClassName:@"note" objectId:note.noteServerID];
+    
+    NSError *error = nil;
+    
+    AVCloudQueryResult *queryResult = [AVQuery doCloudQueryWithCQL:[NSString stringWithFormat:@"select * from comment_on where user = ? and note = ?"] pvalues:@[[AVUser currentUser], noteObject] error:&error];
+    if (queryResult.results.count > 0){
+        error = [NSError errorWithDomain:NSURLErrorDomain
+                                    code:901
+                                userInfo:@{@"code" : @(901),
+                                           @"description" : @"您已评价过"}];
+        NSLog(@"您已评过");
+        completionBlock(NO, error);
+    }else{
+        AVObject *commentObject = [AVObject objectWithClassName:@"comment_on"];
+        [commentObject setObject:noteObject forKey:@"note"];
+        [commentObject setObject:[AVUser currentUser] forKey:@"user"];
+        [commentObject setObject:@(isLike) forKey:@"isLike"];
+        [commentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(completionBlock) {
+                completionBlock(succeeded, error);
+            }
+        }];
+        
+    }
 }
 
 @end

@@ -61,6 +61,10 @@
     return resultArr;
 }
 
++ (BOOL)updateNote:(TPNote *)note withServerID:(NSString *)serverid{
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET serverid = ? WHERE noteid = ?;", serverid, @(note.noteid)];
+}
+
 + (NSInteger)countNoteNumbers{
     return [[self fetchAllNotes] count];
 }

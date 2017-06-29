@@ -125,8 +125,9 @@
 
 - (void)uploadAction{
     TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
-    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSError * _Nullable error) {
+    [TPNoteServerHelper uploadNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
         if(succeed) {
+            [TPNoteManager updateNote:self.note withServerID:serverID];
             NSLog(@"上传成功");
         }else{
             NSLog(@"上传失败");
@@ -146,6 +147,9 @@
     [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
         [noteServers enumerateObjectsUsingBlock:^(TPNoteServer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSLog(@"Note ID : %@", obj.noteServerID);
+            [TPNoteServerHelper commentNote:obj withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                NSLog(@"Commect success %d", succeed);
+            }];
         }];
     }];
 }
