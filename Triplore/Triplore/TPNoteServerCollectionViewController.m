@@ -16,7 +16,7 @@
 
 static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
-@interface TPNoteServerCollectionViewController () <UIViewControllerPreviewingDelegate, TPNoteCollectionViewCellDelegate> {
+@interface TPNoteServerCollectionViewController () <UIViewControllerPreviewingDelegate> {
     NSArray *noteArr;
 }
 
@@ -57,14 +57,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     });
 }
 
-#pragma mark - TPNoteCollectionViewCellDelegate
-
-- (void)didTapLikeButtonWithNote:(TPNoteServer *)note {
-    [TPNoteServerHelper commentServerNote:note withIsLike:YES withBlock:^(BOOL succeed, NSError * _Nullable error) {
-        // todo
-        NSLog(@"Like!!!!!!!!!!!!!!!!!!");
-    }];
-}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -81,7 +73,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     
     cell.mode = TPNoteCellRemote;
     cell.noteServer = noteArr[indexPath.row];
-    cell.delegate = self;
     
     //注册3D Touch
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
@@ -98,7 +89,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     TPNoteServer *noteServer = noteArr[indexPath.row];
     TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteServer];
     [noteVC setNote:note];
-    [noteVC setNoteMode:TPNewNote];
+    [noteVC setNoteMode:TPRemoteNote];
     [noteVC setVideoDict:noteServer.videoDict];
     
     [self.parentNavigationController pushViewController:noteVC animated:YES];

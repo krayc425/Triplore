@@ -13,21 +13,6 @@ typedef NS_ENUM(NSInteger, TPNoteToolbarMode){
     TPNoteToolbarRemote     = 2,
 };
 
-typedef NS_ENUM(NSInteger, TPNoteToolbarShareMode){
-    TPNoteToolbarShareNone      = 1,
-    TPNoteToolbarShareAlready   = 2,
-};
-
-typedef NS_ENUM(NSInteger, TPNoteToolbarLikeMode){
-    TPNoteToolbarLikeNone       = 1,
-    TPNoteToolbarLikeAlready    = 2,
-};
-
-typedef NS_ENUM(NSInteger, TPNoteToolbarCollectMode){
-    TPNoteToolbarCollectNone       = 1,
-    TPNoteToolbarCollectAlready    = 2,
-};
-
 
 @protocol TPNoteToolbarDelegate <NSObject>
 
@@ -37,10 +22,19 @@ typedef NS_ENUM(NSInteger, TPNoteToolbarCollectMode){
 - (void) didTapVideoButton:(UIButton *_Nonnull)button;
 - (void) didTapExportButton:(UIButton *_Nonnull)button;
 - (void) didTapShareButton:(UIButton *_Nonnull)button;
+- (void) didTapLikeButton:(UIButton *_Nonnull)button;
+- (void) didTapCollectButton:(UIButton *_Nonnull)button;
+- (void) didTapAddButton:(UIButton *_Nonnull)button;
 
 @end
 
 @interface TPNoteToolbar : UIView
+
+@property (nonatomic) TPNoteToolbarMode mode;
+@property (nonatomic) BOOL isLike;
+@property (nonatomic) BOOL isCollect;
+@property (nonatomic) NSUInteger likeCount;
+@property (nonatomic) BOOL isShare;
 
 @property (nonatomic, weak, nullable) id<TPNoteToolbarDelegate> delegate;
 

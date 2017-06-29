@@ -16,13 +16,6 @@ typedef NS_ENUM(NSInteger, TPNoteCellMode){
     TPNoteCellRemote    = 2,
 };
 
-@protocol TPNoteCollectionViewCellDelegate <NSObject>
-
-@optional
-
-- (void)didTapLikeButtonWithNote:(TPNoteServer *_Nonnull)note;
-
-@end
 
 @interface TPNoteCollectionViewCell : UICollectionViewCell
 
@@ -31,7 +24,5 @@ typedef NS_ENUM(NSInteger, TPNoteCellMode){
 @property (nonatomic, nonnull) TPNote *note;
 @property (nonatomic, nonnull) TPNoteServer *noteServer;
 
-
-@property (nonatomic, weak, nullable) id<TPNoteCollectionViewCellDelegate> delegate;
 
 @end

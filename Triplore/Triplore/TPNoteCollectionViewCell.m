@@ -91,11 +91,4 @@
     self.mode = TPNoteCellRemote;
 }
 
-
-- (IBAction)likeButtonDidTap:(id)sender {
-    if ([_delegate respondsToSelector:@selector(didTapLikeButtonWithNote:)]) {
-        [_delegate didTapLikeButtonWithNote:self.noteServer];
-    }
-}
-
 @end

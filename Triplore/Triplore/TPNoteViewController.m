@@ -77,12 +77,18 @@
         [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
         self.navigationItem.rightBarButtonItem = saveButtonItem;
-    }else{
+    }else {
         // add tool bar
         CGSize size = self.navigationController.view.frame.size;
         self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height - TOOLBAR_HEIGHT, size.width, TOOLBAR_HEIGHT)];
         self.buttonBar.delegate = self;
-        [self.navigationController.view addSubview:_buttonBar];
+        [self.navigationController.view addSubview:self.buttonBar];
+        
+        if(self.noteMode == TPOldNote){
+            self.buttonBar.mode = TPNoteToolbarLocal;
+        } else if (self.noteMode == TPRemoteNote) {
+            self.buttonBar.mode = TPNoteToolbarRemote;
+        }
     }
     
     segment = [[UISegmentedControl alloc] initWithItems:@[@"绿", @"棕"]];
@@ -140,6 +146,20 @@
 
 - (void)didTapShareButton:(UIButton *)button {
     [self uploadAction];
+}
+
+- (void)didTapLikeButton:(UIButton *)button {
+    // todo
+    self.buttonBar.isLike = YES;
+}
+
+- (void)didTapCollectButton:(UIButton *)button {
+    // todo
+    self.buttonBar.isCollect = YES;
+}
+
+- (void)didTapAddButton:(UIButton *)button {
+    // todo
 }
 
 #pragma mark - Button Action
