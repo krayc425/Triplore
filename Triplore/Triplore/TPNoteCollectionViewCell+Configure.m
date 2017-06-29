@@ -42,11 +42,18 @@
             hasImage = NO;
         }
     }
+    
+    self.mode = TPNoteCellLocal;
 }
 
 - (void)configureWithNoteServer:(TPNoteServer *)noteServer{
     TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteServer];
     [self configureWithNote:note];
+    
+    [self.likeCountLabel setText:[NSString stringWithFormat:@"%d", noteServer.like.intValue]];
+    [self.usernameLabel setText:noteServer.creatorName];
+    
+    self.mode = TPNoteCellRemote;
 }
 
 @end

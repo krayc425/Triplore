@@ -33,6 +33,8 @@
         self.like = (NSNumber *)[object objectForKey:@"like"];
         self.noteServerID = object.objectId;
         self.videoDict = (NSDictionary *)[object objectForKey:@"videoDict"];
+        AVUser *user = [object objectForKey:@"creator"];
+        self.creatorName = user.username;
     }
     return self;
 }

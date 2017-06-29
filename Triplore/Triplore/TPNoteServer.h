@@ -21,6 +21,7 @@
 @property (nonatomic, nonnull) NSNumber *like;
 @property (nonatomic, nullable) NSData *views;
 @property (nonatomic, nonnull) NSDictionary *videoDict;
+@property (nonatomic, copy, nonnull) NSString *creatorName;
 
 - (instancetype _Nonnull)initWithTPNote:(TPNote *_Nonnull)note;
 

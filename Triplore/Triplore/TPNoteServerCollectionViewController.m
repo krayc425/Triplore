@@ -76,7 +76,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     
     TPNote *note = [[TPNote alloc] initWithTPNoteServer:noteArr[indexPath.row]];
     [noteVC setNote:note];
-    [noteVC setNoteMode:TPOldNote];
+    [noteVC setNoteMode:TPNewNote];
     
     [self.parentNavigationController pushViewController:noteVC animated:YES];
 }
