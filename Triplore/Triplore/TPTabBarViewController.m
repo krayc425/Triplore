@@ -10,7 +10,7 @@
 #import "TPSelectionTableViewController.h"
 
 #import "TPSiteTableViewController.h"
-#import "TPNoteCollectionViewController.h"
+#import "TPNotePageViewController.h"
 #import "TPMeTableViewController.h"
 #import "TPPlayViewController.h"
 #import "ABCIntroView.h"
@@ -46,8 +46,9 @@
     UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:siteVC];
     
     //笔记
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteCollectionViewController *noteVC = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout];
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    TPNotePageViewController *noteVC = [[TPNotePageViewController alloc] initWithCollectionViewLayout:layout];
+    TPNotePageViewController *noteVC = [[TPNotePageViewController alloc] init];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"笔记" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
     noteVC.tabBarItem = item3;
     UINavigationController *naviVC3 = [[UINavigationController alloc] initWithRootViewController:noteVC];
