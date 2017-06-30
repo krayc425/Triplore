@@ -22,6 +22,10 @@
 		240903901F0603E9004535C3 /* TPPlayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2409038F1F0603E9004535C3 /* TPPlayPanel.m */; };
 		240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */; };
 		240903971F0685F5004535C3 /* TPAddTextLandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */; };
+		240903B11F069F3D004535C3 /* Glimpse.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903AE1F069F3D004535C3 /* Glimpse.m */; };
+		240903B21F069F3D004535C3 /* GlimpseAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */; };
+		240903B51F06A30E004535C3 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240903B41F06A30E004535C3 /* Photos.framework */; };
+		240903B81F06A3C2004535C3 /* TPMediaSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903B71F06A3C2004535C3 /* TPMediaSaver.m */; };
 		240B1B5F1EF64832004D802B /* TPPlayTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */; };
 		240B1B601EF64832004D802B /* TPPlayTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */; };
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
@@ -48,7 +52,6 @@
 		24487C551EDE4A620009E8E5 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C541EDE4A620009E8E5 /* DBManager.m */; };
 		24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C5F1EDE551D0009E8E5 /* TPSiteTableViewCell.m */; };
 		24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C671EDE93940009E8E5 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24487C771EDE95F40009E8E5 /* libFMDB.a */; };
 		24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487C9C1EDE9D120009E8E5 /* TriploreTests.m */; };
 		24487CA61EDE9FC90009E8E5 /* TPNoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA51EDE9FC90009E8E5 /* TPNoteManager.m */; };
 		24487CA91EDEB9780009E8E5 /* TPNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 24487CA81EDEB9780009E8E5 /* TPNote.m */; };
@@ -165,7 +168,6 @@
 		CDF38A61FA0BD611B20A1E7376C384E4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6168E06073E16C88CE77FF95A7BCE0CB /* MessageUI.framework */; };
 		CEACD9E5CD9E74F123AC13253AF8D409 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2C4C05ED78DA6FC8E9A0CF802A5D3C /* Security.framework */; };
 		CF772AFCAF0457ACAD6655A1117AED8A /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACD8D54271EFF475ADE7C23BE0B66A5 /* libiconv.tbd */; };
-		D19C293247541A5651047000 /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */; };
 		D2E935BC39241EFBCB51C7520B92299C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32F2D51E7F37689AC5ADF207FAE092F /* CFNetwork.framework */; };
 		D6B2B29A364FA0B9C8F8303D34EC29FA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B08D2688BCADB02F86BD69F98CF5449 /* GLKit.framework */; };
 		D71ABC99709A56601C5FC2F5 /* libPods-TriploreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 019209B9EFCD5F97509D90FE /* libPods-TriploreTests.a */; };
@@ -215,6 +217,14 @@
 		240903931F0685F5004535C3 /* TPAddTextLandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAddTextLandscapeViewController.h; sourceTree = "<group>"; };
 		240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddTextLandscapeViewController.m; sourceTree = "<group>"; };
 		240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAddTextLandscapeViewController.xib; sourceTree = "<group>"; };
+		240903AA1F069D03004535C3 /* libGlimpse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlimpse.a; path = "build/Debug-iphoneos/libGlimpse.a"; sourceTree = "<group>"; };
+		240903AD1F069F3D004535C3 /* Glimpse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Glimpse.h; sourceTree = "<group>"; };
+		240903AE1F069F3D004535C3 /* Glimpse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Glimpse.m; sourceTree = "<group>"; };
+		240903AF1F069F3D004535C3 /* GlimpseAssetWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlimpseAssetWriter.h; sourceTree = "<group>"; };
+		240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlimpseAssetWriter.m; sourceTree = "<group>"; };
+		240903B41F06A30E004535C3 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		240903B61F06A3C2004535C3 /* TPMediaSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMediaSaver.h; sourceTree = "<group>"; };
+		240903B71F06A3C2004535C3 /* TPMediaSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMediaSaver.m; sourceTree = "<group>"; };
 		240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayTutorialViewController.h; sourceTree = "<group>"; };
 		240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayTutorialViewController.m; sourceTree = "<group>"; };
 		240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPPlayTutorialViewController.xib; sourceTree = "<group>"; };
@@ -476,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240903B51F06A30E004535C3 /* Photos.framework in Frameworks */,
 				24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */,
 				24CF351E1F027D5700C11EF6 /* libz.tbd in Frameworks */,
 				24CF351C1F027D5400C11EF6 /* libicucore.tbd in Frameworks */,
@@ -484,7 +495,6 @@
 				4D91715C1EF11A7F00930372 /* libSDCycleScrollView.a in Frameworks */,
 				245E5C8E1EE4351C00448986 /* libDZNEmptyDataSet.a in Frameworks */,
 				245E5C8C1EE4351900448986 /* libSDWebImage.a in Frameworks */,
-				24487C791EDE96850009E8E5 /* libFMDB.a in Frameworks */,
 				24487C681EDE93940009E8E5 /* XCTest.framework in Frameworks */,
 				2402CE091ED448080098770A /* libAFNetworking.a in Frameworks */,
 				2402CE071ED448020098770A /* libPYSearch.a in Frameworks */,
@@ -524,7 +534,6 @@
 				BAD53723A2715AA31F5E1BF213E07C69 /* libstdc++.tbd in Frameworks */,
 				2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */,
 				7550083F04D66515FABC5CB83E2BF2D2 /* libz.1.tbd in Frameworks */,
-				D19C293247541A5651047000 /* libPods-Triplore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,7 +573,6 @@
 		2402CE161ED44DD60098770A /* Site */ = {
 			isa = PBXGroup;
 			children = (
-				245BD09B1EE5BAA2002CA7AC /* SiteData */,
 				2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */,
 				2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */,
 				4DA4F9E61ED971C700DA73AA /* TPSiteSearchViewController.h */,
@@ -600,6 +608,69 @@
 				240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */,
 			);
 			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		240903A11F069BAE004535C3 /* ABCIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */,
+				24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */,
+			);
+			name = ABCIntroView;
+			sourceTree = "<group>";
+		};
+		240903A21F069BB3004535C3 /* CAPSPageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4D6747241F04D42E00AA67C5 /* CAPSPageMenu.h */,
+				4D6747251F04D42E00AA67C5 /* CAPSPageMenu.m */,
+			);
+			name = CAPSPageMenu;
+			sourceTree = "<group>";
+		};
+		240903A31F069BBC004535C3 /* TPRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */,
+				247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */,
+				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
+				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
+			);
+			name = TPRefresh;
+			sourceTree = "<group>";
+		};
+		240903B31F069F4B004535C3 /* Glimpse */ = {
+			isa = PBXGroup;
+			children = (
+				240903AD1F069F3D004535C3 /* Glimpse.h */,
+				240903AE1F069F3D004535C3 /* Glimpse.m */,
+				240903AF1F069F3D004535C3 /* GlimpseAssetWriter.h */,
+				240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */,
+			);
+			name = Glimpse;
+			sourceTree = "<group>";
+		};
+		240903B91F06AA41004535C3 /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				2409038E1F0603E9004535C3 /* TPPlayPanel.h */,
+				2409038F1F0603E9004535C3 /* TPPlayPanel.m */,
+				245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */,
+				245E5C901EE4510200448986 /* TPVideoProgressBar.m */,
+				245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */,
+			);
+			name = PlayerView;
+			sourceTree = "<group>";
+		};
+		240903BA1F06AA78004535C3 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				4D6746F61F04971D00AA67C5 /* TPNoteToolbar.h */,
+				4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */,
+				4D6746F91F049BD400AA67C5 /* TPNoteBarButton.h */,
+				4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */,
+			);
+			name = Toolbar;
 			sourceTree = "<group>";
 		};
 		241BC4711EDFAE3A0056AFCA /* VideoData */ = {
@@ -648,6 +719,7 @@
 		24487C511EDDC7090009E8E5 /* Selection */ = {
 			isa = PBXGroup;
 			children = (
+				240903B91F06AA41004535C3 /* PlayerView */,
 				240903981F06898D004535C3 /* Tutorial */,
 				4D9171531EF10C3900930372 /* TPSelectionTableViewController.h */,
 				4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */,
@@ -657,11 +729,6 @@
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
 				24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */,
-				2409038E1F0603E9004535C3 /* TPPlayPanel.h */,
-				2409038F1F0603E9004535C3 /* TPPlayPanel.m */,
-				245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */,
-				245E5C901EE4510200448986 /* TPVideoProgressBar.m */,
-				245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */,
 				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
 				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
 				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
@@ -681,13 +748,18 @@
 			path = Triplore;
 			sourceTree = "<group>";
 		};
-		24487C571EDE53490009E8E5 /* DataBase */ = {
+		24487C571EDE53490009E8E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				245BD09B1EE5BAA2002CA7AC /* SiteData */,
+				241BC4711EDFAE3A0056AFCA /* VideoData */,
+				24487CAA1EDEB9E30009E8E5 /* NoteData */,
+				240903B61F06A3C2004535C3 /* TPMediaSaver.h */,
+				240903B71F06A3C2004535C3 /* TPMediaSaver.m */,
 				24487C531EDE4A620009E8E5 /* DBManager.h */,
 				24487C541EDE4A620009E8E5 /* DBManager.m */,
 			);
-			name = DataBase;
+			name = Data;
 			sourceTree = "<group>";
 		};
 		24487C9B1EDE9D120009E8E5 /* TriploreTests */ = {
@@ -736,10 +808,10 @@
 		2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */ = {
 			isa = PBXGroup;
 			children = (
-				4D6747241F04D42E00AA67C5 /* CAPSPageMenu.h */,
-				4D6747251F04D42E00AA67C5 /* CAPSPageMenu.m */,
-				24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */,
-				24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */,
+				240903A21F069BB3004535C3 /* CAPSPageMenu */,
+				240903A11F069BAE004535C3 /* ABCIntroView */,
+				240903A31F069BBC004535C3 /* TPRefresh */,
+				240903B31F069F4B004535C3 /* Glimpse */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
 				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
 				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
@@ -747,10 +819,6 @@
 				2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */,
 				4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */,
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
-				247B7D291EF5861F00FC5BF1 /* TPRefreshHeader.h */,
-				247B7D2A1EF5861F00FC5BF1 /* TPRefreshHeader.m */,
-				4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */,
-				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
 				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
 			);
@@ -789,7 +857,6 @@
 		24B810941ED7139B00CD7DC4 /* Note */ = {
 			isa = PBXGroup;
 			children = (
-				24487CAA1EDEB9E30009E8E5 /* NoteData */,
 				4D6747271F04D4A500AA67C5 /* TPNotePageViewController.h */,
 				4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
@@ -806,10 +873,7 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
-				4D6746F61F04971D00AA67C5 /* TPNoteToolbar.h */,
-				4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */,
-				4D6746F91F049BD400AA67C5 /* TPNoteBarButton.h */,
-				4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */,
+				240903BA1F06AA78004535C3 /* Toolbar */,
 			);
 			name = Note;
 			sourceTree = "<group>";
@@ -886,7 +950,6 @@
 		4D4DF79D1EE17C160012F476 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				241BC4711EDFAE3A0056AFCA /* VideoData */,
 				4D4DF79E1EE17CED0012F476 /* TPVideoTableViewController.h */,
 				4D4DF79F1EE17CED0012F476 /* TPVideoTableViewController.m */,
 				4D4DF7A11EE17D470012F476 /* TPVideoSingleTableViewCell.h */,
@@ -946,6 +1009,8 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				240903B41F06A30E004535C3 /* Photos.framework */,
+				240903AA1F069D03004535C3 /* libGlimpse.a */,
 				24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */,
 				24CF351D1F027D5700C11EF6 /* libz.tbd */,
 				24CF351B1F027D5400C11EF6 /* libicucore.tbd */,
@@ -1009,11 +1074,11 @@
 				2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */,
 				32C6395C9A80B36A76EE7FB85385A3F0 /* Basic UI */,
 				2402CE161ED44DD60098770A /* Site */,
+				24487C511EDDC7090009E8E5 /* Selection */,
 				4D4DF79D1EE17C160012F476 /* Video */,
 				24B810941ED7139B00CD7DC4 /* Note */,
 				24B8108B1ED7039100CD7DC4 /* Me */,
-				24487C511EDDC7090009E8E5 /* Selection */,
-				24487C571EDE53490009E8E5 /* DataBase */,
+				24487C571EDE53490009E8E5 /* Data */,
 				24EFB7F41EE1928700816675 /* Network */,
 				24CF35221F027E3F00C11EF6 /* Utilities */,
 				6337E04F77C4AECDAC564BE066025797 /* Assets.xcassets */,
@@ -1302,6 +1367,7 @@
 				241210F51ED84CD70066B99C /* TPNoteViewTableViewCell.m in Sources */,
 				2444AC941EF28CF50007CC69 /* TPNoteTemplateFactory.m in Sources */,
 				240B1B5F1EF64832004D802B /* TPPlayTutorialViewController.m in Sources */,
+				240903B81F06A3C2004535C3 /* TPMediaSaver.m in Sources */,
 				4D4DF78E1EE1046F0012F476 /* TPCityInfoTableViewCell.m in Sources */,
 				24AF8D1F1EF3C71200C9B0CD /* TPSettingsTableViewController.m in Sources */,
 				241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */,
@@ -1328,6 +1394,7 @@
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
+				240903B21F069F3D004535C3 /* GlimpseAssetWriter.m in Sources */,
 				4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */,
 				2498EB4B1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
@@ -1348,6 +1415,7 @@
 				2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4D4DF7971EE10A4B0012F476 /* TPCategoryButton.m in Sources */,
+				240903B11F069F3D004535C3 /* Glimpse.m in Sources */,
 				240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */,
 				4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */,
 				4DA7B9391F029971004A8B5A /* TPMeAuthTableViewCell.m in Sources */,
@@ -1423,6 +1491,7 @@
 					"$(PROJECT_DIR)/IOSPlayerLib",
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1541,6 +1610,7 @@
 					"$(PROJECT_DIR)/IOSPlayerLib",
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";

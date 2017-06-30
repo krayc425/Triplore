@@ -7,7 +7,6 @@
 //
 
 #import "TPNoteViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
 #import "TPNoteViewTableViewCell.h"
 #import "TPNote.h"
@@ -23,10 +22,11 @@
 #import "Triplore-Swift.h"
 #import "TPNoteCreator.h"
 #import "TPNoteToolbar.h"
-
+#import <Photos/Photos.h>
 #import "TPNoteServerHelper.h"
 #import "TPNoteServer.h"
 #import "SVProgressHUD.h"
+#import "TPMediaSaver.h"
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 44
@@ -397,45 +397,36 @@
     
     UIGraphicsEndImageContext();
     
-    NSLog(@"%lu", (unsigned long)self.note.views.count);
-    
-    UIImageWriteToSavedPhotosAlbum(image,
-                                   self,
-                                   @selector(image:didFinishSavingWithError:contextInfo:),
-                                   nil);
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    NSLog(@"%@", image.description);
-    
-    if (error == nil) {
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存到相册成功"
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-        [alertC addAction:cancelAction];
-        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction * _Nonnull action) {
-                                                                  NSString *str = @"photos-redirect://";
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
-                                                                                                     options:@{}
-                                                                                           completionHandler:nil];
-                                                              }];
-        [alertC addAction:albumAction];
-        [self presentViewController:alertC animated:YES completion:nil];
-    }else{
-        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
-                                                                        message:nil
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-        [alertC addAction:okAction];
-        [self presentViewController:alertC animated:YES completion:nil];
-    }
+    [TPMediaSaver saveImage:image withCompletionBlock:^(BOOL success, NSError *error) {
+        if(!error) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存到相册成功"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:nil];
+            [alertC addAction:cancelAction];
+            UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                    NSString *str = @"photos-redirect://";
+                                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
+                                                                                                       options:@{}
+                                                                                             completionHandler:nil];
+                                                                }];
+            [alertC addAction:albumAction];
+            [self presentViewController:alertC animated:YES completion:nil];
+        }else{
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:nil];
+            [alertC addAction:okAction];
+            [self presentViewController:alertC animated:YES completion:nil];
+        }
+    }];
 }
 
 #pragma mark - Table view data source

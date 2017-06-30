@@ -25,6 +25,9 @@
 #import "SVProgressHUD.h"
 #import "TPPlayPanel.h"
 #import "TPAddTextLandscapeViewController.h"
+#import "Glimpse.h"
+#import "TPMediaSaver.h"
+#import <Photos/Photos.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
@@ -40,6 +43,7 @@
     UIBarButtonItem *favoriteButton;
     TPVideoProgressBar *progressBarView;
     TPPlayPanel *playPanel;
+    Glimpse *glimpse;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *playerView;
@@ -74,8 +78,8 @@
     
     playFrame = CGRectMake(0,
                            0,
-                           [[UIScreen mainScreen] bounds].size.width,
-                           [[UIScreen mainScreen] bounds].size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
+                           SCREEN_WIDTH,
+                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * SCREEN_HEIGHT);
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -119,7 +123,6 @@
     }
     
     //收藏按钮
-//    NSLog(@"Video id: %@", self.videoDict[@"id"]);
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
@@ -140,6 +143,9 @@
     [playPanel addGestureRecognizer:panGR];
     [self.view addSubview:playPanel];
     [self.view bringSubviewToFront:playPanel];
+    
+    //录屏插件
+    glimpse = [[Glimpse alloc] init];
     
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
@@ -306,6 +312,8 @@
     if ([QYPlayerController sharedInstance].isPlaying == YES) {
         [[QYPlayerController sharedInstance] pause];
         [self showPlayView];
+        
+        [glimpse stop];
     }
 }
 
@@ -338,12 +346,15 @@
     [self.activityWheel removeFromSuperview];
     [self enablePlayPauseView];
 }
+
 /**
  **功能: 开始播放广告
  *
  */
 - (void)onAdStartPlay:(QYPlayerController *)player{
     [self showPauseView];
+#warning temp
+    [self startRecording];
 }
 
 /**
@@ -386,6 +397,45 @@
     [[QYPlayerController sharedInstance] seekToTime:time];
 }
 
+#pragma mark - Screen Recording
+
+- (void)startRecording{
+    [glimpse startRecordingView:self.playerView onCompletion:^(NSURL *fileOuputURL) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TPMediaSaver saveVideoAtURL:fileOuputURL withCompletionBlock:^(BOOL success, NSError *error) {
+                if(!error) {
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存视频成功"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                           style:UIAlertActionStyleCancel
+                                                                         handler:nil];
+                    [alertC addAction:cancelAction];
+                    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
+                                                                          style:UIAlertActionStyleDefault
+                                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                                            NSString *str = @"photos-redirect://";
+                                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
+                                                                                                               options:@{}
+                                                                                                     completionHandler:nil];
+                                                                        }];
+                    [alertC addAction:albumAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }else{
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                       style:UIAlertActionStyleDefault
+                                                                     handler:nil];
+                    [alertC addAction:okAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }
+            }];
+        });
+    }];
+}
+
 #pragma mark - Button Action
 
 - (void)editNoteAction{
@@ -419,7 +469,6 @@
 
 - (void)addNoteView:(UIView *_Nonnull)view{
     [[TPNoteCreator shareInstance] addNoteView:view];
-    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
     //编辑完成，继续播放视频
@@ -430,7 +479,6 @@
 
 - (void)updateNoteView:(UIView *_Nonnull)view{
     [[TPNoteCreator shareInstance] updateNoteView:view atIndex:selectedIndexPath.row];
-    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
     //编辑完成，继续播放视频
@@ -440,7 +488,6 @@
 }
 
 - (void)screenShotAction{
-    NSLog(@"截图");
     //隐藏暂停按钮
     [[self.view viewWithTag:100] setHidden:YES];
     [[self.view viewWithTag:200] setHidden:YES];
@@ -486,7 +533,6 @@
 }
 
 - (void)saveNote{
-    NSLog(@"保存");
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(self.noteMode == TPNewNote){
         //新增模式，进入 NoteVC
@@ -513,7 +559,6 @@
 - (void)saveNoteAction{
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(noteArr.count <= 0){
-        NSLog(@"没有 View");
         [SVProgressHUD showInfoWithStatus:@"您的笔记内容为空"];
         [SVProgressHUD dismissWithDelay:2.0];
         return;
@@ -721,7 +766,6 @@
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
-    // Do something
     [self editNoteAction];
 }
 

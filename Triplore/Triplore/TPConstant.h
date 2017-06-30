@@ -9,6 +9,9 @@
 #ifndef TPConstant_h
 #define TPConstant_h
 
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+
 #define TPColor [UIColor colorWithRed:0.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0]
 #define TPBackgroundColor [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1.0]
 #define TPGradientColor [UIColor colorWithRed:62/255. green:62/255. blue:62/255. alpha:0.5]
