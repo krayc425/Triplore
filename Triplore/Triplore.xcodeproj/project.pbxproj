@@ -19,6 +19,7 @@
 		2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2402CE1B1ED4518D0098770A /* fontawesome-webfont.ttf */; };
 		24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */; };
 		24086A611EF4FD04002D36AF /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24086A601EF4FD04002D36AF /* Intro.xcassets */; };
+		240903901F0603E9004535C3 /* TPPlayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2409038F1F0603E9004535C3 /* TPPlayPanel.m */; };
 		240B1B5F1EF64832004D802B /* TPPlayTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */; };
 		240B1B601EF64832004D802B /* TPPlayTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */; };
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
@@ -207,6 +208,8 @@
 		24086A5B1EF4E4AF002D36AF /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
 		24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCIntroView.m; sourceTree = "<group>"; };
 		24086A601EF4FD04002D36AF /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
+		2409038E1F0603E9004535C3 /* TPPlayPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayPanel.h; sourceTree = "<group>"; };
+		2409038F1F0603E9004535C3 /* TPPlayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayPanel.m; sourceTree = "<group>"; };
 		240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayTutorialViewController.h; sourceTree = "<group>"; };
 		240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayTutorialViewController.m; sourceTree = "<group>"; };
 		240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPPlayTutorialViewController.xib; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
 				24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */,
+				2409038E1F0603E9004535C3 /* TPPlayPanel.h */,
+				2409038F1F0603E9004535C3 /* TPPlayPanel.m */,
 				240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */,
 				240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */,
 				240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */,
@@ -1319,6 +1324,7 @@
 				4D9004BC1EF50AA8004FD8B4 /* TPMeAboutCollectionViewCell.m in Sources */,
 				24CF352A1F02AE3F00C11EF6 /* TPAuthHelper.m in Sources */,
 				24CF35361F03E0C700C11EF6 /* TPNoteServer.m in Sources */,
+				240903901F0603E9004535C3 /* TPPlayPanel.m in Sources */,
 				2489FF1A1EDEE951002DCEA0 /* UIImage+Extend.m in Sources */,
 				4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */,
 				4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */,

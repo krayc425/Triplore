@@ -85,6 +85,9 @@
         self.buttonBar.delegate = self;
         if(self.noteMode == TPOldNote){
             self.buttonBar.mode = TPNoteToolbarLocal;
+            
+            [self.buttonBar setIsShare:[TPNoteManager hasUploadedToServer:self.note]];
+
         } else if (self.noteMode == TPRemoteNote) {
             self.buttonBar.mode = TPNoteToolbarRemote;
             

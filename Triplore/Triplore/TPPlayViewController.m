@@ -9,7 +9,6 @@
 #import "TPPlayViewController.h"
 #import "QYPlayerController.h"
 #import "ActivityIndicatorView.h"
-
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
@@ -24,29 +23,27 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "TPPlayTutorialViewController.h"
 #import "SVProgressHUD.h"
+#import "TPPlayPanel.h"
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
     UIBarButtonItem *favoriteButton;
     TPVideoProgressBar *progressBarView;
+    TPPlayPanel *playPanel;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *playerView;
 @property (nonatomic, weak) IBOutlet UITextField *titleText;
-@property (nonatomic, weak) IBOutlet UIButton *editButton;
-@property (nonatomic, weak) IBOutlet UIButton *screenshotButton;
-@property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIView *playPauseView;
 @property (nonatomic, weak) IBOutlet UIView *barContainerView;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UIStackView *buttonStack;
 
 @property (nonatomic,strong) ActivityIndicatorView *activityWheel;
 
@@ -87,21 +84,8 @@
     _titleText.delegate = self;
     _titleText.textColor = [UIColor colorWithRed:94.0/255.0 green:113.0/255.0 blue:113.0/255.0 alpha:1.0];
     
-    //三个按钮
-    [_editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
-    [_editButton addTarget:self action:@selector(editNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    _editButton.tintColor = TPColor;
-    
-    [_screenshotButton setImage:[UIImage imageNamed:@"NOTE_SCREENSHOT"] forState:UIControlStateNormal];
-    [_screenshotButton addTarget:self action:@selector(screenShotAction) forControlEvents:UIControlEventTouchUpInside];
-    _screenshotButton.tintColor = TPColor;
-    
-    [_saveButton setImage:[UIImage imageNamed:@"NOTE_SAVE"] forState:UIControlStateNormal];
-    [_saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
-    _saveButton.tintColor = TPColor;
-    
     //进度
-    progressBarView = [[[NSBundle mainBundle] loadNibNamed:@"TPVideoProgressBar" owner:nil options:nil] lastObject];
+    progressBarView = [[[NSBundle mainBundle] loadNibNamed:@"TPVideoProgressBar" owner:nil options:nil] firstObject];
     [progressBarView.slider setThumbImage:[UIImage imageNamed:@"PROGRESS_OVAL"] forState:UIControlStateNormal];
     [progressBarView.slider setMinimumTrackTintColor:[UIColor colorWithRed:33.0/255.0 green:184.0/255.0 blue:34.0/255.0 alpha:1.0]];
     [progressBarView.slider addTarget:progressBarView action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -136,6 +120,23 @@
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
+    
+    //操作面板
+    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 120,
+                                                              CGRectGetHeight(_playerView.frame) - 50,
+                                                              100, 30)];
+    playPanel.delegate = self;
+    
+    //创建手势
+    UIPanGestureRecognizer *panGR =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(objectDidDragged:)];
+    //限定操作的触点数
+    [panGR setMaximumNumberOfTouches:1];
+    [panGR setMinimumNumberOfTouches:1];
+    //将手势添加到draggableObj里
+    [playPanel addGestureRecognizer:panGR];
+    [self.view addSubview:playPanel];
+    [self.view bringSubviewToFront:playPanel];
     
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
@@ -184,6 +185,19 @@
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+}
+
+- (void)objectDidDragged:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateChanged ||
+        sender.state == UIGestureRecognizerStateEnded) {
+        //注意，这里取得的参照坐标系是该对象的上层View的坐标。
+        CGPoint offset = [sender translationInView:self.view];
+        UIView *draggableObj = playPanel;
+        //通过计算偏移量来设定draggableObj的新坐标
+        [draggableObj setCenter:CGPointMake(draggableObj.center.x + offset.x, draggableObj.center.y + offset.y)];
+        //初始化sender中的坐标位置。如果不初始化，移动坐标会一直积累起来。
+        [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+    }
 }
 
 - (void)dealloc{
@@ -496,6 +510,20 @@
     [self setFavoriteImage];
 }
 
+#pragma mark - Panel Actions 
+
+- (void)didTapEditButton{
+    [self editNoteAction];
+}
+
+- (void)didTapScreenShotButton{
+    [self screenShotAction];
+}
+
+- (void)didTapSaveButton{
+    [self saveNoteAction];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -569,9 +597,6 @@
         [self.navigationController setNavigationBarHidden:YES];
         [self.tableView setHidden:YES];
         [self.titleText setHidden:YES];
-        [self.editButton setHidden:YES];
-        [self.saveButton setHidden:YES];
-        [self.screenshotButton setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
         [UIView animateWithDuration:0.5 animations:^{
@@ -602,9 +627,6 @@
         [self.navigationController setNavigationBarHidden:NO];
         [self.tableView setHidden:NO];
         [self.titleText setHidden:NO];
-        [self.editButton setHidden:NO];
-        [self.saveButton setHidden:NO];
-        [self.screenshotButton setHidden:NO];
         [self.view setBackgroundColor:TPBackgroundColor];
         
         [UIView animateWithDuration:0.5 animations:^{
