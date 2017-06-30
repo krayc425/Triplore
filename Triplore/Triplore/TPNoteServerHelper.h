@@ -45,10 +45,10 @@
 /**
  删除笔记
 
- @param note 笔记模型
+ @param noteServerID 笔记模型serverID
  @param completionBlock 回调块
  */
-+ (void)deleteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
++ (void)deleteServerNote:(NSString *_Nonnull)noteServerID withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock;
 
 /**
  评论笔记

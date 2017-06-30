@@ -15,6 +15,7 @@ static NSString *kNoteTime      = @"CreateTime";
 static NSString *kNoteTitle     = @"Title";
 static NSString *kNoteView      = @"View";
 static NSString *kNoteTemplate  = @"Template";
+static NSString *kNoteServerID  = @"ServerID";
 
 @implementation TPNote
 
@@ -25,6 +26,7 @@ static NSString *kNoteTemplate  = @"Template";
     [aCoder encodeObject:self.title         forKey:kNoteTitle];
     [aCoder encodeObject:self.views         forKey:kNoteView];
     [aCoder encodeInteger:self.templateNum  forKey:kNoteTemplate];
+    [aCoder encodeObject:self.serverid      forKey:kNoteServerID];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -34,6 +36,7 @@ static NSString *kNoteTemplate  = @"Template";
     self.title          = [aDecoder decodeObjectForKey:kNoteTitle];
     self.views          = [aDecoder decodeObjectForKey:kNoteView];
     self.templateNum    = [aDecoder decodeIntegerForKey:kNoteTemplate];
+    self.serverid       = [aDecoder decodeObjectForKey:kNoteServerID];
     return self;
 }
 
@@ -45,6 +48,7 @@ static NSString *kNoteTemplate  = @"Template";
         self.templateNum = 0;
         self.views = [NSKeyedUnarchiver unarchiveObjectWithData:noteServer.views];
         self.videoid = noteServer.videoDict[@"id"];
+        self.serverid = noteServer.noteServerID;
     }
     return self;
 }

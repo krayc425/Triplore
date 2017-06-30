@@ -153,7 +153,45 @@
 }
 
 - (void)didTapShareButton:(UIButton *)button {
-    [self uploadAction];
+    if([TPNoteManager hasUploadedToServer:self.note]) {
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"选择操作" message: nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除远程笔记" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD show];
+            [TPNoteServerHelper deleteServerNote:self.note.serverid withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                
+                [TPNoteManager deleteNoteServerID:self.note];
+                
+                [self.buttonBar setIsShare:NO];
+                
+                if(succeed){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
+                    NSLog(@"删除远程成功");
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                    [SVProgressHUD dismissWithDelay:2.0];
+                }
+            }];
+        }];
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新远程笔记" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD show];
+            TPNoteServer *newServer = [[TPNoteServer alloc] initWithTPNote:self.note];
+//            [newServer setNoteServerID:self.noteServer.noteServerID];
+            [TPNoteServerHelper updateServerNote:newServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
+                if(succeed){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
+                    NSLog(@"更新远程成功");
+                    [SVProgressHUD showSuccessWithStatus:@"更新成功"];
+                    [SVProgressHUD dismissWithDelay:2.0];
+                }
+            }];
+        }];
+        [alertC addAction:updateAction];
+        [alertC addAction:deleteAction];
+        [alertC addAction:cancelAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self uploadAction];
+    }
 }
 
 - (void)didTapLikeButton:(UIButton *)button {
@@ -262,6 +300,9 @@
         [self.note setTemplateNum:segment.selectedSegmentIndex];
         success = [TPNoteManager updateNote:self.note];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"load_notes" object:nil];
+    
     return success;
 }
 
@@ -285,11 +326,15 @@
     TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
     [TPNoteServerHelper uploadServerNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
         if(succeed) {
+            [self.buttonBar setIsShare:YES];
+            
             [TPNoteManager updateNote:self.note withServerID:serverID];
-            [SVProgressHUD showSuccessWithStatus:@"分享成功"];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"load_notes" object:nil];
+            
+            [SVProgressHUD showSuccessWithStatus:@"分享成功"];
             [SVProgressHUD dismissWithDelay:2.0];
         }else{
             [SVProgressHUD showErrorWithStatus:@"分享失败"];

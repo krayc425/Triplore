@@ -434,6 +434,8 @@
     //隐藏暂停按钮
     [[self.view viewWithTag:100] setHidden:YES];
     [[self.view viewWithTag:200] setHidden:YES];
+    [playPanel setHidden:YES];
+    
     //缩放因子
     CGFloat factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
     CGFloat scale = [[UIScreen mainScreen] scale];
@@ -448,9 +450,11 @@
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
     [self addNoteView:imgView];
     UIGraphicsEndImageContext();
+    
     //恢复暂停按钮
     [[self.view viewWithTag:100] setHidden:NO];
     [[self.view viewWithTag:200] setHidden:NO];
+    [playPanel setHidden:NO];
 }
 
 - (void)saveNote{

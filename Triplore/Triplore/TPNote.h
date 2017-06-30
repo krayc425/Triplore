@@ -23,6 +23,7 @@
 @property (nonatomic, nonnull) NSString *title;
 @property (nonatomic, nonnull) NSMutableArray<UIView *> *views;
 @property (nonatomic) TPNoteTemplateNumber templateNum;
+@property (nonatomic, copy, nullable) NSString *serverid;
 
 - (id _Nonnull )initWithTPNoteServer:(TPNoteServer *_Nonnull)noteServer;
 

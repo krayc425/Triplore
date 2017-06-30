@@ -39,6 +39,7 @@
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
         [note setViews:[NSMutableArray arrayWithArray:noteViewArr]];
         [note setTemplateNum:[resultSet intForColumn:@"template"]];
+        [note setServerid:[resultSet stringForColumn:@"serverid"]];
         return note;
     }
     return NULL;
@@ -56,6 +57,7 @@
         NSArray *noteViewArr = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:[resultSet dataForColumn:@"views"]];
         [note setViews:[NSMutableArray arrayWithArray:noteViewArr]];
         [note setTemplateNum:[resultSet intForColumn:@"template"]];
+        [note setServerid:[resultSet stringForColumn:@"serverid"]];
         [resultArr addObject:note];
     }
     return resultArr;
@@ -66,8 +68,16 @@
 }
 
 + (BOOL)hasUploadedToServer:(TPNote *)note{
-    NSString *serverid = [[[[DBManager shareInstance] getDB] executeQuery:@"SELECT noteid FROM t_note WHERE noteid = ?", @(note.noteid)] stringForColumn:0];
-    return !(serverid == NULL || [serverid isEqualToString:@""]);
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"SELECT * FROM t_note WHERE noteid = ?", @(note.noteid)];
+    if([resultSet next]){
+        NSString *serverid = [resultSet stringForColumn:@"serverid"];
+        return !(serverid == NULL || [serverid isEqualToString:@""]);
+    }
+    return NO;
+}
+
++ (BOOL)deleteNoteServerID:(TPNote *_Nonnull)note{
+    return [[[DBManager shareInstance] getDB] executeUpdate:@"UPDATE t_note SET serverid = NULL WHERE noteid = ?", @(note.noteid)];
 }
 
 + (NSInteger)countNoteNumbers{

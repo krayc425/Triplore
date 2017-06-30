@@ -33,6 +33,7 @@
 }
 
 + (void)updateServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
+    NSLog(@"Update id %@", note.noteServerID);
     AVFile *noteContextFile = [AVFile fileWithData:note.views];
     [noteContextFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
@@ -114,8 +115,8 @@
 }
 
 
-+ (void)deleteServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
-    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:note.noteServerID];
++ (void)deleteServerNote:(NSString *_Nonnull)noteServerID withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
+    AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
     
     NSError *error;
     if(![self isUserLoggedIn] || noteObj == nil){
@@ -128,26 +129,26 @@
         }
     }else{
         // 删除所有的收藏
-        [AVQuery doCloudQueryInBackgroundWithCQL:@"select * from favorite where note = ?"
-                                         pvalues:@[noteObj]
-                                        callback:^(AVCloudQueryResult *result, NSError *error) {
-                                            [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                AVObject *favoriteObj = (AVObject *)obj;
-                                                [AVQuery doCloudQueryWithCQL:@"delete from favorite where objectId = ?" pvalues:@[favoriteObj.objectId] error:nil];
-                                            }];
-                                        }];
-        // 删除所有的赞
-        [AVQuery doCloudQueryInBackgroundWithCQL:@"select * from comment_on where note = ?"
-                                         pvalues:@[noteObj]
-                                        callback:^(AVCloudQueryResult *result, NSError *error) {
-                                            [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                AVObject *commentObj = (AVObject *)obj;
-                                                [AVQuery doCloudQueryWithCQL:@"delete from comment_on where objectId = ?" pvalues:@[commentObj.objectId] error:nil];
-                                            }];
-                                        }];
+//        [AVQuery doCloudQueryInBackgroundWithCQL:@"select * from favorite where note = ?"
+//                                         pvalues:@[noteObj]
+//                                        callback:^(AVCloudQueryResult *result, NSError *error) {
+//                                            [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                                                AVObject *favoriteObj = (AVObject *)obj;
+//                                                [AVQuery doCloudQueryWithCQL:@"delete from favorite where objectId = ?" pvalues:@[favoriteObj.objectId] error:nil];
+//                                            }];
+//                                        }];
+//        // 删除所有的赞
+//        [AVQuery doCloudQueryInBackgroundWithCQL:@"select * from comment_on where note = ?"
+//                                         pvalues:@[noteObj]
+//                                        callback:^(AVCloudQueryResult *result, NSError *error) {
+//                                            [result.results enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                                                AVObject *commentObj = (AVObject *)obj;
+//                                                [AVQuery doCloudQueryWithCQL:@"delete from comment_on where objectId = ?" pvalues:@[commentObj.objectId] error:nil];
+//                                            }];
+//                                        }];
         // 删除笔记
         [AVQuery doCloudQueryInBackgroundWithCQL:@"delete from note where objectId = ?"
-                                         pvalues:@[note.noteServerID]
+                                         pvalues:@[noteServerID]
                                         callback:^(AVCloudQueryResult *result, NSError *error) {
                                             // 如果 error 为空，说明保存成功
                                             if (!error) {

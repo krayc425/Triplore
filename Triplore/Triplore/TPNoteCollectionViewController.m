@@ -12,6 +12,7 @@
 #import "TPNote.h"
 #import "TPNoteManager.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "TPRefreshHeader.h"
 
 @interface TPNoteCollectionViewController () <UIViewControllerPreviewingDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -35,6 +36,15 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
     UINib *nib = [UINib nibWithNibName:@"TPNoteCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self
+                                                         refreshingAction:@selector(loadNotes)];
+    self.collectionView.mj_header = header;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadNotes)
+                                                 name:@"load_notes"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +61,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     dispatch_async(queue, ^{
         noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView.mj_header endRefreshing];
             [self.collectionView reloadData];
         });
     });

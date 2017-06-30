@@ -111,8 +111,8 @@
 
 - (void)setIsShare:(BOOL)isShare {
     _isShare = isShare;
-    [self.collectButton setImage:[UIImage imageNamed:isShare ? @"NOTE_SHARED" : @"NOTE_SHARE"] forState:UIControlStateNormal];
-    [self.collectButton setTitle:isShare ? @"已分享" : @"分享" forState:UIControlStateNormal];
+    [self.shareButton setImage:[UIImage imageNamed:isShare ? @"NOTE_SHARED" : @"NOTE_SHARE"] forState:UIControlStateNormal];
+    [self.shareButton setTitle:isShare ? @"已分享" : @"分享" forState:UIControlStateNormal];
 }
 
 - (void)setLikeCount:(NSUInteger)likeCount {

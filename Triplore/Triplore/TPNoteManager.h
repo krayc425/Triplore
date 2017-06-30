@@ -68,6 +68,14 @@
 + (BOOL)updateNote:(TPNote *_Nonnull)note withServerID:(NSString *_Nullable)serverid;
 
 /**
+ 删除服务器 id
+
+ @param note  笔记模型
+ @return 是否删除成功
+ */
++ (BOOL)deleteNoteServerID:(TPNote *_Nonnull)note;
+
+/**
  有没有上传到服务器过
 
  @param note 笔记模型

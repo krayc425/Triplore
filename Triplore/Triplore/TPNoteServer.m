@@ -21,6 +21,9 @@
         self.like = @0;
         self.views = [NSKeyedArchiver archivedDataWithRootObject:note.views];
         self.videoDict = [TPVideoManager fetchVideoWithID:note.videoid].dict;
+        if(!([note.serverid isEqualToString:@""] || note.serverid == NULL)){
+            self.noteServerID = note.serverid;
+        }
     }
     return self;
 }
