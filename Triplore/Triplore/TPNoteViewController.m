@@ -156,7 +156,7 @@
     if([TPNoteManager hasUploadedToServer:self.note]) {
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"选择操作" message: nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除远程笔记" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除分享" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [SVProgressHUD show];
             [TPNoteServerHelper deleteServerNote:self.note.serverid withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 
@@ -172,7 +172,7 @@
                 }
             }];
         }];
-        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新远程笔记" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [SVProgressHUD show];
             TPNoteServer *newServer = [[TPNoteServer alloc] initWithTPNote:self.note];
 //            [newServer setNoteServerID:self.noteServer.noteServerID];

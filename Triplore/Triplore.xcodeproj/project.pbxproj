@@ -20,6 +20,8 @@
 		24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */; };
 		24086A611EF4FD04002D36AF /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24086A601EF4FD04002D36AF /* Intro.xcassets */; };
 		240903901F0603E9004535C3 /* TPPlayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2409038F1F0603E9004535C3 /* TPPlayPanel.m */; };
+		240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */; };
+		240903971F0685F5004535C3 /* TPAddTextLandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */; };
 		240B1B5F1EF64832004D802B /* TPPlayTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */; };
 		240B1B601EF64832004D802B /* TPPlayTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */; };
 		241210EE1ED7EF400066B99C /* TPNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241210ED1ED7EF400066B99C /* TPNoteViewController.m */; };
@@ -210,6 +212,9 @@
 		24086A601EF4FD04002D36AF /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
 		2409038E1F0603E9004535C3 /* TPPlayPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayPanel.h; sourceTree = "<group>"; };
 		2409038F1F0603E9004535C3 /* TPPlayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayPanel.m; sourceTree = "<group>"; };
+		240903931F0685F5004535C3 /* TPAddTextLandscapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAddTextLandscapeViewController.h; sourceTree = "<group>"; };
+		240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddTextLandscapeViewController.m; sourceTree = "<group>"; };
+		240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAddTextLandscapeViewController.xib; sourceTree = "<group>"; };
 		240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPlayTutorialViewController.h; sourceTree = "<group>"; };
 		240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPlayTutorialViewController.m; sourceTree = "<group>"; };
 		240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPPlayTutorialViewController.xib; sourceTree = "<group>"; };
@@ -587,6 +592,16 @@
 			name = Site;
 			sourceTree = "<group>";
 		};
+		240903981F06898D004535C3 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */,
+				240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */,
+				240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 		241BC4711EDFAE3A0056AFCA /* VideoData */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +648,7 @@
 		24487C511EDDC7090009E8E5 /* Selection */ = {
 			isa = PBXGroup;
 			children = (
+				240903981F06898D004535C3 /* Tutorial */,
 				4D9171531EF10C3900930372 /* TPSelectionTableViewController.h */,
 				4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */,
 				4D9171561EF10E4200930372 /* TPSelectionSliderTableViewCell.h */,
@@ -643,15 +659,15 @@
 				24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */,
 				2409038E1F0603E9004535C3 /* TPPlayPanel.h */,
 				2409038F1F0603E9004535C3 /* TPPlayPanel.m */,
-				240B1B5C1EF64832004D802B /* TPPlayTutorialViewController.h */,
-				240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */,
-				240B1B5E1EF64832004D802B /* TPPlayTutorialViewController.xib */,
 				245E5C8F1EE4510200448986 /* TPVideoProgressBar.h */,
 				245E5C901EE4510200448986 /* TPVideoProgressBar.m */,
 				245E5C921EE4510C00448986 /* TPVideoProgressBar.xib */,
 				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
 				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
 				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
+				240903931F0685F5004535C3 /* TPAddTextLandscapeViewController.h */,
+				240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */,
+				240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */,
 			);
 			name = Selection;
 			sourceTree = "<group>";
@@ -1158,6 +1174,7 @@
 				2444AC9C1EF28F410007CC69 /* TPNoteTitleViewBrown.xib in Resources */,
 				24487C501EDDB3900009E8E5 /* TPAddTextViewController.xib in Resources */,
 				24AF8D261EF3CB9C00C9B0CD /* NoteTemplate.xcassets in Resources */,
+				240903971F0685F5004535C3 /* TPAddTextLandscapeViewController.xib in Resources */,
 				24B810871ED700B500CD7DC4 /* TPMeTableViewCell.xib in Resources */,
 				2402CE1C1ED451930098770A /* fontawesome-webfont.ttf in Resources */,
 				2402CE1A1ED450790098770A /* TPSiteTableViewCell.xib in Resources */,
@@ -1331,6 +1348,7 @@
 				2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4D4DF7971EE10A4B0012F476 /* TPCategoryButton.m in Sources */,
+				240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */,
 				4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */,
 				4DA7B9391F029971004A8B5A /* TPMeAuthTableViewCell.m in Sources */,
 				4DA4F9E81ED971C700DA73AA /* TPSiteSearchViewController.m in Sources */,
