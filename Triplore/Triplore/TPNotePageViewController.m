@@ -31,6 +31,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.title = @"笔记";
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc] init];
     TPNoteServerCollectionViewController *controller1 = [[TPNoteServerCollectionViewController alloc] initWithCollectionViewLayout:layout1];
     controller1.title = @"推荐";

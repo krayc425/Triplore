@@ -14,6 +14,7 @@
 #import "TPMeTableViewController.h"
 #import "TPPlayViewController.h"
 #import "ABCIntroView.h"
+#import "TPNoteCollectionViewController.h"
 
 @interface TPTabBarViewController () <ABCIntroViewDelegate> {
     BOOL shouldAutorotate;
@@ -47,7 +48,7 @@
     
     //笔记
 //    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    TPNotePageViewController *noteVC = [[TPNotePageViewController alloc] initWithCollectionViewLayout:layout];
+//    TPNoteCollectionViewController *noteVC = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout];
     TPNotePageViewController *noteVC = [[TPNotePageViewController alloc] init];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"笔记" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
     noteVC.tabBarItem = item3;
