@@ -8,22 +8,30 @@
 
 #import "TPNoteBarButton.h"
 
+@interface TPNoteBarButton ()
+
+
+@property (nonatomic, nonnull) UIImageView *imgView;
+@end
+
 @implementation TPNoteBarButton
-
-
 
 - (void)setImage:(UIImage *)image forState:(UIControlState)state {
 //    [super setImage:image forState:state];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    if (self.imgView) {
+        [self.imgView removeFromSuperview];
+    }
+
+    self.imgView = [[UIImageView alloc] initWithImage:image];
+    self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
     CGFloat width = CGRectGetWidth(self.frame);
     CGFloat height = CGRectGetHeight(self.frame) / 2;
     
     CGRect rect = CGRectMake((width-16)/2, 0, 16, height);
 
-    imageView.frame = rect;
-    [self addSubview:imageView];
+    self.imgView.frame = rect;
+    [self addSubview:self.imgView];
     
 }
 
