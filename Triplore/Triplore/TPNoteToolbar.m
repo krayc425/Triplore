@@ -99,8 +99,8 @@
 
 - (void)setIsLike:(BOOL)isLike {
     _isLike = isLike;
-    [self.likeButton setImage:[UIImage imageNamed:_isLike ? @"NOTE_LIKE_FULL" : @"NOTE_LIKE"] forState:UIControlStateNormal];
-    [self.likeButton setTitle:[NSString stringWithFormat:_isLike ? @"已赞 · %d" : @"赞 · %d", self.likeCount] forState:UIControlStateNormal];
+    [self.likeButton setImage:[UIImage imageNamed:isLike ? @"NOTE_LIKE_FULL" : @"NOTE_LIKE"] forState:UIControlStateNormal];
+    [self.likeButton setTitle:[NSString stringWithFormat:isLike ? @"已赞 · %d" : @"赞 · %d", self.likeCount] forState:UIControlStateNormal];
 }
 
 - (void)setIsCollect:(BOOL)isCollect {
@@ -111,6 +111,7 @@
 
 - (void)setIsShare:(BOOL)isShare {
     _isShare = isShare;
+    [self.collectButton setImage:[UIImage imageNamed:isShare ? @"NOTE_SHARED" : @"NOTE_SHARE"] forState:UIControlStateNormal];
     [self.collectButton setTitle:isShare ? @"已分享" : @"分享" forState:UIControlStateNormal];
 }
 
