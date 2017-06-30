@@ -41,7 +41,7 @@ static NSString *kNoteTemplate  = @"Template";
     self = [super init];
     if(self) {
         self.title = noteServer.title;
-        self.createTime = [NSDate date];
+        self.createTime = noteServer.createDate;
         self.templateNum = 0;
         self.views = [NSKeyedUnarchiver unarchiveObjectWithData:noteServer.views];
         self.videoid = noteServer.videoDict[@"id"];

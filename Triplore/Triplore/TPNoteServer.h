@@ -22,6 +22,7 @@
 @property (nonatomic, nullable) NSData *views;
 @property (nonatomic, nonnull) NSDictionary *videoDict;
 @property (nonatomic, copy, nonnull) NSString *creatorName;
+@property (nonatomic, nonnull) NSDate *createDate;
 
 - (instancetype _Nonnull)initWithTPNote:(TPNote *_Nonnull)note;
 

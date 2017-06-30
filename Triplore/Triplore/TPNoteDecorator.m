@@ -42,12 +42,22 @@
     for(UIView *view in note.views){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel *)view;
+            label.numberOfLines = 0;
+            
+            [label sizeToFit];
+            [label setNeedsLayout];
+            
             [label setFont:[UIFont fontWithName:template.tem_font size:16.0]];
             [label setTextColor:template.tem_textColor];
+            
             [tempViews addObject:label];
         }else if([view isKindOfClass:[UIImageView class]]){
             UIImageView *oldView = (UIImageView *)view;
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:oldView.frame];
+            CGRect newFrame = CGRectMake(0,
+                                         0,
+                                         SCREEN_WIDTH - 40,
+                                         CGRectGetHeight(oldView.frame) / CGRectGetWidth(oldView.frame) * (SCREEN_WIDTH - 40));
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:newFrame];
             [imageView setImage:oldView.image];
             switch (template.tem_num) {
                 case TPGreen:

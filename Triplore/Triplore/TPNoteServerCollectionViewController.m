@@ -32,6 +32,11 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self
                                                          refreshingAction:@selector(loadNotes)];
     self.collectionView.mj_header = header;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadNotes)
+                                                 name:@"load_server_notes"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

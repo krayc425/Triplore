@@ -35,6 +35,7 @@
         self.videoDict = (NSDictionary *)[object objectForKey:@"videoDict"];
         AVUser *user = [object objectForKey:@"creator"];
         self.creatorName = user.username;
+        self.createDate = object.createdAt;
     }
     return self;
 }

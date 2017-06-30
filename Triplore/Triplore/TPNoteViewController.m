@@ -154,22 +154,20 @@
 }
 
 - (void)didTapLikeButton:(UIButton *)button {
-    // todo
-    BOOL changeToLike = ![TPNoteServerHelper isLikeServerNote:self.noteServer.noteServerID];
-    [self.buttonBar setIsLike:changeToLike];
-    
-    [TPNoteServerHelper commentServerNote:self.noteServer withIsLike:changeToLike withBlock:^(BOOL succeed, NSError * _Nullable error) {
-        if(succeed){
-            NSLog(@"点赞成功");
-            [self.buttonBar setLikeCount:self.buttonBar.likeCount + (changeToLike ? 1 : -1)];
-        }else{
-            NSLog(@"点赞失败");
-            self.buttonBar.isLike = !changeToLike;
-        }
-    }];
+    [self likeAction];
 }
 
 - (void)didTapCollectButton:(UIButton *)button {
+    [self favoriteAction];
+}
+
+- (void)didTapAddButton:(UIButton *)button {
+    [self saveNoteAction];
+}
+
+#pragma mark - Button Action
+
+- (void)favoriteAction{
     BOOL changeToCollect = ![TPNoteServerHelper isFavoriteServerNote:self.noteServer.noteServerID];
     [self.buttonBar setIsCollect:changeToCollect];
     
@@ -194,12 +192,21 @@
     }
 }
 
-- (void)didTapAddButton:(UIButton *)button {
-    // todo
-    [self saveNoteAction];
+- (void)likeAction{
+    BOOL changeToLike = ![TPNoteServerHelper isLikeServerNote:self.noteServer.noteServerID];
+    [self.buttonBar setIsLike:changeToLike];
+    
+    [TPNoteServerHelper commentServerNote:self.noteServer withIsLike:changeToLike withBlock:^(BOOL succeed, NSError * _Nullable error) {
+        if(succeed){
+            NSLog(@"点赞成功");
+            [self.buttonBar setLikeCount:self.buttonBar.likeCount + (changeToLike ? 1 : -1)];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
+        }else{
+            NSLog(@"点赞失败");
+            self.buttonBar.isLike = !changeToLike;
+        }
+    }];
 }
-
-#pragma mark - Button Action
 
 - (void)videoAction{
     TPVideo *video = [TPVideoManager fetchVideoWithID:self.note.videoid];
@@ -277,6 +284,9 @@
         if(succeed) {
             [TPNoteManager updateNote:self.note withServerID:serverID];
             [SVProgressHUD showSuccessWithStatus:@"分享成功"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
+            
             [SVProgressHUD dismissWithDelay:2.0];
         }else{
             [SVProgressHUD showErrorWithStatus:@"分享失败"];
@@ -422,7 +432,7 @@
     if(indexPath.row < 2){
         return showViews[indexPath.row].frame.size.height + 10;
     }else{
-        return self.note.views[indexPath.row - 2].frame.size.height + 20;
+        return showViews[indexPath.row].frame.size.height + 20;
     }
 }
 
@@ -432,7 +442,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.note.views removeObjectAtIndex:indexPath.row - 2];
-//    self.note.views = self.noteViews;
     [self reloadShowViews];
 }
 

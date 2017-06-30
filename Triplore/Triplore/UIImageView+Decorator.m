@@ -26,7 +26,7 @@
     CGFloat width = CGRectGetWidth(self.frame) - 20;
     CGFloat height = CGRectGetHeight(self.frame) / CGRectGetWidth(self.frame) * width;
     
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width+20, height+50)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width+20, height+40)];
     bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:bgView];
     UIImageView *tmpView = [[UIImageView alloc] initWithImage:self.image];
@@ -38,6 +38,8 @@
     self.layer.shadowOffset = CGSizeMake(0, 1);
     self.layer.shadowRadius = 2.0;
     self.layer.shadowOpacity = 0.3;
+    
+    self.bounds = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) + 20);
 }
 
 @end
