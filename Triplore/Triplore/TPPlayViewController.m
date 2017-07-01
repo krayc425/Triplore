@@ -80,7 +80,7 @@
     playFrame = CGRectMake(0,
                            0,
                            SCREEN_WIDTH,
-                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * SCREEN_HEIGHT);
+                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -192,9 +192,9 @@
     
     [self saveNote];
     
-//    [self pauseClick];
+    [self pauseClick];
     
-//    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
     
     NSLog(@"Play Will Disappear");
 }
@@ -223,6 +223,12 @@
         obj.backgroundColor = [UIColor clearColor];
     }];
     [self.tableView reloadData];
+}
+
+- (void)hideToolViews:(BOOL)isHide{
+    [[self.view viewWithTag:100] setHidden:isHide];
+    [[self.view viewWithTag:200] setHidden:isHide];
+    [playPanel setHidden:isHide];
 }
 
 #pragma mark - Player Methods
@@ -399,14 +405,12 @@
 #pragma mark - Screen Recording
 
 - (void)startPlayerRecording{
-//    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
-    
-    [playPanel setHidden:YES];
+    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
+    [self hideToolViews:YES];
     
     RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
     sharedRecorder.delegate = self;
     [sharedRecorder startRecordingWithMicrophoneEnabled:YES handler:^(NSError *error) {
-        
         if (error) {
             NSLog(@"startScreenRecording: %@", error.localizedDescription);
         }
@@ -414,12 +418,12 @@
 }
 
 - (void)stopPlayerRecording{
-    currentPlayTime = @([[QYPlayerController sharedInstance] currentPlaybackTime]);
-    
-    NSLog(@"Stop");
     
     RPScreenRecorder *sharedRecorder = RPScreenRecorder.sharedRecorder;
     [sharedRecorder stopRecordingWithHandler:^(RPPreviewViewController *previewViewController, NSError *error) {
+        currentPlayTime = @([[QYPlayerController sharedInstance] currentPlaybackTime]);
+        [self pauseClick];
+        [self hideToolViews:NO];
         
         if (error) {
             NSLog(@"stopScreenRecording: %@", error.localizedDescription);
@@ -428,10 +432,8 @@
         if (previewViewController) {
             previewViewController.previewControllerDelegate = self;
             self.previewViewController = previewViewController;
-            
             // RPPreviewViewController only supports full screen modal presentation.
             self.previewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-            
             [self presentViewController:previewViewController animated:YES completion:nil];
         }
     }];
@@ -441,11 +443,13 @@
 
 - (void)previewControllerDidFinish:(RPPreviewViewController *)previewController {
     [previewController dismissViewControllerAnimated:YES completion:^{
-//        [self interfaceOrientation:UIInterfaceOrientationPortrait];
+        [self interfaceOrientation:UIInterfaceOrientationPortrait];
         
         [playPanel setHidden:NO];
         
-        [self setToTime:[currentPlayTime doubleValue]];
+//        [self setToTime:[currentPlayTime doubleValue]];
+        
+        [self playClick];
     }];
 }
 
@@ -516,10 +520,7 @@
 }
 
 - (void)screenShotAction{
-    //隐藏暂停按钮
-    [[self.view viewWithTag:100] setHidden:YES];
-    [[self.view viewWithTag:200] setHidden:YES];
-    [playPanel setHidden:YES];
+    [self hideToolViews:YES];
     
     //缩放因子
     CGFloat factor;
@@ -555,9 +556,7 @@
     UIGraphicsEndImageContext();
     
     //恢复暂停按钮
-    [[self.view viewWithTag:100] setHidden:NO];
-    [[self.view viewWithTag:200] setHidden:NO];
-    [playPanel setHidden:NO];
+    [self hideToolViews:NO];
 }
 
 - (void)saveNote{
@@ -630,7 +629,24 @@
 }
 
 - (void)didTapRecordButton{
-    [self startPlayerRecording];
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"video_recording_tip"]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"录制提示"
+                                                                        message:@"开始录制后，按屏幕任意区域即可结束录制" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *noMoreAction = [UIAlertAction actionWithTitle:@"不再提示" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"video_recording_tip"];
+            [self startPlayerRecording];
+        }];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"开始录制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self startPlayerRecording];
+        }];
+        [alertC addAction:noMoreAction];
+        [alertC addAction:okAction];
+        [alertC addAction:cancelAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self startPlayerRecording];
+    }
 }
 
 #pragma mark - Table view data source
@@ -716,7 +732,7 @@
                                                self.view.bounds.size.width,
                                                self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 250, CGRectGetHeight(self.playerView.frame) - 50, 130, 30)];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 150, CGRectGetHeight(self.playerView.frame) - 50, 130, 30)];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10,
                                                              self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
                                                              CONTROLLER_BAR_WIDTH,
@@ -744,7 +760,7 @@
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 250,
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 150,
                                           CGRectGetHeight(_playerView.frame) - 50,
                                            130, 30)];
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
@@ -766,18 +782,18 @@
     }
 }
 
-//- (void)interfaceOrientation:(UIInterfaceOrientation)orientation{
-//    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-//        SEL selector  = NSSelectorFromString(@"setOrientation:");
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-//        [invocation setSelector:selector];
-//        [invocation setTarget:[UIDevice currentDevice]];
-//        int val = orientation;
-//        // 从2开始是因为0 1 两个参数已经被selector和target占用
-//        [invocation setArgument:&val atIndex:2];
-//        [invocation invoke];
-//    }
-//}
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation{
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector  = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = orientation;
+        // 从2开始是因为0 1 两个参数已经被selector和target占用
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
 
 #pragma mark - UITextField Delegate
 
