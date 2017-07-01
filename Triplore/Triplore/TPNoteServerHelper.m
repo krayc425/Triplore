@@ -14,7 +14,6 @@
 @implementation TPNoteServerHelper
 
 + (void)uploadServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSString *serverID, NSError *_Nullable error))completionBlock{
-    
     AVFile *noteContextFile = [AVFile fileWithData:note.views];
     [noteContextFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
@@ -33,7 +32,6 @@
 }
 
 + (void)updateServerNote:(TPNoteServer *_Nonnull)note withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
-    NSLog(@"Update id %@", note.noteServerID);
     AVFile *noteContextFile = [AVFile fileWithData:note.views];
     [noteContextFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
@@ -52,7 +50,6 @@
 }
 
 + (void)loadServerNotesStartWith:(NSUInteger)start withSize:(NSUInteger)size withBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError *_Nullable error))completionBlock{
-    
     NSString *cql = [NSString stringWithFormat:@"select * from note limit ?, ? order by updatedAt desc"];
     NSArray *pVals = @[@(start), @(size)];
     [AVQuery doCloudQueryInBackgroundWithCQL:cql
@@ -78,7 +75,6 @@
 }
 
 + (void)loadFavoriteServerNotesWithBlock:(void(^_Nonnull)(NSArray<TPNoteServer *> * noteServers, NSError *_Nullable error))completionBlock{
-    
     NSError *error;
     if(![self isUserLoggedIn]){
         if(completionBlock){
@@ -113,7 +109,6 @@
                                         }];
     }
 }
-
 
 + (void)deleteServerNote:(NSString *_Nonnull)noteServerID withBlock:(void(^_Nonnull)(BOOL succeed, NSError *_Nullable error))completionBlock{
     AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
@@ -288,11 +283,17 @@
 #pragma mark - Helper Private Methods
 
 + (BOOL)isLikeServerNote:(NSString *_Nonnull)noteServerID{
+    if(![self isUserLoggedIn]){
+        return NO;
+    }
     AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
     return [self isLike:noteObj];
 }
 
 + (BOOL)isFavoriteServerNote:(NSString *_Nonnull)noteServerID{
+    if(![self isUserLoggedIn]){
+        return NO;
+    }
     AVObject *noteObj = [AVObject objectWithClassName:@"note" objectId:noteServerID];
     return [self isFavorite:noteObj];
 }

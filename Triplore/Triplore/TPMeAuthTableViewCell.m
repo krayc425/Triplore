@@ -40,7 +40,7 @@
         AVFile *file = [user objectForKey:@"avatar"];
         
         if (file) {
-        NSLog(@"Avatar URL : %@", file.url);
+            NSLog(@"Avatar URL : %@", file.url);
             [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:file.url]];
         } else {
             [self.avatarImageView setImage:[UIImage imageNamed:@"DEFAULT_AVATAR"]];

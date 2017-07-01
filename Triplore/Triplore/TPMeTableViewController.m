@@ -10,7 +10,6 @@
 #import "TPMeTableViewCell.h"
 #import "TPMeAuthTableViewCell.h"
 #import "TPMeLogoutTableViewCell.h"
-
 #import "TPAuthViewController.h"
 #import "TPMeFavoriteTableViewController.h"
 #import "TPMeRecentTableViewController.h"
@@ -18,7 +17,6 @@
 #import "TPSettingsTableViewController.h"
 #import "TPMeTableViewController+Avatar.h"
 #import "SVProgressHUD.h"
-
 #import "TPAuthHelper.h"
 
 @interface TPMeTableViewController ()
