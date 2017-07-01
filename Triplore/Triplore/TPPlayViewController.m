@@ -129,9 +129,10 @@
     self.navigationItem.rightBarButtonItem = favoriteButton;
     
     //操作面板
-    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 150,
+    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 180,
                                                               CGRectGetHeight(_playerView.frame) - 50,
-                                                              130, 30)];
+                                                              150,
+                                                              30)];
     playPanel.delegate = self;
     
     //创建手势
@@ -732,7 +733,10 @@
                                                self.view.bounds.size.width,
                                                self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 150, CGRectGetHeight(self.playerView.frame) - 50, 130, 30)];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 180,
+                                           CGRectGetHeight(self.playerView.frame) - 50,
+                                           150,
+                                           30)];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10,
                                                              self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
                                                              CONTROLLER_BAR_WIDTH,
@@ -760,9 +764,10 @@
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 150,
-                                          CGRectGetHeight(_playerView.frame) - 50,
-                                           130, 30)];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 180,
+                                           CGRectGetHeight(_playerView.frame) - 50,
+                                           150,
+                                           30)];
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];

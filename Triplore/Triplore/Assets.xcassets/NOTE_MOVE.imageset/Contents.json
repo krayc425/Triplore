@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "NOTE_MOVE.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "VIDEO_RECORD.@2x.png",
+      "filename" : "NOTE_MOVE@2x.png",
       "scale" : "2x"
     },
     {

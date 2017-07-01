@@ -43,8 +43,12 @@
         [_saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
         _saveButton.tintColor = TPColor;
         
-        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_recordButton, _editButton, _screenshotButton, _saveButton]];
-        [stackView setFrame:CGRectMake(10, 0, CGRectGetWidth(frame) - 20, CGRectGetHeight(frame))];
+        UIImageView *moveImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [moveImgView setImage:[UIImage imageNamed:@"NOTE_MOVE"]];
+        [moveImgView setContentMode:UIViewContentModeBottomRight];
+        
+        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_recordButton, _editButton, _screenshotButton, _saveButton, moveImgView]];
+        [stackView setFrame:CGRectMake(10, 0, CGRectGetWidth(frame) - 15, CGRectGetHeight(frame))];
         [stackView setAlignment:UIStackViewAlignmentCenter];
         [stackView setDistribution:UIStackViewDistributionEqualSpacing];
         
