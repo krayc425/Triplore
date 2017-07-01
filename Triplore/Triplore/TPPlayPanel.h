@@ -18,6 +18,8 @@
 
 - (void)didTapSaveButton;
 
+- (void)didTapRecordButton;
+
 @end
 
 @interface TPPlayPanel : UIView

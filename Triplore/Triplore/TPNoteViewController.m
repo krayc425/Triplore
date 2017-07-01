@@ -27,6 +27,7 @@
 #import "TPNoteServer.h"
 #import "SVProgressHUD.h"
 #import "TPMediaSaver.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 #define STACK_SPACING 20
 #define TOOLBAR_HEIGHT 44
@@ -153,7 +154,13 @@
 }
 
 - (void)didTapShareButton:(UIButton *)button {
-    if([TPNoteManager hasUploadedToServer:self.note]) {
+    if(![AVUser currentUser]){
+        [SVProgressHUD showInfoWithStatus:@"您尚未登录"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if([TPNoteManager hasUploadedToServer:self.note]){
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"选择操作" message: nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除分享" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -175,7 +182,6 @@
         UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [SVProgressHUD show];
             TPNoteServer *newServer = [[TPNoteServer alloc] initWithTPNote:self.note];
-//            [newServer setNoteServerID:self.noteServer.noteServerID];
             [TPNoteServerHelper updateServerNote:newServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 if(succeed){
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
@@ -195,10 +201,22 @@
 }
 
 - (void)didTapLikeButton:(UIButton *)button {
+    if(![AVUser currentUser]){
+        [SVProgressHUD showInfoWithStatus:@"您尚未登录"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
     [self likeAction];
 }
 
 - (void)didTapCollectButton:(UIButton *)button {
+    if(![AVUser currentUser]){
+        [SVProgressHUD showInfoWithStatus:@"您尚未登录"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
     [self favoriteAction];
 }
 

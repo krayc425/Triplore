@@ -193,7 +193,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (void)loginRequest {
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:@"登录中"];
     [TPAuthHelper loginWithUsername:self.usernameTextField.text
                         andPassword:self.passwordTextField.text
                           withBlock:^(AVUser * _Nonnull user, NSError * _Nullable error) {

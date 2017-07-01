@@ -1,4 +1,4 @@
-//
+
 //  TPPlayViewController.m
 //  Triplore
 //
@@ -28,24 +28,25 @@
 #import "Glimpse.h"
 #import "TPMediaSaver.h"
 #import <Photos/Photos.h>
+#import <ReplayKit/ReplayKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
 
-#define IS_PROTRAIT
-
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate>{
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
     UIBarButtonItem *favoriteButton;
     TPVideoProgressBar *progressBarView;
     TPPlayPanel *playPanel;
-    Glimpse *glimpse;
+    NSNumber *currentPlayTime;
 }
 
+@property (nonatomic, weak) RPPreviewViewController *previewViewController;
 @property (nonatomic, weak) IBOutlet UIView *playerView;
 @property (nonatomic, weak) IBOutlet UITextField *titleText;
 @property (nonatomic, weak) IBOutlet UIView *playPauseView;
@@ -79,7 +80,7 @@
     playFrame = CGRectMake(0,
                            0,
                            SCREEN_WIDTH,
-                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * SCREEN_HEIGHT);
+                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -128,24 +129,23 @@
     self.navigationItem.rightBarButtonItem = favoriteButton;
     
     //操作面板
-    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 120,
+    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 150,
                                                               CGRectGetHeight(_playerView.frame) - 50,
-                                                              100, 30)];
+                                                              130, 30)];
     playPanel.delegate = self;
     
     //创建手势
-    UIPanGestureRecognizer *panGR =
-    [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(objectDidDragged:)];
+    UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(objectDidDragged:)];
     //限定操作的触点数
     [panGR setMaximumNumberOfTouches:1];
     [panGR setMinimumNumberOfTouches:1];
     //将手势添加到draggableObj里
     [playPanel addGestureRecognizer:panGR];
-    [self.view addSubview:playPanel];
-    [self.view bringSubviewToFront:playPanel];
     
-    //录屏插件
-    glimpse = [[Glimpse alloc] init];
+    UITapGestureRecognizer *tapEndGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(stopPlayerRecording)];
+    [tapEndGesture setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tapEndGesture];
     
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
@@ -156,6 +156,19 @@
             [self playClick];
         }];
     }
+    
+    //存入视频列表，因为要存“最近观看”
+    TPVideo *newVideo = [[TPVideo alloc] initWithVideoDict:self.videoDict];
+    [TPVideoManager insertVideo:newVideo];
+    
+    NSLog(@"Video id: %@", self.videoDict[@"id"]);
+    [self setFavoriteImage];
+    
+    NSString* aid = [self.videoDict valueForKey:@"a_id"];
+    NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
+    NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
+    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
+    self.title = self.videoDict[@"short_title"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -166,36 +179,24 @@
     self.tabBarController.tabBar.hidden = YES;
     [self.navigationController setNavigationBarHidden:NO];
     [self reloadNoteViews];
+    [self.view setNeedsLayout];
+    [self.view layoutSubviews];
+    NSLog(@"Play Will Appear");
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    NSString* aid = [self.videoDict valueForKey:@"a_id"];
-    NSString* tvid = [self.videoDict valueForKey:@"tv_id"];
-    NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
-    [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
-    
-    self.title = self.videoDict[@"short_title"];
-    
-    //存入视频列表，因为要存“最近观看”
-    TPVideo *newVideo = [[TPVideo alloc] initWithVideoDict:self.videoDict];
-    [TPVideoManager insertVideo:newVideo];
-    
-    NSLog(@"Video id: %@", self.videoDict[@"id"]);
-    UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
-    [favoriteButton setImage:favoriteImg];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
-    [[QYPlayerController sharedInstance] pause];
+    
     [self saveNote];
     
     [self pauseClick];
     
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
+    
+    NSLog(@"Play Will Disappear");
 }
 
 - (void)objectDidDragged:(UIPanGestureRecognizer *)sender {
@@ -222,6 +223,12 @@
         obj.backgroundColor = [UIColor clearColor];
     }];
     [self.tableView reloadData];
+}
+
+- (void)hideToolViews:(BOOL)isHide{
+    [[self.view viewWithTag:100] setHidden:isHide];
+    [[self.view viewWithTag:200] setHidden:isHide];
+    [playPanel setHidden:isHide];
 }
 
 #pragma mark - Player Methods
@@ -312,8 +319,6 @@
     if ([QYPlayerController sharedInstance].isPlaying == YES) {
         [[QYPlayerController sharedInstance] pause];
         [self showPlayView];
-        
-        [glimpse stop];
     }
 }
 
@@ -353,8 +358,8 @@
  */
 - (void)onAdStartPlay:(QYPlayerController *)player{
     [self showPauseView];
-#warning temp
-    [self startRecording];
+    [self.view addSubview:playPanel];
+    [self.view bringSubviewToFront:playPanel];
 }
 
 /**
@@ -399,41 +404,68 @@
 
 #pragma mark - Screen Recording
 
-- (void)startRecording{
-    [glimpse startRecordingView:self.playerView onCompletion:^(NSURL *fileOuputURL) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [TPMediaSaver saveVideoAtURL:fileOuputURL withCompletionBlock:^(BOOL success, NSError *error) {
-                if(!error) {
-                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存视频成功"
-                                                                                    message:nil
-                                                                             preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                                           style:UIAlertActionStyleCancel
-                                                                         handler:nil];
-                    [alertC addAction:cancelAction];
-                    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
-                                                                          style:UIAlertActionStyleDefault
-                                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                                            NSString *str = @"photos-redirect://";
-                                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
-                                                                                                               options:@{}
-                                                                                                     completionHandler:nil];
-                                                                        }];
-                    [alertC addAction:albumAction];
-                    [self presentViewController:alertC animated:YES completion:nil];
-                }else{
-                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
-                                                                                    message:nil
-                                                                             preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                                       style:UIAlertActionStyleDefault
-                                                                     handler:nil];
-                    [alertC addAction:okAction];
-                    [self presentViewController:alertC animated:YES completion:nil];
-                }
-            }];
-        });
+- (void)startPlayerRecording{
+    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
+    [self hideToolViews:YES];
+    
+    RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
+    sharedRecorder.delegate = self;
+    [sharedRecorder startRecordingWithMicrophoneEnabled:YES handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"startScreenRecording: %@", error.localizedDescription);
+        }
     }];
+}
+
+- (void)stopPlayerRecording{
+    
+    RPScreenRecorder *sharedRecorder = RPScreenRecorder.sharedRecorder;
+    [sharedRecorder stopRecordingWithHandler:^(RPPreviewViewController *previewViewController, NSError *error) {
+        currentPlayTime = @([[QYPlayerController sharedInstance] currentPlaybackTime]);
+        [self pauseClick];
+        [self hideToolViews:NO];
+        
+        if (error) {
+            NSLog(@"stopScreenRecording: %@", error.localizedDescription);
+        }
+        
+        if (previewViewController) {
+            previewViewController.previewControllerDelegate = self;
+            self.previewViewController = previewViewController;
+            // RPPreviewViewController only supports full screen modal presentation.
+            self.previewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:previewViewController animated:YES completion:nil];
+        }
+    }];
+}
+
+#pragma mark - RPPreviewViewControllerDelegate
+
+- (void)previewControllerDidFinish:(RPPreviewViewController *)previewController {
+    [previewController dismissViewControllerAnimated:YES completion:^{
+        [self interfaceOrientation:UIInterfaceOrientationPortrait];
+        
+        [playPanel setHidden:NO];
+        
+//        [self setToTime:[currentPlayTime doubleValue]];
+        
+        [self playClick];
+    }];
+}
+
+- (void)previewController:(RPPreviewViewController *)previewController didFinishWithActivityTypes:(NSSet<NSString *> *)activityTypes{
+    if ([activityTypes containsObject:@"com.apple.UIKit.activity.SaveToCameraRoll"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showSuccessWithStatus:@"成功保存视频到相册"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        });
+    }
+    if ([activityTypes containsObject:@"com.apple.UIKit.activity.CopyToPasteboard"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showSuccessWithStatus:@"已经复制到粘贴板"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        });
+    }
 }
 
 #pragma mark - Button Action
@@ -488,10 +520,7 @@
 }
 
 - (void)screenShotAction{
-    //隐藏暂停按钮
-    [[self.view viewWithTag:100] setHidden:YES];
-    [[self.view viewWithTag:200] setHidden:YES];
-    [playPanel setHidden:YES];
+    [self hideToolViews:YES];
     
     //缩放因子
     CGFloat factor;
@@ -527,9 +556,7 @@
     UIGraphicsEndImageContext();
     
     //恢复暂停按钮
-    [[self.view viewWithTag:100] setHidden:NO];
-    [[self.view viewWithTag:200] setHidden:NO];
-    [playPanel setHidden:NO];
+    [self hideToolViews:NO];
 }
 
 - (void)saveNote{
@@ -601,6 +628,27 @@
     [self saveNoteAction];
 }
 
+- (void)didTapRecordButton{
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"video_recording_tip"]){
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"录制提示"
+                                                                        message:@"开始录制后，按屏幕任意区域即可结束录制" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *noMoreAction = [UIAlertAction actionWithTitle:@"不再提示" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"video_recording_tip"];
+            [self startPlayerRecording];
+        }];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"开始录制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self startPlayerRecording];
+        }];
+        [alertC addAction:noMoreAction];
+        [alertC addAction:okAction];
+        [alertC addAction:cancelAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+    }else{
+        [self startPlayerRecording];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -669,7 +717,7 @@
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    if (size.width > size.height) { // 横屏
+    if (size.width > size.height) {
         NSLog(@"横屏");
         [self.navigationController setNavigationBarHidden:YES];
         [self.tableView setHidden:YES];
@@ -684,7 +732,7 @@
                                                self.view.bounds.size.width,
                                                self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 120, CGRectGetHeight(self.playerView.frame) - 50, 100, 30)];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 150, CGRectGetHeight(self.playerView.frame) - 50, 130, 30)];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10,
                                                              self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
                                                              CONTROLLER_BAR_WIDTH,
@@ -712,9 +760,9 @@
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 120,
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 150,
                                           CGRectGetHeight(_playerView.frame) - 50,
-                                           100, 30)];
+                                           130, 30)];
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];
@@ -731,6 +779,19 @@
         return YES;
     }else{
         return NO;
+    }
+}
+
+- (void)interfaceOrientation:(UIInterfaceOrientation)orientation{
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector  = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = orientation;
+        // 从2开始是因为0 1 两个参数已经被selector和target占用
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
     }
 }
 

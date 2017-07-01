@@ -10,6 +10,7 @@
 
 @interface TPPlayPanel()
 
+@property (nonatomic, nonnull) UIButton *recordButton;
 @property (nonatomic, nonnull) UIButton *editButton;
 @property (nonatomic, nonnull) UIButton *screenshotButton;
 @property (nonatomic, nonnull) UIButton *saveButton;
@@ -20,7 +21,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        //三个按钮
+        //4个按钮
+        
+        _recordButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        [_recordButton setImage:[UIImage imageNamed:@"VIDEO_RECORD"] forState:UIControlStateNormal];
+        [_recordButton addTarget:self action:@selector(recordAction) forControlEvents:UIControlEventTouchUpInside];
+        _recordButton.tintColor = TPColor;
+        
         _editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         [_editButton setImage:[UIImage imageNamed:@"NOTE_EDIT"] forState:UIControlStateNormal];
         [_editButton addTarget:self action:@selector(editNoteAction) forControlEvents:UIControlEventTouchUpInside];
@@ -36,7 +43,7 @@
         [_saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
         _saveButton.tintColor = TPColor;
         
-        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_editButton, _screenshotButton, _saveButton]];
+        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_recordButton, _editButton, _screenshotButton, _saveButton]];
         [stackView setFrame:CGRectMake(10, 0, CGRectGetWidth(frame) - 20, CGRectGetHeight(frame))];
         [stackView setAlignment:UIStackViewAlignmentCenter];
         [stackView setDistribution:UIStackViewDistributionEqualSpacing];
@@ -67,6 +74,12 @@
 - (void)saveNoteAction{
     if([self.delegate respondsToSelector:@selector(didTapSaveButton)]){
         [self.delegate didTapSaveButton];
+    }
+}
+
+- (void)recordAction{
+    if([self.delegate respondsToSelector:@selector(didTapRecordButton)]){
+        [self.delegate didTapRecordButton];
     }
 }
 
