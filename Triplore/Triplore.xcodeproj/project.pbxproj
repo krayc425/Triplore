@@ -37,6 +37,7 @@
 		241BC4701EDFAE370056AFCA /* TPVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 241BC46F1EDFAE370056AFCA /* TPVideo.m */; };
 		241C54601EDDA62000E9E8D7 /* TPNoteCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */; };
 		2432FBF01EF00B6F001560CC /* TPMeFavoriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2432FBEF1EF00B6F001560CC /* TPMeFavoriteTableViewController.m */; };
+		2442CBC81F0768A900627488 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2442CBC71F0768A900627488 /* ReplayKit.framework */; };
 		2444AC781EF265E80007CC69 /* TPNoteTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC771EF265E80007CC69 /* TPNoteTemplate.m */; };
 		2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC7A1EF267B50007CC69 /* TPNoteDecorator.m */; };
 		2444AC7E1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444AC7D1EF26B2F0007CC69 /* TPNoteTitleViewGreen.m */; };
@@ -243,6 +244,7 @@
 		241C545F1EDDA62000E9E8D7 /* TPNoteCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteCreator.m; sourceTree = "<group>"; };
 		2432FBEE1EF00B6F001560CC /* TPMeFavoriteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeFavoriteTableViewController.h; sourceTree = "<group>"; };
 		2432FBEF1EF00B6F001560CC /* TPMeFavoriteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeFavoriteTableViewController.m; sourceTree = "<group>"; };
+		2442CBC71F0768A900627488 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		2444AC761EF265E80007CC69 /* TPNoteTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteTemplate.h; sourceTree = "<group>"; };
 		2444AC771EF265E80007CC69 /* TPNoteTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteTemplate.m; sourceTree = "<group>"; };
 		2444AC791EF267B50007CC69 /* TPNoteDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteDecorator.h; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2442CBC81F0768A900627488 /* ReplayKit.framework in Frameworks */,
 				240903B51F06A30E004535C3 /* Photos.framework in Frameworks */,
 				24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */,
 				24CF351E1F027D5700C11EF6 /* libz.tbd in Frameworks */,
@@ -1009,6 +1012,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2442CBC71F0768A900627488 /* ReplayKit.framework */,
 				240903B41F06A30E004535C3 /* Photos.framework */,
 				240903AA1F069D03004535C3 /* libGlimpse.a */,
 				24CF35201F027DFD00C11EF6 /* libAVOSCloud.a */,

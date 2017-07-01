@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>“Triplore”需要访问您的相机</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>“Triplore”需要访问您的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>“Triplore”需要访问您的相册</string>
 	<key>UIAppFonts</key>
