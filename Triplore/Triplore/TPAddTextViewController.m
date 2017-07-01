@@ -79,7 +79,7 @@
         [self.addNoteViewDelegate updateTitle:label.text];
     }
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self backAction];
 }
 
 #pragma mark - UITextView Delegate

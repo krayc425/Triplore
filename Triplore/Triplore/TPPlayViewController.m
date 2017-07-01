@@ -24,11 +24,17 @@
 #import "TPPlayTutorialViewController.h"
 #import "SVProgressHUD.h"
 #import "TPPlayPanel.h"
+#import "TPAddTextLandscapeViewController.h"
+#import "Glimpse.h"
+#import "TPMediaSaver.h"
+#import <Photos/Photos.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
+
+#define IS_PROTRAIT
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate>{
     CGRect playFrame;
@@ -37,6 +43,7 @@
     UIBarButtonItem *favoriteButton;
     TPVideoProgressBar *progressBarView;
     TPPlayPanel *playPanel;
+    Glimpse *glimpse;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *playerView;
@@ -71,8 +78,8 @@
     
     playFrame = CGRectMake(0,
                            0,
-                           [[UIScreen mainScreen] bounds].size.width,
-                           [[UIScreen mainScreen] bounds].size.width / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
+                           SCREEN_WIDTH,
+                           SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * SCREEN_HEIGHT);
     
     ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -87,7 +94,7 @@
     //进度
     progressBarView = [[[NSBundle mainBundle] loadNibNamed:@"TPVideoProgressBar" owner:nil options:nil] firstObject];
     [progressBarView.slider setThumbImage:[UIImage imageNamed:@"PROGRESS_OVAL"] forState:UIControlStateNormal];
-    [progressBarView.slider setMinimumTrackTintColor:[UIColor colorWithRed:33.0/255.0 green:184.0/255.0 blue:34.0/255.0 alpha:1.0]];
+    [progressBarView.slider setMinimumTrackTintColor:TPColor];
     [progressBarView.slider addTarget:progressBarView action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [progressBarView setBackgroundColor:[UIColor clearColor]];
     [progressBarView setDelegate:self];
@@ -116,7 +123,6 @@
     }
     
     //收藏按钮
-    NSLog(@"Video id: %@", self.videoDict[@"id"]);
     UIImage *favoriteImg = [TPVideoManager isFavoriteVideo:self.videoDict[@"id"]] ? [UIImage imageNamed:@"ME_COLLECT_FULL"] : [UIImage imageNamed:@"ME_COLLECT"];
     favoriteButton = [[UIBarButtonItem alloc] initWithImage:favoriteImg style:UIBarButtonItemStylePlain target:self action:@selector(favoriteAction)];
     self.navigationItem.rightBarButtonItem = favoriteButton;
@@ -137,6 +143,9 @@
     [playPanel addGestureRecognizer:panGR];
     [self.view addSubview:playPanel];
     [self.view bringSubviewToFront:playPanel];
+    
+    //录屏插件
+    glimpse = [[Glimpse alloc] init];
     
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
@@ -182,6 +191,8 @@
     self.tabBarController.tabBar.hidden = NO;
     [[QYPlayerController sharedInstance] pause];
     [self saveNote];
+    
+    [self pauseClick];
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
@@ -301,6 +312,8 @@
     if ([QYPlayerController sharedInstance].isPlaying == YES) {
         [[QYPlayerController sharedInstance] pause];
         [self showPlayView];
+        
+        [glimpse stop];
     }
 }
 
@@ -333,12 +346,15 @@
     [self.activityWheel removeFromSuperview];
     [self enablePlayPauseView];
 }
+
 /**
  **功能: 开始播放广告
  *
  */
 - (void)onAdStartPlay:(QYPlayerController *)player{
     [self showPauseView];
+#warning temp
+    [self startRecording];
 }
 
 /**
@@ -381,13 +397,57 @@
     [[QYPlayerController sharedInstance] seekToTime:time];
 }
 
+#pragma mark - Screen Recording
+
+- (void)startRecording{
+    [glimpse startRecordingView:self.playerView onCompletion:^(NSURL *fileOuputURL) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TPMediaSaver saveVideoAtURL:fileOuputURL withCompletionBlock:^(BOOL success, NSError *error) {
+                if(!error) {
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存视频成功"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                           style:UIAlertActionStyleCancel
+                                                                         handler:nil];
+                    [alertC addAction:cancelAction];
+                    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
+                                                                          style:UIAlertActionStyleDefault
+                                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                                            NSString *str = @"photos-redirect://";
+                                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
+                                                                                                               options:@{}
+                                                                                                     completionHandler:nil];
+                                                                        }];
+                    [alertC addAction:albumAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }else{
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                       style:UIAlertActionStyleDefault
+                                                                     handler:nil];
+                    [alertC addAction:okAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }
+            }];
+        });
+    }];
+}
+
 #pragma mark - Button Action
 
 - (void)editNoteAction{
-    TPAddTextViewController *textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
-    textVC.addNoteViewDelegate = self;
+    TPAddTextViewController *textVC;
+    if([self isPortrait]) {
+        textVC = [[TPAddTextViewController alloc] initWithNibName:@"TPAddTextViewController" bundle:[NSBundle mainBundle]];
+        [textVC setAddMode:TPAddNote];
+    }else{
+        textVC = [[TPAddTextLandscapeViewController alloc] initWithNibName:@"TPAddTextLandscapeViewController" bundle:[NSBundle mainBundle]];
+    }
     [textVC setNoteString:@""];
-    [textVC setAddMode:TPAddNote];
+    textVC.addNoteViewDelegate = self;
     [textVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     self.modalPresentationStyle = UIModalPresentationCurrentContext; //关键语句，必须有
     [self presentViewController:textVC animated:YES completion:^(void){
@@ -409,7 +469,6 @@
 
 - (void)addNoteView:(UIView *_Nonnull)view{
     [[TPNoteCreator shareInstance] addNoteView:view];
-    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
     //编辑完成，继续播放视频
@@ -420,7 +479,6 @@
 
 - (void)updateNoteView:(UIView *_Nonnull)view{
     [[TPNoteCreator shareInstance] updateNoteView:view atIndex:selectedIndexPath.row];
-    NSLog(@"%lu Views", (long)[[TPNoteCreator shareInstance] countNoteView]);
     [self reloadNoteViews];
     
     //编辑完成，继续播放视频
@@ -430,22 +488,39 @@
 }
 
 - (void)screenShotAction{
-    NSLog(@"截图");
     //隐藏暂停按钮
     [[self.view viewWithTag:100] setHidden:YES];
     [[self.view viewWithTag:200] setHidden:YES];
     [playPanel setHidden:YES];
     
     //缩放因子
-    CGFloat factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
+    CGFloat factor;
+    if([self isPortrait]) {
+        factor = (1.0 - 40 / CGRectGetWidth(self.view.bounds));
+    }else{
+        factor = (1.0 - (40 + CONTROLLER_BAR_WIDTH) / CGRectGetWidth(self.view.bounds)) / (CGRectGetWidth(self.view.bounds) / CGRectGetHeight(self.view.bounds));
+    }
+    
     CGFloat scale = [[UIScreen mainScreen] scale];
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)), NO, scale);
-    [self.view drawViewHierarchyInRect:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) afterScreenUpdates:YES];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.view.frame),
+                                                      CGRectGetHeight(self.view.frame)),
+                                           NO, scale);
+    [self.view drawViewHierarchyInRect:CGRectMake(0,
+                                                  0,
+                                                  CGRectGetWidth(self.view.frame),
+                                                  CGRectGetHeight(self.view.frame))
+                    afterScreenUpdates:YES];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    image = [image getSubImage:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) * scale, CGRectGetHeight(self.playerView.frame) * scale)];
+    image = [image getSubImage:CGRectMake(0,
+                                          0,
+                                          CGRectGetWidth([self isPortrait] ? self.view.bounds : self.playerView.frame) * scale,
+                                          CGRectGetHeight(self.playerView.frame) * scale)];
     image = [image changeImageSizeWithOriginalImage:image percent:factor];
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) * factor, CGRectGetHeight(self.playerView.frame) * factor)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,
+                                                                         0,
+                                                                         CGRectGetWidth(self.view.bounds) * factor,
+                                                                         CGRectGetHeight(self.playerView.frame) * factor)];
     [imgView setImage:image];
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
     [self addNoteView:imgView];
@@ -458,7 +533,6 @@
 }
 
 - (void)saveNote{
-    NSLog(@"保存");
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(self.noteMode == TPNewNote){
         //新增模式，进入 NoteVC
@@ -485,7 +559,6 @@
 - (void)saveNoteAction{
     NSArray *noteArr = [[TPNoteCreator shareInstance] getNoteViews];
     if(noteArr.count <= 0){
-        NSLog(@"没有 View");
         [SVProgressHUD showInfoWithStatus:@"您的笔记内容为空"];
         [SVProgressHUD dismissWithDelay:2.0];
         return;
@@ -611,6 +684,7 @@
                                                self.view.bounds.size.width,
                                                self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 120, CGRectGetHeight(self.playerView.frame) - 50, 100, 30)];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10,
                                                              self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
                                                              CONTROLLER_BAR_WIDTH,
@@ -638,12 +712,25 @@
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 120,
+                                          CGRectGetHeight(_playerView.frame) - 50,
+                                           100, 30)];
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];
             [progressBarView layoutSubviews];
             [self.view layoutSubviews];
         }];
+    }
+}
+
+- (BOOL)isPortrait{
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (interfaceOrientation == UIDeviceOrientationPortrait || interfaceOrientation == UIDeviceOrientationPortraitUpsideDown) {
+        //翻转为竖屏时
+        return YES;
+    }else{
+        return NO;
     }
 }
 
@@ -679,7 +766,6 @@
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
-    // Do something
     [self editNoteAction];
 }
 

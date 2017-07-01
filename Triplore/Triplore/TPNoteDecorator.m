@@ -12,8 +12,6 @@
 #import "TPNoteTemplate.h"
 #import "UIImageView+Decorator.h"
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-
 @implementation TPNoteDecorator
 
 //  标题 Label ：Tag = 1
