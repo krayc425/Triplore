@@ -111,6 +111,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.bounces = NO;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.dragable = YES;

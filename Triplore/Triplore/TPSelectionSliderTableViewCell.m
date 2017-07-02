@@ -68,6 +68,7 @@ static NSInteger const height = 270;
     [self addSubview:self.cycleScrollView];
     self.cycleScrollView.imageURLStringsGroup = images;
     self.cycleScrollView.titlesGroup = titles;
+    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     self.cycleScrollView.delegate = self;
 }
 
