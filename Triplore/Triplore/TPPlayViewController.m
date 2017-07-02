@@ -331,8 +331,6 @@
  * 播放出错
  */
 - (void)onPlayerError:(NSDictionary *)error_no{
-//    [self.activityWheel stopAnimating];
-//    [self.activityWheel removeFromSuperview];
     [self.loadingView stopAnimating];
     [self.loadingView removeFromSuperview];
 }
@@ -341,10 +339,6 @@
  * 显示加载loading
  */
 - (void)startLoading:(QYPlayerController *)player{
-//    if (self.activityWheel.superview==nil) {
-//        [self.view addSubview:self.activityWheel];
-//        [self.activityWheel startAnimating];
-//    }
     if (self.loadingView.superview==nil) {
         [self.view addSubview:self.loadingView];
         [self.loadingView startAnimating];
@@ -356,9 +350,6 @@
  * 关闭加载loading
  */
 - (void)stopLoading:(QYPlayerController *)player{
-//    [self.activityWheel stopAnimating];
-//    [self.activityWheel removeFromSuperview];
-
     [self.loadingView stopAnimating];
     [self.loadingView removeFromSuperview];
     
@@ -534,6 +525,7 @@
 
 - (void)screenShotAction{
     [self hideToolViews:YES];
+    [self unablePlayPauseView];
     
     //缩放因子
     CGFloat factor;
@@ -569,7 +561,10 @@
     UIGraphicsEndImageContext();
     
     //恢复暂停按钮
-    [self hideToolViews:NO];
+//    [self hideToolViews:NO];
+    [self showPauseView];
+    [playPanel setHidden:NO];
+    [self enablePlayPauseView];
 }
 
 - (void)saveNote{
@@ -793,7 +788,6 @@
             if (self.loadingView) {
                 self.loadingView.center = CGPointMake(self.playerView.frame.size.width / 2, self.playerView.frame.size.height / 2);
             }
-            
             
             [self.view layoutSubviews];
         }];
