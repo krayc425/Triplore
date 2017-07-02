@@ -9,6 +9,7 @@
 #import "TPPlayViewController.h"
 #import "QYPlayerController.h"
 #import "ActivityIndicatorView.h"
+#import "TPIndicatorView.h"
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
 #import "TPAddTextViewController.h"
@@ -53,7 +54,8 @@
 @property (nonatomic, weak) IBOutlet UIView *barContainerView;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-@property (nonatomic,strong) ActivityIndicatorView *activityWheel;
+//@property (nonatomic,strong) ActivityIndicatorView *activityWheel;
+@property (nonatomic) TPIndicatorView *loadingView;
 
 @end
 
@@ -82,10 +84,14 @@
                            SCREEN_WIDTH,
                            SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     
-    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-    wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    self.activityWheel = wheel;
-    self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
+//    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+//    wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    TPIndicatorView *loadingView = [[TPIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 160, 60)];
+    
+//    self.activityWheel = wheel;
+//    self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
+    self.loadingView = loadingView;
+    self.loadingView.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2);
     
     _titleText.placeholder = @"填写笔记标题";
     _titleText.font = [UIFont fontWithName:TPFont size:18.0f];
@@ -329,17 +335,23 @@
  * 播放出错
  */
 - (void)onPlayerError:(NSDictionary *)error_no{
-    [self.activityWheel stopAnimating];
-    [self.activityWheel removeFromSuperview];
+//    [self.activityWheel stopAnimating];
+//    [self.activityWheel removeFromSuperview];
+    [self.loadingView stopAnimating];
+    [self.loadingView removeFromSuperview];
 }
 
 /*
  * 显示加载loading
  */
 - (void)startLoading:(QYPlayerController *)player{
-    if (self.activityWheel.superview==nil) {
-        [self.view addSubview:self.activityWheel];
-        [self.activityWheel startAnimating];
+//    if (self.activityWheel.superview==nil) {
+//        [self.view addSubview:self.activityWheel];
+//        [self.activityWheel startAnimating];
+//    }
+    if (self.loadingView.superview==nil) {
+        [self.view addSubview:self.loadingView];
+        [self.loadingView startAnimating];
     }
     [self unablePlayPauseView];
 }
@@ -348,8 +360,12 @@
  * 关闭加载loading
  */
 - (void)stopLoading:(QYPlayerController *)player{
-    [self.activityWheel stopAnimating];
-    [self.activityWheel removeFromSuperview];
+//    [self.activityWheel stopAnimating];
+//    [self.activityWheel removeFromSuperview];
+
+    [self.loadingView stopAnimating];
+    [self.loadingView removeFromSuperview];
+    
     [self enablePlayPauseView];
 }
 
@@ -725,6 +741,10 @@
         [self.titleText setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
+        if (self.loadingView) {
+            self.loadingView.center = CGPointMake(size.width / 2, size.height / 2);
+        }
+        
         [UIView animateWithDuration:0.5 animations:^{
             
         } completion:^(BOOL finished) {
@@ -758,6 +778,10 @@
         [self.tableView setHidden:NO];
         [self.titleText setHidden:NO];
         [self.view setBackgroundColor:TPBackgroundColor];
+        
+        if (self.loadingView) {
+            self.loadingView.center = CGPointMake(size.width / 2, size.height / 2);
+        }
         
         [UIView animateWithDuration:0.5 animations:^{
             

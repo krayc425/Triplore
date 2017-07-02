@@ -99,6 +99,7 @@
 		3FC13E15FA442089E035B4ADD36E640C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38C032C4535534575B291AE5BF263DE /* Foundation.framework */; };
 		404134107BDD0EFC845D443E98E6E4BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8767A3F5A7A86D5F22F365387999B575 /* ImageIO.framework */; };
 		44D3C4B23FB21A00969EB5851B6A835C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00839F9CD39F1FF9413A121FDD955AD3 /* AVFoundation.framework */; };
+		4D3B92691F08978400496BAD /* TPIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B92681F08978400496BAD /* TPIndicatorView.m */; };
 		4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF7891EE104430012F476 /* TPCityTableViewController.m */; };
 		4D4DF78E1EE1046F0012F476 /* TPCityInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4DF78C1EE1046F0012F476 /* TPCityInfoTableViewCell.m */; };
 		4D4DF78F1EE1046F0012F476 /* TPCityInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4DF78D1EE1046F0012F476 /* TPCityInfoTableViewCell.xib */; };
@@ -348,6 +349,8 @@
 		396E39CB5629CFAC37EFDC74D3B42A0B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		42A73A86EFD2AA39B5EB8842385216CB /* libav.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libav.a; sourceTree = "<group>"; };
 		42F84E8865C574D03576002EE831A179 /* TPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTabBarViewController.m; sourceTree = "<group>"; };
+		4D3B92671F08978400496BAD /* TPIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPIndicatorView.h; sourceTree = "<group>"; };
+		4D3B92681F08978400496BAD /* TPIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPIndicatorView.m; sourceTree = "<group>"; };
 		4D4DF7881EE104430012F476 /* TPCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCityTableViewController.h; sourceTree = "<group>"; };
 		4D4DF7891EE104430012F476 /* TPCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCityTableViewController.m; sourceTree = "<group>"; };
 		4D4DF78B1EE1046F0012F476 /* TPCityInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCityInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -824,6 +827,8 @@
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
 				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
 				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
+				4D3B92671F08978400496BAD /* TPIndicatorView.h */,
+				4D3B92681F08978400496BAD /* TPIndicatorView.m */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -1430,6 +1435,7 @@
 				24487C4F1EDDB3900009E8E5 /* TPAddTextViewController.m in Sources */,
 				24CF35331F03DEA000C11EF6 /* TPNoteServerHelper.m in Sources */,
 				2444AC971EF28DEF0007CC69 /* TPNoteTitleView.m in Sources */,
+				4D3B92691F08978400496BAD /* TPIndicatorView.m in Sources */,
 				4D6747291F04D4A500AA67C5 /* TPNotePageViewController.m in Sources */,
 				4D9004B51EF50A90004FD8B4 /* TPSliderTab.m in Sources */,
 				24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */,
