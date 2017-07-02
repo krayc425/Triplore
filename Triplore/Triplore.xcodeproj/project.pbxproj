@@ -22,8 +22,6 @@
 		240903901F0603E9004535C3 /* TPPlayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2409038F1F0603E9004535C3 /* TPPlayPanel.m */; };
 		240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */; };
 		240903971F0685F5004535C3 /* TPAddTextLandscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */; };
-		240903B11F069F3D004535C3 /* Glimpse.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903AE1F069F3D004535C3 /* Glimpse.m */; };
-		240903B21F069F3D004535C3 /* GlimpseAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */; };
 		240903B51F06A30E004535C3 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240903B41F06A30E004535C3 /* Photos.framework */; };
 		240903B81F06A3C2004535C3 /* TPMediaSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 240903B71F06A3C2004535C3 /* TPMediaSaver.m */; };
 		240B1B5F1EF64832004D802B /* TPPlayTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240B1B5D1EF64832004D802B /* TPPlayTutorialViewController.m */; };
@@ -154,7 +152,6 @@
 		8D7699B34374BE8A9967AEC9841918C7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35E51830A3ACADCBCF954C023DA3F6E /* AssetsLibrary.framework */; };
 		8E1E6F93AF689AD9B1877EC6EAFDDDF3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3C4995EAEE3713E3267D32461EB217 /* libsqlite3.tbd */; };
 		90E46E18F9FAFBB93F18E0548EC41D72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009FE6B6AA5E449DBFF2DCBDB11EBA55 /* CoreLocation.framework */; };
-		94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */; };
 		9A14F437BBBAE03A6B023E59A397CD60 /* libav.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A73A86EFD2AA39B5EB8842385216CB /* libav.a */; };
 		9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A9124B4BB5C3DC7A39F445E6A7ADF1 /* MediaPlayer.framework */; };
 		9EE4D6978CDCA15CBEB15BCBDC58E206 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5D329302F11FE9DEBEDAF06C83D18E /* OpenAL.framework */; };
@@ -220,10 +217,6 @@
 		240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddTextLandscapeViewController.m; sourceTree = "<group>"; };
 		240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAddTextLandscapeViewController.xib; sourceTree = "<group>"; };
 		240903AA1F069D03004535C3 /* libGlimpse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlimpse.a; path = "build/Debug-iphoneos/libGlimpse.a"; sourceTree = "<group>"; };
-		240903AD1F069F3D004535C3 /* Glimpse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Glimpse.h; sourceTree = "<group>"; };
-		240903AE1F069F3D004535C3 /* Glimpse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Glimpse.m; sourceTree = "<group>"; };
-		240903AF1F069F3D004535C3 /* GlimpseAssetWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlimpseAssetWriter.h; sourceTree = "<group>"; };
-		240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlimpseAssetWriter.m; sourceTree = "<group>"; };
 		240903B41F06A30E004535C3 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		240903B61F06A3C2004535C3 /* TPMediaSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMediaSaver.h; sourceTree = "<group>"; };
 		240903B71F06A3C2004535C3 /* TPMediaSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMediaSaver.m; sourceTree = "<group>"; };
@@ -450,7 +443,6 @@
 		AA09709768A120A9932D5579C22ACF3A /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
 		AEDB8D376C01FCB1000E034F3F59BFC8 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		B16D141D9D0CE7FE6C79EABAE12D181B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
 		BC85055B36EFDB21FA5F0EC66B510349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B025B5E3CB855B1FA537B7F6DE61A6 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		C38C032C4535534575B291AE5BF263DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -458,7 +450,6 @@
 		C72C2F25A67FC3D23C593B4C /* Pods-TriploreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriploreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TriploreTests/Pods-TriploreTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9AE370A641DC16A476DB3BB1100CFFE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorView.m; sourceTree = "<group>"; };
 		CEFAA6A02C65FD783B0990FB98EB11CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D2A9124B4BB5C3DC7A39F445E6A7ADF1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D32F2D51E7F37689AC5ADF207FAE092F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -576,6 +567,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2400FBE41F08A75C00BFB7B6 /* TPIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				4D3B92671F08978400496BAD /* TPIndicatorView.h */,
+				4D3B92681F08978400496BAD /* TPIndicatorView.m */,
+			);
+			name = TPIndicator;
+			sourceTree = "<group>";
+		};
 		2402CE161ED44DD60098770A /* Site */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,17 +643,6 @@
 				4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */,
 			);
 			name = TPRefresh;
-			sourceTree = "<group>";
-		};
-		240903B31F069F4B004535C3 /* Glimpse */ = {
-			isa = PBXGroup;
-			children = (
-				240903AD1F069F3D004535C3 /* Glimpse.h */,
-				240903AE1F069F3D004535C3 /* Glimpse.m */,
-				240903AF1F069F3D004535C3 /* GlimpseAssetWriter.h */,
-				240903B01F069F3D004535C3 /* GlimpseAssetWriter.m */,
-			);
-			name = Glimpse;
 			sourceTree = "<group>";
 		};
 		240903B91F06AA41004535C3 /* PlayerView */ = {
@@ -817,18 +806,14 @@
 				240903A21F069BB3004535C3 /* CAPSPageMenu */,
 				240903A11F069BAE004535C3 /* ABCIntroView */,
 				240903A31F069BBC004535C3 /* TPRefresh */,
-				240903B31F069F4B004535C3 /* Glimpse */,
+				2400FBE41F08A75C00BFB7B6 /* TPIndicator */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
-				B27E287C20BA7F37B6051D831C3C2417 /* ActivityIndicatorView.h */,
-				CE2E1292266AC3575E9F8B4DCD51AE90 /* ActivityIndicatorView.m */,
 				2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */,
 				2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */,
 				4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */,
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
 				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
 				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
-				4D3B92671F08978400496BAD /* TPIndicatorView.h */,
-				4D3B92681F08978400496BAD /* TPIndicatorView.m */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -1180,7 +1165,7 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = VEBQ28K9EA;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1393,7 +1378,6 @@
 				4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */,
 				4DA4F9E11ED95CA900DA73AA /* TPSiteCollectionViewCell.m in Sources */,
 				4D9004C61EF50ADF004FD8B4 /* TPPersonModel.m in Sources */,
-				94880C6467C2655554A2E0A0AF3E14DF /* ActivityIndicatorView.m in Sources */,
 				4D9171591EF10E4200930372 /* TPSelectionSliderTableViewCell.m in Sources */,
 				2444AC9A1EF28F2F0007CC69 /* TPNoteTitleViewBrown.m in Sources */,
 				4D9004C51EF50ADF004FD8B4 /* TPPersonHelper.m in Sources */,
@@ -1403,7 +1387,6 @@
 				24487C601EDE551D0009E8E5 /* TPSiteTableViewCell.m in Sources */,
 				4D98375B0AFAFE086E84D6444C4F89CD /* AppDelegate.m in Sources */,
 				2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */,
-				240903B21F069F3D004535C3 /* GlimpseAssetWriter.m in Sources */,
 				4D4DF78A1EE104430012F476 /* TPCityTableViewController.m in Sources */,
 				2498EB4B1F0516FD00291F64 /* TPNoteFavoriteCollectionViewController.m in Sources */,
 				24B810861ED700B500CD7DC4 /* TPMeTableViewCell.m in Sources */,
@@ -1424,7 +1407,6 @@
 				2444AC7B1EF267B50007CC69 /* TPNoteDecorator.m in Sources */,
 				E6D54AE6FA5C656629E14E4B96825858 /* Utilities.m in Sources */,
 				4D4DF7971EE10A4B0012F476 /* TPCategoryButton.m in Sources */,
-				240903B11F069F3D004535C3 /* Glimpse.m in Sources */,
 				240903961F0685F5004535C3 /* TPAddTextLandscapeViewController.m in Sources */,
 				4D4DF79B1EE1552C0012F476 /* TPVideoCollectionViewCell.m in Sources */,
 				4DA7B9391F029971004A8B5A /* TPMeAuthTableViewCell.m in Sources */,
@@ -1484,7 +1466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
@@ -1507,8 +1489,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fbd7d787-712c-43c6-ae33-1070f0a6f20d";
+				PROVISIONING_PROFILE_SPECIFIER = "Triplore Twin Test";
 				SWIFT_OBJC_BRIDGING_HEADER = "Triplore/Triplore-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "arm64 armv7";
@@ -1557,7 +1539,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -1603,7 +1585,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
@@ -1626,8 +1608,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Triplorex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fbd7d787-712c-43c6-ae33-1070f0a6f20d";
+				PROVISIONING_PROFILE_SPECIFIER = "Triplore Twin Test";
 				SWIFT_OBJC_BRIDGING_HEADER = "Triplore/Triplore-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1671,7 +1653,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

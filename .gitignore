@@ -69,3 +69,7 @@ CityCrawler/.idea/
 Triplore/Triplore/TPAVCloudInfo.h
 
 Triplore/IOSPlayerLib/libav.a
+
+Apps/
+
+*.mobileprovision
