@@ -741,9 +741,7 @@
         [self.titleText setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        if (self.loadingView) {
-            self.loadingView.center = CGPointMake(size.width / 2, size.height / 2);
-        }
+        
         
         [UIView animateWithDuration:0.5 animations:^{
             
@@ -770,6 +768,11 @@
                                                  self.view.bounds.size.width - 90,
                                                  CONTROLLER_BAR_WIDTH)];
             [progressBarView layoutSubviews];
+            
+            if (self.loadingView) {
+                self.loadingView.center = CGPointMake(self.playerView.frame.size.width / 2, self.playerView.frame.size.height / 2);
+            }
+            
             [self.view layoutSubviews];
         }];
     } else {
@@ -779,11 +782,7 @@
         [self.titleText setHidden:NO];
         [self.view setBackgroundColor:TPBackgroundColor];
         
-        if (self.loadingView) {
-            self.loadingView.center = CGPointMake(size.width / 2, size.height / 2);
-        }
-        
-        [UIView animateWithDuration:0.5 animations:^{
+             [UIView animateWithDuration:0.5 animations:^{
             
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
@@ -796,6 +795,12 @@
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];
             [progressBarView setFrame:self.barContainerView.frame];
             [progressBarView layoutSubviews];
+            
+            if (self.loadingView) {
+                self.loadingView.center = CGPointMake(self.playerView.frame.size.width / 2, self.playerView.frame.size.height / 2);
+            }
+            
+            
             [self.view layoutSubviews];
         }];
     }
