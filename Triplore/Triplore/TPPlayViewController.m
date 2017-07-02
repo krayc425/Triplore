@@ -8,7 +8,6 @@
 
 #import "TPPlayViewController.h"
 #import "QYPlayerController.h"
-#import "ActivityIndicatorView.h"
 #import "TPIndicatorView.h"
 #import "TPNoteCreator.h"
 #import "TPNoteViewController.h"
@@ -26,7 +25,6 @@
 #import "SVProgressHUD.h"
 #import "TPPlayPanel.h"
 #import "TPAddTextLandscapeViewController.h"
-#import "Glimpse.h"
 #import "TPMediaSaver.h"
 #import <Photos/Photos.h>
 #import <ReplayKit/ReplayKit.h>
@@ -36,6 +34,8 @@
 
 #define KIPhone_AVPlayerRect_mwidth 320.0
 #define KIPhone_AVPlayerRect_mheight 180.0
+
+#define PANEL_WIDTH 150
 
 @interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate>{
     CGRect playFrame;
@@ -84,12 +84,7 @@
                            SCREEN_WIDTH,
                            SCREEN_WIDTH / KIPhone_AVPlayerRect_mwidth * KIPhone_AVPlayerRect_mheight);
     
-//    ActivityIndicatorView *wheel = [[ActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-//    wheel.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     TPIndicatorView *loadingView = [[TPIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 160, 60)];
-    
-//    self.activityWheel = wheel;
-//    self.activityWheel.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2 + 15);
     self.loadingView = loadingView;
     self.loadingView.center = CGPointMake(playFrame.size.width / 2, playFrame.size.height / 2);
     
@@ -136,9 +131,9 @@
     self.navigationItem.rightBarButtonItem = favoriteButton;
     
     //操作面板
-    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 180,
+    playPanel = [[TPPlayPanel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - PANEL_WIDTH - 30,
                                                               CGRectGetHeight(_playerView.frame) - 50,
-                                                              150,
+                                                              PANEL_WIDTH,
                                                               30)];
     playPanel.delegate = self;
     
@@ -742,8 +737,6 @@
         [self.titleText setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        
-        
         [UIView animateWithDuration:0.5 animations:^{
             
         } completion:^(BOOL finished) {
@@ -752,9 +745,9 @@
                                                self.view.bounds.size.width,
                                                self.view.bounds.size.height - CONTROLLER_BAR_WIDTH);
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - 180,
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(self.playerView.frame) - PANEL_WIDTH - 30,
                                            CGRectGetHeight(self.playerView.frame) - 50,
-                                           150,
+                                           PANEL_WIDTH,
                                            30)];
             [[self.view viewWithTag:100] setFrame:CGRectMake(10,
                                                              self.view.bounds.size.height - CONTROLLER_BAR_WIDTH,
@@ -783,14 +776,14 @@
         [self.titleText setHidden:NO];
         [self.view setBackgroundColor:TPBackgroundColor];
         
-             [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             
         } completion:^(BOOL finished) {
             self.playerView.frame = playFrame;
             [[QYPlayerController sharedInstance] setPlayerFrame:self.playerView.frame];
-            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - 180,
+            [playPanel setFrame:CGRectMake(CGRectGetWidth(_playerView.frame) - PANEL_WIDTH - 30,
                                            CGRectGetHeight(_playerView.frame) - 50,
-                                           150,
+                                           PANEL_WIDTH,
                                            30)];
             [[self.view viewWithTag:100] setFrame:self.playPauseView.frame];
             [[self.view viewWithTag:200] setFrame:self.playPauseView.frame];

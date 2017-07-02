@@ -43,16 +43,17 @@
         [_saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
         _saveButton.tintColor = TPColor;
         
-        UIImageView *moveImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        [moveImgView setImage:[UIImage imageNamed:@"NOTE_MOVE"]];
-        [moveImgView setContentMode:UIViewContentModeBottomRight];
-        
-        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_recordButton, _editButton, _screenshotButton, _saveButton, moveImgView]];
-        [stackView setFrame:CGRectMake(10, 0, CGRectGetWidth(frame) - 15, CGRectGetHeight(frame))];
+        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[_recordButton, _editButton, _screenshotButton, _saveButton]];
+        [stackView setFrame:CGRectMake(10, 0, CGRectGetWidth(frame) - 15 - 25, CGRectGetHeight(frame))];
         [stackView setAlignment:UIStackViewAlignmentCenter];
         [stackView setDistribution:UIStackViewDistributionEqualSpacing];
-        
         [self addSubview:stackView];
+        
+        UIImageView *moveImgView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(stackView.frame) + 18, 8, 17, 17)];
+        [moveImgView setImage:[UIImage imageNamed:@"NOTE_MOVE"]];
+        [moveImgView setContentMode:UIViewContentModeScaleAspectFit];
+        [moveImgView setClipsToBounds:YES];
+        [self addSubview:moveImgView];
         
         self.backgroundColor = TPBackgroundColor;
         self.layer.cornerRadius = 5.0;
