@@ -234,6 +234,7 @@
         [TPNoteServerHelper favoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
             if(succeed){
                 NSLog(@"收藏成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"load_favorite_notes" object:nil];
             }else{
                 NSLog(@"收藏失败");
                 self.buttonBar.isLike = !changeToCollect;
@@ -243,6 +244,7 @@
         [TPNoteServerHelper cancelFavoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
             if(succeed){
                 NSLog(@"取消收藏成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"load_favorite_notes" object:nil];
             }else{
                 NSLog(@"取消收藏失败");
                 self.buttonBar.isCollect = !changeToCollect;
@@ -268,19 +270,26 @@
 }
 
 - (void)videoAction{
-    TPVideo *video = [TPVideoManager fetchVideoWithID:self.note.videoid];
-    if(video == NULL){
-        NSLog(@"没视频");
+    NSDictionary *videoDict;
+    if(self.noteMode == TPRemoteNote) {
+        videoDict = self.noteServer.videoDict;
     }else{
-        TPPlayViewController *playViewController = [[TPPlayViewController alloc] initWithNibName:@"TPPlayViewController" bundle:nil];
-        [playViewController setNote:self.note];
-        [playViewController setNoteMode:TPOldNote];
-        [playViewController setVideoDict:video.dict];
-        [playViewController setNoteViews:self.note.views];
-        [playViewController setNoteTitle:self.note.title];
-        
-        [self.navigationController pushViewController:playViewController animated:YES];
+        TPVideo *video = [TPVideoManager fetchVideoWithID:self.note.videoid];
+        if(video == NULL){
+            NSLog(@"没视频");
+            return;
+        }else{
+            videoDict = video.dict;
+        }
     }
+    TPPlayViewController *playViewController = [[TPPlayViewController alloc] initWithNibName:@"TPPlayViewController" bundle:nil];
+    [playViewController setNote:self.note];
+    [playViewController setNoteMode:self.noteMode];
+    [playViewController setVideoDict:videoDict];
+    [playViewController setNoteViews:self.note.views];
+    [playViewController setNoteTitle:self.note.title];
+    
+    [self.navigationController pushViewController:playViewController animated:YES];
 }
 
 - (void)deleteAction{
@@ -531,7 +540,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canDragCellFrom:(NSIndexPath *)indexPath withTouchPoint:(CGPoint)point{
-    return indexPath.row >= 2;
+    return self.noteMode != TPRemoteNote && indexPath.row >= 2;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canDragCellFrom:(NSIndexPath *)fromIndexPath over:(NSIndexPath *)overIndexPath{

@@ -61,11 +61,11 @@ static NSInteger const height = 124;
 - (void)setVideo:(TPVideoModel *)video {
     _video = video;
     
-    NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
+    NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%ld_%ld.jpg", (long)width, (long)height]];
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:url]];
 
     self.titleLabel.text = video.shortTitle;
-    self.timesLabel.text = [NSString stringWithFormat:@"%d", video.playCount];
+    self.timesLabel.text = [NSString stringWithFormat:@"%ld", (long)video.playCount];
   
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy.MM.dd"];

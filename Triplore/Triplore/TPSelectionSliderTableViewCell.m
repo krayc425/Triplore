@@ -56,7 +56,7 @@ static NSInteger const height = 270;
     NSArray *titles = [[NSArray alloc] init];
     
     for (TPVideoModel *video in videos) {
-        NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%d_%d.jpg", width, height]];
+        NSString *url = [video.imgURL stringByReplacingOccurrencesOfString:@".jpg" withString:[NSString stringWithFormat:@"_%ld_%ld.jpg", (long)width, (long)height]];
         titles = [titles arrayByAddingObject:video.shortTitle];
         images = [images arrayByAddingObject:url];
     }

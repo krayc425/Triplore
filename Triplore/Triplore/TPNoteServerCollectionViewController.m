@@ -55,7 +55,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     dispatch_async(queue, ^{
         [TPNoteServerHelper loadServerNotesStartWith:0 withSize:10 withBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
             noteArr = [NSArray arrayWithArray:noteServers];
-            NSLog(@"Load finished, %d notes", noteArr.count);
+            NSLog(@"Load finished, %lu notes", (unsigned long)noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView.mj_header endRefreshing];
                 [self.collectionView reloadData];

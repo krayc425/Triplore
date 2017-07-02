@@ -7,13 +7,12 @@
 //
 
 #import "TPSiteTableViewCell.h"
-
 #import "TPSiteCollectionViewCell.h"
 #import "TPCountryModel.h"
 #import "TPCityModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface TPSiteTableViewCell () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface TPSiteTableViewCell () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @end
 
@@ -38,8 +37,6 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -74,7 +71,6 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     } else if (self.mode == TPSiteCity) {
         return self.cities.count;
     }
-    
     return 0;
 }
 
@@ -90,8 +86,6 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.cities[indexPath.item].imageURL]];
     }
     
-    // Configure the cell
-    
     return cell;
 }
 
@@ -101,23 +95,18 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     if (self.mode == TPSiteCountry && [self.delegate respondsToSelector:@selector(didSelectCountry:)]) {
         NSLog(@"select %@", self.countries[indexPath.item]);
         [self.delegate didSelectCountry:self.countries[indexPath.item]];
-        
     } else if (self.mode == TPSiteCity && [self.delegate respondsToSelector:@selector(didSelectCity:)]) {
         NSLog(@"select %@", self.cities[indexPath.item]);
         [self.delegate didSelectCity:self.cities[indexPath.item]];
-        
     }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
- 
-    return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
+    NSLog(@"%f %f", (CGRectGetWidth(self.collectionView.frame) - 20) / 3 - 5, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
+    return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3 - 5, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
 }
 
-
-
 - (IBAction)allDidTap:(id)sender {
-
     if([self.delegate respondsToSelector:@selector(didTapAllWithMode:)]) {
         [self.delegate didTapAllWithMode:self.mode];
     }

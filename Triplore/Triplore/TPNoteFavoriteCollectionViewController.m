@@ -33,6 +33,11 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
     TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self
                                                          refreshingAction:@selector(loadNotes)];
     self.collectionView.mj_header = header;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadNotes)
+                                                 name:@"load_favorite_notes"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +56,7 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
     dispatch_async(queue, ^{
         [TPNoteServerHelper loadFavoriteServerNotesWithBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
             noteArr = [NSArray arrayWithArray:noteServers];
-            NSLog(@"Load finished, %d notes", noteArr.count);
+            NSLog(@"Load finished, %lu favorite notes", (unsigned long)noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView.mj_header endRefreshing];
                 [self.collectionView reloadData];
