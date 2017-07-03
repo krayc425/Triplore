@@ -27,7 +27,7 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     // Initialization code
     [self.categoryLabel sizeToFit];
     
-    [self.categoryLabel setTextColor:[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]];
+
     [self.allButton setTitleColor:TPColor forState:UIControlStateNormal];
     [self.allButton2 setTitleColor:TPColor forState:UIControlStateNormal];
     
