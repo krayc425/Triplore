@@ -100,7 +100,7 @@
 - (void)setIsLike:(BOOL)isLike {
     _isLike = isLike;
     [self.likeButton setImage:[UIImage imageNamed:isLike ? @"NOTE_LIKE_FULL" : @"NOTE_LIKE"] forState:UIControlStateNormal];
-    [self.likeButton setTitle:[NSString stringWithFormat:isLike ? @"已赞 · %d" : @"赞 · %d", self.likeCount] forState:UIControlStateNormal];
+    [self.likeButton setTitle:[NSString stringWithFormat:isLike ? @"已赞 · %lu" : @"赞 · %lu", (unsigned long)self.likeCount] forState:UIControlStateNormal];
 }
 
 - (void)setIsCollect:(BOOL)isCollect {
@@ -117,7 +117,7 @@
 
 - (void)setLikeCount:(NSUInteger)likeCount {
     _likeCount = likeCount;
-    [self.likeButton setTitle:[NSString stringWithFormat:self.isLike ? @"已赞 · %d" : @"赞 · %d", likeCount] forState:UIControlStateNormal];
+    [self.likeButton setTitle:[NSString stringWithFormat:self.isLike ? @"已赞 · %lu" : @"赞 · %lu", (unsigned long)likeCount] forState:UIControlStateNormal];
 }
 
 - (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title image:(NSString *)image action:(nonnull SEL)action

@@ -22,6 +22,12 @@
             [noteObject setObject:noteContextFile.url forKey:@"views"];
             [noteObject setObject:[AVUser currentUser] forKey:@"creator"];
             [noteObject setObject:note.videoDict forKey:@"videoDict"];
+            
+            AVACL *acl = [AVACL ACL];
+            [acl setPublicReadAccess:YES];// 设置公开的「读」权限，任何人都可阅读
+            [acl setPublicWriteAccess:YES];// 为当前用户赋予「写」权限
+            [noteObject setACL:acl];
+            
             [noteObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if(completionBlock) {
                     completionBlock(succeeded, noteObject.objectId, error);
