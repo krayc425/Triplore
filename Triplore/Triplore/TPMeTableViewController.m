@@ -119,7 +119,7 @@
         
         if(indexPath.section == 1 && indexPath.row == 0){
             [cell.cellImg setImage:[UIImage imageNamed:@"ME_COLLECT"]];
-            [cell.infoLabel setText:@"我的收藏"];
+            [cell.infoLabel setText:@"收藏视频"];
             
         }else if(indexPath.section == 1 && indexPath.row == 1){
             [cell.cellImg setImage:[UIImage imageNamed:@"ME_RECORD"]];

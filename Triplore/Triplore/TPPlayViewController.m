@@ -561,7 +561,6 @@
     UIGraphicsEndImageContext();
     
     //恢复暂停按钮
-//    [self hideToolViews:NO];
     [self showPauseView];
     [playPanel setHidden:NO];
     [self enablePlayPauseView];

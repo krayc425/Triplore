@@ -8,14 +8,12 @@
 
 #import "TPSliderTab.h"
 
-
 @interface TPSliderTab ()
 
 @property (nonatomic, copy) NSArray *buttons;
 @property (nonatomic, strong) UIView *slider;
 
 @end
-
 
 @implementation TPSliderTab
 static const CGFloat fontSize = 14.0;

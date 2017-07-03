@@ -88,7 +88,6 @@
 		24CF35301F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF352F1F03AD9C00C11EF6 /* TPMeTableViewController+Avatar.m */; };
 		24CF35331F03DEA000C11EF6 /* TPNoteServerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35321F03DEA000C11EF6 /* TPNoteServerHelper.m */; };
 		24CF35361F03E0C700C11EF6 /* TPNoteServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35351F03E0C700C11EF6 /* TPNoteServer.m */; };
-		24CF35381F03E2FB00C11EF6 /* NoteServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */; };
 		24EFB7F31EE18D4200816675 /* TPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */; };
 		24EFB7F71EE192BF00816675 /* TPVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFB7F61EE192BF00816675 /* TPVideoModel.m */; };
 		27C0A62EA0EAC355ED024B757BDC7163 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64839A6F781C6ADF65E2BD7DF92CB968 /* CoreData.framework */; };
@@ -331,7 +330,6 @@
 		24CF35321F03DEA000C11EF6 /* TPNoteServerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServerHelper.m; sourceTree = "<group>"; };
 		24CF35341F03E0C700C11EF6 /* TPNoteServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteServer.h; sourceTree = "<group>"; };
 		24CF35351F03E0C700C11EF6 /* TPNoteServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteServer.m; sourceTree = "<group>"; };
-		24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteServerTest.m; sourceTree = "<group>"; };
 		24EC9B381EF01641000F262F /* TPMeRecentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeRecentTableViewController.h; sourceTree = "<group>"; };
 		24EFB7F11EE18D4200816675 /* TPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNetworkHelper.h; sourceTree = "<group>"; };
 		24EFB7F21EE18D4200816675 /* TPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNetworkHelper.m; sourceTree = "<group>"; };
@@ -716,6 +714,7 @@
 			children = (
 				240903B91F06AA41004535C3 /* PlayerView */,
 				240903981F06898D004535C3 /* Tutorial */,
+				24CD8B8D1F09FF2F00FBF71E /* AddTextVC */,
 				4D9171531EF10C3900930372 /* TPSelectionTableViewController.h */,
 				4D9171541EF10C3900930372 /* TPSelectionTableViewController.m */,
 				4D9171561EF10E4200930372 /* TPSelectionSliderTableViewCell.h */,
@@ -724,12 +723,6 @@
 				24487C491EDDB3020009E8E5 /* TPPlayViewController.h */,
 				24487C4A1EDDB3020009E8E5 /* TPPlayViewController.m */,
 				24BC3B371EF15FE2006793A3 /* TPPlayViewController.xib */,
-				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
-				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
-				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
-				240903931F0685F5004535C3 /* TPAddTextLandscapeViewController.h */,
-				240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */,
-				240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */,
 			);
 			name = Selection;
 			sourceTree = "<group>";
@@ -746,6 +739,7 @@
 		24487C571EDE53490009E8E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				4D9004C01EF50AC7004FD8B4 /* AboutData */,
 				245BD09B1EE5BAA2002CA7AC /* SiteData */,
 				241BC4711EDFAE3A0056AFCA /* VideoData */,
 				24487CAA1EDEB9E30009E8E5 /* NoteData */,
@@ -761,7 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				24487C9C1EDE9D120009E8E5 /* TriploreTests.m */,
-				24CF35371F03E2FB00C11EF6 /* NoteServerTest.m */,
 				245BD0901EE5B905002CA7AC /* JSONTests.m */,
 				24487C9A1EDE9D120009E8E5 /* TriploreTests.xctest */,
 				24CF35231F0297E900C11EF6 /* UserTests.m */,
@@ -773,8 +766,6 @@
 		24487CAA1EDEB9E30009E8E5 /* NoteData */ = {
 			isa = PBXGroup;
 			children = (
-				2444AC881EF272760007CC69 /* NoteTemplateElements */,
-				2444AC9D1EF28FFE0007CC69 /* NoteTemplate */,
 				24487CA71EDEB9780009E8E5 /* TPNote.h */,
 				24487CA81EDEB9780009E8E5 /* TPNote.m */,
 				24CF35341F03E0C700C11EF6 /* TPNoteServer.h */,
@@ -807,13 +798,12 @@
 				240903A11F069BAE004535C3 /* ABCIntroView */,
 				240903A31F069BBC004535C3 /* TPRefresh */,
 				2400FBE41F08A75C00BFB7B6 /* TPIndicator */,
+				24CD8B8C1F09FF1100FBF71E /* TPTextField */,
 				24AF8D191EF3B8D000C9B0CD /* DragableTableExtension.swift */,
 				2489FF181EDEE951002DCEA0 /* UIImage+Extend.h */,
 				2489FF191EDEE951002DCEA0 /* UIImage+Extend.m */,
 				4D5CB8C91EE3DE77009F2EA0 /* UIImage+URL.h */,
 				4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */,
-				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
-				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
 			);
 			name = "Assistant UI";
 			sourceTree = "<group>";
@@ -821,7 +811,6 @@
 		24B8108B1ED7039100CD7DC4 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				4D9004C01EF50AC7004FD8B4 /* AboutData */,
 				24CF35251F02ACE500C11EF6 /* Font */,
 				24CF35261F02ACED00C11EF6 /* About */,
 				24CF35271F02ACF700C11EF6 /* Auth */,
@@ -850,6 +839,9 @@
 		24B810941ED7139B00CD7DC4 /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				240903BA1F06AA78004535C3 /* Toolbar */,
+				2444AC881EF272760007CC69 /* NoteTemplateElements */,
+				2444AC9D1EF28FFE0007CC69 /* NoteTemplate */,
 				4D6747271F04D4A500AA67C5 /* TPNotePageViewController.h */,
 				4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */,
 				24B8108C1ED7138900CD7DC4 /* TPNoteCollectionViewController.h */,
@@ -866,9 +858,30 @@
 				241210F21ED84CD70066B99C /* TPNoteViewTableViewCell.h */,
 				241210F31ED84CD70066B99C /* TPNoteViewTableViewCell.m */,
 				241210F41ED84CD70066B99C /* TPNoteViewTableViewCell.xib */,
-				240903BA1F06AA78004535C3 /* Toolbar */,
 			);
 			name = Note;
+			sourceTree = "<group>";
+		};
+		24CD8B8C1F09FF1100FBF71E /* TPTextField */ = {
+			isa = PBXGroup;
+			children = (
+				4DA7B93B1F0334C9004A8B5A /* TPTextField.h */,
+				4DA7B93C1F0334C9004A8B5A /* TPTextField.m */,
+			);
+			name = TPTextField;
+			sourceTree = "<group>";
+		};
+		24CD8B8D1F09FF2F00FBF71E /* AddTextVC */ = {
+			isa = PBXGroup;
+			children = (
+				24487C4C1EDDB3900009E8E5 /* TPAddTextViewController.h */,
+				24487C4D1EDDB3900009E8E5 /* TPAddTextViewController.m */,
+				24487C4E1EDDB3900009E8E5 /* TPAddTextViewController.xib */,
+				240903931F0685F5004535C3 /* TPAddTextLandscapeViewController.h */,
+				240903941F0685F5004535C3 /* TPAddTextLandscapeViewController.m */,
+				240903951F0685F5004535C3 /* TPAddTextLandscapeViewController.xib */,
+			);
+			name = AddTextVC;
 			sourceTree = "<group>";
 		};
 		24CF35221F027E3F00C11EF6 /* Utilities */ = {
@@ -1343,7 +1356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24CF35381F03E2FB00C11EF6 /* NoteServerTest.m in Sources */,
 				24487C9D1EDE9D120009E8E5 /* TriploreTests.m in Sources */,
 				245BD0911EE5B905002CA7AC /* JSONTests.m in Sources */,
 				24CF35241F0297E900C11EF6 /* UserTests.m in Sources */,
@@ -1467,7 +1479,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1587,7 +1599,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

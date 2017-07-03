@@ -22,16 +22,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-LR-mIw">
-                    <rect key="frame" x="30" y="30" width="477" height="95"/>
+                    <rect key="frame" x="30" y="30" width="427" height="95"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="s9m-az-mz8">
-                    <rect key="frame" x="567" y="17.5" width="40" height="120"/>
+                    <rect key="frame" x="487" y="57.5" width="120" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="s9m-az-mz8" secondAttribute="height" multiplier="1:3" id="chX-sA-A3Z"/>
-                        <constraint firstAttribute="height" constant="120" id="phB-nT-r6k"/>
+                        <constraint firstAttribute="width" secondItem="s9m-az-mz8" secondAttribute="height" multiplier="3:1" id="chX-sA-A3Z"/>
+                        <constraint firstAttribute="height" constant="40" id="phB-nT-r6k"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
@@ -40,7 +40,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="s9m-az-mz8" secondAttribute="trailing" constant="60" id="4iG-b2-OQp"/>
                 <constraint firstItem="T3l-LR-mIw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="EWZ-dP-v37"/>
-                <constraint firstItem="s9m-az-mz8" firstAttribute="leading" secondItem="T3l-LR-mIw" secondAttribute="trailing" constant="60" id="FhD-26-FOY"/>
+                <constraint firstItem="s9m-az-mz8" firstAttribute="leading" secondItem="T3l-LR-mIw" secondAttribute="trailing" constant="30" id="FhD-26-FOY"/>
                 <constraint firstAttribute="bottom" secondItem="T3l-LR-mIw" secondAttribute="bottom" constant="250" id="Ttq-fu-mVX"/>
                 <constraint firstItem="T3l-LR-mIw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="UwC-Cm-ayO"/>
                 <constraint firstItem="s9m-az-mz8" firstAttribute="centerY" secondItem="T3l-LR-mIw" secondAttribute="centerY" id="vhy-uf-dtR"/>

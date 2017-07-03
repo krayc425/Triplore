@@ -117,7 +117,7 @@
 
 - (void)testFavoriteVideo{
     TPVideo *video = [TPVideo new];
-    [video setVideoid:0];
+    [video setVideoid:@"0"];
     [video setDict:@{}];
     
     [TPVideoManager commentVideo:video];

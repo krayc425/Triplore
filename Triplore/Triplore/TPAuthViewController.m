@@ -211,7 +211,7 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (void)registerRequest {
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:@"注册中"];
     [TPAuthHelper signUpWithUsername:self.usernameTextField.text
                          andPassword:self.passwordTextField.text
                            withBlock:^(BOOL succeed, NSError * _Nullable error) {

@@ -40,14 +40,13 @@
     for(UIView *view in note.views){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel *)view;
-            label.numberOfLines = 0;
-            
-            [label sizeToFit];
-            [label setNeedsLayout];
-            
+            [label setNumberOfLines:0];
+            [label setTextAlignment:NSTextAlignmentLeft];
+            [label setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 40)];
             [label setFont:[UIFont fontWithName:template.tem_font size:16.0]];
             [label setTextColor:template.tem_textColor];
-            
+            [label setAdjustsFontSizeToFitWidth:YES];
+            [label sizeToFit];
             [tempViews addObject:label];
         }else if([view isKindOfClass:[UIImageView class]]){
             UIImageView *oldView = (UIImageView *)view;

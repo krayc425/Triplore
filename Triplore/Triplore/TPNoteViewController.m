@@ -79,7 +79,7 @@
         [saveButton addTarget:self action:@selector(saveNoteAction) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
         self.navigationItem.rightBarButtonItem = saveButtonItem;
-    }else {
+    } else {
         // add tool bar
         CGSize size = self.navigationController.view.frame.size;
         self.buttonBar = [[TPNoteToolbar alloc] initWithFrame:CGRectMake(0, size.height - TOOLBAR_HEIGHT, size.width, TOOLBAR_HEIGHT)];
@@ -164,7 +164,7 @@
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"选择操作" message: nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除分享" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [SVProgressHUD show];
+            [SVProgressHUD showWithStatus:@"删除中"];
             [TPNoteServerHelper deleteServerNote:self.note.serverid withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 
                 [TPNoteManager deleteNoteServerID:self.note];
@@ -180,7 +180,7 @@
             }];
         }];
         UIAlertAction *updateAction = [UIAlertAction actionWithTitle:@"更新分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [SVProgressHUD show];
+            [SVProgressHUD showWithStatus:@"更新中"];
             TPNoteServer *newServer = [[TPNoteServer alloc] initWithTPNote:self.note];
             [TPNoteServerHelper updateServerNote:newServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 if(succeed){
@@ -483,14 +483,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    selectedIndexPath = indexPath;
-    if(indexPath.row == 0){
-        return;
-    }else if(indexPath.row == 1){
-        [self editTitleAction];
-    }else if([self.note.views[indexPath.row - 2] isKindOfClass:[UILabel class]]){
-        UILabel *label = (UILabel *)self.note.views[indexPath.row - 2];
-        [self editNoteActionWithString:label.text andMode:TPUpdateNote];
+    if(self.noteMode != TPRemoteNote){
+        selectedIndexPath = indexPath;
+        if(indexPath.row == 0){
+            return;
+        }else if(indexPath.row == 1){
+            [self editTitleAction];
+        }else if([self.note.views[indexPath.row - 2] isKindOfClass:[UILabel class]]){
+            UILabel *label = (UILabel *)self.note.views[indexPath.row - 2];
+            [self editNoteActionWithString:label.text andMode:TPUpdateNote];
+        }
     }
 }
 

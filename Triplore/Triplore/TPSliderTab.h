@@ -21,7 +21,6 @@
 @property (nonatomic, strong) UIColor * _Nonnull color;
 @property (nonatomic, copy) NSArray * _Nonnull strings;
 @property (nonatomic) NSUInteger selectedIndex;
-//@property (nonatomic, copy) void (^buttonDidSelect)(NSUInteger index);
 
 @property (nonatomic, weak, nullable) id<TPSliderTabDelegate> delegate;
 

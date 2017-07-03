@@ -23,13 +23,13 @@
     // Do any additional setup after loading the view from its nib.
     
     //完成按钮
-    [self.okButton.layer setCornerRadius:CGRectGetWidth(self.okButton.frame) / 2];
+    [self.okButton.layer setCornerRadius:CGRectGetHeight(self.okButton.frame) / 2];
     [self.okButton setBackgroundColor:[UIColor lightGrayColor]];
     [self.okButton setUserInteractionEnabled:NO];
     [self.okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.okButton.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:16.0]];
-    [self.okButton.titleLabel setNumberOfLines:4];
-    [self.okButton setTitle:@"添\n\n加" forState:UIControlStateNormal];
+    [self.okButton.titleLabel setNumberOfLines:1];
+    [self.okButton setTitle:@"添 加" forState:UIControlStateNormal];
     
     [self.okButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
 }
