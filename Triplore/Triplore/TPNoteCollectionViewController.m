@@ -80,8 +80,6 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 - (TPNoteCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TPNoteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-//    [cell configureWithNote:noteArr[indexPath.row]];
-    
     cell.note = noteArr[indexPath.row];
     
     //注册3D Touch
@@ -159,6 +157,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
                                  };
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return YES;
 }
 
 @end

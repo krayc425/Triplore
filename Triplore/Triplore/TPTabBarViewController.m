@@ -47,8 +47,6 @@
     UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:siteVC];
     
     //笔记
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    TPNoteCollectionViewController *noteVC = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout];
     TPNotePageViewController *noteVC = [[TPNotePageViewController alloc] init];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"笔记" image:[UIImage imageNamed:@"TAB_BOOK"] selectedImage:[UIImage imageNamed:@"TAB_BOOK"]];
     noteVC.tabBarItem = item3;
@@ -144,9 +142,8 @@
 #pragma mark - ABCIntroViewDelegate Methods
 
 - (void)onDoneButtonPressed{
-    //    Uncomment so that the IntroView does not show after the user clicks "DONE"
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
+    [defaults setObject:@"YES" forKey:@"intro_screen_viewed"];
     [defaults synchronize];
     
     [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{

@@ -229,7 +229,6 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
                            }];
 }
 
-
 - (void)showInfoHubWithText:(NSString *)text {
     [SVProgressHUD showInfoWithStatus:text];
     [SVProgressHUD dismissWithDelay:2];

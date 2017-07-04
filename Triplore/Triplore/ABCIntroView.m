@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIView *viewTwo;
 @property (strong, nonatomic) UIView *viewThree;
 @property (strong, nonatomic) UIView *viewFour;
+@property (strong, nonatomic) UIView *viewFive;
 
 @end
 
@@ -32,6 +33,7 @@
         [self.scrollView addSubview:self.viewTwo];
         [self.scrollView addSubview:self.viewThree];
         [self.scrollView addSubview:self.viewFour];
+        [self.scrollView addSubview:self.viewFive];
         
         //Done Button
         [self addSubview:self.doneButton];
@@ -196,12 +198,51 @@
     
 }
 
+-(UIView *)viewFive {
+    if (!_viewFive) {
+        
+        CGFloat originWidth = self.frame.size.width;
+        CGFloat originHeight = self.frame.size.height;
+        
+        _viewFive = [[UIView alloc] initWithFrame:CGRectMake(originWidth*4, 0, originWidth, originHeight)];
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height*.05, self.frame.size.width*.8, 60)];
+        titleLabel.center = CGPointMake(self.center.x, self.frame.size.height*.1);
+        titleLabel.text = [NSString stringWithFormat:@""];
+        titleLabel.font = [UIFont systemFontOfSize:40.0];
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textAlignment =  NSTextAlignmentCenter;
+        titleLabel.numberOfLines = 0;
+        [_viewFive addSubview:titleLabel];
+        
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        imageview.contentMode = UIViewContentModeScaleAspectFit;
+        imageview.image = [UIImage imageNamed:@"Intro_Screen_Five"];
+        [_viewFive addSubview:imageview];
+        
+        UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width*.1, self.frame.size.height*.7, self.frame.size.width*.8, 60)];
+        descriptionLabel.text = [NSString stringWithFormat:@""];
+        descriptionLabel.font = [UIFont systemFontOfSize:18.0];
+        descriptionLabel.textColor = [UIColor whiteColor];
+        descriptionLabel.textAlignment =  NSTextAlignmentCenter;
+        descriptionLabel.numberOfLines = 0;
+        [descriptionLabel sizeToFit];
+        [_viewFive addSubview:descriptionLabel];
+        
+        CGPoint labelCenter = CGPointMake(self.center.x, self.frame.size.height*.7);
+        descriptionLabel.center = labelCenter;
+        
+    }
+    return _viewFive;
+    
+}
+
 -(UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
         [_scrollView setDelegate:self];
         [_scrollView setPagingEnabled:YES];
-        [_scrollView setContentSize:CGSizeMake(self.frame.size.width*4, self.scrollView.frame.size.height)];
+        [_scrollView setContentSize:CGSizeMake(self.frame.size.width*5, self.scrollView.frame.size.height)];
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
     return _scrollView;
@@ -211,7 +252,7 @@
     if (!_pageControl) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height-80, self.frame.size.width, 10)];
         [_pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.129 green:0.588 blue:0.953 alpha:1.000]];
-        [_pageControl setNumberOfPages:4];
+        [_pageControl setNumberOfPages:5];
     }
     return _pageControl;
 }

@@ -145,11 +145,6 @@
     //将手势添加到draggableObj里
     [playPanel addGestureRecognizer:panGR];
     
-    UITapGestureRecognizer *tapEndGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(stopPlayerRecording)];
-    [tapEndGesture setNumberOfTapsRequired:1];
-    [self.view addGestureRecognizer:tapEndGesture];
-    
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPlay"];
@@ -409,6 +404,11 @@
 #pragma mark - Screen Recording
 
 - (void)startPlayerRecording{
+    UITapGestureRecognizer *tapEndGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(stopPlayerRecording)];
+    [tapEndGesture setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tapEndGesture];
+    
     [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
     [self hideToolViews:YES];
     
