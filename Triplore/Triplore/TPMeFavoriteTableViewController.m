@@ -42,13 +42,14 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 }
 
 - (void)loadFavoriteVideos{
+    __weak __typeof__(self) weakSelf = self;
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
     [[TPVideoManager fetchFavoriteVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [tempArr addObject:[[TPVideoModel alloc] initWithTPVideo:obj]];
     }];
-    [self.videos removeAllObjects];
-    [self.videos addObjectsFromArray:tempArr];
-    [self.tableView reloadData];
+    [weakSelf.videos removeAllObjects];
+    [weakSelf.videos addObjectsFromArray:tempArr];
+    [weakSelf.tableView reloadData];
 }
 
 #pragma mark - Table view data source

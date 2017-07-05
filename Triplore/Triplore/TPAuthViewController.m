@@ -175,14 +175,15 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
         [self showInfoHubWithText:@"请输入邮箱找回密码"];
         return;
     }
+    __weak __typeof__(self) weakSelf = self;
     
     [TPAuthHelper resetPasswordWithUsername:email
                                   withBlock:^(BOOL succeed, NSError * _Nullable error) {
                                       if (succeed) {
-                                          [self showSuccessHubWithText:@"密码重置邮件已发送至您的邮箱"];
+                                          [weakSelf showSuccessHubWithText:@"密码重置邮件已发送至您的邮箱"];
                                       } else {
                                           NSString *reason = [Utilities getErrorCodeDescription:error.code];
-                                          [self showErrorHubWithText:[NSString stringWithFormat:@"重置密码失败\n%@", reason]];
+                                          [weakSelf showErrorHubWithText:[NSString stringWithFormat:@"重置密码失败\n%@", reason]];
                                       }
                                   }];
 }
@@ -193,38 +194,40 @@ typedef NS_ENUM(NSInteger, TPAuthMode){
 }
 
 - (void)loginRequest {
+    __weak __typeof__(self) weakSelf = self;
     [SVProgressHUD showWithStatus:@"登录中"];
     [TPAuthHelper loginWithUsername:self.usernameTextField.text
                         andPassword:self.passwordTextField.text
                           withBlock:^(AVUser * _Nonnull user, NSError * _Nullable error) {
                               [SVProgressHUD dismiss];
                               if (user) {
-                                  [self showSuccessHubWithText:@"登录成功"];
+                                  [weakSelf showSuccessHubWithText:@"登录成功"];
                                   
                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
                                                                                       object:nil];
                               } else {
                                   NSString *reason = [Utilities getErrorCodeDescription:error.code];
-                                  [self showErrorHubWithText:[NSString stringWithFormat:@"登录失败\n%@", reason]];
+                                  [weakSelf showErrorHubWithText:[NSString stringWithFormat:@"登录失败\n%@", reason]];
                               }
                           }];
 }
 
 - (void)registerRequest {
     [SVProgressHUD showWithStatus:@"注册中"];
+    __weak __typeof__(self) weakSelf = self;
     [TPAuthHelper signUpWithUsername:self.usernameTextField.text
                          andPassword:self.passwordTextField.text
                            withBlock:^(BOOL succeed, NSError * _Nullable error) {
                                [SVProgressHUD dismiss];
                                if(succeed){
-                                   [self showSuccessHubWithText:@"注册成功"];
+                                   [weakSelf showSuccessHubWithText:@"注册成功"];
                                    
                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"change_user"
                                                                                     object:nil];
                                    
                                }else{
                                    NSString *reason = [Utilities getErrorCodeDescription:error.code];
-                                   [self showErrorHubWithText:[NSString stringWithFormat:@"注册失败\n%@", reason]];
+                                   [weakSelf showErrorHubWithText:[NSString stringWithFormat:@"注册失败\n%@", reason]];
                                }
                            }];
 }

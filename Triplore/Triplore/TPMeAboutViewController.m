@@ -54,16 +54,17 @@ static NSString * const reuseIdentifier = @"TPMeAboutCollectionViewCell";
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
     
     // model
+    __weak __typeof__(self) weakSelf = self;
     [TPPersonHelper fetchAllPeopleWithBlock:^(NSArray<TPPersonModel *> * _Nonnull people, NSError * _Nullable error) {
-        self.people = people;
+        weakSelf.people = people;
         
         NSMutableArray *names = [[NSMutableArray alloc] init];
         for (TPPersonModel* person in people) {
             [names addObject:person.name];
         }
         
-        [self.collectionView reloadData];
-        self.sliderTab.strings = names;
+        [weakSelf.collectionView reloadData];
+        weakSelf.sliderTab.strings = names;
     }];
     
     self.firstLayout = 0;

@@ -72,6 +72,7 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (void)request {
+    __weak __typeof__(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [TPNetworkHelper fetchVideosByKeywords:@[@"美食", @"旅游"] withSize:10 inPage:1 withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
@@ -82,14 +83,14 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                     int r = arc4random() % [videos count];
                     [randomSet addObject:videos[r]];
                 }
-                self.videosFood = [randomSet allObjects];
-                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosFood];
+                weakSelf.videosFood = [randomSet allObjects];
+                weakSelf.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosFood];
             }
             doneFood = YES;
             dispatch_async(dispatch_get_main_queue(), ^{
-                if([self checkBools]){
-                    [self.tableView.mj_header endRefreshing];
-                    [self.tableView reloadData];
+                if([weakSelf checkBools]){
+                    [weakSelf.tableView.mj_header endRefreshing];
+                    [weakSelf.tableView reloadData];
                 }
             });
         }];
@@ -101,14 +102,14 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                     int r = arc4random() % [videos count];
                     [randomSet addObject:videos[r]];
                 }
-                self.videosShopping = [randomSet allObjects];
-                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosShopping];
+                weakSelf.videosShopping = [randomSet allObjects];
+                weakSelf.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosShopping];
             }
             doneShop = YES;
             dispatch_async(dispatch_get_main_queue(), ^{
-                if([self checkBools]){
-                    [self.tableView.mj_header endRefreshing];
-                    [self.tableView reloadData];
+                if([weakSelf checkBools]){
+                    [weakSelf.tableView.mj_header endRefreshing];
+                    [weakSelf.tableView reloadData];
                 }
             });
         }];
@@ -120,14 +121,14 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
                     int r = arc4random() % [videos count];
                     [randomSet addObject:videos[r]];
                 }
-                self.videosPlace = [randomSet allObjects];
-                self.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosPlace];
+                weakSelf.videosPlace = [randomSet allObjects];
+                weakSelf.videosHot = [self.videosHot arrayByAddingObjectsFromArray:self.videosPlace];
             }
             doneView = YES;
             dispatch_async(dispatch_get_main_queue(), ^{
-                if([self checkBools]){
-                    [self.tableView.mj_header endRefreshing];
-                    [self.tableView reloadData];
+                if([weakSelf checkBools]){
+                    [weakSelf.tableView.mj_header endRefreshing];
+                    [weakSelf.tableView reloadData];
                 }
             });
         }];

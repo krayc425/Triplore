@@ -85,21 +85,23 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 #pragma mark - Request
 
 - (void)request {
+    __weak __typeof__(self) weakSelf = self;
     [TPNetworkHelper fetchVideosByKeywords:self.keywordsArray withSize:10 inPage:self.page withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        self.videos = videos;
-        self.page ++;
-        [self.tableView reloadData];
+        weakSelf.videos = videos;
+        weakSelf.page ++;
+        [weakSelf.tableView reloadData];
         [SVProgressHUD dismiss];
-        [self.footer setHidden:NO];
+        [weakSelf.footer setHidden:NO];
     }];
 }
 
 - (void)requestMore {
+    __weak __typeof__(self) weakSelf = self;
     [TPNetworkHelper fetchVideosByKeywords:self.keywordsArray withSize:10 inPage:self.page withBlock:^(NSArray<TPVideoModel *> *videos, NSError *error) {
-        self.videos = [self.videos arrayByAddingObjectsFromArray:videos];
-        self.page ++;
-        [self.tableView reloadData];
-        [self.footer endRefreshing];
+        weakSelf.videos = [self.videos arrayByAddingObjectsFromArray:videos];
+        weakSelf.page ++;
+        [weakSelf.tableView reloadData];
+        [weakSelf.footer endRefreshing];
     }];
 }
 
@@ -116,37 +118,17 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TPVideoModel *video = self.videos[indexPath.section];
     
-//    if (video.videoType == TPVideoAlbum) {
-//        TPVideoSeriesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier forIndexPath:indexPath];
-//        cell.video = video;
-//        
-//        [TPNetworkHelper fetchVideosInAlbum:@"" andAlbumID:[NSString stringWithFormat:@"%d", video.videoid] withBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
-//            
-//            NSLog(@"%@ %d", video.title, video.videoid);
-//            NSLog(@"%d", videos.count);
-//            
-//        }];
-//        
-//        return cell;
-//    } else {
-        TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
-        cell.video = video;
-        cell.cellDelegate = self;
-    
-        [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
-        return cell;
-//    }
+    TPVideoSingleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:singleCellIdentifier forIndexPath:indexPath];
+    cell.video = video;
+    cell.cellDelegate = self;
+
+    [cell setFavorite:[TPVideoManager isFavoriteVideo:((TPVideoModel *)self.videos[indexPath.section]).videoid]];
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = CGRectGetWidth(self.view.frame);
-//    TPVideoModel *video = self.videos[indexPath.section];
-    
-//    if (video.videoType == TPVideoAlbum) {
-//        return (width / 2 - 10) / 16 * 9 + 20 + 47 + 3*30 + 2*10;
-//    } else {
-        return (width / 2 - 10) / 16 * 9 + 20;
-//    }
+    return (width / 2 - 10) / 16 * 9 + 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

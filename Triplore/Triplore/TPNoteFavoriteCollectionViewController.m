@@ -52,14 +52,15 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)loadNotes{
+    __weak __typeof__(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [TPNoteServerHelper loadFavoriteServerNotesWithBlock:^(NSArray<TPNoteServer *> * _Nonnull noteServers, NSError * _Nullable error) {
             noteArr = [NSArray arrayWithArray:noteServers];
             NSLog(@"Load finished, %lu favorite notes", (unsigned long)noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView.mj_header endRefreshing];
-                [self.collectionView reloadData];
+                [weakSelf.collectionView.mj_header endRefreshing];
+                [weakSelf.collectionView reloadData];
             });
         }];
     });

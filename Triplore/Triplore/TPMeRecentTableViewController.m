@@ -49,14 +49,15 @@ static NSString *seriesCellIdentifier = @"TPVideoSeriesTableViewCell";
 
 - (void)loadRecentVideos{
     NSLog(@"Load Recent");
+    __weak __typeof__(self) weakSelf = self;
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
     [[TPVideoManager fetchRecentVideos] enumerateObjectsUsingBlock:^(TPVideo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [tempArr addObject:[[TPVideoModel alloc] initWithTPVideo:obj]];
     }];
     NSLog(@"%lu", (unsigned long)tempArr.count);
-    [self.videos removeAllObjects];
-    [self.videos addObjectsFromArray:tempArr];
-    [self.tableView reloadData];
+    [weakSelf.videos removeAllObjects];
+    [weakSelf.videos addObjectsFromArray:tempArr];
+    [weakSelf.tableView reloadData];
 }
 
 - (void)clearRecent{

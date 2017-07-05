@@ -43,12 +43,13 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
+    __weak __typeof__(self) weakSelf = self;
     [TPSiteHelper fetchHotCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
-        self.testCountries = countries;
+        weakSelf.testCountries = countries;
     }];
     
     [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
-        self.testCities = cities;
+        weakSelf.testCities = cities;
     }];
 }
 
@@ -129,6 +130,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     if (mode == TPSiteCountry) {
         TPSiteSearchViewController *countryViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
         countryViewController.mode = TPSiteSearchCountry;
+        
         [TPSiteHelper fetchAllCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
             countryViewController.countries = countries;
         }];

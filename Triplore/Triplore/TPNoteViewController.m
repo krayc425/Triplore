@@ -165,11 +165,12 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除分享" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [SVProgressHUD showWithStatus:@"删除中"];
+            __weak __typeof__(self) weakSelf = self;
             [TPNoteServerHelper deleteServerNote:self.note.serverid withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 
-                [TPNoteManager deleteNoteServerID:self.note];
+                [TPNoteManager deleteNoteServerID:weakSelf.note];
                 
-                [self.buttonBar setIsShare:NO];
+                [weakSelf.buttonBar setIsShare:NO];
                 
                 if(succeed){
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
@@ -231,23 +232,25 @@
     [self.buttonBar setIsCollect:changeToCollect];
     
     if(changeToCollect){
+        __weak __typeof__(self) weakSelf = self;
         [TPNoteServerHelper favoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
             if(succeed){
                 NSLog(@"收藏成功");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"load_favorite_notes" object:nil];
             }else{
                 NSLog(@"收藏失败");
-                self.buttonBar.isLike = !changeToCollect;
+                weakSelf.buttonBar.isLike = !changeToCollect;
             }
         }];
     }else{
+        __weak __typeof__(self) weakSelf = self;
         [TPNoteServerHelper cancelFavoriteServerNote:self.noteServer withBlock:^(BOOL succeed, NSError * _Nullable error) {
             if(succeed){
                 NSLog(@"取消收藏成功");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"load_favorite_notes" object:nil];
             }else{
                 NSLog(@"取消收藏失败");
-                self.buttonBar.isCollect = !changeToCollect;
+                weakSelf.buttonBar.isCollect = !changeToCollect;
             }
         }];
     }
@@ -257,14 +260,15 @@
     BOOL changeToLike = ![TPNoteServerHelper isLikeServerNote:self.noteServer.noteServerID];
     [self.buttonBar setIsLike:changeToLike];
     
+    __weak __typeof__(self) weakSelf = self;
     [TPNoteServerHelper commentServerNote:self.noteServer withIsLike:changeToLike withBlock:^(BOOL succeed, NSError * _Nullable error) {
         if(succeed){
             NSLog(@"点赞成功");
-            [self.buttonBar setLikeCount:self.buttonBar.likeCount + (changeToLike ? 1 : -1)];
+            [weakSelf.buttonBar setLikeCount:self.buttonBar.likeCount + (changeToLike ? 1 : -1)];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
         }else{
             NSLog(@"点赞失败");
-            self.buttonBar.isLike = !changeToLike;
+            weakSelf.buttonBar.isLike = !changeToLike;
         }
     }];
 }
@@ -351,11 +355,12 @@
 - (void)uploadAction{
     [SVProgressHUD showWithStatus:@"分享中"];
     TPNoteServer *newNote = [[TPNoteServer alloc] initWithTPNote:self.note];
+    __weak __typeof__(self) weakSelf = self;
     [TPNoteServerHelper uploadServerNote:newNote withBlock:^(BOOL succeed, NSString *serverID, NSError * _Nullable error) {
         if(succeed) {
-            [self.buttonBar setIsShare:YES];
+            [weakSelf.buttonBar setIsShare:YES];
             
-            [TPNoteManager updateNote:self.note withServerID:serverID];
+            [TPNoteManager updateNote:weakSelf.note withServerID:serverID];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"load_server_notes" object:nil];
             
