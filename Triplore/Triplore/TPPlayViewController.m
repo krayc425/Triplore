@@ -29,6 +29,7 @@
 #import <Photos/Photos.h>
 #import <ReplayKit/ReplayKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 #define CONTROLLER_BAR_WIDTH 30.0
 
@@ -37,7 +38,13 @@
 
 #define PANEL_WIDTH 150
 
-@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate>{
+typedef NS_ENUM(NSInteger, TPPanType) {
+    TPPanTypeNone,
+    TPPanTypeBrightness,
+    TPPanTypeVolume,
+};
+
+@interface TPPlayViewController () <QYPlayerControllerDelegate, TPAddNoteViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TPVideoProgressDelegate, DragableTableDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, TPPlayPanelDelegate, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, UIGestureRecognizerDelegate>{
     CGRect playFrame;
     CGRect stackFrame;
     NSIndexPath *selectedIndexPath;
@@ -45,6 +52,8 @@
     TPVideoProgressBar *progressBarView;
     TPPlayPanel *playPanel;
     NSNumber *currentPlayTime;
+    TPPanType currentPanType;
+    MPVolumeView *volumeView;
 }
 
 @property (nonatomic, weak) RPPreviewViewController *previewViewController;
@@ -54,7 +63,7 @@
 @property (nonatomic, weak) IBOutlet UIView *barContainerView;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-//@property (nonatomic,strong) ActivityIndicatorView *activityWheel;
+@property (nonatomic,strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) TPIndicatorView *loadingView;
 
 @end
@@ -137,13 +146,18 @@
                                                               30)];
     playPanel.delegate = self;
     
-    //创建手势
+    //创建拖动手势
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(objectDidDragged:)];
-    //限定操作的触点数
     [panGR setMaximumNumberOfTouches:1];
     [panGR setMinimumNumberOfTouches:1];
-    //将手势添加到draggableObj里
     [playPanel addGestureRecognizer:panGR];
+    
+    //创建音量亮度手势
+    [self initPanGestureProcessor];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    volumeView = [[MPVolumeView alloc] init];
+    [volumeView setHidden:YES];
+    volumeView.frame = CGRectMake(-1000, -1000, 100, 100);
     
     //第一次的教程
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPlay"]){
@@ -167,6 +181,17 @@
     NSString* isvip = [self.videoDict valueForKey:@"is_vip"];
     [[QYPlayerController sharedInstance] openPlayerByAlbumId:aid tvId:tvid isVip:isvip];
     self.title = self.videoDict[@"short_title"];
+}
+
+- (void)initPanGestureProcessor {
+    currentPanType = TPPanTypeNone;
+    
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(panGestureRecognized:)];
+    [self.panGestureRecognizer setMinimumNumberOfTouches:1];
+    [self.panGestureRecognizer setMaximumNumberOfTouches:1];
+    self.panGestureRecognizer.delegate = self;
+    [_playerView addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -399,6 +424,71 @@
 
 - (void)setToTime:(double)time{
     [[QYPlayerController sharedInstance] seekToTime:time];
+}
+
+#pragma mark - Pan Gesture delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    if (gestureRecognizer == _panGestureRecognizer && touch.view != _playerView){
+//        return NO;
+//    }
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (TPPanType)detectPanTypeForPan:(UIPanGestureRecognizer *)panRecognizer {
+    CGPoint location = [panRecognizer locationInView:_playerView];
+    CGFloat position = location.x;
+    CGFloat viewWidth = 0.0;
+    viewWidth = _playerView.frame.size.width;
+    
+    TPPanType panType = TPPanTypeVolume;
+    if (position < viewWidth / 2){
+        panType = TPPanTypeBrightness;
+    }
+    return panType;
+}
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)panGestureRecognizer {
+    CGFloat panDirectionY = [panGestureRecognizer velocityInView:self.view].y;
+    
+    if (panGestureRecognizer.state == UIGestureRecognizerStateBegan){
+        currentPanType = [self detectPanTypeForPan:panGestureRecognizer];
+    }
+    if (currentPanType == TPPanTypeVolume) {
+        UISlider *volumeViewSlider = nil;
+        for (UIView *view in [volumeView subviews]){
+            if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+                volumeViewSlider = (UISlider *)view;
+                break;
+            }
+        }
+        [volumeViewSlider sendActionsForControlEvents:UIControlEventTouchUpInside];
+        if (panDirectionY > 0){
+            [volumeViewSlider setValue:volumeViewSlider.value - 0.01 animated:NO];
+        }else{
+            [volumeViewSlider setValue:volumeViewSlider.value + 0.01 animated:NO];
+        }
+    } else if (currentPanType == TPPanTypeBrightness) {
+        CGFloat brightness = [UIScreen mainScreen].brightness;
+        if (panDirectionY > 0){
+            brightness -= 0.01;
+        }else{
+            brightness += 0.01;
+        }
+        if (brightness > 1.0){
+            brightness += 1.0;
+        }else if (brightness < 0.0){
+            brightness = 0.0;
+        }
+        [[UIScreen mainScreen] setBrightness:brightness];
+    }
+    if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        currentPanType = TPPanTypeNone;
+    }
 }
 
 #pragma mark - Screen Recording

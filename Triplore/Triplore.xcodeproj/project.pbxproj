@@ -480,6 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */,
 				2442CBC81F0768A900627488 /* ReplayKit.framework in Frameworks */,
 				240903B51F06A30E004535C3 /* Photos.framework in Frameworks */,
 				24CF35211F027DFD00C11EF6 /* libAVOSCloud.a in Frameworks */,
@@ -512,7 +513,6 @@
 				D6B2B29A364FA0B9C8F8303D34EC29FA /* GLKit.framework in Frameworks */,
 				404134107BDD0EFC845D443E98E6E4BC /* ImageIO.framework in Frameworks */,
 				C69E28CC393A75EDCC464D0CD1243399 /* JavaScriptCore.framework in Frameworks */,
-				9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */,
 				CDF38A61FA0BD611B20A1E7376C384E4 /* MessageUI.framework in Frameworks */,
 				17FD8175CF5CA737FAF154E930287CBF /* MobileCoreServices.framework in Frameworks */,
 				123AAF139E695A16596DF325ADC8FD3E /* NotificationCenter.framework in Frameworks */,
@@ -1479,7 +1479,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1599,7 +1599,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

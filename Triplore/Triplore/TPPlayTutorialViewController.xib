@@ -65,13 +65,13 @@
                                     <rect key="frame" x="0.0" y="36.5" width="235" height="17"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NOTE_SCREENSHOT" translatesAutoresizingMaskIntoConstraints="NO" id="26U-dF-dWB">
-                                            <rect key="frame" x="0.0" y="0.0" width="16.5" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="26U-dF-dWB" secondAttribute="height" multiplier="1:1" id="HJx-2x-tQT"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加一张视频截图到笔记" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82f-S5-cOj">
-                                            <rect key="frame" x="26.5" y="0.0" width="208.5" height="17"/>
+                                            <rect key="frame" x="26" y="0.0" width="209" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -116,13 +116,13 @@
                                     <rect key="frame" x="0.0" y="146.5" width="235" height="17"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NOTE_SWAP" translatesAutoresizingMaskIntoConstraints="NO" id="6vx-dL-4Bx">
-                                            <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="16.5" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="6vx-dL-4Bx" secondAttribute="height" multiplier="1:1" id="8Hb-18-vp9"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长按调整笔记内容顺序" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuK-tA-Mps">
-                                            <rect key="frame" x="26" y="0.0" width="209" height="17"/>
+                                            <rect key="frame" x="26.5" y="0.0" width="208.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -167,13 +167,13 @@
                                     <rect key="frame" x="0.0" y="256.5" width="235" height="17"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NOTE_DELETE" translatesAutoresizingMaskIntoConstraints="NO" id="Jm0-9a-44D">
-                                            <rect key="frame" x="0.0" y="0.0" width="16.5" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Jm0-9a-44D" secondAttribute="height" multiplier="1:1" id="Axp-E5-13e"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除笔记" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7g-jA-e5P">
-                                            <rect key="frame" x="26.5" y="0.0" width="208.5" height="17"/>
+                                            <rect key="frame" x="26" y="0.0" width="209" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

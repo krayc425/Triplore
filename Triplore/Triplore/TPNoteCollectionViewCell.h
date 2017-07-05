@@ -24,5 +24,4 @@ typedef NS_ENUM(NSInteger, TPNoteCellMode){
 @property (nonatomic, nonnull) TPNote *note;
 @property (nonatomic, nonnull) TPNoteServer *noteServer;
 
-
 @end
