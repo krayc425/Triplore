@@ -118,7 +118,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     CGFloat width = CGRectGetWidth(self.view.frame);
     if (indexPath.section == 0) {
         return (width / 7 * 3 + width / 15 * 4);
@@ -132,10 +131,10 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     return 0.1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10.0;
 }
+
 #pragma mark - TPCityInfoTableViewCellDelegate
 
 - (void)didTapCategory:(TPCategoryMode)mode {
@@ -148,7 +147,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
 //    videoViewController.navigationItem.title = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
-
 }
 
 #pragma mark - TPCityVideoTableViewCellDelegate
@@ -163,11 +161,9 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     videoViewController.keywords = titles[mode-1];
     
     [self.navigationController pushViewController:videoViewController animated:YES];
-    
 }
 
 - (void)didSelectVideo:(TPVideoModel *)video {
- 
     TPPlayViewController *playViewController = [[TPPlayViewController alloc] init];
     [playViewController setNoteMode:TPNewNote];
     playViewController.videoDict = video.videoDict;
@@ -204,7 +200,6 @@ static NSString *videoCellIdentifier = @"TPCityVideoTableViewCell";
     
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
     [self.navigationController pushViewController:searchViewController animated:NO];
-
 }
 
 #pragma mark - PYSearchViewControllerDelegate

@@ -28,6 +28,9 @@ typedef NS_ENUM(NSInteger, TPNoteToolbarMode){
 
 @end
 
+/**
+ 笔记底部工具栏
+ */
 @interface TPNoteToolbar : UIView
 
 @property (nonatomic) TPNoteToolbarMode mode;

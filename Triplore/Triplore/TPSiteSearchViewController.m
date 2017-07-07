@@ -40,7 +40,6 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     if (self.mode == TPSiteSearchAll) {
         return 2;
     } else if (self.mode == TPSiteSearchCity || self.mode == TPSiteSearchCountry) {

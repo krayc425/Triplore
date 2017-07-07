@@ -12,7 +12,6 @@
 @implementation TPPersonHelper
 
 + (void)fetchAllPeopleWithBlock:(void (^)(NSArray<TPPersonModel *> * _Nonnull people, NSError * _Nullable error))completionBlock {
-
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"About" ofType:@"plist"];
     NSMutableArray *rootArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     

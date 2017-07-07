@@ -187,11 +187,8 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 #pragma mark - PYSearchViewControllerDelegate
 
 - (void)searchViewControllerWillAppear:(PYSearchViewController *)searchViewController {
-
     searchViewController.navigationItem.hidesBackButton = YES;
-    
 }
-
 
 - (void)didClickCancel:(PYSearchViewController *)searchViewController {
     CATransition *transition = [CATransition animation];

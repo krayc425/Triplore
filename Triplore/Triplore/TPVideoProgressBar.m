@@ -23,7 +23,6 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
-        NSLog(@"Init");
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -31,7 +30,7 @@
 
 - (void)sliderValueChanged:(id)sender{
     UISlider *slider = (UISlider *)sender;
-    NSLog(@"Slider value: %f", slider.value);
+//    NSLog(@"Slider value: %f", slider.value);
     [self.delegate setToTime:slider.value];
 }
 

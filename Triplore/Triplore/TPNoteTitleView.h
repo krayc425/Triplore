@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 笔记标题 View
+ */
 @interface TPNoteTitleView : UIView
 
 @property (nonatomic, weak) IBOutlet UILabel * _Nullable dayLabel;

@@ -19,6 +19,9 @@
 
 @end
 
+/**
+ 播放器进度条
+ */
 @interface TPVideoProgressBar : UIControl
 
 @property (nonatomic, weak, nullable) id<TPVideoProgressDelegate> delegate;
