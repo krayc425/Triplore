@@ -13,6 +13,7 @@
 #import "TPNoteServer.h"
 #import "TPNote.h"
 #import "TPRefreshHeader.h"
+#import "SVProgressHUD.h"
 
 static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
@@ -51,6 +52,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)loadNotes{
+    [SVProgressHUD show];
     __weak __typeof__(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -58,6 +60,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
             noteArr = [NSArray arrayWithArray:noteServers];
             NSLog(@"Load finished, %lu notes", (unsigned long)noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
                 [weakSelf.collectionView.mj_header endRefreshing];
                 [weakSelf.collectionView reloadData];
             });
