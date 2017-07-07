@@ -72,4 +72,6 @@ Triplore/IOSPlayerLib/libav.a
 
 Apps/
 
+*.key
+*.pages
 *.mobileprovision
