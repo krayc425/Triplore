@@ -27,6 +27,7 @@ PODS:
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SVProgressHUD (2.1.2)
+  - TYPagerController (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - SVProgressHUD
+  - TYPagerController
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -49,7 +51,8 @@ SPEC CHECKSUMS:
   SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  TYPagerController: 0b3e3e589a217ff537d5f78e1e76594beaa4cfc6
 
-PODFILE CHECKSUM: 4668eea2c62cd1e8451608f95552765a590b45b3
+PODFILE CHECKSUM: 261a07c79c3bbe3f6ae8b12779f553e0128cde58
 
 COCOAPODS: 1.1.1

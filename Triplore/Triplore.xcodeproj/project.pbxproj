@@ -140,6 +140,7 @@
 		4DA7B93D1F0334C9004A8B5A /* TPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B93C1F0334C9004A8B5A /* TPTextField.m */; };
 		4DA7B9411F0348C4004A8B5A /* TPMeLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7B93F1F0348C4004A8B5A /* TPMeLogoutTableViewCell.m */; };
 		4DA7B9421F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7B9401F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib */; };
+		4DD5C2F31F0FC65F001AD0CF /* libTYPagerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD5C2F21F0FC65F001AD0CF /* libTYPagerController.a */; };
 		4DD722BB1EF3784200B36454 /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD722BA1EF3784200B36454 /* libMJRefresh.a */; };
 		4DD722BE1EF383DA00B36454 /* TPRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */; };
 		4E7460E4FA2A3E17BCEDA339D47F1301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1BCE8E8A3A31FEB938E964A929BCE4 /* Accelerate.framework */; };
@@ -150,6 +151,7 @@
 		7D1E105C8A8027BA0B10D3F281C72059 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888FDD983AF552929BAB17BB00FB287 /* UIKit.framework */; };
 		8D7699B34374BE8A9967AEC9841918C7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35E51830A3ACADCBCF954C023DA3F6E /* AssetsLibrary.framework */; };
 		8E1E6F93AF689AD9B1877EC6EAFDDDF3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3C4995EAEE3713E3267D32461EB217 /* libsqlite3.tbd */; };
+		8E273F032D824CCBCBFAEBCC /* libPods-Triplore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675D0A9F2445514D4DAC5DC /* libPods-Triplore.a */; };
 		90E46E18F9FAFBB93F18E0548EC41D72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009FE6B6AA5E449DBFF2DCBDB11EBA55 /* CoreLocation.framework */; };
 		9A14F437BBBAE03A6B023E59A397CD60 /* libav.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A73A86EFD2AA39B5EB8842385216CB /* libav.a */; };
 		9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A9124B4BB5C3DC7A39F445E6A7ADF1 /* MediaPlayer.framework */; };
@@ -411,6 +413,7 @@
 		4DA7B93E1F0348C4004A8B5A /* TPMeLogoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMeLogoutTableViewCell.h; sourceTree = "<group>"; };
 		4DA7B93F1F0348C4004A8B5A /* TPMeLogoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMeLogoutTableViewCell.m; sourceTree = "<group>"; };
 		4DA7B9401F0348C4004A8B5A /* TPMeLogoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMeLogoutTableViewCell.xib; sourceTree = "<group>"; };
+		4DD5C2F21F0FC65F001AD0CF /* libTYPagerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTYPagerController.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/TYPagerController/libTYPagerController.a"; sourceTree = "<group>"; };
 		4DD722BA1EF3784200B36454 /* libMJRefresh.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMJRefresh.a; path = "../../../Library/Developer/Xcode/DerivedData/Triplore-cqcwuylgttkelvbasvtmxxnssnsw/Build/Products/Debug-iphonesimulator/MJRefresh/libMJRefresh.a"; sourceTree = "<group>"; };
 		4DD722BC1EF383DA00B36454 /* TPRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4DD722BD1EF383DA00B36454 /* TPRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPRefreshAutoFooter.m; sourceTree = "<group>"; };
@@ -480,6 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD5C2F31F0FC65F001AD0CF /* libTYPagerController.a in Frameworks */,
 				9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */,
 				2442CBC81F0768A900627488 /* ReplayKit.framework in Frameworks */,
 				240903B51F06A30E004535C3 /* Photos.framework in Frameworks */,
@@ -529,6 +533,7 @@
 				BAD53723A2715AA31F5E1BF213E07C69 /* libstdc++.tbd in Frameworks */,
 				2E7F2997DB3E2BF8FFB3FFDFE3123E96 /* libxml2.tbd in Frameworks */,
 				7550083F04D66515FABC5CB83E2BF2D2 /* libz.1.tbd in Frameworks */,
+				8E273F032D824CCBCBFAEBCC /* libPods-Triplore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,6 +1035,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DD5C2F21F0FC65F001AD0CF /* libTYPagerController.a */,
 				2442CBC71F0768A900627488 /* ReplayKit.framework */,
 				240903B41F06A30E004535C3 /* Photos.framework */,
 				240903AA1F069D03004535C3 /* libGlimpse.a */,
