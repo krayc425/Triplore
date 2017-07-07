@@ -72,19 +72,22 @@ static int controllerNum = 3;
     if (index == 0) {
         UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc] init];
         TPNoteServerCollectionViewController *controller1 = [[TPNoteServerCollectionViewController alloc] initWithCollectionViewLayout:layout1];
+        controller1.parentNavigationController = self.navigationController;
         controller1.title = @"推荐";
         return controller1;
         
-    }else if (index == 1) {
+    } else if (index == 1) {
         UICollectionViewFlowLayout *layout2 = [[UICollectionViewFlowLayout alloc] init];
         TPNoteCollectionViewController *controller2 = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout2];
         controller2.title = @"我的";
+        controller2.parentNavigationController = self.navigationController;
         return controller2;
         
-    }else {
+    } else {
         UICollectionViewFlowLayout *layout3 = [[UICollectionViewFlowLayout alloc] init];
         TPNoteFavoriteCollectionViewController *controller3 = [[TPNoteFavoriteCollectionViewController alloc] initWithCollectionViewLayout:layout3];
         controller3.title = @"收藏";
+        controller3.parentNavigationController = self.navigationController;
         return controller3;
     }
 }
