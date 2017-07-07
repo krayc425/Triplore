@@ -13,9 +13,24 @@
  */
 @interface TPVideo : NSObject
 
+/**
+ 视频 id
+ */
 @property (copy, nonatomic, nonnull) NSString *videoid;
+
+/**
+ 视频信息字典
+ */
 @property (nonatomic, nonnull) NSDictionary *dict;
+
+/**
+ 是否收藏
+ */
 @property (nonatomic) NSInteger favorite;
+
+/**
+ 最近观看日期
+ */
 @property (nonatomic, nonnull) NSDate *recent;
 
 - (_Nonnull instancetype)initWithVideoDict:(NSDictionary *_Nonnull)dict;

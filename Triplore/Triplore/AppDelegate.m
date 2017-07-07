@@ -12,6 +12,8 @@
 #import "Utilities.h"
 #import "DBManager.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +51,53 @@
         [Utilities setFontAtIndex:0];
     }
     
+    // 检测网络
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变时调用
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"未知网络");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            {
+                NSLog(@"没有网络");
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络失去连接" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alertVC addAction:cancelAction];
+                [[self theTopviewControler] presentViewController:alertVC animated:YES completion:nil];
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            {
+                NSLog(@"手机自带网络");
+                
+                if(![[NSUserDefaults standardUserDefaults] boolForKey:@"alert_for_wwan"]){
+                
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您正在使用移动蜂窝网络" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *noAlertAction = [UIAlertAction actionWithTitle:@"不再提示" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"alert_for_wwan"];
+                }];
+                [alertVC addAction:noAlertAction];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alertVC addAction:cancelAction];
+                [[self theTopviewControler] presentViewController:alertVC animated:YES completion:nil];
+                }
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            {
+                NSLog(@"WIFI");
+            }
+                break;
+        }
+    }];
+    
+    //开始监控
+    [manager startMonitoring];
+    
     return YES;
 }
 
@@ -82,6 +131,19 @@
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
     return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+- (UIViewController *)theTopviewControler{
+    UIViewController *rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
+
+    UIViewController *parent = rootVC;
+    while ((parent = rootVC.presentedViewController) != nil ) {
+        rootVC = parent;
+    }
+    while ([rootVC isKindOfClass:[UINavigationController class]]) {
+        rootVC = [(UINavigationController *)rootVC topViewController];
+    }
+    return rootVC;
 }
 
 @end

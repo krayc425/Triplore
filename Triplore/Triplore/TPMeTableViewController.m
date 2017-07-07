@@ -92,7 +92,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == 0 && indexPath.row == 0) {
         static NSString *cellIdentifier = @"TPMeAuthTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"TPMeAuthTableViewCell" bundle:nil];

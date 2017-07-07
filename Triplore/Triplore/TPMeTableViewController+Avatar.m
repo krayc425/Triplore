@@ -17,7 +17,6 @@
 
 - (void)updateAvatar {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    // From albums.
     [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
         pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -25,7 +24,6 @@
         pickerController.delegate = self;
         [self presentViewController:pickerController animated:YES completion:nil];
     }]];
-    // From camera.
     [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
         UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -33,7 +31,6 @@
         pickerController.delegate = self;
         [self presentViewController:pickerController animated:YES completion:nil];
     }]];
-    // Cancel.
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -47,7 +44,6 @@
         AVFile *avatarFile = [AVFile fileWithData:imgData];
         [avatarFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
-                NSLog(@"File URL: %@", avatarFile.url);
                 // 更新当前用户头像 URL
                 [[AVUser currentUser] setObject:avatarFile forKey:@"avatar"];
                 [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

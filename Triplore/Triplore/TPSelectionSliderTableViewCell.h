@@ -21,6 +21,9 @@
 
 @end
 
+/**
+ 轮播图 Cell
+ */
 @interface TPSelectionSliderTableViewCell : UITableViewCell
 
 @property (nonatomic, weak, nullable) id<TPSelectionSliderTableViewCellDelegate> delegate;

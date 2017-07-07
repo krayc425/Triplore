@@ -429,34 +429,41 @@
     
     UIGraphicsEndImageContext();
     
-    [TPMediaSaver saveImage:image withCompletionBlock:^(BOOL success, NSError *error) {
-        if(!error) {
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存到相册成功"
-                                                                            message:nil
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:nil];
-            [alertC addAction:cancelAction];
-            UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
-                                                                  style:UIAlertActionStyleDefault
-                                                                handler:^(UIAlertAction * _Nonnull action) {
-                                                                    NSString *str = @"photos-redirect://";
-                                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
-                                                                                                       options:@{}
-                                                                                             completionHandler:nil];
-                                                                }];
-            [alertC addAction:albumAction];
-            [self presentViewController:alertC animated:YES completion:nil];
-        }else{
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
-                                                                            message:nil
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alertC addAction:okAction];
-            [self presentViewController:alertC animated:YES completion:nil];
+    [TPMediaSaver checkStatusWithCompletionBlock:^(BOOL authorized) {
+        if(!authorized) {
+            [SVProgressHUD showInfoWithStatus:@"请去设置开启权限"];
+            [SVProgressHUD dismissWithDelay:2.0];
+        } else {
+            [TPMediaSaver saveImage:image withCompletionBlock:^(BOOL success, NSError *error) {
+                if(!error) {
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存到相册成功"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                           style:UIAlertActionStyleCancel
+                                                                         handler:nil];
+                    [alertC addAction:cancelAction];
+                    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册查看"
+                                                                          style:UIAlertActionStyleDefault
+                                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                                            NSString *str = @"photos-redirect://";
+                                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
+                                                                                                               options:@{}
+                                                                                                     completionHandler:nil];
+                                                                        }];
+                    [alertC addAction:albumAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }else{
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"保存失败"
+                                                                                    message:nil
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                       style:UIAlertActionStyleDefault
+                                                                     handler:nil];
+                    [alertC addAction:okAction];
+                    [self presentViewController:alertC animated:YES completion:nil];
+                }
+            }];
         }
     }];
 }

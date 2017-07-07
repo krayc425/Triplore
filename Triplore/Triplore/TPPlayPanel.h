@@ -22,6 +22,9 @@
 
 @end
 
+/**
+ 播放遥控面板
+ */
 @interface TPPlayPanel : UIView
 
 @property (nonatomic, weak) id<TPPlayPanelDelegate> delegate;
