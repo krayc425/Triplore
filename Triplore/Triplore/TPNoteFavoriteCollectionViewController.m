@@ -14,6 +14,7 @@
 #import "TPNote.h"
 #import "TPRefreshHeader.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "SVProgressHUD.h"
 
 static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
 
@@ -38,6 +39,8 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
                                              selector:@selector(loadNotes)
                                                  name:@"load_favorite_notes"
                                                object:nil];
+    
+    [self loadNotes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,11 +50,14 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    
-    [self loadNotes];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
 }
 
 - (void)loadNotes{
+    [SVProgressHUD show];
     __weak __typeof__(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -59,6 +65,7 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
             noteArr = [NSArray arrayWithArray:noteServers];
             NSLog(@"Load finished, %lu favorite notes", (unsigned long)noteArr.count);
             dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
                 [weakSelf.collectionView.mj_header endRefreshing];
                 [weakSelf.collectionView reloadData];
             });

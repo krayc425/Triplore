@@ -38,6 +38,7 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
                                              selector:@selector(loadNotes)
                                                  name:@"load_server_notes"
                                                object:nil];
+    [self loadNotes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,8 +48,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    
-    [self loadNotes];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
 }
 
 - (void)loadNotes{

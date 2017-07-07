@@ -21,6 +21,8 @@
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             completionBlock(status == PHAuthorizationStatusAuthorized);
         }];
+    } else {
+        completionBlock(YES);
     }
 }
 
