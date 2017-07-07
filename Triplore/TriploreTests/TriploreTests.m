@@ -126,6 +126,7 @@
 - (void)testAllVideo{
 //    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
     [TPNetworkHelper fetchAllVideosWithBlock:^(NSArray<TPVideoModel *> * _Nonnull videos, NSError * _Nullable error) {
+//        if(error!=)
         NSLog(@"--> %lu", (unsigned long)videos.count);
     }];
 }

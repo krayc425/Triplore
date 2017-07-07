@@ -102,8 +102,8 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%f %f", (CGRectGetWidth(self.collectionView.frame) - 20) / 3 - 5, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
-    return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3 - 5, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
+    NSLog(@"%f %f", (CGRectGetWidth(self.collectionView.frame) - 20) / 3, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
+    return CGSizeMake((CGRectGetWidth(self.collectionView.frame) - 20) / 3, (CGRectGetWidth(self.collectionView.frame) - 20) / 2);
 }
 
 - (IBAction)allDidTap:(id)sender {
