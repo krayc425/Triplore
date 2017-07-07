@@ -59,6 +59,16 @@ static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
     }
 }
 
+- (void)setCountries:(NSArray<TPCountryModel *> *)countries {
+    _countries = countries;
+    [self.collectionView reloadData];
+}
+
+- (void)setCities:(NSArray<TPCityModel *> *)cities {
+    _cities = cities;
+    [self.collectionView reloadData];
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

@@ -14,11 +14,12 @@
 #import "TPSiteHelper.h"
 #import "TPCountryModel.h"
 #import "TPCityModel.h"
+#import "TPRefreshHeader.h"
 
 @interface TPSiteTableViewController () <TPSiteTableViewCellDelegate, PYSearchViewControllerDelegate>
 
-@property (nonatomic, copy) NSArray<TPCountryModel *>* testCountries;
-@property (nonatomic, copy) NSArray<TPCityModel *>* testCities;
+@property (nonatomic, copy) NSArray<TPCountryModel *>* countries;
+@property (nonatomic, copy) NSArray<TPCityModel *>* cities;
 
 @end
 
@@ -43,14 +44,11 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     UINib *nib = [UINib nibWithNibName:@"TPSiteTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
-    __weak __typeof__(self) weakSelf = self;
-    [TPSiteHelper fetchHotCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
-        weakSelf.testCountries = countries;
-    }];
+    // header
+    TPRefreshHeader *header = [TPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(request)];
+    self.tableView.mj_header = header;
     
-    [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
-        weakSelf.testCities = cities;
-    }];
+    [self request];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +58,24 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+}
+
+#pragma mark - Request
+
+- (void)request {
+    __weak __typeof__(self) weakSelf = self;
+    [TPSiteHelper fetchHotCountriesWithBlock:^(NSArray<TPCountryModel *> * _Nonnull countries, NSError * _Nullable error) {
+        weakSelf.countries = countries;
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+    }];
+    
+    [TPSiteHelper fetchHotCitiesWithBlock:^(NSArray<TPCityModel *> * _Nonnull cities, NSError * _Nullable error) {
+        weakSelf.cities = cities;
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+    }];
+
 }
 
 #pragma mark - Table view data source
@@ -79,10 +95,11 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     
     if (indexPath.section == 0) {
         cell.mode = TPSiteCountry;
-        cell.countries = self.testCountries;
+        cell.countries = self.countries;
+        
     } else if (indexPath.section == 1) {
         cell.mode = TPSiteCity;
-        cell.cities = self.testCities;
+        cell.cities = self.cities;
         cell.isAll = NO;
     }
     
@@ -93,9 +110,9 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     
     NSInteger row = 0;
     if (indexPath.section == 0) {
-        row = self.testCountries.count%3 == 0 ? self.testCountries.count/3 : self.testCountries.count/3 + 1;
+        row = self.countries.count%3 == 0 ? self.countries.count/3 : self.countries.count/3 + 1;
     }else if (indexPath.section == 1) {
-        row = self.testCities.count%3 == 0 ? self.testCities.count/3 : self.testCities.count/3 + 1;
+        row = self.cities.count%3 == 0 ? self.cities.count/3 : self.cities.count/3 + 1;
     }
     return (CGRectGetWidth(self.view.frame) - 40)/2 * row + 10 * (row-1) + 42;
 }
@@ -140,7 +157,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
     } else if (mode == TPSiteSearchCity) {
         TPSiteSearchViewController *cityViewController = [[TPSiteSearchViewController alloc] initWithStyle:UITableViewStyleGrouped];
         cityViewController.mode = TPSiteSearchCity;
-        cityViewController.cities = self.testCities;
+        cityViewController.cities = self.cities;
         [self.navigationController pushViewController:cityViewController animated:YES];
     }
 }
@@ -149,7 +166,7 @@ static NSString *cellIdentifier = @"TPSiteTableViewCell";
 
 - (void)clickSearchButton:(id)sender {
     NSMutableArray *countryNameArr = [[NSMutableArray alloc] init];
-    [self.testCountries enumerateObjectsUsingBlock:^(TPCountryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.countries enumerateObjectsUsingBlock:^(TPCountryModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [countryNameArr addObject:obj.chineseName];
     }];
     

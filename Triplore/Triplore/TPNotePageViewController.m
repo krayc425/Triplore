@@ -10,15 +10,17 @@
 #import "TPNoteCollectionViewController.h"
 #import "TPNoteServerCollectionViewController.h"
 #import "TPNoteFavoriteCollectionViewController.h"
-#import "CAPSPageMenu.h"
+#import "TYTabButtonPagerController.h"
 
-@interface TPNotePageViewController ()
+@interface TPNotePageViewController () <TYPagerControllerDataSource>
 
-@property (nonatomic) CAPSPageMenu *pageMenu;
+@property (nonatomic) TYPagerController *pagerController;
 
 @end
 
 @implementation TPNotePageViewController
+
+static int controllerNum = 3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,42 +34,59 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteServerCollectionViewController *controller1 = [[TPNoteServerCollectionViewController alloc] initWithCollectionViewLayout:layout1];
-    controller1.title = @"推荐";
+    TYTabButtonPagerController *pagerController = [[TYTabButtonPagerController alloc]init];
+    pagerController.dataSource = self;
+    pagerController.adjustStatusBarHeight = YES;
+    pagerController.cellWidth = 56;
+    pagerController.cellSpacing = 8;
+    pagerController.progressColor = TPColor;
+    pagerController.normalTextColor = [UIColor lightGrayColor];
+    pagerController.selectedTextColor = TPColor;
+    pagerController.normalTextFont = [UIFont systemFontOfSize:14.0f];
+    pagerController.selectedTextFont = [UIFont systemFontOfSize:14.0f];
+    pagerController.collectionLayoutEdging = (SCREEN_WIDTH - 56 * controllerNum - 8 * (controllerNum - 1));
+    pagerController.barStyle = TYPagerBarStyleProgressView;
     
-    UICollectionViewFlowLayout *layout2 = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteCollectionViewController *controller2 = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout2];
-    controller2.title = @"我的";
     
-    UICollectionViewFlowLayout *layout3 = [[UICollectionViewFlowLayout alloc] init];
-    TPNoteFavoriteCollectionViewController *controller3 = [[TPNoteFavoriteCollectionViewController alloc] initWithCollectionViewLayout:layout3];
-    controller3.title = @"收藏";
+    pagerController.view.frame = self.view.bounds;
+    [self addChildViewController:pagerController];
+    [self.view addSubview:pagerController.view];
+    _pagerController = pagerController;
     
-    NSArray *controllerArray = @[controller1, controller2, controller3];
-    
-    for (TPNoteCollectionViewController *controller in controllerArray) {
-        controller.parentNavigationController = self.navigationController;
+}
+
+#pragma mark - TYPagerControllerDataSource
+
+- (NSInteger)numberOfControllersInPagerController
+{
+    return 3;
+}
+
+- (NSString *)pagerController:(TYPagerController *)pagerController titleForIndex:(NSInteger)index
+{
+    return @[@"推荐", @"我的", @"收藏"][index];
+}
+
+- (UIViewController *)pagerController:(TYPagerController *)pagerController controllerForIndex:(NSInteger)index
+{
+    if (index == 0) {
+        UICollectionViewFlowLayout *layout1 = [[UICollectionViewFlowLayout alloc] init];
+        TPNoteServerCollectionViewController *controller1 = [[TPNoteServerCollectionViewController alloc] initWithCollectionViewLayout:layout1];
+        controller1.title = @"推荐";
+        return controller1;
+        
+    }else if (index == 1) {
+        UICollectionViewFlowLayout *layout2 = [[UICollectionViewFlowLayout alloc] init];
+        TPNoteCollectionViewController *controller2 = [[TPNoteCollectionViewController alloc] initWithCollectionViewLayout:layout2];
+        controller2.title = @"我的";
+        return controller2;
+        
+    }else {
+        UICollectionViewFlowLayout *layout3 = [[UICollectionViewFlowLayout alloc] init];
+        TPNoteFavoriteCollectionViewController *controller3 = [[TPNoteFavoriteCollectionViewController alloc] initWithCollectionViewLayout:layout3];
+        controller3.title = @"收藏";
+        return controller3;
     }
-    
-    NSDictionary *parameters = @{
-                                 CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor whiteColor],
-                                 CAPSPageMenuOptionViewBackgroundColor: [UIColor whiteColor],
-                                 CAPSPageMenuOptionSelectionIndicatorColor: TPColor,
-                                 CAPSPageMenuOptionSelectedMenuItemLabelColor: TPColor,
-                                 CAPSPageMenuOptionAddBottomMenuHairline: @(NO),
-                                 CAPSPageMenuOptionMenuItemWidth: @(54),
-                                 CAPSPageMenuOptionMenuHeight: @(40),
-                                 CAPSPageMenuOptionMenuMargin: @(20),
-                                 CAPSPageMenuOptionCenterMenuItems: @(YES),
-//                                 CAPSPageMenuOptionMenuItemWidthBasedOnTitleTextWidth: @(YES),
-                                 CAPSPageMenuOptionCenterMenuItems: @(YES),
-                                 CAPSPageMenuOptionMenuItemFont: [UIFont systemFontOfSize:14.0f],
-                                 CAPSPageMenuOptionSelectionIndicatorHeight: @(2)
-                                 };
-    
-    _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height-44) options:parameters];
-    [self.view addSubview:_pageMenu.view];
 }
 
 - (void)didReceiveMemoryWarning {
