@@ -165,6 +165,7 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除分享" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [SVProgressHUD showWithStatus:@"删除中"];
+            
             __weak __typeof__(self) weakSelf = self;
             [TPNoteServerHelper deleteServerNote:self.note.serverid withBlock:^(BOOL succeed, NSError * _Nullable error) {
                 
