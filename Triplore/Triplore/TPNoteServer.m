@@ -38,6 +38,8 @@
         self.videoDict = (NSDictionary *)[object objectForKey:@"videoDict"];
         AVUser *user = [object objectForKey:@"creator"];
         self.creatorName = user.username;
+        
+        NSLog(@"user: %@    name: %@", user, self.creatorName);
         self.createDate = object.createdAt;
     }
     return self;

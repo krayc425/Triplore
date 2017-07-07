@@ -88,6 +88,8 @@
     [self.likeCountLabel setText:[NSString stringWithFormat:@"%d", noteServer.like.intValue]];
     [self.usernameLabel setText:noteServer.creatorName];
     
+    NSLog(@"!!!!!!!name: %@", noteServer.creatorName);
+    
     self.mode = TPNoteCellRemote;
 }
 

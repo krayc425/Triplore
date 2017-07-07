@@ -69,14 +69,23 @@
 
 + (void)fetchHotCountriesWithBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
     
-    NSArray *hotIndex = @[@14, @8, @1, @17, @45, @51];
+//    NSArray *hotIndex = @[@14, @8, @1, @17, @45, @51];
+    
+    
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
     NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     
+    NSMutableArray *randomArray = [[NSMutableArray alloc] init];
+    
+    while ([randomArray count] < 6) {
+        int r = arc4random() % [allArr count];
+        [randomArray addObject:[allArr objectAtIndex:r]];
+    }
+
+    
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
-    for(NSNumber *index in hotIndex){
-        NSDictionary *countryDict = allArr[[index integerValue]];
+    for(NSDictionary *countryDict in randomArray){
         
         TPCountryModel *country = [TPCountryModel new];
         [country setImageURL:countryDict[@"country_image_url"]];
@@ -101,20 +110,25 @@
 
 
 + (void)fetchHotCitiesWithBlock:(void(^_Nonnull)(NSArray<TPCityModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
-    NSArray *countryIndexs = @[@14 , @8, @1, @17, @45, @51];
-    NSArray *cityIndexs = @[@3, @0, @0, @2, @0, @0];
+//    NSArray *countryIndexs = @[@14 , @8, @1, @17, @45, @51];
+//    NSArray *cityIndexs = @[@3, @0, @0, @2, @0, @0];
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
     NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     
-    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
-    for (int i=0; i<countryIndexs.count; i++) {
-        NSNumber *index = countryIndexs[i];
-        NSDictionary *countryDict = allArr[[index integerValue]];
+    NSMutableArray *randomConuntryArray = [[NSMutableArray alloc] init];
     
-        NSNumber *cityIndex= cityIndexs[i];
+    while ([randomConuntryArray count] < 6) {
+        int r = arc4random() % [allArr count];
+        [randomConuntryArray addObject:[allArr objectAtIndex:r]];
+    }
+
+    NSMutableArray *resultArr = [[NSMutableArray alloc] init];
+    
+    for(NSDictionary *countryDict in randomConuntryArray){
         NSArray *cityArr = countryDict[@"city_list"];
-        NSDictionary *cityDict = cityArr[[cityIndex integerValue]];
+        int r = arc4random() % [cityArr count];
+        NSDictionary *cityDict = cityArr[r];
         TPCityModel *city = [TPCityModel new];
         [city setChineseName:cityDict[@"chinese_name"]];
         [city setEnglishName:cityDict[@"english_name"]];
