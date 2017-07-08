@@ -18,6 +18,7 @@
 #import "TPMeTableViewController+Avatar.h"
 #import "SVProgressHUD.h"
 #import "TPAuthHelper.h"
+#import <LeanCloudFeedback/LeanCloudFeedback.h>
 
 @interface TPMeTableViewController ()
 
@@ -70,9 +71,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.user) {
-        return 5;
+        return 6;
     }
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -86,7 +87,9 @@
         return 1;
     }else if (section == 4){
         return 1;
-    } else {
+    }else if(section == 5){
+        return 1 * (self.user != nil);
+    }else{
         return 0;
     }
 }
@@ -102,7 +105,7 @@
         
         return cell;
         
-    } else if (indexPath.section == 4 && indexPath.row == 0) {
+    } else if (self.user != nil && indexPath.section == 5 && indexPath.row == 0) {
         static NSString *cellIdentifier = @"TPMeLogoutTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"TPMeLogoutTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
@@ -132,7 +135,9 @@
             [cell.cellImg setImage:[UIImage imageNamed:@"ME_ABOUT"]];
             [cell.infoLabel setText:@"关于我们"];
             
-        }else{
+        }else if(indexPath.section == 4 && indexPath.row == 0){
+            [cell.cellImg setImage:[UIImage imageNamed:@"NOTE_EDIT"]];
+            [cell.infoLabel setText:@"意见反馈"];
             
         }
         
@@ -164,7 +169,11 @@
     }else if(indexPath.section == 3 && indexPath.row == 0){
         TPMeAboutViewController *aboutVC = [[TPMeAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVC animated:YES];
-    }else if(indexPath.section == 4 && indexPath.row == 0){
+    } else if(indexPath.section == 4 && indexPath.row == 0){
+        LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
+        /* title 传 nil 表示将第一条消息作为反馈的标题。 contact 也可以传入 nil，由用户来填写联系方式。*/
+        [agent showConversations:self title:nil contact:nil];
+    } else if(indexPath.section == 5 && indexPath.row == 0){
         // Log out
         [AVUser logOut];
         [SVProgressHUD showSuccessWithStatus:@"注销成功"];

@@ -11,6 +11,7 @@
 		1595F6E052B30961C2885DBFA7A961B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B79DEA3F12897AF296001F77BF1507 /* LaunchScreen.storyboard */; };
 		17FD8175CF5CA737FAF154E930287CBF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023F9890AB340E360BA4BE533407EEFF /* MobileCoreServices.framework */; };
 		2162993FB4E3A12281F7B75C2B7E3122 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16D141D9D0CE7FE6C79EABAE12D181B /* CoreMotion.framework */; };
+		240204361F1077B5000A2990 /* libLeanCloudFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 240204351F1077B5000A2990 /* libLeanCloudFeedback.a */; };
 		2402CE071ED448020098770A /* libPYSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402CE061ED448020098770A /* libPYSearch.a */; };
 		2402CE091ED448080098770A /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2402CE081ED448080098770A /* libAFNetworking.a */; };
 		2402CE0D1ED4496F0098770A /* TPSiteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2402CE0B1ED4496F0098770A /* TPSiteTableViewController.m */; };
@@ -115,7 +116,6 @@
 		4D5CB8CB1EE3DE77009F2EA0 /* UIImage+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5CB8CA1EE3DE77009F2EA0 /* UIImage+URL.m */; };
 		4D6746F81F04971D00AA67C5 /* TPNoteToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */; };
 		4D6746FB1F049BD400AA67C5 /* TPNoteBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */; };
-		4D6747261F04D42E00AA67C5 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6747251F04D42E00AA67C5 /* CAPSPageMenu.m */; };
 		4D6747291F04D4A500AA67C5 /* TPNotePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */; };
 		4D7E14E71F0289E50065954C /* TPAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E14E51F0289E50065954C /* TPAuthViewController.m */; };
 		4D7E14E81F0289E50065954C /* TPAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D7E14E61F0289E50065954C /* TPAuthViewController.xib */; };
@@ -202,6 +202,7 @@
 		10F27E0B6E83B9FCE3AFCD10ABAAD941 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
 		1888FDD983AF552929BAB17BB00FB287 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18B6C9E62BFC95374D89FEB5DBB6234B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		240204351F1077B5000A2990 /* libLeanCloudFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLeanCloudFeedback.a; path = "Pods/../build/Debug-iphoneos/LeanCloudFeedback/libLeanCloudFeedback.a"; sourceTree = "<group>"; };
 		2402CE061ED448020098770A /* libPYSearch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPYSearch.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/PYSearch/libPYSearch.a"; sourceTree = "<group>"; };
 		2402CE081ED448080098770A /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Triplore-fyrauxtnzodhgofcrkbtbdkndumz/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		2402CE0A1ED4496F0098770A /* TPSiteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSiteTableViewController.h; sourceTree = "<group>"; };
@@ -374,8 +375,6 @@
 		4D6746F71F04971D00AA67C5 /* TPNoteToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteToolbar.m; sourceTree = "<group>"; };
 		4D6746F91F049BD400AA67C5 /* TPNoteBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNoteBarButton.h; sourceTree = "<group>"; };
 		4D6746FA1F049BD400AA67C5 /* TPNoteBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNoteBarButton.m; sourceTree = "<group>"; };
-		4D6747241F04D42E00AA67C5 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
-		4D6747251F04D42E00AA67C5 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		4D6747271F04D4A500AA67C5 /* TPNotePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPNotePageViewController.h; sourceTree = "<group>"; };
 		4D6747281F04D4A500AA67C5 /* TPNotePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPNotePageViewController.m; sourceTree = "<group>"; };
 		4D7E14E41F0289E50065954C /* TPAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAuthViewController.h; sourceTree = "<group>"; };
@@ -483,6 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240204361F1077B5000A2990 /* libLeanCloudFeedback.a in Frameworks */,
 				4DD5C2F31F0FC65F001AD0CF /* libTYPagerController.a in Frameworks */,
 				9D44C7EDDF0730733FCFDE0AB5E6F681 /* MediaPlayer.framework in Frameworks */,
 				2442CBC81F0768A900627488 /* ReplayKit.framework in Frameworks */,
@@ -626,15 +626,6 @@
 				24086A5C1EF4E4AF002D36AF /* ABCIntroView.m */,
 			);
 			name = ABCIntroView;
-			sourceTree = "<group>";
-		};
-		240903A21F069BB3004535C3 /* CAPSPageMenu */ = {
-			isa = PBXGroup;
-			children = (
-				4D6747241F04D42E00AA67C5 /* CAPSPageMenu.h */,
-				4D6747251F04D42E00AA67C5 /* CAPSPageMenu.m */,
-			);
-			name = CAPSPageMenu;
 			sourceTree = "<group>";
 		};
 		240903A31F069BBC004535C3 /* TPRefresh */ = {
@@ -817,7 +808,6 @@
 		2489FF1B1EDEE9BF002DCEA0 /* Assistant UI */ = {
 			isa = PBXGroup;
 			children = (
-				240903A21F069BB3004535C3 /* CAPSPageMenu */,
 				240903A11F069BAE004535C3 /* ABCIntroView */,
 				240903A31F069BBC004535C3 /* TPRefresh */,
 				2400FBE41F08A75C00BFB7B6 /* TPIndicator */,
@@ -1035,6 +1025,7 @@
 		AE7B0A503B5C0627E6732DCEA731DCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				240204351F1077B5000A2990 /* libLeanCloudFeedback.a */,
 				4DD5C2F21F0FC65F001AD0CF /* libTYPagerController.a */,
 				2442CBC71F0768A900627488 /* ReplayKit.framework */,
 				240903B41F06A30E004535C3 /* Photos.framework */,
@@ -1338,7 +1329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD0E843383BCF0B983FB4B6A /* [CP] Check Pods Manifest.lock */ = {
@@ -1353,7 +1344,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E2CC7CD755204295F77042E7D4F575B5 /* [CP] Embed Pods Frameworks */ = {
@@ -1462,7 +1453,6 @@
 				4D4DF7A91EE19D1C0012F476 /* TPVideoSeriesTableViewCell.m in Sources */,
 				4D4DF7AE1EE19F3B0012F476 /* TPVideoEpisodeTableViewCell.m in Sources */,
 				245BD0971EE5BA93002CA7AC /* TPCountryModel.m in Sources */,
-				4D6747261F04D42E00AA67C5 /* CAPSPageMenu.m in Sources */,
 				24086A5D1EF4E4AF002D36AF /* ABCIntroView.m in Sources */,
 				24AF8D1A1EF3B8D000C9B0CD /* DragableTableExtension.swift in Sources */,
 				2444AC781EF265E80007CC69 /* TPNoteTemplate.m in Sources */,
@@ -1518,6 +1508,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LeanCloudFeedback",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1638,6 +1629,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos/PYSearch",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LeanCloudFeedback",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";

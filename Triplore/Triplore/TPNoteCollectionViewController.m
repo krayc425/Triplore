@@ -57,15 +57,9 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
 }
 
 - (void)loadNotes{
-    __weak __typeof__(self) weakSelf = self;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.collectionView.mj_header endRefreshing];
-            [weakSelf.collectionView reloadData];
-        });
-    });
+    noteArr = [NSMutableArray arrayWithArray:[TPNoteManager fetchAllNotes]];
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView reloadData];
 }
 
 #pragma mark <UICollectionViewDataSource>

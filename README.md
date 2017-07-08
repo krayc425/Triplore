@@ -1,9 +1,10 @@
+<img src="https://github.com/songkuixi/Triplore/blob/master/Img/Logo/Logo2-2.png" width="100px" height="100px"> 
+
 # Triplore
 
 2017 年[爱奇艺最强开发者大赛](https://www.nowcoder.com/activity/iqiyi2017)项目
 
 项目名 __Triplore__ 指 __Trip__ + __Explore__ ，即旅游 + 探险，希望用户能从网络上浩如烟海的的旅游视频之中抽丝剥茧，找到自己想要的信息。并且快速便捷地把这些信息记录、整合，制作成一张自己专属的旅游笔记，以便旅游时查阅。  
-<img src="https://github.com/songkuixi/Triplore/blob/master/Img/Logo/Logo2-2.png" width="100px" height="100px"> 
 
 # 预览
 <table>
@@ -40,7 +41,7 @@
 
 2. 在视频播放区域的左半部分和右半部分可以通过 __上下滑动__ 分别调节亮度和音量。
  
-3. 在播放界面有一个可拖动的 __控制面板__，具体功能请见下。
+3. 在播放界面有一个可拖动的 __控制面板__ ，具体功能请见下。
 
 ### 笔记模块
 
@@ -58,11 +59,11 @@
 
 # 安装步骤
 
+**注：强烈建议真机测试，模拟器会出现较多问题**
+
 1. 下载项目。
 
-2. `cd` 进项目根目录，然后打开终端执行 `pod install`。  
-
-3. 由于其中一个所需的库 `libav.a` [🔗下载地址](http://pan.baidu.com/s/1gfxfyc7)  太大 `(解压后 1.86 GB)`，所以仓库中并不包含它，在项目中需要手动将它拖到 `Triplore/IOSPlayerLib` 中。完成后项目目录（省略细节文件）如下：
+2. 由于其中一个所需的库 `libav.a` [🔗下载地址](http://pan.baidu.com/s/1gfxfyc7)  太大（解压后 `1.86 GB`），所以仓库中并不包含它，在项目中需要手动将它拖到 `Triplore/IOSPlayerLib` 中。完成后项目目录（省略细节文件）如下：
     
     ```
     .
@@ -78,35 +79,30 @@
     └── TriploreTests
     ```  
 
-4. 开启 `Triplore.xcworkspace`。
-
-5. 现在默认每一个 `Pod Target` 中的 `Build Active Architecture Only` 为 `NO`，但是对于 `FMDB` 需要将其设置为 `YES`（因为 `libav.a` 中也集成了这个第三方库）。
-
-6. 在项目的 `TARGETS -> Triplore -> General -> Linked Frameworks And Libraries` 中手动添加本地路径的 `libav.a`。
-
-7. 本项目使用了 [LeanCloud](https://leancloud.cn) 作为后端，所以代码中需要硬编码进 `App ID` 和 `App Key`。为了安全起见，并未把它们存放在仓库中，所以有些功能如注册、登录不能使用。
-
-8. 按 `Cmd + R` 运行项目。
+3. 开启 `Triplore.xcworkspace`，按 `Cmd + R` 运行项目。
 
 #### 可能出现的问题
 
-* 若出现与特定 `Pod` 相关的错误，尝试在 `TARGETS -> Triplore -> Build Phases -> Link Binary With Libraries` 中添加对应 `Pod` 库的 `.a` 文件。
+* 若出现与特定第三方库相关的错误，尝试在 `TARGETS -> Triplore -> Build Phases -> Link Binary With Libraries` 中添加对应 `Pod` 库的 `.a` 文件。
 
 * 若出现 `Invalid Bitcode Signing`, 请到最左边 `Pods -> 每一个 Target -> Build Settings` 中搜索 `Bitcode` 将 `Enable Bitcode` 设为 `NO`。
 
+* 若提示找不到 `libav.a`，在项目的 `TARGETS -> Triplore -> General -> Linked Frameworks And Libraries` 中手动添加本地路径的 `libav.a`。
+
 # 其它
 
-感谢以下第三方库及平台
+感谢以下第三方库及平台（按首字母排序）
 
 *   [AFNetworking](https://github.com/AFNetworking/AFNetworking)
-*   [PYSearch](https://github.com/iphone5solo/PYSearch)
 *   [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 *   [FMDB](https://github.com/ccgus/fmdb)
-*   [SDWebImage](https://github.com/rs/SDWebImage)
-*   [SDCycleScrollView](https://github.com/gsdios/SDCycleScrollView)
-*   [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
-*   [MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 *   [LeanCloud](https://leancloud.cn) 
+*   [MJRefresh](https://github.com/CoderMJLee/MJRefresh)
+*   [PYSearch](https://github.com/iphone5solo/PYSearch)
+*   [SDCycleScrollView](https://github.com/gsdios/SDCycleScrollView)
+*   [SDWebImage](https://github.com/rs/SDWebImage)
+*   [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)
+*   [TYPagerController](https://github.com/12207480/TYPagerController)
 
 # 作者
 

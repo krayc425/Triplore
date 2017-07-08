@@ -19,6 +19,8 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - LeanCloudFeedback (0.1.1):
+    - AVOSCloud
   - MJRefresh (3.1.12)
   - PYSearch (0.8.0)
   - SDCycleScrollView (1.66):
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - AVOSCloud
   - DZNEmptyDataSet
   - FMDB
+  - LeanCloudFeedback
   - MJRefresh
   - PYSearch
   - SDCycleScrollView
@@ -46,6 +49,7 @@ SPEC CHECKSUMS:
   AVOSCloud: 2f0cc98a61ee8c8c3c1bc4447129147468e49efa
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  LeanCloudFeedback: 686305ea196931c7eae49800c384e42d78408482
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PYSearch: 53c239376b392fe0658c2bd002f408e7caf63046
   SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
@@ -53,6 +57,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   TYPagerController: 0b3e3e589a217ff537d5f78e1e76594beaa4cfc6
 
-PODFILE CHECKSUM: 261a07c79c3bbe3f6ae8b12779f553e0128cde58
+PODFILE CHECKSUM: 35360bc7085b8fd45c9331ca073bf99df885f524
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

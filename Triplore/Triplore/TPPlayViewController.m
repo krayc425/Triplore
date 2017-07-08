@@ -207,9 +207,6 @@ typedef NS_ENUM(NSInteger, TPPanType) {
     NSLog(@"Play Will Appear");
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-}
-
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
     

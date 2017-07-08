@@ -34,7 +34,7 @@ static int controllerNum = 3;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    TYTabButtonPagerController *pagerController = [[TYTabButtonPagerController alloc]init];
+    TYTabButtonPagerController *pagerController = [[TYTabButtonPagerController alloc] init];
     pagerController.dataSource = self;
     pagerController.adjustStatusBarHeight = YES;
     pagerController.cellWidth = 56;
@@ -48,7 +48,7 @@ static int controllerNum = 3;
     pagerController.barStyle = TYPagerBarStyleProgressView;
     
     
-    pagerController.view.frame = self.view.bounds;
+    pagerController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 44);
     [self addChildViewController:pagerController];
     [self.view addSubview:pagerController.view];
     _pagerController = pagerController;
