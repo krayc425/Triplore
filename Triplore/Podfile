@@ -12,6 +12,7 @@ target 'Triplore' do
   pod 'MJRefresh'
   pod 'AVOSCloud'
   pod 'TYPagerController'
+  pod 'LeanCloudFeedback'
 
 end
 
