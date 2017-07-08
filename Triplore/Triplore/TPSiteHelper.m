@@ -68,11 +68,6 @@
 
 
 + (void)fetchHotCountriesWithBlock:(void(^_Nonnull)(NSArray<TPCountryModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
-    
-//    NSArray *hotIndex = @[@14, @8, @1, @17, @45, @51];
-    
-    
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
     NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     
@@ -80,10 +75,13 @@
     
     while ([randomArray count] < 6) {
         int r = arc4random() % [allArr count];
-        [randomArray addObject:[allArr objectAtIndex:r]];
+        if(![randomArray containsObject:[allArr objectAtIndex:r]]){
+            [randomArray addObject:[allArr objectAtIndex:r]];
+        }else{
+            continue;
+        }
     }
 
-    
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
     for(NSDictionary *countryDict in randomArray){
         
@@ -110,9 +108,6 @@
 
 
 + (void)fetchHotCitiesWithBlock:(void(^_Nonnull)(NSArray<TPCityModel *> *_Nonnull countries, NSError *_Nullable error))completionBlock {
-//    NSArray *countryIndexs = @[@14 , @8, @1, @17, @45, @51];
-//    NSArray *cityIndexs = @[@3, @0, @0, @2, @0, @0];
-    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Site" ofType:@"plist"];
     NSMutableArray *allArr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     
@@ -120,7 +115,11 @@
     
     while ([randomConuntryArray count] < 6) {
         int r = arc4random() % [allArr count];
-        [randomConuntryArray addObject:[allArr objectAtIndex:r]];
+        if(![randomConuntryArray containsObject:[allArr objectAtIndex:r]]){
+            [randomConuntryArray addObject:[allArr objectAtIndex:r]];
+        }else{
+            continue;
+        }
     }
 
     NSMutableArray *resultArr = [[NSMutableArray alloc] init];
@@ -133,7 +132,11 @@
         [city setChineseName:cityDict[@"chinese_name"]];
         [city setEnglishName:cityDict[@"english_name"]];
         [city setImageURL:cityDict[@"image_url"]];
-        [resultArr addObject:city];
+        if(![resultArr containsObject:city]) {
+            [resultArr addObject:city];
+        }else{
+            continue;
+        }
     }
     
     if (completionBlock){
