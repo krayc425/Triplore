@@ -11,7 +11,6 @@
 #import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
-
 #import "TPVideoManager.h"
 #import "TPVideo.h"
 #import "SVProgressHUD.h"

@@ -16,7 +16,7 @@
 #pragma mark - Action
 
 - (void)updateAvatar {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"更换头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
         pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

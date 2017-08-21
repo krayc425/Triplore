@@ -39,8 +39,6 @@
     
     self.tableView.backgroundColor = TPBackgroundColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    self.tableView.scrollEnabled = NO;
     
     // user
     [[NSNotificationCenter defaultCenter] addObserver:self
