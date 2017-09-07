@@ -35,7 +35,6 @@
     self.overlayView.backgroundColor = nil;
     
     // buttons
-    
     NSArray *buttons = @[self.foodButton, self.shoppingButton, self.placeButton];
     
     NSInteger start = 11;
@@ -45,7 +44,6 @@
         button.tag = start;
         [button addTarget:self action:@selector(clickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
         start ++;
-
     }
 }
 

@@ -24,7 +24,6 @@
 static NSInteger const width = 220;
 static NSInteger const height = 124;
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

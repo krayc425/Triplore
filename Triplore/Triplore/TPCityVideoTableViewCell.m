@@ -21,7 +21,6 @@
 
 static NSString * const reuseIdentifier = @"TPVideoCollectionViewCell";
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -12,8 +12,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TPVideoManager.h"
 
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-
 @interface TPVideoSingleTableViewCell (){
     UIView *deleteView;
 }
@@ -41,7 +39,7 @@ static NSInteger const height = 124;
     self.coverImageView.image = [UIImage imageNamed:@"TEST_PNG"];
     
     //自定义删除 View
-    deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
+    deleteView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH,
                                                           0,
                                                           300,
                                                           CGRectGetHeight(self.frame))];

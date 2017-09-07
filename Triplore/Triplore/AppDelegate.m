@@ -74,16 +74,14 @@
                 NSLog(@"手机自带网络");
                 
                 if(![[NSUserDefaults standardUserDefaults] boolForKey:@"alert_for_wwan"]){
-                
-                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您正在使用移动蜂窝网络" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *noAlertAction = [UIAlertAction actionWithTitle:@"不再提示" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"alert_for_wwan"];
-                }];
-                [alertVC addAction:noAlertAction];
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                }];
-                [alertVC addAction:cancelAction];
-                [[self theTopviewControler] presentViewController:alertVC animated:YES completion:nil];
+                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您正在使用移动蜂窝网络" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *noAlertAction = [UIAlertAction actionWithTitle:@"不再提示" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"alert_for_wwan"];
+                    }];
+                    [alertVC addAction:noAlertAction];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                    [alertVC addAction:cancelAction];
+                    [[self theTopviewControler] presentViewController:alertVC animated:YES completion:nil];
                 }
             }
                 break;

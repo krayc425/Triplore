@@ -52,7 +52,6 @@ static int controllerNum = 3;
     [self addChildViewController:pagerController];
     [self.view addSubview:pagerController.view];
     _pagerController = pagerController;
-    
 }
 
 #pragma mark - TYPagerControllerDataSource

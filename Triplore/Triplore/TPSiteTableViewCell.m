@@ -20,13 +20,11 @@
 
 static NSString * const reuseIdentifier = @"TPSiteCollectionViewCell";
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     [self.categoryLabel sizeToFit];
     
-
     [self.allButton setTitleColor:TPColor forState:UIControlStateNormal];
     [self.allButton2 setTitleColor:TPColor forState:UIControlStateNormal];
     

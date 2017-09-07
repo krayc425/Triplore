@@ -14,7 +14,6 @@
 #import "TPPlayViewController.h"
 #import "TPVideoModel.h"
 #import "TPNetworkHelper.h"
-
 #import "TPCityModel.h"
 #import <math.h>
 

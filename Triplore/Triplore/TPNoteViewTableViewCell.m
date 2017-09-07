@@ -8,9 +8,6 @@
 
 #import "TPNoteViewTableViewCell.h"
 
-
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-
 @interface TPNoteViewTableViewCell(){
     UIView *deleteView;
 }
@@ -41,10 +38,10 @@
     [self addSubview:view];
     
     //自定义删除 View
-    deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
-                                                                  0,
-                                                                  300,
-                                                                  CGRectGetHeight(noteView.frame) + 20)];
+    deleteView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH,
+                                                          0,
+                                                          300,
+                                                          CGRectGetHeight(noteView.frame) + 20)];
     UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         90,

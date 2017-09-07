@@ -8,7 +8,6 @@
 
 #import "TPSiteCollectionViewCell.h"
 
-
 @implementation TPSiteCollectionViewCell
 
 - (void)awakeFromNib {
@@ -18,7 +17,6 @@
     self.overlayView.backgroundColor = nil;
     
     self.imageView.image = [UIImage imageNamed:@"TEST_PNG"];
-  
 }
 
 - (void)layoutSubviews {

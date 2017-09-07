@@ -10,15 +10,7 @@
 
 @implementation TPCategoryButton
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
--(CGRect)imageRectForContentRect:(CGRect)contentRect {
+- (CGRect)imageRectForContentRect:(CGRect)contentRect {
     
     CGFloat width = CGRectGetWidth(contentRect);
     CGFloat height = CGRectGetHeight(contentRect) / 2;
@@ -28,7 +20,7 @@
     return rect;  
 }
 
--(CGRect)titleRectForContentRect:(CGRect)contentRect {
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
     
     CGFloat width = CGRectGetWidth(contentRect);
     CGFloat height = CGRectGetHeight(contentRect) / 2;

@@ -35,5 +35,4 @@
  */
 + (void)fetchVideosInAlbum:(NSString *_Nonnull)albumName andAlbumID:(NSString *_Nonnull)albumID withBlock:(void(^_Nonnull)(NSArray<TPVideoModel *> *_Nonnull videos, NSError *_Nullable error))completionBlock;
 
-
 @end

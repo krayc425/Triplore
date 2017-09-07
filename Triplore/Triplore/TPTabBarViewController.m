@@ -8,7 +8,6 @@
 
 #import "TPTabBarViewController.h"
 #import "TPSelectionTableViewController.h"
-
 #import "TPSiteTableViewController.h"
 #import "TPNotePageViewController.h"
 #import "TPMeTableViewController.h"
@@ -29,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     //TabBar
     self.tabBarController.tabBar.delegate = self;
     self.tabBar.tintColor = TPColor;
