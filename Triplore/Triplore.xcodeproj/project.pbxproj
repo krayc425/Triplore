@@ -1487,7 +1487,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A535AE89645EA4D9CFF1AF6049211570 /* Pods-Triplore.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1608,7 +1608,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CA195B63E6F036193069B281699689A /* Pods-Triplore.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Triplore/Triplore.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

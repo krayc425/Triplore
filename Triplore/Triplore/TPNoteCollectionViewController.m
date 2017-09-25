@@ -51,6 +51,10 @@ static NSString * const reuseIdentifier = @"TPNoteCollectionViewCell";
     [super didReceiveMemoryWarning];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"load_notes" object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
     [self loadNotes];

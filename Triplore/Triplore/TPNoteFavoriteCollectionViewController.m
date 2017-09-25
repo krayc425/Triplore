@@ -48,6 +48,10 @@ static NSString *const reuseIdentifier = @"TPNoteCollectionViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"load_favorite_notes" object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
 }
