@@ -2,13 +2,13 @@
 
 # Triplore (English)
 
-This project was submitted for the [2017 iQiyi National Programming Contest](https://www.nowcoder.com/activity/iqiyi2017) and won the **championship**.
+This project was submitted for the [2017 iQiyi National Programming Contest](https://www.nowcoder.com/activity/iqiyi2017) and won the **First Prize** and **Best Individual**.
 
 The name **Triplore** is the combination of **Trip** and **Explore**, hoping it can help users grab useful information from massive online videos, and combine these information into a piece of note which can be reviewed when travelling.
 
 # Instruction【Important】
 
-Because that the video player library `libav.a` provided by iQiyi is in 32 bit architecture, and Apple requires that all apps are compiled under 64 bit architecture, so this project is **can not** run very much likely. So please just refer to the source code and idea.
+Unfortunately, the video player library `libav.a` provided by iQiyi is in 32 bit architecture and Apple requires that all apps are compiled under 64 bit architecture, so this project **can not** run very much likely. Please just refer to the source code and idea.
 
 # Preview
 
@@ -30,11 +30,11 @@ Because that the video player library `libav.a` provided by iQiyi is in 32 bit a
 
 1. Provide selected travelling videos on homepage, to help users find inspiration.
 
-2. Can search all videos related to travelling provided by iQiyi.
+2. Search all videos related to travelling provided by iQiyi.
 
-3. Offer list of popular travelling destinations, including cities and countries. It is divided into "Food", "Shopping" and "Scene" so that users can pick what they want directly.
+3. Offer list of popular travelling destinations, including cities and countries. It is divided into "Food", "Shopping" and "Scene" categories so that users can pick what they want directly.
 
-4. Can add videos into their "Favorites".
+4. Add videos into their "Favorites".
 
 5. Pull to refresh in video list, getting videos by pages.
 
@@ -50,13 +50,13 @@ Because that the video player library `libav.a` provided by iQiyi is in 32 bit a
 
 ### Notes
 
-1. When playing videos, use control panel to **take a screenshot" or "add annotations", and combine them to a travelling note.
+1. When playing videos, use control panel to **take a screenshot" or "add annotations"**, and combine them to a travelling note.
 
 2. Use different templates and fonts to decorate the note.
 
 3. When playing videos, use control panel to **record** a clip of video and save to local albums.
 
-4. Can edit / delete notes, including swipe left to delete an item in note, click to edit annotations, press long to adjustthe orders. When reading notes, users can go into player to watch the video again and edit the note.
+4. Edit / delete notes, including swipe left to delete an item in note, click to edit annotations, press long to adjust note item orders. When reading notes, users can go to player to watch the video again and edit the note.
 
 5. Convert note into a high resolution picture and save to album.
 
@@ -117,6 +117,4 @@ Thanks to following 3rd party libraries / platforms (in alphabetical order)
 
 # Author
 
-Produced by [songkuixi](https://github.com/songkuixi) and [Sorumi](https://github.com/Sorumi).
-
-
+Produced by [songkuixi](https://github.com/songkuixi) and [Sorumi](https://github.com/Sorumi) with <3.
